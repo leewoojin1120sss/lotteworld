@@ -1,4 +1,4 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,isParkGPS,encodeShare,decodeShare,waitState,corridorRoute} from './lib.js';
+import {escapeHTML as esc,normalizeName,isMapPoint,isParkGPS,encodeShare,decodeShare,waitState,corridorRoute,nearbyFacilities,transferRecommendations} from './lib.js';
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const paths={
@@ -52,6 +52,7 @@ let toastTimer,park,guidePois,walkways,official={},waits={},localAssets={};
 const safeStored=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}};
 const storedFavs=safeStored('yaho-favorites',[]);
 const state={floor:'1F',category:'attraction',query:'',allFloors:false,favoritesOnly:false,kind:null,favorites:new Set(Array.isArray(storedFavs)?storedFavs.filter(v=>typeof v==='string'):[]),selected:null,position:null,gps:null,gpsPending:false,gpsError:'',pick:false,shareAfterPick:false,routeAfterPick:null,shared:null,route:null};
+state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};
 const view={x:0,y:0,scale:1,fit:1,width:1070,height:760};
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,4200);}
 function mobileSheet(open){$('#sidebar').classList.toggle('mobile-open',open);$('#mobileList').classList.toggle('active',open&&!state.favoritesOnly);$('#mobileMap').classList.toggle('active',!open);$('#mobileFavorites').classList.toggle('active',open&&state.favoritesOnly);}
@@ -131,7 +132,7 @@ function renderPins(){
   const pinVisible=p=>(state.category==='all'||p.category===state.category)&&(!state.kind||p.kind===state.kind)&&(!state.favoritesOnly||state.favorites.has(p.id))&&(!state.query||matches({...p,floor:state.floor}));
   items.sort((a,b)=>Number(pinVisible(a))-Number(pinVisible(b)));
   $('#mapPins').innerHTML=items.map(p=>{
-    const visible=pinVisible(p);const on=state.selected===p.id;
+    const visible=pinVisible(p);const on=state.selected===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
     return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${on?'selected':''} ${visible||on?'':'muted'}" style="left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
   }).join('');
   $('#mapPins').style.pointerEvents=state.pick?'none':'';
@@ -145,6 +146,12 @@ function renderLocationPins(){
 function applyTransform(){
   $('#mapWorld').style.transform=`translate(${view.x}px,${view.y}px) scale(${view.scale})`;
   $('#mapWorld').style.setProperty('--inverse-scale',1/view.scale);
+  // Give the SVG its actual screen dimensions instead of magnifying a cached
+  // bitmap layer with the transformed pin container.
+  const artwork=$('#mapImage');
+  artwork.style.width=`${view.width*view.scale}px`;
+  artwork.style.height=`${view.height*view.scale}px`;
+  artwork.style.transform=`translate(${view.x}px,${view.y}px)`;
 }
 function fitMap(){
   if(!park)return;const stage=$('#map');const w=stage.clientWidth,h=stage.clientHeight;
@@ -162,7 +169,7 @@ function setFloor(id,{focus=false}={}){
   const f=floorData(id);if(!f)return;
   state.floor=id;view.width=f.width;view.height=f.height;
   $('#mapWorld').style.width=`${f.width}px`;$('#mapWorld').style.height=`${f.height}px`;
-  $('#mapImage').src=f.image;$('#mapImage').alt=`${f.name} 공식 가이드맵`;
+  $('#mapImage').src=f.vectorImage??f.image;$('#mapImage').alt=`${f.name} 지도`;
   $('#floorName').textContent=f.name;
   $('#floorTabs').innerHTML=park.floors.map(a=>`<button type="button" data-floor="${a.id}" class="${a.id===id?'active':''}" aria-pressed="${a.id===id}" aria-label="${esc(a.name)}">${a.id==='MAGIC'?'매직아일랜드':a.label}</button>`).join('');
   if(state.selected&&poiById(state.selected)?.floor!==id){state.selected=null;$('#detail').hidden=true;}
@@ -178,22 +185,33 @@ function openPlace(id){
   state.selected=id;renderList();renderPins();renderDetail(p);focusPoint(p);mobileSheet(false);
 }
 function renderDetail(p){
-  const w=currentWait(p),o=officialEntry(p);const url=safeURL(o?.url)??(p.category==='attraction'?'https://adventure.lotteworld.com/enjoy/attrctn/list':p.category==='food'?'https://adventure.lotteworld.com/enjoy/restaurant/list':'https://adventure.lotteworld.com/usage-guide/service/convenient-facilities/information/list');
-  const picture=localAssets.attractions?.[o?.officialId]??safeURL(o?.image);const detail=$('#detail');
-  detail.innerHTML=`<div class="detail-top ${p.category}">${picture?`<img src="${esc(picture)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer">`:icon(poiIcon(p))}<button class="icon-btn detail-close" type="button" data-detail-close aria-label="상세 정보 닫기">${icon('close')}</button></div><div class="detail-body"><div class="detail-category"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직아일랜드':p.floor)}</span>${esc(names[p.category])}${p.number?` · 가이드맵 ${p.number}번`:''}</div><div class="detail-title-row"><h2>${esc(p.name)}</h2>${favoriteButton(p)}</div><p class="detail-description">${esc(p.description)}</p>${p.category==='attraction'?`<div class="detail-wait"><span>${icon('clock')}</span><div><strong>${esc(w.label)}</strong><small>${waitEntry(p)?.updatedAt?`원본 수신 ${esc(ageLabel(Date.parse(waitEntry(p).updatedAt)))}`:'확인된 공식 대기 시간만 표시합니다.'}</small></div></div>`:''}${o?.restrictions?`<p class="detail-location-note">${esc(typeof o.restrictions==='string'?o.restrictions:JSON.stringify(o.restrictions))}</p>`:''}${p.note?`<p class="detail-note">${esc(p.note)}</p>`:''}${p.kind==='unknown'?'<p class="detail-note">원본 범례에 없는 기호입니다. 시설 종류는 현장에서 확인해 주세요.</p>':''}<p class="detail-location-note">${p.x!==null?'공식 조감도의 표시 위치입니다. 실제 입구와 이용 여부는 현장 안내를 확인해 주세요.':'목록에 수록된 장소입니다. 정확한 위치는 원본 지도와 현장 안내를 확인해 주세요.'}</p><div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('route')}여기로 가기</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div><div class="detail-extra"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">원본 보기 ↗</a></div></div>`;
+  const w=currentWait(p),o=officialEntry(p);
+  const url=safeURL(o?.url)??(p.category==='attraction'?'https://adventure.lotteworld.com/enjoy/attrctn/list':p.category==='food'?'https://adventure.lotteworld.com/enjoy/restaurant/list':'https://adventure.lotteworld.com/usage-guide/service/convenient-facilities/information/list');
+  const picture=localAssets.attractions?.[o?.officialId]??safeURL(o?.image),detail=$('#detail');
+  const description=p.category==='facility'?`${nearest(p)?.name??floorLabel(p.floor)} 부근`:p.description;
+  const note=p.note&&p.source!=='official-public-api'?`<details class="detail-source-note"><summary>위치 정보</summary><p>${esc(p.note)}</p></details>`:'';
+  detail.innerHTML=`<div class="detail-top ${p.category}">${picture?`<img src="${esc(picture)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer">`:icon(poiIcon(p))}<button class="icon-btn detail-close" type="button" data-detail-close aria-label="상세 정보 닫기">${icon('close')}</button></div>
+  <div class="detail-body"><div class="detail-category"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직아일랜드':p.floor)}</span>${esc(names[p.category])}${p.number?` · ${p.number}번`:''}</div>
+  <div class="detail-title-row"><h2>${esc(p.name)}</h2>${favoriteButton(p)}</div>
+  <p class="detail-description">${esc(description)}</p>
+  ${p.category==='attraction'?`<div class="detail-wait">${icon('clock')}<strong>${esc(w.label)}</strong>${waitEntry(p)?.updatedAt?`<small>${esc(ageLabel(Date.parse(waitEntry(p).updatedAt)))}</small>`:''}</div>`:''}
+  ${o?.restrictions?`<p class="detail-restrictions">${esc(typeof o.restrictions==='string'?o.restrictions:JSON.stringify(o.restrictions))}</p>`:''}
+  ${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
+  <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
+  <div class="detail-extra"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
   const img=detail.querySelector('img');if(img)img.addEventListener('error',()=>img.replaceWith(document.createRange().createContextualFragment(icon(poiIcon(p)))),{once:true});
   if(o?.detail?.position||o?.detail?.locations?.length){
-    const action=document.createElement('button');action.type='button';action.className=`btn ${p.x===null?'btn-primary':'btn-subtle'} btn-full official-map-button`;action.innerHTML=icon('map')+'공식 위치 지도 보기';action.addEventListener('click',()=>openOfficialMap(p));detail.querySelector('.detail-actions').before(action);
+    const action=document.createElement('button');action.type='button';action.className=`btn ${p.x===null?'btn-primary':'btn-subtle'} btn-full official-map-button`;action.innerHTML=icon('map')+'공식 위치 지도';action.addEventListener('click',()=>openOfficialMap(p));detail.querySelector('.detail-actions').before(action);
   }
-  if(o?.source?.fetchedAt){const source=document.createElement('p');source.className='detail-source';source.textContent=`공식 웹 정보 확인: ${ageLabel(Date.parse(o.detail?.source?.fetchedAt??o.source.fetchedAt))}${o.source.stale?' · 최신 갱신 실패':''}`;detail.querySelector('.detail-extra').before(source);}
   detail.hidden=false;$('#mapTip').hidden=true;
 }
+
 function openOfficialMap(p){
   const o=officialEntry(p);if(!o)return;
   const locations=o.detail?.locations?.length?o.detail.locations:[o.detail?.position].filter(Boolean);
   const maps=o.detail?.maps??[];
   const body=$('#officialMapBody');
-  body.innerHTML=`<label class="field-label" for="officialLocationSelect">${esc(p.name)}</label><select id="officialLocationSelect">${locations.map((loc,i)=>`<option value="${i}">${esc(maps.find(m=>m.id===loc.mapId)?.floorName??o.floorName)}${loc.location?` · ${esc(loc.location)}`:''}</option>`).join('')}</select><div id="officialMapFigure"></div><p class="form-note">공식 웹 안내의 위치입니다. 실제 입구와 통제 구간은 현장 표지로 확인해 주세요.</p>`;
+  body.innerHTML=`<label class="field-label" for="officialLocationSelect">${esc(p.name)}</label><select id="officialLocationSelect">${locations.map((loc,i)=>`<option value="${i}">${esc(maps.find(m=>m.id===loc.mapId)?.floorName??o.floorName)}${loc.location?` · ${esc(loc.location)}`:''}</option>`).join('')}</select><div id="officialMapFigure"></div>`;
   const render=i=>{const loc=locations[i],m=maps.find(a=>a.id===loc?.mapId)??(official.maps??[]).find(a=>a.id===loc?.mapId);if(!loc||!m)return;const image=localAssets.maps?.[m.id]??safeURL(m.imageUrl);$('#officialMapFigure').innerHTML=`<figure class="official-map-figure"><div style="aspect-ratio:${m.width}/${m.height}"><img src="${esc(image)}" alt="${esc(m.floorName)} 공식 위치 지도"><span class="official-position" style="left:${loc.x/m.width*100}%;top:${loc.y/m.height*100}%">${icon('pin')}</span></div><figcaption>${esc(m.floorName)} · 지도 © 롯데월드</figcaption></figure>`;};
   $('#officialLocationSelect').onchange=e=>render(Number(e.target.value));render(0);$('#officialMapDialog').showModal();
 }
@@ -204,18 +222,18 @@ function positionName(p){if(!p)return '';const n=nearest({floor:p.floor,pdf:toPD
 function setManualPosition(p){
   if(p.x===null||!isMapPoint(p)){toast('이 장소의 정확한 위치는 원본에 표시되어 있지 않아요.');return;}
   const after=state.shareAfterPick,routeAfter=state.routeAfterPick;
-  state.position={floor:p.floor,x:p.x,y:p.y,at:Date.now()};state.shareAfterPick=false;endPick();
+  state.position={floor:p.floor,x:p.x,y:p.y,at:Date.now()};state.shareAfterPick=false;clearRoute();endPick();closeDetail();
   updateLocationStatus();renderLocationPins();toast(`${floorLabel(p.floor)}에 내 위치를 표시했어요.`);
   if(after)openShare();
-  else if(routeAfter)openRoute(routeAfter.toId);
+  else if(routeAfter){openRoute(routeAfter.toId,{nearestKind:routeAfter.nearestKind,preserve:true});if(routeAfter.autoRoute)runRoute();}
 }
 function updateLocationStatus(){
   const s=$('#locationStatus');s.classList.toggle('located',!!state.position||!!state.gps);
-  const text=state.position?`${state.position.floor==='MAGIC'?'매직아일랜드':state.position.floor} · 내가 지정한 위치${state.gps?' · GPS 별도 수신':''}`:state.gps?`GPS ±${Math.round(state.gps.accuracy)}m · 지도 위치는 직접 지정해 주세요`:state.gpsPending?'GPS를 수신하고 있어요…':!navigator.onLine?'오프라인 · 저장된 지도를 보고 있어요':'위치 권한 없이도 지도를 둘러볼 수 있어요';
+  const text=state.position?`${state.position.floor==='MAGIC'?'매직아일랜드':state.position.floor} · 내가 지정한 위치${state.gps?' · GPS 별도 수신':''}`:state.gps?`GPS ±${Math.round(state.gps.accuracy)}m · 지도 위치는 직접 지정해 주세요`:state.gpsPending?'GPS를 수신하고 있어요…':!navigator.onLine?'오프라인 · 저장된 지도를 보고 있어요':'층을 선택하고 내 위치를 지정하세요';
   s.innerHTML=`<span class="status-dot"></span>${esc(text)}`;
 }
 function locationContent(){
-  const g=state.gps;return `${g?`<div class="gps-reading"><h3>${isParkGPS(g)?'GPS를 수신했어요':'현재 GPS가 롯데월드 밖을 가리켜요'}</h3><p>위도 ${g.lat.toFixed(6)} · 경도 ${g.lng.toFixed(6)}<br>수신 오차 <strong>±${Math.round(g.accuracy)}m</strong> · ${esc(ageLabel(g.at))}</p></div>`:`<div class="gps-reading"><h3>${state.gpsPending?'GPS를 수신하고 있어요…':'내 위치를 지도에 표시해 보세요'}</h3><p>${esc(state.gpsError||'GPS 권한을 허용하거나, 지도를 눌러 직접 위치를 지정할 수 있어요.')}</p></div>`}<p class="gps-warning">선택한 층: <b>${esc(floorLabel(state.floor))}</b><br>실내 GPS에는 오차가 있습니다. 공식 지도는 기울어진 조감도여서 GPS를 핀으로 자동 변환하지 않아요. 현장에서 층을 선택하고 지도 위치를 직접 지정해 주세요.</p><div class="location-options"><button class="btn btn-primary" type="button" id="locationPick">${icon('pin')}지도에서 직접 지정</button><button class="btn btn-subtle" type="button" id="locationRetry" ${state.gpsPending?'disabled':''}>${icon('locate')}${g?'GPS 새로고침':'GPS 사용'}</button></div>${g?`<a class="text-button" href="https://www.google.com/maps/search/?api=1&query=${g.lat.toFixed(6)},${g.lng.toFixed(6)}" target="_blank" rel="noopener noreferrer">GPS 위치를 지리 지도에서 보기 ↗</a>`:''}${state.position?`<button class="text-button" type="button" id="removePosition">직접 지정한 내 위치 지우기</button>`:''}`;
+  const g=state.gps;return `${g?`<div class="gps-reading"><h3>${isParkGPS(g)?'GPS를 수신했어요':'현재 GPS가 롯데월드 밖을 가리켜요'}</h3><p>위도 ${g.lat.toFixed(6)} · 경도 ${g.lng.toFixed(6)}<br>수신 오차 <strong>±${Math.round(g.accuracy)}m</strong> · ${esc(ageLabel(g.at))}</p></div>`:`<div class="gps-reading"><h3>${state.gpsPending?'GPS를 수신하고 있어요…':'내 위치를 지도에 표시해 보세요'}</h3><p>${esc(state.gpsError||'GPS 권한을 허용하거나, 지도를 눌러 직접 위치를 지정할 수 있어요.')}</p></div>`}<p class="gps-warning">선택한 층: <b>${esc(floorLabel(state.floor))}</b><br>실내 위치는 지도를 눌러 지정해 주세요.</p><div class="location-options"><button class="btn btn-primary" type="button" id="locationPick">${icon('pin')}지도에서 직접 지정</button><button class="btn btn-subtle" type="button" id="locationRetry" ${state.gpsPending?'disabled':''}>${icon('locate')}${g?'GPS 새로고침':'GPS 사용'}</button></div>${g?`<a class="text-button" href="https://www.google.com/maps/search/?api=1&query=${g.lat.toFixed(6)},${g.lng.toFixed(6)}" target="_blank" rel="noopener noreferrer">GPS 위치를 지리 지도에서 보기 ↗</a>`:''}${state.position?`<button class="text-button" type="button" id="removePosition">직접 지정한 내 위치 지우기</button>`:''}`;
 }
 function renderLocationDialog(){const body=$('#locationBody');body.innerHTML=locationContent();$('#locationPick').onclick=()=>beginPick(state.shareAfterPick);$('#locationRetry').onclick=()=>requestGPS();const remove=$('#removePosition');if(remove)remove.onclick=()=>{state.position=null;renderLocationPins();updateLocationStatus();renderLocationDialog();};}
 function openLocation({getGPS=false}={}){renderLocationDialog();if(!$('#locationDialog').open)$('#locationDialog').showModal();if(getGPS)requestGPS();}
@@ -245,29 +263,135 @@ function readHash(){
   }else if(location.hash.startsWith('#place=')){const id=decodeURIComponent(location.hash.slice(7));if(poiById(id))openPlace(id);else toast('이 장소를 찾을 수 없어요.');}
   else if(location.hash.startsWith('#meet='))toast('공유 링크의 위치 정보가 올바르지 않아요.');
 }
-function optionHTML(p){return `<option value="${esc(p.id)}">${esc(p.floor==='MAGIC'?'매직':p.floor)} · ${esc(p.name)}${p.category==='facility'?` (${esc(p.id.split('-').at(-1))})`:''}</option>`;}
-function openRoute(toId){
-  const locatable=park.pois.filter(p=>p.x!==null&&p.kind!=='unknown');
-  $('#routeFrom').innerHTML=(state.position?`<option value="my">내가 지정한 위치 · ${esc(state.position.floor)}</option>`:'<option value="" disabled selected>출발지를 선택해 주세요</option>')+locatable.map(optionHTML).join('');
-  $('#routeTo').innerHTML='<option value="" disabled selected>도착지를 선택해 주세요</option>'+locatable.map(optionHTML).join('');
-  if(state.shared?.position)$('#routeFrom').insertAdjacentHTML('afterbegin',`<option value="shared">공유받은 위치 · ${esc(state.shared.floor)}</option>`);
-  if(toId)$('#routeTo').value=toId;
-  $('#routeError').hidden=true;$('#routeDialog').showModal();
+const routeCategoryNames={all:'전체',attraction:'어트랙션',food:'식당·카페',shop:'기념품·체험'};
+const quickFacilityKinds=['restroom','battery','locker','water','firstaid','atm'];
+function currentRouteOrigin(){return state.position?{...state.position,pdf:toPDF(state.position),name:'현위치'}:null;}
+function routePlaceLabel(p){return p.category==='facility'?`${nearest(p)?.name??floorLabel(p.floor)} 부근 ${kindNames[p.kind]??p.name}`:p.name;}
+function facilityQueryKinds(query){
+  const q=normalizeName(query);if(!q)return [];
+  const aliases={restroom:'화장실 toilet wc',battery:'보조배터리 배터리 충전',locker:'물품보관함 보관함 짐',water:'음수대 정수기 마실물',firstaid:'의무실 응급실',aed:'aed 자동심장충격기 제세동기',atm:'atm 현금지급기 현금',baby:'베이비라운지 수유실',stairs:'계단',elevator:'엘리베이터 승강기 엘베',escalator:'에스컬레이터',stroller:'유모차',wheelchair:'휠체어',smoking:'흡연실',prayer:'기도실',lostfound:'분실물',info:'안내소 손님상담실'};
+  return Object.keys(aliases).filter(k=>normalizeName(aliases[k]).includes(q));
 }
-function routePoint(id){if(id==='my'&&state.position)return {...state.position,pdf:toPDF(state.position),name:'내가 지정한 위치'};if(id==='shared'&&state.shared?.position)return {...state.shared.position,pdf:toPDF(state.shared.position),name:'공유받은 위치'};return poiById(id);}
+function routePlaceButton(p){
+  const selected=state.routeDraft.toId===p.id;
+  return `<button class="route-place ${selected?'selected':''}" type="button" data-route-destination="${esc(p.id)}" aria-pressed="${selected}"><span class="route-place-icon ${p.category}">${icon(poiIcon(p))}</span><span><strong>${esc(p.name)}</strong><small>${esc(floorLabel(p.floor))}${p.x===null?' · 공식 위치 지도':''}</small></span><span class="route-place-check">${selected?icon('check'):icon('plus')}</span></button>`;
+}
+function renderRouteDestinations(){
+  const draft=state.routeDraft,from=currentRouteOrigin();
+  $('#routeTo').value=draft.toId??'';
+  $('#routeOriginText').textContent=from?`${floorLabel(from.floor)} · ${positionName(from)}`:'지도에서 현재 위치를 지정하세요';
+  $('#pickRouteStart').textContent=from?'변경':'위치 지정';
+  $('#routeSearch').value=draft.query;
+  $('#clearRouteSearch').hidden=!draft.query;
+  $('#routeCategories').innerHTML=Object.entries(routeCategoryNames).map(([id,name])=>`<button type="button" data-route-category="${id}" aria-pressed="${draft.category===id}" class="${draft.category===id?'active':''}">${name}</button>`).join('');
+  $('#routeQuickFacilities').innerHTML=quickFacilityKinds.map(kind=>`<button type="button" data-route-nearest="${kind}" class="${draft.nearestKind===kind?'active':''}" aria-pressed="${draft.nearestKind===kind}">${icon(kind)}${esc(kindNames[kind])}</button>`).join('');
+  const list=$('#routeDestinations');
+  if(draft.nearestKind){
+    const choice=from?nearbyFacilities(from,park.pois,walkways.floors,{kinds:[draft.nearestKind]})[0]:null;
+    const existsHere=from&&park.pois.some(p=>p.category==='facility'&&p.kind===draft.nearestKind&&p.floor===from.floor);
+    list.innerHTML=`<div class="route-nearest-selection">${icon(draft.nearestKind)}<div><strong>가까운 ${esc(kindNames[draft.nearestKind])}</strong><p>${choice?esc(routePlaceLabel(choice.poi)):from?existsHere?'시설까지 연결된 통로를 찾지 못했습니다.':'다른 층의 가까운 시설을 찾습니다.':'현위치를 지정하면 가까운 곳을 추천합니다.'}</p></div></div>`;
+    return;
+  }
+  const query=draft.query.trim();const queryKinds=facilityQueryKinds(query);
+  const entries=park.pois.filter(p=>p.category!=='facility'&&p.name!=='오픈예정'&&(draft.category==='all'||p.category===draft.category)&&(!query||normalizeName(`${p.name} ${p.description} ${floorLabel(p.floor)}`).includes(normalizeName(query))));
+  entries.sort((a,b)=>Number(b.floor===(from?.floor??state.floor))-Number(a.floor===(from?.floor??state.floor))||a.name.localeCompare(b.name,'ko'));
+  const shortcuts=queryKinds.map(kind=>`<button class="route-facility-result" type="button" data-route-nearest="${kind}">${icon(kind)}<span>가까운 ${esc(kindNames[kind])} 찾기</span>${icon('route')}</button>`).join('');
+  let html=shortcuts;
+  for(const category of ['attraction','food','shop']){
+    const group=entries.filter(p=>p.category===category);
+    if(!group.length)continue;
+    const limited=!query&&draft.category==='all'?group.slice(0,4):group;
+    html+=`<section class="route-place-group"><h3>${routeCategoryNames[category]} <span>${group.length}</span></h3>${limited.map(routePlaceButton).join('')}${limited.length<group.length?`<button class="route-show-all" type="button" data-route-category="${category}">${routeCategoryNames[category]} 전체 보기</button>`:''}</section>`;
+  }
+  list.innerHTML=html||'<p class="route-empty">검색 결과가 없습니다.</p>';
+}
+function openRoute(toId=null,{nearestKind=null,preserve=false}={}){
+  if(!preserve)state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};
+  const p=toId?poiById(toId):null;
+  if(p?.category==='facility')nearestKind=p.kind;
+  if(nearestKind){state.routeDraft={toId:null,nearestKind,query:`가까운 ${kindNames[nearestKind]}`,category:'all'};}
+  else if(p){state.routeDraft={toId:p.id,nearestKind:null,query:p.name,category:p.category};}
+  renderRouteDestinations();$('#routeError').hidden=true;
+  if(!$('#routeDialog').open)$('#routeDialog').showModal();
+}
+function selectRouteDestination(id){
+  const p=poiById(id);if(!p||p.category==='facility')return;
+  state.routeDraft.toId=id;state.routeDraft.nearestKind=null;state.routeDraft.query=p.name;
+  $('#routeError').hidden=true;renderRouteDestinations();
+}
+function selectRouteFacility(kind){
+  state.routeDraft={toId:null,nearestKind:kind,query:`가까운 ${kindNames[kind]}`,category:'all'};
+  $('#routeError').hidden=true;renderRouteDestinations();
+}
+function showPlannedRoute(route,{destination,transfer=null,alternatives=[],nearestKind=null}){
+  state.route={...route,fromName:'현위치',toName:destination.name,destinationId:destination.id,destinationFloor:destination.floor,transfer,alternatives,nearestKind};
+  $('#routeDialog').close();closeDetail();setFloor(route.floor);mobileSheet(false);renderRoute();renderRouteCard();
+}
+function renderRouteCard(){
+  const r=state.route,card=$('#routeCard');if(!r){card.hidden=true;return;}
+  const destination=poiById(r.destinationId);
+  const close=`<button class="icon-btn" type="button" data-clear-route aria-label="경로 지우기">${icon('close')}</button>`;
+  if(r.transfer){
+    card.innerHTML=`${close}<span class="route-card-badge">${esc(floorLabel(r.destinationFloor))} 목적지</span><h3>먼저 가까운 이동시설로</h3><p>${esc(routePlaceLabel(r.transfer))}</p><div class="transfer-choices">${r.alternatives.map(a=>`<button type="button" data-transfer-choice="${esc(a.poi.id)}" class="${r.transfer.id===a.poi.id?'active':''}" aria-pressed="${r.transfer.id===a.poi.id}">${icon(a.poi.kind)}${a.poi.kind==='elevator'?'승강기':esc(kindNames[a.poi.kind])}</button>`).join('')}</div><button class="btn btn-primary btn-full" type="button" data-route-continue>${esc(r.destinationFloor==='MAGIC'?'매직아일랜드':r.destinationFloor)} 도착 후 계속 ${icon('route')}</button>`;
+  }else{
+    card.innerHTML=`${close}${r.nearestKind?`<span class="route-card-badge">가까운 ${esc(kindNames[r.nearestKind])} 추천</span>`:''}<h3>${esc(destination?routePlaceLabel(destination):r.toName)}</h3><p>${esc(floorLabel(r.floor))} · 현위치에서 출발</p>`;
+  }
+  card.hidden=false;
+}
+function continueRouteAfterTransfer(){
+  const r=state.route;if(!r?.transfer)return;
+  const destinationId=r.destinationId,nearestKind=r.nearestKind;
+  clearRoute();setFloor(poiById(destinationId).floor);
+  state.routeAfterPick={toId:destinationId,nearestKind,autoRoute:true};
+  beginPick();
+}
+function changeTransfer(id){
+  const r=state.route,choice=r?.alternatives.find(a=>a.poi.id===id);if(!choice)return;
+  const destination=poiById(r.destinationId);
+  showPlannedRoute(choice.route,{destination,transfer:choice.poi,alternatives:r.alternatives,nearestKind:r.nearestKind});
+}
 function runRoute(event){
-  event.preventDefault();const from=routePoint($('#routeFrom').value),to=routePoint($('#routeTo').value);const error=$('#routeError');
+  event?.preventDefault();const draft=state.routeDraft,error=$('#routeError');
   const fail=msg=>{error.textContent=msg;error.hidden=false;};
-  if(!from||!to)return fail('출발지와 도착지를 선택해 주세요.');
-  if(from.floor!==to.floor)return fail(`${floorLabel(from.floor)}에서 ${floorLabel(to.floor)}로 이동하는 층간 연결은 확인되지 않았습니다. 계단·엘리베이터·에스컬레이터는 편의시설 탭에서 확인하고, 목적지 층으로 이동한 뒤 다시 길을 찾아 주세요.`);
-  if(from.note?.includes('두 곳')||to.note?.includes('두 곳'))return fail('원본 지도에서 같은 번호가 중복된 장소입니다. 정확한 입구를 확인한 뒤 지도에서 출발 위치를 지정해 주세요.');
-  try{
-    const route=corridorRoute(from.floor,from,to,walkways.floors[from.floor]);state.route={...route,fromName:from.name,toName:to.name};
-    $('#routeDialog').close();closeDetail();setFloor(from.floor);mobileSheet(false);renderRoute();
-    $('#routeCard').innerHTML=`<button class="icon-btn" type="button" id="clearRoute" aria-label="경로 지우기">${icon('close')}</button><h3>${esc(from.name)} → ${esc(to.name)}</h3><p>가이드맵 통로를 따라 표시한 참고 동선입니다.<br>점선은 장소와 통로를 잇는 참고선이에요. 입구·통제 구간은 현장에서 확인해 주세요.</p>`;$('#routeCard').hidden=false;$('#clearRoute').onclick=clearRoute;
-  }catch(e){fail(e.message==='TOO_FAR'?'표시된 통로와 멀어 안전한 참고 동선을 만들 수 없어요. 통로에서 출발 위치를 다시 지정해 주세요.':'이 두 위치를 잇는 통로를 확인하지 못했어요. 현장 안내를 확인해 주세요.');}
+  if(!draft.toId&&!draft.nearestKind){
+    const q=normalizeName(draft.query),kinds=facilityQueryKinds(draft.query);
+    const matches=q?park.pois.filter(p=>p.category!=='facility'&&(draft.category==='all'||p.category===draft.category)&&normalizeName(p.name).includes(q)):[];
+    if(matches.length===1)draft.toId=matches[0].id;
+    else if(kinds.length===1)draft.nearestKind=kinds[0];
+    else return fail('목적지를 검색해서 선택해 주세요.');
+  }
+  const from=currentRouteOrigin();
+  if(!from){state.routeAfterPick={toId:draft.toId,nearestKind:draft.nearestKind,autoRoute:true};beginPick();return;}
+  let to=draft.toId?poiById(draft.toId):null;
+  if(draft.nearestKind){
+    const match=nearbyFacilities(from,park.pois,walkways.floors,{kinds:[draft.nearestKind]})[0];
+    if(!match){
+      const sameFloor=park.pois.some(p=>p.kind===draft.nearestKind&&p.floor===from.floor);
+      if(sameFloor)return fail('이 시설까지 연결된 통로가 아직 등록되지 않았습니다.');
+      const levels={B1:0,'1F':1,'2F':2,'3F':3,'4F':4,MAGIC:2};
+      const other=park.pois.filter(p=>p.kind===draft.nearestKind&&p.x!==null&&p.floor!==from.floor).sort((a,b)=>Math.abs(levels[a.floor]-levels[from.floor])-Math.abs(levels[b.floor]-levels[from.floor]));
+      const choices=transferRecommendations(from,park.pois,walkways.floors);
+      if(other.length&&choices.length)return showPlannedRoute(choices[0].route,{destination:other[0],transfer:choices[0].poi,alternatives:choices,nearestKind:draft.nearestKind});
+      return fail(`가까운 ${kindNames[draft.nearestKind]}을 찾지 못했습니다.`);
+    }
+    return showPlannedRoute(match.route,{destination:match.poi,nearestKind:draft.nearestKind});
+  }
+  if(!to)return fail('목적지를 다시 선택해 주세요.');
+  if(from.floor!==to.floor){
+    const choices=transferRecommendations(from,park.pois,walkways.floors);
+    if(!choices.length)return fail('이 위치에서 연결되는 이동시설을 찾지 못했습니다. 위치를 통로 위에 다시 지정해 주세요.');
+    return showPlannedRoute(choices[0].route,{destination:to,transfer:choices[0].poi,alternatives:choices});
+  }
+  if(to.x===null){
+    if(officialEntry(to)?.detail?.position){$('#routeDialog').close();openOfficialMap(to);return;}
+    return fail('이 장소의 지도 위치가 아직 등록되지 않았습니다.');
+  }
+  if(to.note?.includes('두 곳'))return fail('지도 번호가 중복된 장소입니다. 공식 위치 지도로 확인해 주세요.');
+  try{showPlannedRoute(corridorRoute(from.floor,from,to,walkways.floors[from.floor]),{destination:to});}
+  catch(e){fail(e.message==='TOO_FAR'?'통로 가까이에서 현위치를 다시 지정해 주세요.':'이 위치에서 이어지는 통로를 찾지 못했습니다.');}
 }
 function clearRoute(){state.route=null;$('#routeLayer').innerHTML='';$('#routeCard').hidden=true;}
+
 function renderRoute(){
   const r=state.route,svg=$('#routeLayer');if(!r||r.floor!==state.floor){svg.innerHTML='';return;}
   const pts=r.points.map(pdf=>{const p=fromPDF(r.floor,pdf);return `${p.x},${p.y}`;}).join(' ');
@@ -301,6 +425,12 @@ function bindMapGestures(){
 function bindEvents(){
   document.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.routeDestination){selectRouteDestination(b.dataset.routeDestination);return;}
+    if(b.dataset.routeNearest){selectRouteFacility(b.dataset.routeNearest);return;}
+    if(b.dataset.routeCategory){if(state.routeDraft.nearestKind||state.routeDraft.toId)state.routeDraft.query='';state.routeDraft.category=b.dataset.routeCategory;state.routeDraft.nearestKind=null;state.routeDraft.toId=null;$('#routeError').hidden=true;renderRouteDestinations();return;}
+    if(b.dataset.transferChoice){changeTransfer(b.dataset.transferChoice);return;}
+    if('routeContinue'in b.dataset){continueRouteAfterTransfer();return;}
+    if('clearRoute'in b.dataset){clearRoute();renderPins();return;}
     if(b.dataset.favorite){toggleFavorite(b.dataset.favorite);return;}
     if(b.dataset.openPlace){openPlace(b.dataset.openPlace);return;}
     if(b.dataset.category){setCategory(b.dataset.category);return;}
@@ -328,7 +458,10 @@ function bindEvents(){
   $('#resetSharePosition').onclick=()=>beginPick(true);
   $('#copyShare').onclick=()=>copy($('#shareUrl').value);
   $('#nativeShare').onclick=async()=>{try{await navigator.share({title:'롯데월드야호 · 여기서 만나!',text:'내가 공유한 순간의 위치야. 선택한 층도 확인해 줘!',url:$('#shareUrl').value});}catch(err){if(err.name!=='AbortError')copy($('#shareUrl').value);}};
-  $('#openRoute').onclick=()=>openRoute();$('#routeForm').onsubmit=runRoute;$('#pickRouteStart').onclick=()=>{state.routeAfterPick={toId:$('#routeTo').value};beginPick();};
+  $('#openRoute').onclick=()=>openRoute();$('#mobileRoute').onclick=()=>openRoute();$('#routeForm').onsubmit=runRoute;
+  $('#pickRouteStart').onclick=()=>{state.routeAfterPick={toId:state.routeDraft.toId,nearestKind:state.routeDraft.nearestKind,autoRoute:false};if(state.position)setFloor(state.position.floor);beginPick();};
+  $('#routeSearch').addEventListener('input',e=>{state.routeDraft.query=e.target.value;state.routeDraft.toId=null;state.routeDraft.nearestKind=null;state.routeDraft.category='all';$('#routeError').hidden=true;renderRouteDestinations();});
+  $('#clearRouteSearch').onclick=()=>{state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};renderRouteDestinations();$('#routeSearch').focus();};
   $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!e.target.closest('input,select,textarea')){e.preventDefault();mobileSheet(true);$('#search').focus();}if(e.key==='Escape'&&!$$('dialog[open]').length){if(state.pick)endPick();else if(state.selected)closeDetail();else mobileSheet(false);}});
   window.addEventListener('hashchange',readHash);window.addEventListener('online',()=>{updateLocationStatus();refreshOfficial();});window.addEventListener('offline',updateLocationStatus);

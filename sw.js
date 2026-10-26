@@ -1,5 +1,5 @@
 const CACHE='yaho-v1.0.0';
-const CORE=['./','index.html','styles.css','app.js','lib.js','manifest.webmanifest','assets/icon.svg','data/park.json','data/walkways.json','assets/maps/B1.webp','assets/maps/1F.webp','assets/maps/2F.webp','assets/maps/3F.webp','assets/maps/4F.webp','assets/maps/MAGIC.webp'];
+const CORE=['./','index.html','styles.css','readability.css','app.js','lib.js','manifest.webmanifest','assets/icon.svg','data/park.json','data/walkways.json','assets/maps/B1.webp','assets/maps/1F.webp','assets/maps/2F.webp','assets/maps/3F.webp','assets/maps/4F.webp','assets/maps/MAGIC.webp'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('yaho-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
@@ -9,5 +9,8 @@ self.addEventListener('fetch',event=>{
  if(/\/data\/(official|waits)\.json$/.test(u.pathname)){
   event.respondWith(fetch(event.request).then(r=>{if(r.ok){const copy=r.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put(event.request,copy)));}return r;}).catch(()=>caches.match(event.request).then(r=>r||new Response('{}',{headers:{'content-type':'application/json'}}))));return;
  }
- event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(r=>{if(r.ok){const copy=r.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put(event.request,copy)));}return r;})));
+ event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(r=>{if(r.ok){const copy=r.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put(event.request,copy)));}return r;}).catch(async()=>{
+  if(/\/assets\/maps\/[^/]+\.svg$/.test(u.pathname)){const fallback=new URL(u);fallback.pathname=fallback.pathname.replace(/\.svg$/,'.webp');const image=await caches.match(fallback.href);if(image)return image;}
+  return new Response('Offline',{status:503});
+ })));
 });

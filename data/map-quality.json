@@ -1,0 +1,869 @@
+{
+  "source": "2026 가이드맵_국문_FS2.pdf",
+  "exporter": "PyMuPDF 1.26.6",
+  "coordinateUnits": "PDF points; SVG viewBox units match f.crop exactly",
+  "qualityLimits": [
+    "PDF vectors and outlined text scale independently of pixels.",
+    "Raster artwork retains the original PDF pixels and JPEG bytes; no upsampling or sharpening.",
+    "Small facility icons and any labels already rasterized in the PDF retain their native resolution.",
+    "MuPDF 1.26 SVG reading omits luminance masks; use a full SVG renderer such as Inkscape or a browser."
+  ],
+  "floors": {
+    "B1": {
+      "image": "assets/maps/B1.svg",
+      "width": 895,
+      "height": 680,
+      "bytes": 1696882,
+      "withinPreferred10MiB": true,
+      "crop": [
+        660,
+        130,
+        1555,
+        810
+      ],
+      "polygon": null,
+      "nativeBackgroundPixels": [
+        4134,
+        2598
+      ],
+      "nativeBackgroundPDFBounds": [
+        632.68744,
+        136.82312,
+        1679.49268,
+        794.68481
+      ],
+      "nativeBackgroundPixelsPerPoint": [
+        3.94916,
+        3.94916
+      ],
+      "titleWipe": null,
+      "prunedUnusedDefinitions": 0,
+      "selfContained": true,
+      "textElements": 0,
+      "vectorPaths": 283,
+      "outlinedGlyphInstances": 28,
+      "glyphOriginsVerified": 28,
+      "sourceVisibleGlyphsPreserved": 26,
+      "glyphOriginTolerancePoints": 0.02,
+      "rasterImageElements": 50,
+      "embeddedRasterPixels": [
+        {
+          "width": 4134,
+          "height": 2598,
+          "count": 2
+        },
+        {
+          "width": 327,
+          "height": 82,
+          "count": 2
+        },
+        {
+          "width": 28,
+          "height": 19,
+          "count": 1
+        },
+        {
+          "width": 23,
+          "height": 23,
+          "count": 2
+        },
+        {
+          "width": 27,
+          "height": 19,
+          "count": 5
+        },
+        {
+          "width": 23,
+          "height": 22,
+          "count": 1
+        },
+        {
+          "width": 22,
+          "height": 22,
+          "count": 5
+        },
+        {
+          "width": 21,
+          "height": 21,
+          "count": 7
+        },
+        {
+          "width": 20,
+          "height": 21,
+          "count": 1
+        },
+        {
+          "width": 21,
+          "height": 20,
+          "count": 6
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "count": 13
+        },
+        {
+          "width": 19,
+          "height": 20,
+          "count": 4
+        },
+        {
+          "width": 20,
+          "height": 19,
+          "count": 1
+        }
+      ],
+      "nativeBackgroundJPEGBytesPreserved": true,
+      "renderValidation": {
+        "renderer": "Inkscape",
+        "scale": 2,
+        "sameDimensionsAsPDFCrop": true,
+        "pdfMeanAbsoluteChannelDifference": 4.2196,
+        "pdfPixelsOver20ChannelDifferencePercent": 6.0333,
+        "webpMeanAbsoluteChannelDifference": 4.8276,
+        "poiRegionsCompared": 30,
+        "poiRegionMedianAbsoluteChannelDifference": 8.8059
+      }
+    },
+    "1F": {
+      "image": "assets/maps/1F.svg",
+      "width": 1125,
+      "height": 760,
+      "bytes": 2357595,
+      "withinPreferred10MiB": true,
+      "crop": [
+        300,
+        45,
+        1425,
+        805
+      ],
+      "polygon": null,
+      "nativeBackgroundPixels": [
+        2204,
+        1599
+      ],
+      "nativeBackgroundPDFBounds": [
+        387.6637,
+        58.51349,
+        1402.45068,
+        794.7406
+      ],
+      "nativeBackgroundPixelsPerPoint": [
+        2.17188,
+        2.17188
+      ],
+      "titleWipe": {
+        "rect": [
+          300,
+          45,
+          500,
+          175
+        ],
+        "fill": "#fff9fc"
+      },
+      "prunedUnusedDefinitions": 0,
+      "selfContained": true,
+      "textElements": 0,
+      "vectorPaths": 4406,
+      "outlinedGlyphInstances": 139,
+      "glyphOriginsVerified": 139,
+      "sourceVisibleGlyphsPreserved": 130,
+      "glyphOriginTolerancePoints": 0.02,
+      "rasterImageElements": 147,
+      "embeddedRasterPixels": [
+        {
+          "width": 2204,
+          "height": 1599,
+          "count": 2
+        },
+        {
+          "width": 553,
+          "height": 170,
+          "count": 2
+        },
+        {
+          "width": 327,
+          "height": 82,
+          "count": 2
+        },
+        {
+          "width": 28,
+          "height": 19,
+          "count": 7
+        },
+        {
+          "width": 23,
+          "height": 23,
+          "count": 3
+        },
+        {
+          "width": 27,
+          "height": 19,
+          "count": 9
+        },
+        {
+          "width": 23,
+          "height": 22,
+          "count": 9
+        },
+        {
+          "width": 22,
+          "height": 23,
+          "count": 1
+        },
+        {
+          "width": 22,
+          "height": 22,
+          "count": 14
+        },
+        {
+          "width": 21,
+          "height": 21,
+          "count": 27
+        },
+        {
+          "width": 20,
+          "height": 21,
+          "count": 8
+        },
+        {
+          "width": 21,
+          "height": 20,
+          "count": 8
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "count": 26
+        },
+        {
+          "width": 19,
+          "height": 20,
+          "count": 13
+        },
+        {
+          "width": 20,
+          "height": 19,
+          "count": 9
+        },
+        {
+          "width": 19,
+          "height": 19,
+          "count": 7
+        }
+      ],
+      "nativeBackgroundJPEGBytesPreserved": true,
+      "renderValidation": {
+        "renderer": "Inkscape",
+        "scale": 2,
+        "sameDimensionsAsPDFCrop": true,
+        "pdfMeanAbsoluteChannelDifference": 3.5133,
+        "pdfPixelsOver20ChannelDifferencePercent": 4.4315,
+        "webpMeanAbsoluteChannelDifference": 3.9968,
+        "poiRegionsCompared": 92,
+        "poiRegionMedianAbsoluteChannelDifference": 7.6876
+      }
+    },
+    "2F": {
+      "image": "assets/maps/2F.svg",
+      "width": 820,
+      "height": 340,
+      "bytes": 594493,
+      "withinPreferred10MiB": true,
+      "crop": [
+        160,
+        120,
+        980,
+        460
+      ],
+      "polygon": [
+        [
+          160,
+          120
+        ],
+        [
+          980,
+          120
+        ],
+        [
+          980,
+          420
+        ],
+        [
+          870,
+          425
+        ],
+        [
+          800,
+          385
+        ],
+        [
+          715,
+          365
+        ],
+        [
+          630,
+          355
+        ],
+        [
+          530,
+          390
+        ],
+        [
+          420,
+          410
+        ],
+        [
+          320,
+          425
+        ],
+        [
+          230,
+          460
+        ],
+        [
+          160,
+          460
+        ]
+      ],
+      "nativeBackgroundPixels": [
+        1417,
+        582
+      ],
+      "nativeBackgroundPDFBounds": [
+        174.71948,
+        122.94675,
+        971.70807,
+        450.29138
+      ],
+      "nativeBackgroundPixelsPerPoint": [
+        1.77794,
+        1.77794
+      ],
+      "titleWipe": {
+        "rect": [
+          160,
+          120,
+          600,
+          180
+        ],
+        "fill": "#fffdf5"
+      },
+      "prunedUnusedDefinitions": 0,
+      "selfContained": true,
+      "textElements": 0,
+      "vectorPaths": 400,
+      "outlinedGlyphInstances": 38,
+      "glyphOriginsVerified": 38,
+      "sourceVisibleGlyphsPreserved": 38,
+      "glyphOriginTolerancePoints": 0.02,
+      "rasterImageElements": 73,
+      "embeddedRasterPixels": [
+        {
+          "width": 1417,
+          "height": 582,
+          "count": 2
+        },
+        {
+          "width": 1417,
+          "height": 501,
+          "count": 2
+        },
+        {
+          "width": 553,
+          "height": 170,
+          "count": 2
+        },
+        {
+          "width": 27,
+          "height": 20,
+          "count": 2
+        },
+        {
+          "width": 28,
+          "height": 19,
+          "count": 4
+        },
+        {
+          "width": 27,
+          "height": 19,
+          "count": 8
+        },
+        {
+          "width": 22,
+          "height": 23,
+          "count": 2
+        },
+        {
+          "width": 23,
+          "height": 22,
+          "count": 1
+        },
+        {
+          "width": 22,
+          "height": 22,
+          "count": 2
+        },
+        {
+          "width": 21,
+          "height": 21,
+          "count": 12
+        },
+        {
+          "width": 20,
+          "height": 21,
+          "count": 8
+        },
+        {
+          "width": 21,
+          "height": 20,
+          "count": 2
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "count": 18
+        },
+        {
+          "width": 19,
+          "height": 20,
+          "count": 2
+        },
+        {
+          "width": 20,
+          "height": 19,
+          "count": 4
+        },
+        {
+          "width": 19,
+          "height": 19,
+          "count": 2
+        }
+      ],
+      "nativeBackgroundJPEGBytesPreserved": true,
+      "renderValidation": {
+        "renderer": "Inkscape",
+        "scale": 2,
+        "sameDimensionsAsPDFCrop": true,
+        "pdfMeanAbsoluteChannelDifference": 2.7871,
+        "pdfPixelsOver20ChannelDifferencePercent": 4.5818,
+        "webpMeanAbsoluteChannelDifference": 3.4462,
+        "poiRegionsCompared": 43,
+        "poiRegionMedianAbsoluteChannelDifference": 8.1037
+      }
+    },
+    "3F": {
+      "image": "assets/maps/3F.svg",
+      "width": 815,
+      "height": 285,
+      "bytes": 1582145,
+      "withinPreferred10MiB": true,
+      "crop": [
+        600,
+        325,
+        1415,
+        610
+      ],
+      "polygon": [
+        [
+          600,
+          460
+        ],
+        [
+          980,
+          420
+        ],
+        [
+          1050,
+          325
+        ],
+        [
+          1415,
+          325
+        ],
+        [
+          1415,
+          610
+        ],
+        [
+          600,
+          610
+        ]
+      ],
+      "nativeBackgroundPixels": [
+        1417,
+        501
+      ],
+      "nativeBackgroundPDFBounds": [
+        597.58447,
+        325.52209,
+        1394.573,
+        607.30847
+      ],
+      "nativeBackgroundPixelsPerPoint": [
+        1.77794,
+        1.77794
+      ],
+      "titleWipe": null,
+      "prunedUnusedDefinitions": 0,
+      "selfContained": true,
+      "textElements": 0,
+      "vectorPaths": 3826,
+      "outlinedGlyphInstances": 18,
+      "glyphOriginsVerified": 18,
+      "sourceVisibleGlyphsPreserved": 12,
+      "glyphOriginTolerancePoints": 0.02,
+      "rasterImageElements": 53,
+      "embeddedRasterPixels": [
+        {
+          "width": 1417,
+          "height": 582,
+          "count": 2
+        },
+        {
+          "width": 1417,
+          "height": 558,
+          "count": 2
+        },
+        {
+          "width": 1417,
+          "height": 501,
+          "count": 2
+        },
+        {
+          "width": 28,
+          "height": 19,
+          "count": 1
+        },
+        {
+          "width": 27,
+          "height": 19,
+          "count": 2
+        },
+        {
+          "width": 22,
+          "height": 23,
+          "count": 1
+        },
+        {
+          "width": 22,
+          "height": 22,
+          "count": 4
+        },
+        {
+          "width": 21,
+          "height": 21,
+          "count": 13
+        },
+        {
+          "width": 20,
+          "height": 21,
+          "count": 5
+        },
+        {
+          "width": 21,
+          "height": 20,
+          "count": 1
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "count": 7
+        },
+        {
+          "width": 20,
+          "height": 19,
+          "count": 9
+        },
+        {
+          "width": 19,
+          "height": 20,
+          "count": 2
+        },
+        {
+          "width": 19,
+          "height": 19,
+          "count": 1
+        },
+        {
+          "width": 27,
+          "height": 11,
+          "count": 1
+        }
+      ],
+      "nativeBackgroundJPEGBytesPreserved": true,
+      "renderValidation": {
+        "renderer": "Inkscape",
+        "scale": 2,
+        "sameDimensionsAsPDFCrop": true,
+        "pdfMeanAbsoluteChannelDifference": 3.1932,
+        "pdfPixelsOver20ChannelDifferencePercent": 4.93,
+        "webpMeanAbsoluteChannelDifference": 3.7324,
+        "poiRegionsCompared": 21,
+        "poiRegionMedianAbsoluteChannelDifference": 10.0612
+      }
+    },
+    "4F": {
+      "image": "assets/maps/4F.svg",
+      "width": 850,
+      "height": 340,
+      "bytes": 1375967,
+      "withinPreferred10MiB": true,
+      "crop": [
+        1030,
+        475,
+        1880,
+        815
+      ],
+      "polygon": [
+        [
+          1030,
+          610
+        ],
+        [
+          1415,
+          610
+        ],
+        [
+          1430,
+          475
+        ],
+        [
+          1880,
+          475
+        ],
+        [
+          1880,
+          815
+        ],
+        [
+          1030,
+          815
+        ]
+      ],
+      "nativeBackgroundPixels": [
+        1417,
+        558
+      ],
+      "nativeBackgroundPDFBounds": [
+        1031.94519,
+        477.41418,
+        1873.71436,
+        808.89423
+      ],
+      "nativeBackgroundPixelsPerPoint": [
+        1.68336,
+        1.68336
+      ],
+      "titleWipe": null,
+      "prunedUnusedDefinitions": 0,
+      "selfContained": true,
+      "textElements": 0,
+      "vectorPaths": 3579,
+      "outlinedGlyphInstances": 26,
+      "glyphOriginsVerified": 26,
+      "sourceVisibleGlyphsPreserved": 18,
+      "glyphOriginTolerancePoints": 0.02,
+      "rasterImageElements": 52,
+      "embeddedRasterPixels": [
+        {
+          "width": 1417,
+          "height": 558,
+          "count": 2
+        },
+        {
+          "width": 1417,
+          "height": 501,
+          "count": 2
+        },
+        {
+          "width": 28,
+          "height": 19,
+          "count": 2
+        },
+        {
+          "width": 23,
+          "height": 23,
+          "count": 2
+        },
+        {
+          "width": 27,
+          "height": 19,
+          "count": 3
+        },
+        {
+          "width": 22,
+          "height": 23,
+          "count": 1
+        },
+        {
+          "width": 22,
+          "height": 22,
+          "count": 4
+        },
+        {
+          "width": 21,
+          "height": 21,
+          "count": 10
+        },
+        {
+          "width": 22,
+          "height": 20,
+          "count": 1
+        },
+        {
+          "width": 21,
+          "height": 20,
+          "count": 3
+        },
+        {
+          "width": 20,
+          "height": 21,
+          "count": 2
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "count": 9
+        },
+        {
+          "width": 20,
+          "height": 19,
+          "count": 6
+        },
+        {
+          "width": 19,
+          "height": 20,
+          "count": 4
+        },
+        {
+          "width": 22,
+          "height": 1,
+          "count": 1
+        }
+      ],
+      "nativeBackgroundJPEGBytesPreserved": true,
+      "renderValidation": {
+        "renderer": "Inkscape",
+        "scale": 2,
+        "sameDimensionsAsPDFCrop": true,
+        "pdfMeanAbsoluteChannelDifference": 2.7062,
+        "pdfPixelsOver20ChannelDifferencePercent": 3.7433,
+        "webpMeanAbsoluteChannelDifference": 3.1678,
+        "poiRegionsCompared": 21,
+        "poiRegionMedianAbsoluteChannelDifference": 8.8485
+      }
+    },
+    "MAGIC": {
+      "image": "assets/maps/MAGIC.svg",
+      "width": 830,
+      "height": 780,
+      "bytes": 1042902,
+      "withinPreferred10MiB": true,
+      "crop": [
+        295,
+        25,
+        1125,
+        805
+      ],
+      "polygon": null,
+      "nativeBackgroundPixels": [
+        2458,
+        2362
+      ],
+      "nativeBackgroundPDFBounds": [
+        295.39017,
+        25.16797,
+        1141.43335,
+        838.16797
+      ],
+      "nativeBackgroundPixelsPerPoint": [
+        2.90529,
+        2.90529
+      ],
+      "titleWipe": null,
+      "prunedUnusedDefinitions": 0,
+      "selfContained": true,
+      "textElements": 0,
+      "vectorPaths": 289,
+      "outlinedGlyphInstances": 48,
+      "glyphOriginsVerified": 48,
+      "sourceVisibleGlyphsPreserved": 48,
+      "glyphOriginTolerancePoints": 0.02,
+      "rasterImageElements": 57,
+      "embeddedRasterPixels": [
+        {
+          "width": 2458,
+          "height": 2362,
+          "count": 2
+        },
+        {
+          "width": 553,
+          "height": 170,
+          "count": 2
+        },
+        {
+          "width": 28,
+          "height": 20,
+          "count": 4
+        },
+        {
+          "width": 27,
+          "height": 20,
+          "count": 1
+        },
+        {
+          "width": 28,
+          "height": 19,
+          "count": 5
+        },
+        {
+          "width": 23,
+          "height": 23,
+          "count": 1
+        },
+        {
+          "width": 27,
+          "height": 19,
+          "count": 1
+        },
+        {
+          "width": 23,
+          "height": 22,
+          "count": 5
+        },
+        {
+          "width": 22,
+          "height": 23,
+          "count": 4
+        },
+        {
+          "width": 22,
+          "height": 22,
+          "count": 2
+        },
+        {
+          "width": 21,
+          "height": 21,
+          "count": 15
+        },
+        {
+          "width": 20,
+          "height": 20,
+          "count": 15
+        }
+      ],
+      "nativeBackgroundJPEGBytesPreserved": true,
+      "renderValidation": {
+        "renderer": "Inkscape",
+        "scale": 2,
+        "sameDimensionsAsPDFCrop": true,
+        "pdfMeanAbsoluteChannelDifference": 3.6337,
+        "pdfPixelsOver20ChannelDifferencePercent": 5.676,
+        "webpMeanAbsoluteChannelDifference": 3.9944,
+        "poiRegionsCompared": 39,
+        "poiRegionMedianAbsoluteChannelDifference": 8.2442
+      }
+    }
+  }
+}

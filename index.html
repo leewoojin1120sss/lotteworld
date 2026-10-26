@@ -10,6 +10,7 @@
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="readability.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
@@ -67,8 +68,8 @@
 
       <div class="map-stage" id="map" tabindex="0" role="application" aria-label="확대·축소 가능한 층별 지도. 방향키로 이동, 더하기와 빼기로 확대·축소할 수 있습니다.">
         <div class="map-context"><span class="context-dot"></span><div><strong id="floorName">어드벤처 1층</strong><span>2026 GUIDE MAP</span></div></div>
+        <img id="mapImage" class="map-artwork" src="assets/maps/1F.svg" alt="롯데월드 어드벤처 1층 지도" draggable="false" fetchpriority="high" decoding="async">
         <div class="map-world" id="mapWorld">
-          <img id="mapImage" src="assets/maps/1F.webp" alt="롯데월드 어드벤처 1층 공식 가이드맵" draggable="false" fetchpriority="high">
           <svg id="routeLayer" class="route-layer" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg>
           <div id="mapPins" class="map-pins"></div>
           <div id="locationPins"></div>
@@ -80,7 +81,7 @@
           <span class="control-divider"></span>
           <button id="fitMap" class="icon-btn" type="button" aria-label="지도 전체 보기" data-icon="maximize"></button>
         </div>
-        <div class="map-bottom-tools"><button id="locate" class="location-btn" type="button" data-icon="locate">내 위치</button><button id="manualLocation" class="manual-btn" type="button" data-icon="pin">직접 지정</button></div>
+        <div class="map-bottom-tools"><button id="mobileRoute" class="location-btn mobile-only" type="button" data-icon="route">길찾기</button><button id="locate" class="location-btn" type="button" data-icon="locate">내 위치</button><button id="manualLocation" class="manual-btn" type="button" data-icon="pin">위치 지정</button></div>
         <div class="map-credit"><span class="legend-dot attraction"></span>어트랙션 <span class="legend-dot food"></span>푸드 <span class="legend-dot facility"></span>편의시설 <span class="credit-source">지도 © 롯데월드 · 비공식 방문 도우미</span></div>
         <div class="map-tip" id="mapTip"><span data-icon="hand"></span>지도를 움직이고, 장소를 눌러보세요</div>
         <article id="detail" class="detail-panel" aria-label="장소 상세 정보" hidden></article>
@@ -102,19 +103,22 @@
     <div class="guide-feature"><span data-icon="layers"></span><div><h3>층을 고르고, 지도를 펼쳐요</h3><p>지하 1층부터 4층, 매직아일랜드까지 공식 가이드맵의 어트랙션·식당·샵·편의시설을 확인하세요. 확대하면 원본의 계단과 승강기 표시도 볼 수 있어요.</p></div></div>
     <div class="guide-feature"><span data-icon="locate"></span><div><h3>GPS와 지도 위치는 구분해요</h3><p>GPS는 실제 위도·경도와 오차를 알려 줍니다. 실내에서는 신호가 약하고, 이 지도는 기울어진 조감도여서 GPS를 정확한 지도 좌표로 바꿀 수 없어요. 층을 고른 뒤 <b>직접 지정</b>으로 내 위치를 표시하세요.</p></div></div>
     <div class="guide-feature"><span data-icon="share"></span><div><h3>지금 있는 곳을 한 번 공유해요</h3><p>공유 링크에는 지정한 지도 위치와 층, 수신한 경우 GPS 좌표, 공유 시각이 담깁니다. 링크를 가진 사람에게만 전달하세요. 실시간 추적은 하지 않으며, 이동하면 새 링크를 보내야 해요.</p></div></div>
-    <div class="guide-feature"><span data-icon="route"></span><div><h3>길찾기는 같은 층의 참고 동선이에요</h3><p>가이드맵의 통로를 따라 표시하는 참고 경로입니다. 실측 거리·소요시간은 제공하지 않아요. 층 사이 이동, 출입 통제, 무장애 경로는 현장 표지와 직원 안내를 확인하세요.</p></div></div>
+    <div class="guide-feature"><span data-icon="route"></span><div><h3>현위치에서 목적지까지</h3><p>장소 이름을 검색해 길을 찾으세요. 다른 층이면 가까운 계단·에스컬레이터·승강기를 먼저 안내합니다. 목적지 층에 도착하면 위치를 갱신해 이어갈 수 있어요. 화장실·보조배터리 등은 가까운 시설을 추천합니다.</p></div></div>
     <div class="guide-feature"><span data-icon="clock"></span><div><h3>확인된 대기 정보만 보여요</h3><p id="waitGuideText">공식 공개 데이터의 연동 가능 여부를 확인하고 있습니다. 확인되지 않은 시간을 임의로 표시하지 않습니다.</p></div></div>
     <details class="source-details"><summary>지도 출처와 원본 표기 확인</summary><p>첨부된 2026 국문 가이드맵을 사용합니다. 현재 영업 여부·메뉴·탑승 제한은 현장 및 공식 안내가 우선입니다. 목록에는 있지만 위치가 누락된 1F 파스퇴르밀크바와 4F 전망대게임장은 임의의 핀을 찍지 않았습니다. 4F 17번 중복은 상세 정보에 표시합니다. 범례에 없는 기호는 기타 편의시설로 구분합니다.</p><a href="assets/guide-2026.pdf" target="_blank" rel="noopener">원본 가이드맵 보기 ↗</a></details>
     <div class="guide-links"><a class="btn btn-primary" href="https://adventure.lotteworld.com/" target="_blank" rel="noopener noreferrer">롯데월드 공식 사이트 ↗</a><a class="btn btn-subtle" href="https://github.com/leewoojin1120sss/lotteworld" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
   </div></dialog>
 
-  <dialog id="routeDialog" class="dialog" aria-labelledby="routeTitle"><div class="dialog-heading"><div><p class="eyebrow">FIND YOUR WAY</p><h2 id="routeTitle">다음 모험으로 가는 길</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="길찾기 닫기" data-icon="close"></button></div><form id="routeForm" class="dialog-body">
-    <label class="field-label" for="routeFrom">출발지</label><select id="routeFrom" required></select>
-    <button class="text-button" id="pickRouteStart" type="button" data-icon="pin">지도에서 내 위치 지정하기</button>
-    <label class="field-label" for="routeTo">도착지</label><select id="routeTo" required></select>
-    <p class="form-note" data-icon="info">같은 층의 참고 동선을 표시합니다. 층 사이 경로는 현장 안내를 확인해 주세요.</p>
+  <dialog id="routeDialog" class="dialog route-dialog" aria-labelledby="routeTitle"><div class="dialog-heading"><h2 id="routeTitle">어디로 갈까요?</h2><button class="icon-btn" data-close-dialog type="button" aria-label="길찾기 닫기" data-icon="close"></button></div><form id="routeForm" class="dialog-body">
+    <div class="route-origin"><span class="route-origin-icon" data-icon="locate"></span><div><span class="route-origin-label">출발 · 현위치</span><strong id="routeOriginText">위치를 지정해 주세요</strong></div><button class="text-button" id="pickRouteStart" type="button">위치 지정</button></div>
+    <label class="field-label" for="routeSearch">목적지</label>
+    <div class="route-search-box"><span data-icon="search"></span><input type="search" id="routeSearch" placeholder="어트랙션, 식당, 기념품 검색" aria-label="길찾기 목적지 검색" autocomplete="off" aria-controls="routeDestinations"><button class="icon-btn" id="clearRouteSearch" type="button" aria-label="목적지 검색 지우기" data-icon="close" hidden></button></div>
+    <input type="hidden" id="routeTo">
+    <div id="routeCategories" class="route-category-tabs" role="group" aria-label="목적지 종류"></div>
+    <div id="routeDestinations" class="route-destinations" aria-live="polite"></div>
+    <div class="route-nearby"><h3>가까운 편의시설</h3><div id="routeQuickFacilities" class="route-quick-facilities"></div></div>
     <p id="routeError" class="form-error" role="alert" hidden></p>
-    <button class="btn btn-primary btn-full" type="submit" data-icon="route">동선 보기</button>
+    <div class="route-submit-row"><button class="btn btn-primary" type="submit" data-icon="route">길찾기</button></div>
   </form></dialog>
 
   <dialog id="shareDialog" class="dialog" aria-labelledby="shareTitle"><div class="dialog-heading"><div><p class="eyebrow">MEET ME HERE</p><h2 id="shareTitle">여기서 만나, 야호!</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="위치 공유 닫기" data-icon="close"></button></div><div class="dialog-body">

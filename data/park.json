@@ -18,7 +18,8 @@
       "image": "assets/maps/B1.webp",
       "width": 895,
       "height": 680,
-      "positionMode": "manual"
+      "positionMode": "manual",
+      "vectorImage": "assets/maps/B1.svg"
     },
     {
       "id": "1F",
@@ -35,7 +36,8 @@
       "image": "assets/maps/1F.webp",
       "width": 1125,
       "height": 760,
-      "positionMode": "manual"
+      "positionMode": "manual",
+      "vectorImage": "assets/maps/1F.svg"
     },
     {
       "id": "2F",
@@ -102,7 +104,8 @@
       "image": "assets/maps/2F.webp",
       "width": 820,
       "height": 340,
-      "positionMode": "manual"
+      "positionMode": "manual",
+      "vectorImage": "assets/maps/2F.svg"
     },
     {
       "id": "3F",
@@ -145,7 +148,8 @@
       "image": "assets/maps/3F.webp",
       "width": 815,
       "height": 285,
-      "positionMode": "manual"
+      "positionMode": "manual",
+      "vectorImage": "assets/maps/3F.svg"
     },
     {
       "id": "4F",
@@ -188,7 +192,8 @@
       "image": "assets/maps/4F.webp",
       "width": 850,
       "height": 340,
-      "positionMode": "manual"
+      "positionMode": "manual",
+      "vectorImage": "assets/maps/4F.svg"
     },
     {
       "id": "MAGIC",
@@ -205,7 +210,8 @@
       "image": "assets/maps/MAGIC.webp",
       "width": 830,
       "height": 780,
-      "positionMode": "approximate-gps"
+      "positionMode": "approximate-gps",
+      "vectorImage": "assets/maps/MAGIC.svg"
     }
   ],
   "pois": [

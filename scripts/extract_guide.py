@@ -194,6 +194,8 @@ for f in FLOORS:
         back=Image.new('RGB',im.size,f['bg']);back.paste(im,(0,0),mask);im=back
     im.save(assets/f"{f['id']}.webp",'WEBP',quality=91,method=6)
     f['image']=f"assets/maps/{f['id']}.webp";f['width']=c[2]-c[0];f['height']=c[3]-c[1]
+    if (assets/f"{f['id']}.svg").exists():
+        f['vectorImage']=f"assets/maps/{f['id']}.svg"
     f['positionMode']='manual' if f['id']!='MAGIC' else 'approximate-gps'
 
 out={'title':'롯데월드야호','guideYear':2026,'sourceName':'2026 가이드맵_국문_FS2.pdf','floors':FLOORS,'pois':pois,'notes':['가이드맵은 기울어진 조감도이며 측량 도면이 아닙니다.','1F 푸드 22번은 목록에만 기재되어 핀을 만들지 않았습니다.','4F 기프트샵의 17번 중복 및 16번 누락은 원본 표기를 보존합니다.','4F 어크로스다크는 5쪽 목록과 지도 핀 기준 32번으로 통일합니다.']}

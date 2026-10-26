@@ -66,3 +66,24 @@ export function corridorRoute(floor,from,to,walkways,maxConnector=150) {
   const path=[];for(let k=end;k;k=prev.get(k)){path.push(nodes.get(k));if(k===start)break;}path.reverse();
   return {floor,points:path,from:from.pdf,to:to.pdf,connectors:[s.d,t.d],illustrationLength:cost.get(end)};
 }
+
+// Rank by the traced walking network, including the two access segments.
+// Costs remain illustration units; they are never presented as real metres.
+export function nearbyFacilities(from,pois,floors,{kinds=[],limit=1,perKind=false}={}) {
+  if(!from?.floor||!Array.isArray(from.pdf)||!floors?.[from.floor])return [];
+  const allowed=new Set(kinds),ranked=[];
+  for(const poi of pois){
+    if(poi.category!=='facility'||poi.floor!==from.floor||!Array.isArray(poi.pdf)||allowed.size&&!allowed.has(poi.kind))continue;
+    try {
+      const route=corridorRoute(from.floor,from,poi,floors[from.floor]);
+      ranked.push({poi,route,cost:route.illustrationLength+route.connectors[0]+route.connectors[1]});
+    }catch { /* A disconnected or distant pin is not a walking recommendation. */ }
+  }
+  ranked.sort((a,b)=>a.cost-b.cost||a.poi.id.localeCompare(b.poi.id));
+  const seen=new Set();
+  return ranked.filter(item=>{if(perKind&&seen.has(item.poi.kind))return false;seen.add(item.poi.kind);return true;}).slice(0,limit);
+}
+
+export function transferRecommendations(from,pois,floors) {
+  return nearbyFacilities(from,pois,floors,{kinds:['stairs','escalator','elevator'],limit:3,perKind:true});
+}

@@ -1,0 +1,205 @@
+/* Readable controls, a searchable route picker, and native-size SVG rendering. */
+:root{--muted:#766b82}
+body{font-size:16px}
+.app-layout{grid-template-columns:376px minmax(0,1fr)}
+.nav-item{font-size:15px;color:#756a82}
+.header-actions>.btn{font-size:14px;min-height:44px}
+.btn{font-size:15px;min-height:46px}
+.text-button{font-size:14px;min-height:42px}
+.sidebar-intro{padding:25px 24px 20px}
+.sidebar-intro h1{font-size:24px}
+.sidebar-intro .eyebrow,.sidebar-intro>p:last-of-type{display:none}
+.search-box{height:50px}
+.search-box input{font-size:15px;height:48px}
+.search-box input::placeholder{color:#94889f}
+.sidebar-tabs button{font-size:14px;min-height:38px}
+.list-heading h2{font-size:16px}
+.list-heading>span,.list-heading>button{font-size:13px}
+.place-item{grid-template-columns:56px minmax(0,1fr) 29px;min-height:98px}
+.place-art{width:56px;height:58px}
+.place-text h3{font-size:17px;line-height:1.45}
+.place-meta{font-size:13px;flex-wrap:wrap;color:#746580}
+.place-sub{font-size:14px;color:#776882}
+.floor-chip{font-size:12px;padding:2px 5px;color:#77628e}
+.wait-tag{font-size:12px;color:#95869f}
+.fav-btn{width:32px;min-height:40px}
+.fav-btn svg{width:19px;height:19px}
+.sidebar-footer{min-height:48px;justify-content:flex-end}
+.sidebar-footer>span{display:none}
+.sidebar-footer a{font-size:13px;color:#80718e}
+.facility-filters button{font-size:13px;min-height:36px}
+.empty-state,.loading-copy{font-size:14px}
+.category-tab{font-size:14px;min-height:43px;padding:10px 12px;color:#81728f}
+.btn-route{font-size:14px;min-height:42px}
+#floorTabs button{font-size:14px;min-height:36px;color:#92839f}
+.floor-hint{font-size:12px;color:#9689a1}
+.map-context strong{font-size:16px}
+.map-context div>span{font-size:10px}
+.map-artwork{position:absolute;left:0;top:0;object-fit:fill;pointer-events:none;user-select:none;transform-origin:0 0;mix-blend-mode:multiply;z-index:0;image-rendering:auto}
+.map-world{z-index:1}
+.map-world:has(img[data-error]){border:0}
+.map-bottom-tools{z-index:5}
+.location-btn,.manual-btn{font-size:14px;min-height:44px;padding:10px 14px;color:#75618b}
+.location-btn{color:var(--purple)}
+.map-controls .icon-btn{width:38px;height:38px;min-height:38px}
+.map-credit{font-size:10px}
+.map-tip{font-size:12px}
+.status-bar{height:38px;min-height:38px}
+.status-message,.status-bar>button{font-size:12px;color:#8b7b98}
+.pin>span{font-size:12px}
+.pin-label{font-size:13px!important}
+.location-dot span{font-size:12px}
+.pick-banner{font-size:14px}
+.pick-banner button{font-size:13px;min-height:34px}
+.detail-panel{width:365px;max-height:calc(100% - 28px)}
+.detail-body h2{font-size:26px}
+.detail-category{font-size:13px;color:#8a779b}
+.detail-description{font-size:15px;color:#796b84;line-height:1.8}
+.detail-wait{justify-content:flex-start;gap:10px;font-size:15px}
+.detail-wait strong{font-size:15px}
+.detail-wait small{font-size:12px;margin-left:auto;margin-top:0}
+.detail-restrictions{font-size:14px;line-height:1.75;color:#776985}
+.detail-note{font-size:13px}
+.detail-actions .btn{font-size:14px;min-height:46px;white-space:normal;padding:10px}
+.detail-extra button,.detail-extra a{font-size:13px;min-height:40px;color:#887198}
+.detail-source-note{font-size:13px;color:#8b7899;line-height:1.7;margin:14px 0}
+.detail-source-note summary{cursor:pointer}
+.detail-source-note p{margin:8px 0}
+.official-map-button{font-size:14px;min-height:44px}
+.dialog{width:500px}
+.dialog-heading h2{font-size:24px}
+.dialog input,.dialog select{font-size:16px;min-height:48px}
+.dialog input[readonly]{font-size:13px}
+.field-label{font-size:14px;color:#796787}
+.guide-feature h3{font-size:17px}
+.guide-feature p,.source-details{font-size:14px;color:#7e6e8c;line-height:1.8}
+.guide-links .btn{font-size:14px}
+.gps-reading h3{font-size:18px}
+.gps-reading p,.gps-warning{font-size:14px}
+.location-options .btn,.share-buttons .btn{font-size:14px}
+.form-note,.form-error{font-size:13px;line-height:1.7}
+.share-preview p{font-size:14px}
+.toast{font-size:14px}
+.official-map-figure figcaption{font-size:12px}
+.route-dialog{width:560px}
+.route-dialog .dialog-heading{padding:22px 24px}
+.route-dialog .dialog-body{padding:20px 24px 24px}
+.route-origin{display:flex;align-items:center;gap:11px;padding:13px 14px;border-radius:13px;background:#f5f1ff;border:1px solid #e9e1fb;margin-bottom:19px}
+.route-origin-icon{display:flex;color:var(--purple);flex-shrink:0}
+.route-origin-icon svg{width:22px;height:22px}
+.route-origin>div{flex:1;min-width:0}
+.route-origin-label{display:block;font-size:12px;color:#a28fb7;margin-bottom:5px}
+.route-origin strong{display:block;font-size:15px;color:#655377;line-height:1.5;overflow-wrap:anywhere}
+.route-origin .text-button{font-size:13px;flex-shrink:0}
+.route-search-box{display:flex;gap:8px;align-items:center;padding:0 12px;border:1px solid #dcd0ef;border-radius:11px;background:#fff}
+.route-search-box:focus-within{border-color:var(--purple);box-shadow:0 0 0 3px #5c2de80c}
+.route-search-box>span{color:var(--purple)}
+.route-search-box>span svg{width:20px;height:20px}
+.route-search-box input{border:0;background:none;flex:1;min-width:0;outline:none;padding:13px 0;font-size:16px;box-shadow:none}
+.route-search-box .icon-btn{width:30px;height:30px;min-height:30px}
+.route-category-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:13px 0 10px}
+.route-category-tabs button{font-size:13px;font-weight:700;min-height:39px;border-radius:8px;color:#9784a6;background:#f8f6fb;padding:7px 4px}
+.route-category-tabs button.active{background:var(--purple-pale);color:var(--purple)}
+.route-destinations{max-height:300px;min-height:90px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#dfd3ed transparent;padding:0 3px}
+.route-place-group{margin:0 0 13px}
+.route-place-group h3{font-size:13px;color:#9683a7;margin:9px 8px 4px;display:flex;gap:7px;align-items:center}
+.route-place-group h3 span{font-size:12px;color:var(--purple)}
+.route-place{display:grid;grid-template-columns:39px minmax(0,1fr) 18px;gap:10px;width:100%;padding:10px 9px;align-items:center;min-height:66px;text-align:left;border-radius:11px;border:1px solid transparent}
+.route-place:hover{background:#fbf9ff}
+.route-place.selected{background:#f3edff;border-color:#dacbf8}
+.route-place-icon{width:38px;height:40px;border-radius:10px;background:var(--purple-pale);color:var(--purple);display:flex;align-items:center;justify-content:center}
+.route-place-icon svg{width:20px;height:20px}
+.route-place-icon.food{background:#fff0e6;color:var(--food)}
+.route-place-icon.shop{background:#faeaf6;color:var(--shop)}
+.route-place strong{font-size:15px;font-weight:700;display:block;line-height:1.5}
+.route-place small{font-size:13px;display:block;color:#786585;line-height:1.6;margin-top:3px}
+.route-place-check{color:#bbaacd;display:flex}
+.route-place-check svg{width:17px;height:17px}
+.route-place.selected .route-place-check{color:var(--purple)}
+.route-show-all{font-size:13px;color:var(--purple);padding:8px 10px;min-height:37px}
+.route-empty{font-size:14px;text-align:center;padding:24px;color:#9b89a9}
+.route-nearby{border-top:1px solid var(--line);padding-top:13px;margin-top:12px}
+.route-nearby h3{font-size:14px;margin:0 0 10px;color:#80668f}
+.route-quick-facilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.route-quick-facilities button{display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;font-size:14px;line-height:1.3;padding:8px 5px;border:1px solid #e8e1ee;border-radius:9px;color:#705980;background:#fff}
+.route-quick-facilities button svg{width:16px;height:16px;flex-shrink:0}
+.route-quick-facilities button.active{background:#eaf5ef;color:var(--facility);border-color:#b8d9cb}
+.route-facility-result{display:flex;width:100%;align-items:center;gap:10px;padding:13px;border-radius:10px;color:var(--facility);background:#f0f7f3;min-height:50px;font-size:14px;margin-bottom:12px}
+.route-facility-result svg{width:18px;height:18px}
+.route-facility-result svg:last-child{margin-left:auto}
+.route-nearest-selection{display:flex;align-items:center;gap:16px;background:#f0f8f3;border:1px solid #dfede4;border-radius:12px;padding:20px;color:var(--facility);margin:7px 0}
+.route-nearest-selection>svg{width:30px;height:30px;flex-shrink:0}
+.route-nearest-selection strong{font-size:16px}
+.route-nearest-selection p{font-size:14px;color:#547563;line-height:1.7;margin:6px 0 0}
+.route-submit-row{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:19px;padding-top:16px;border-top:1px solid var(--line)}
+.route-submit-row>span{font-size:12px;color:#a491b2}
+.route-submit-row .btn{min-width:138px;font-size:15px}
+.route-card{width:400px;max-width:calc(100% - 115px);left:24px;transform:none;top:20px;padding:18px}
+.route-card h3{font-size:17px;line-height:1.5}
+.route-card p{font-size:14px;color:#927ba3;line-height:1.65}
+.route-card-badge{display:inline-block;font-size:12px;color:var(--purple);background:var(--purple-pale);padding:4px 8px;border-radius:6px;margin:0 0 8px}
+.transfer-choices{display:flex;gap:6px;margin:12px 0}
+.transfer-choices button{flex:1;min-height:42px;padding:7px 8px;display:flex;justify-content:center;align-items:center;gap:5px;border:1px solid #e7ddf3;border-radius:9px;font-size:13px;color:#75617f}
+.transfer-choices button.active{background:var(--purple-pale);color:var(--purple);border-color:#c8b3ef}
+.transfer-choices button svg{width:17px;height:17px}
+.route-card>.btn{font-size:14px;min-height:44px;margin-top:3px}
+.shared-card h3{font-size:17px}.shared-card p{font-size:13px}
+@media(max-width:1180px) and (min-width:801px){.app-layout{grid-template-columns:340px minmax(0,1fr)}.category-tab{font-size:13px;padding:9px}.detail-panel{width:340px}.floor-hint{display:none}}
+@media(max-width:800px){
+  .header{height:70px}
+  .brand{font-size:20px}.brand small{display:none}
+  .header-actions>.btn{font-size:12px;min-height:39px;padding:9px 11px}
+  .app-layout{display:block;height:calc(100dvh - 70px - 70px - env(safe-area-inset-bottom,0px))}
+  .sidebar{bottom:calc(70px + env(safe-area-inset-bottom,0px));height:min(76dvh,660px)}
+  .sidebar-intro{padding:16px 22px}.sidebar-intro h1{font-size:22px}
+  .search-box input{font-size:16px}
+  .sidebar-tabs button{font-size:14px}
+  .place-text h3{font-size:17px}.place-meta{font-size:13px}.place-sub{font-size:14px}
+  .map-toolbar{min-height:71px;height:71px;padding:4px 12px}
+  .map-toolbar #openRoute{display:none}
+  .category-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;width:100%;overflow:visible}
+  .category-tab{font-size:13px;min-height:58px;flex-direction:column;gap:4px;padding:6px 2px}
+  .category-tab svg{width:18px;height:18px}
+  .category-tab[data-category="all"]{display:none}
+  .mobile-search-bar{height:52px;min-height:52px;padding:3px 13px 7px}
+  .mobile-search-bar>button{font-size:14px;min-height:42px}
+  .mobile-search-bar svg{width:18px;height:18px}
+  .floor-bar{min-height:48px;padding:0 12px}
+  .floor-bar #floorTabs{gap:3px}
+  #floorTabs button{font-size:13px;min-height:35px;min-width:35px;padding:6px 8px}
+  .map-context{top:18px;left:17px}.map-context strong{font-size:14px}.map-context div>span{font-size:9px}
+  .map-controls{top:15px;right:13px}.map-controls .icon-btn{width:36px;height:36px;min-height:36px}
+  .map-bottom-tools{bottom:37px;left:12px;gap:7px}
+  .location-btn,.manual-btn{font-size:13px;min-height:44px;padding:10px 11px;gap:5px}
+  .location-btn svg,.manual-btn svg{width:16px;height:16px}
+  .map-credit{font-size:9px;bottom:13px;left:15px}.credit-source{display:none}
+  .status-bar{height:34px;min-height:34px;padding:0 13px}
+  .status-message,.status-bar>button{font-size:10px}
+  .mobile-bottom-nav{height:calc(70px + env(safe-area-inset-bottom,0px));padding-top:7px}
+  .mobile-bottom-nav button{font-size:12px;gap:5px;min-height:54px}
+  .mobile-bottom-nav svg{width:21px;height:21px}
+  .detail-panel{width:auto;left:10px;right:10px;max-height:calc(100% - 16px)}
+  .detail-top{height:84px}.detail-body h2{font-size:24px}.detail-description{font-size:15px}
+  .detail-actions .btn{font-size:14px}.detail-extra a,.detail-extra button{font-size:12px}
+  .pick-banner{font-size:12px;padding:9px 7px;gap:5px}.pick-banner button{font-size:12px;min-height:32px}
+  .route-card{width:auto;max-width:calc(100% - 85px);left:12px;right:auto;padding:15px;top:15px;min-width:230px}
+  .route-card h3{font-size:16px}.route-card p{font-size:13px}.route-card-badge{font-size:12px}
+  .transfer-choices button{font-size:13px;padding:7px 5px;gap:4px;flex:1 0 auto;white-space:nowrap}
+  .transfer-choices button svg{display:none}
+  .route-card>.btn{font-size:13px}
+  .dialog,.route-dialog{max-width:calc(100% - 20px);max-height:calc(100dvh - 24px)}
+  .dialog-heading,.route-dialog .dialog-heading{padding:20px}.dialog-heading h2{font-size:22px}
+  .dialog-body,.route-dialog .dialog-body{padding:18px 20px 22px}
+  .dialog input,.dialog select{font-size:16px}
+  .route-origin{padding:12px;gap:9px;margin-bottom:16px}.route-origin strong{font-size:14px}.route-origin .text-button{font-size:13px}
+  .route-category-tabs button{font-size:13px;min-height:40px;padding:7px 3px}
+  .route-destinations{max-height:min(28dvh,230px)}
+  .route-place{padding:9px 6px;gap:8px;grid-template-columns:34px minmax(0,1fr) 17px}
+  .route-place-icon{width:33px;height:38px}.route-place strong{font-size:15px}
+  .route-quick-facilities{gap:6px}.route-quick-facilities button{font-size:13px;min-height:44px;padding:8px 4px;gap:4px}
+  .route-quick-facilities button svg{width:14px;height:14px}
+  .route-nearby h3{font-size:14px}.route-submit-row{margin-top:15px;padding-top:14px;gap:8px}.route-submit-row>span{font-size:11px}
+  .route-submit-row .btn{min-width:127px;font-size:15px}
+  .guide-feature p,.source-details{font-size:14px}.guide-feature h3{font-size:16px}
+  .guide-links .btn{font-size:12px}.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));font-size:13px}
+}
