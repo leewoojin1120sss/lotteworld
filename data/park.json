@@ -1,0 +1,4160 @@
+{
+  "title": "롯데월드야호",
+  "guideYear": 2026,
+  "sourceName": "2026 가이드맵_국문_FS2.pdf",
+  "floors": [
+    {
+      "id": "B1",
+      "label": "B1",
+      "name": "언더랜드",
+      "page": 0,
+      "crop": [
+        660,
+        130,
+        1555,
+        810
+      ],
+      "bg": "#fffaf7",
+      "image": "assets/maps/B1.webp",
+      "width": 895,
+      "height": 680,
+      "positionMode": "manual"
+    },
+    {
+      "id": "1F",
+      "label": "1F",
+      "name": "어드벤처 1층",
+      "page": 1,
+      "crop": [
+        300,
+        45,
+        1425,
+        805
+      ],
+      "bg": "#fffafd",
+      "image": "assets/maps/1F.webp",
+      "width": 1125,
+      "height": 760,
+      "positionMode": "manual"
+    },
+    {
+      "id": "2F",
+      "label": "2F",
+      "name": "어드벤처 2층",
+      "page": 2,
+      "crop": [
+        160,
+        120,
+        980,
+        460
+      ],
+      "bg": "#fffdf4",
+      "polygon": [
+        [
+          160,
+          120
+        ],
+        [
+          980,
+          120
+        ],
+        [
+          980,
+          420
+        ],
+        [
+          940,
+          460
+        ],
+        [
+          160,
+          460
+        ]
+      ],
+      "image": "assets/maps/2F.webp",
+      "width": 820,
+      "height": 340,
+      "positionMode": "manual"
+    },
+    {
+      "id": "3F",
+      "label": "3F",
+      "name": "어드벤처 3층",
+      "page": 2,
+      "crop": [
+        600,
+        325,
+        1415,
+        610
+      ],
+      "bg": "#fffdf4",
+      "polygon": [
+        [
+          600,
+          460
+        ],
+        [
+          980,
+          420
+        ],
+        [
+          1050,
+          325
+        ],
+        [
+          1415,
+          325
+        ],
+        [
+          1415,
+          610
+        ],
+        [
+          600,
+          610
+        ]
+      ],
+      "image": "assets/maps/3F.webp",
+      "width": 815,
+      "height": 285,
+      "positionMode": "manual"
+    },
+    {
+      "id": "4F",
+      "label": "4F",
+      "name": "어드벤처 4층",
+      "page": 2,
+      "crop": [
+        1030,
+        475,
+        1880,
+        815
+      ],
+      "bg": "#fffdf4",
+      "polygon": [
+        [
+          1030,
+          610
+        ],
+        [
+          1415,
+          610
+        ],
+        [
+          1430,
+          475
+        ],
+        [
+          1880,
+          475
+        ],
+        [
+          1880,
+          815
+        ],
+        [
+          1030,
+          815
+        ]
+      ],
+      "image": "assets/maps/4F.webp",
+      "width": 850,
+      "height": 340,
+      "positionMode": "manual"
+    },
+    {
+      "id": "MAGIC",
+      "label": "매직",
+      "name": "매직아일랜드",
+      "page": 3,
+      "crop": [
+        295,
+        25,
+        1125,
+        805
+      ],
+      "bg": "#ffffff",
+      "image": "assets/maps/MAGIC.webp",
+      "width": 830,
+      "height": 780,
+      "positionMode": "approximate-gps"
+    }
+  ],
+  "pois": [
+    {
+      "id": "ride-1",
+      "number": 1,
+      "name": "드림보트",
+      "description": "신비한 요정의 숲으로 떠나는 판타지 보트 라이드",
+      "category": "attraction",
+      "floor": "B1",
+      "pdf": [
+        1277.7,
+        332.43
+      ],
+      "x": 690.168,
+      "y": 297.691,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-2",
+      "number": 2,
+      "name": "4D슈팅씨어터",
+      "description": "4D로 즐기는 짜릿한 슈팅 어드벤처",
+      "category": "attraction",
+      "floor": "B1",
+      "pdf": [
+        1011.84,
+        462.51
+      ],
+      "x": 393.117,
+      "y": 488.985,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-3",
+      "number": 3,
+      "name": "와일드밸리",
+      "description": "보트를 타고 급류를 지나는 미스터리 동굴 모험",
+      "category": "attraction",
+      "floor": "B1",
+      "pdf": [
+        906.2,
+        353.13
+      ],
+      "x": 275.084,
+      "y": 328.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-4",
+      "number": 4,
+      "name": "와일드정글",
+      "description": "지프차를 타고 고대 유적을 찾아 떠나는 신전 탐험",
+      "category": "attraction",
+      "floor": "B1",
+      "pdf": [
+        922.98,
+        240.12
+      ],
+      "x": 293.832,
+      "y": 161.941,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-5",
+      "number": 5,
+      "name": "와일드윙",
+      "description": "강렬한 바람을 가르며 하늘을 비행하는 아찔한 체험",
+      "category": "attraction",
+      "floor": "B1",
+      "pdf": [
+        790.84,
+        230.05
+      ],
+      "x": 146.19,
+      "y": 147.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-6",
+      "number": 6,
+      "name": "신밧드의 모험",
+      "description": "보트를 타고 떠나는 지하 속 신밧드의 모험 이야기",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        488.12,
+        482.03
+      ],
+      "x": 167.218,
+      "y": 575.039,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-7",
+      "number": 7,
+      "name": "스페인해적선",
+      "description": "75도 각도까지 올라가는 스릴 넘치는 해적선",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        477.61,
+        551.34
+      ],
+      "x": 157.876,
+      "y": 666.237,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-8",
+      "number": 8,
+      "name": "후룸라이드",
+      "description": "보트를 타고 급류에 밀려 폭포에서 떨어지는 스릴",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        574.65,
+        688.11
+      ],
+      "x": 244.133,
+      "y": 846.197,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-9",
+      "number": 9,
+      "name": "회전바구니",
+      "description": "손잡이를 돌릴수록 빠르게 회전하는 바구니",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        738.28,
+        676.61
+      ],
+      "x": 389.582,
+      "y": 831.066,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-10",
+      "number": 10,
+      "name": "로티트레인",
+      "description": "꼬마 기차를 타고 떠나는 어드벤처 한바퀴",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1041.36,
+        550.47
+      ],
+      "x": 658.987,
+      "y": 665.092,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-11",
+      "number": 11,
+      "name": "배틀그라운드",
+      "description": "적들에게 맞서 생존을 위한 섬 탈출기, 워크스루 슈팅 시어터",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1171.49,
+        488.27
+      ],
+      "x": 774.658,
+      "y": 583.25,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-12",
+      "number": 12,
+      "name": "플라이벤처",
+      "description": "플라잉머신을 타고 떠나는 시공간 초월 비행",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1247.32,
+        464.18
+      ],
+      "x": 842.062,
+      "y": 551.553,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-13",
+      "number": 13,
+      "name": "회전목마",
+      "description": "64필의 아름다운 백마를 타고 보내는 로맨틱한 시간",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1200.54,
+        394.11
+      ],
+      "x": 800.48,
+      "y": 459.355,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-14",
+      "number": 14,
+      "name": "황야의 무법자",
+      "description": "서부시대 보안관이 되어 악당을 물리치는 슈팅 배틀",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1043.47,
+        325.4
+      ],
+      "x": 660.862,
+      "y": 368.947,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-15",
+      "number": 15,
+      "name": "키즈토리아",
+      "description": "맨발로 뛰어놀 수 있는 거대한 동화 속 세상",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1134.57,
+        330.43
+      ],
+      "x": 741.84,
+      "y": 375.566,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-16",
+      "number": 16,
+      "name": "드래곤 와일드슈팅",
+      "description": "로티성에 쳐들어온 드래곤들을 슈팅건으로 무찔러봐요",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1287.21,
+        389.34
+      ],
+      "x": 877.52,
+      "y": 453.079,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-17",
+      "number": 17,
+      "name": "어린이 범퍼카",
+      "description": "뛰뛰빵빵, 어린이들을 위한 범퍼카",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1298.16,
+        304.37
+      ],
+      "x": 887.253,
+      "y": 341.276,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-18",
+      "number": 18,
+      "name": "햇님달님",
+      "description": "햇님달님 오누이와 하늘 위로 점프",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1354.0,
+        258.38
+      ],
+      "x": 936.889,
+      "y": 280.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-19",
+      "number": 19,
+      "name": "점핑피쉬",
+      "description": "무서운 상어를 피해 빙글빙글 점프하는 물고기",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1312.39,
+        206.48
+      ],
+      "x": 899.902,
+      "y": 212.474,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-20",
+      "number": 20,
+      "name": "언더씨킹덤",
+      "description": "맨발로 뛰어놀 수 있는 바다왕국 놀이터",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1195.31,
+        142.75
+      ],
+      "x": 795.831,
+      "y": 128.618,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-21",
+      "number": 21,
+      "name": "유레카",
+      "description": "하늘을 나는 꼬마 요술배",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1143.99,
+        159.84
+      ],
+      "x": 750.213,
+      "y": 151.105,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-22",
+      "number": 22,
+      "name": "스윙팡팡",
+      "description": "위아래로 통통 튀기는 바구니",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1106.87,
+        180.86
+      ],
+      "x": 717.218,
+      "y": 178.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-23",
+      "number": 23,
+      "name": "매직붕붕카",
+      "description": "좌충우돌 색색깔의 복어범퍼카",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        1036.98,
+        144.73
+      ],
+      "x": 655.093,
+      "y": 131.224,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-24",
+      "number": 24,
+      "name": "어린이 동화극장",
+      "description": "어린이 뮤지컬이 펼쳐지는 극장",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        979.74,
+        167.06
+      ],
+      "x": 604.213,
+      "y": 160.605,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-25",
+      "number": 25,
+      "name": "카트라이더",
+      "description": "롯데월드에서 즐기는 카트라이더 레이싱",
+      "category": "attraction",
+      "floor": "1F",
+      "pdf": [
+        919.52,
+        307.0
+      ],
+      "x": 550.684,
+      "y": 344.737,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-26",
+      "number": 26,
+      "name": "후렌치레볼루션",
+      "description": "어드벤처 실내를 질주하는 롤러코스터",
+      "category": "attraction",
+      "floor": "2F",
+      "pdf": [
+        913.42,
+        379.22
+      ],
+      "x": 918.805,
+      "y": 762.412,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-27",
+      "number": 27,
+      "name": "범퍼카",
+      "description": "앞에서 쾅, 뒤에서 쾅! 좌충우돌 범퍼카",
+      "category": "attraction",
+      "floor": "2F",
+      "pdf": [
+        809.69,
+        195.66
+      ],
+      "x": 792.305,
+      "y": 222.529,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-28",
+      "number": 28,
+      "name": "콩X고질라: 더 라이드",
+      "description": "히브 비행선을 타고 콩X고질라와 미지의 세계로",
+      "category": "attraction",
+      "floor": "3F",
+      "pdf": [
+        1127.32,
+        464.91
+      ],
+      "x": 647.018,
+      "y": 490.912,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-29",
+      "number": 29,
+      "name": "월드모노레일",
+      "description": "로티, 로리로 변신한 모노레일을 타고 어드벤처 한바퀴",
+      "category": "attraction",
+      "floor": "3F",
+      "pdf": [
+        749.65,
+        527.22
+      ],
+      "x": 183.62,
+      "y": 709.544,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-30",
+      "number": 30,
+      "name": "풍선비행",
+      "description": "열기구를 타고 하늘 위에서 바라보는 어드벤처",
+      "category": "attraction",
+      "floor": "4F",
+      "pdf": [
+        1744.71,
+        726.19
+      ],
+      "x": 840.835,
+      "y": 738.794,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-31",
+      "number": 31,
+      "name": "파라오의 분노",
+      "description": "파라오의 보물을 찾아 떠나는 스릴 만점 다크 라이드",
+      "category": "attraction",
+      "floor": "4F",
+      "pdf": [
+        1565.99,
+        661.21
+      ],
+      "x": 630.576,
+      "y": 547.676,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-32",
+      "number": 32,
+      "name": "어크로스다크",
+      "description": "잃어버린 유물을 찾아 우주로 떠나는 모험",
+      "category": "attraction",
+      "floor": "4F",
+      "pdf": [
+        1288.98,
+        679.28
+      ],
+      "x": 304.682,
+      "y": 600.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-33",
+      "number": 33,
+      "name": "아트란티스",
+      "description": "급발진하는 보트를 타고 미스터리 신전 속으로",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        803.67,
+        339.05
+      ],
+      "x": 612.855,
+      "y": 402.628,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-34",
+      "number": 34,
+      "name": "자이로스윙",
+      "description": "석촌호수에 떨어질 듯 말 듯 아찔한 스윙",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        759.69,
+        247.49
+      ],
+      "x": 559.867,
+      "y": 285.244,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-35",
+      "number": 35,
+      "name": "쁘띠빵빵",
+      "description": "호숫가를 드라이브하는 귀여운 자동차",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        597.29,
+        417.29
+      ],
+      "x": 364.205,
+      "y": 502.936,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-36",
+      "number": 36,
+      "name": "자이로드롭",
+      "description": "상공 70m 높이에서 자유낙하하는 공포와 스릴",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        514.74,
+        413.29
+      ],
+      "x": 264.747,
+      "y": 497.808,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-37",
+      "number": 37,
+      "name": "환타지드림",
+      "description": "꼬마 기차를 타고 떠나는 동화 속 세상",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        487.57,
+        451.51
+      ],
+      "x": 232.012,
+      "y": 546.808,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-38",
+      "number": 38,
+      "name": "혜성특급",
+      "description": "좌석이 회전하는 열차를 타고 떠나는 어둠 속 우주여행",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        496.65,
+        551.08
+      ],
+      "x": 242.952,
+      "y": 674.462,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-39",
+      "number": 39,
+      "name": "자이로스핀",
+      "description": "거대한 나침반을 타고 돌고 도는 아찔한 서핑타임",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        475.18,
+        592.42
+      ],
+      "x": 217.084,
+      "y": 727.462,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-40",
+      "number": 40,
+      "name": "스톤익스프레스",
+      "description": "돌의 정령을 따라 핑크빈을 찾아 떠나는 모험",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        558.04,
+        679.54
+      ],
+      "x": 316.916,
+      "y": 839.154,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-41",
+      "number": 41,
+      "name": "아르카나라이드",
+      "description": "정령의 나무를 치유하러 떠나는 마법여행",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        667.92,
+        721.77
+      ],
+      "x": 449.301,
+      "y": 893.295,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "ride-42",
+      "number": 42,
+      "name": "에오스타워",
+      "description": "타워 꼭대기를 열어 핑크빈을 찾아 떠나는 모험",
+      "category": "attraction",
+      "floor": "MAGIC",
+      "pdf": [
+        656.23,
+        638.76
+      ],
+      "x": 435.217,
+      "y": 786.872,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-B1-1",
+      "number": 1,
+      "name": "도미노피자",
+      "description": "피자, 치킨, 파스타",
+      "category": "food",
+      "floor": "B1",
+      "pdf": [
+        1474.01,
+        452.75
+      ],
+      "x": 909.508,
+      "y": 474.632,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-B1-2",
+      "number": 2,
+      "name": "츄로빅",
+      "description": "수제 츄러스, 커피, 쉐이크",
+      "category": "food",
+      "floor": "B1",
+      "pdf": [
+        1127.48,
+        421.46
+      ],
+      "x": 522.324,
+      "y": 428.618,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-B1-3",
+      "number": 3,
+      "name": "롯데리아",
+      "description": "햄버거, 감자튀김, 치킨",
+      "category": "food",
+      "floor": "B1",
+      "pdf": [
+        987.5,
+        565.89
+      ],
+      "x": 365.922,
+      "y": 641.015,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-B1-4",
+      "number": 4,
+      "name": "유브유부",
+      "description": "유부초밥, 우동, 라면, 떡볶이",
+      "category": "food",
+      "floor": "B1",
+      "pdf": [
+        999.67,
+        597.31
+      ],
+      "x": 379.52,
+      "y": 687.221,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-B1-5",
+      "number": 5,
+      "name": "101번지 남산돈까스",
+      "description": "돈까스, 우동",
+      "category": "food",
+      "floor": "B1",
+      "pdf": [
+        1050.18,
+        680.13
+      ],
+      "x": 435.955,
+      "y": 809.015,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-B1-6",
+      "number": 6,
+      "name": "잇츠월드",
+      "description": "함박스테이크, 돈코츠 라멘, 젤라또 아이스크림",
+      "category": "food",
+      "floor": "B1",
+      "pdf": [
+        1140.61,
+        718.99
+      ],
+      "x": 536.994,
+      "y": 866.162,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-7",
+      "number": 7,
+      "name": "스쿨푸드",
+      "description": "스팸마리, 장조림버터비빔밥, 김계떡",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        525.47,
+        451.38
+      ],
+      "x": 200.418,
+      "y": 534.711,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-8",
+      "number": 8,
+      "name": "BHC",
+      "description": "콜팝",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        622.27,
+        427.73
+      ],
+      "x": 286.462,
+      "y": 503.592,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-9",
+      "number": 9,
+      "name": "스낵산호세",
+      "description": "츄러스, 그릴소시지, 핫도그",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        644.06,
+        446.35
+      ],
+      "x": 305.831,
+      "y": 528.092,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-10",
+      "number": 10,
+      "name": "팝콘팩토리",
+      "description": "팝콘",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        635.84,
+        480.62
+      ],
+      "x": 298.524,
+      "y": 573.184,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-11",
+      "number": 11,
+      "name": "투썸플레이스",
+      "description": "커피, 프라페, 주스, 마카롱",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        597.52,
+        492.44
+      ],
+      "x": 264.462,
+      "y": 588.737,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-12",
+      "number": 12,
+      "name": "칠링스테이션",
+      "description": "타코, 퀘사디아, 마가리따",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        629.38,
+        525.08
+      ],
+      "x": 292.782,
+      "y": 631.684,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-13",
+      "number": 13,
+      "name": "아라비안바자",
+      "description": "츄러스, 그릴소시지, 핫도그",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        811.04,
+        612.62
+      ],
+      "x": 454.258,
+      "y": 746.868,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-14",
+      "number": 14,
+      "name": "오마스딜라이트",
+      "description": "오레오 츄러스, 쉐이크",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        780.49,
+        662.22
+      ],
+      "x": 427.102,
+      "y": 812.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-15",
+      "number": 15,
+      "name": "더쓰리위시스",
+      "description": "한식, 중식, 분식 푸드코트",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        850.46,
+        642.84
+      ],
+      "x": 489.298,
+      "y": 786.632,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-16",
+      "number": 16,
+      "name": "폴바셋",
+      "description": "아이스크림라떼, 소잘라떼, 룽고커피",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        989.9,
+        566.96
+      ],
+      "x": 613.244,
+      "y": 686.789,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-17",
+      "number": 17,
+      "name": "매드포갈릭",
+      "description": "파스타, 함박스테이크, 피자",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        1197.73,
+        338.76
+      ],
+      "x": 797.982,
+      "y": 386.526,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-18",
+      "number": 18,
+      "name": "버거베어",
+      "description": "수제버거, 떡볶이, 카페 푸드코트",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        1312.05,
+        257.52
+      ],
+      "x": 899.6,
+      "y": 279.632,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-19",
+      "number": 19,
+      "name": "롯데리아",
+      "description": "햄버거, 감자튀김, 치킨",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        1106.19,
+        368.55
+      ],
+      "x": 716.613,
+      "y": 425.724,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-20",
+      "number": 20,
+      "name": "모찌이야기",
+      "description": "과일모찌, 탕후루",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        1019.09,
+        295.4
+      ],
+      "x": 639.191,
+      "y": 329.474,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-21",
+      "number": 21,
+      "name": "델리쉐프",
+      "description": "점보호두과자, 슬러시, 밀크티, 츄러스",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        919.7,
+        335.81
+      ],
+      "x": 550.844,
+      "y": 382.645,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-1F-22",
+      "number": 22,
+      "name": "파스퇴르밀크바",
+      "description": "아이스크림, 그릭요거트, 밀크쉐이크",
+      "category": "food",
+      "floor": "1F",
+      "note": "원본의 목록에는 있으나 지도 번호가 누락되어 정확한 핀 위치를 표시하지 않습니다.",
+      "x": null,
+      "y": null,
+      "source": "guide-2026",
+      "coordinateQuality": "unlocated"
+    },
+    {
+      "id": "food-1F-23",
+      "number": 23,
+      "name": "설빙",
+      "description": "빙수, 토스트, 커피",
+      "category": "food",
+      "floor": "1F",
+      "pdf": [
+        597.46,
+        323.87
+      ],
+      "x": 264.409,
+      "y": 366.934,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-24",
+      "number": 24,
+      "name": "라인랜드 후르츠월드",
+      "description": "츄러스, 젤라또 아이스크림",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        904.4,
+        340.0
+      ],
+      "x": 907.805,
+      "y": 647.059,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-25",
+      "number": 25,
+      "name": "퀴즈노스",
+      "description": "샌드위치, 핫도그",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        863.39,
+        295.55
+      ],
+      "x": 857.793,
+      "y": 516.324,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-26",
+      "number": 26,
+      "name": "빈슈트루델",
+      "description": "소프트아이스크림, 젤라또",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        780.61,
+        326.65
+      ],
+      "x": 756.841,
+      "y": 607.794,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-27",
+      "number": 27,
+      "name": "앤티앤스프레즐",
+      "description": "프레즐, 시나몬스틱, 에이드",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        750.39,
+        311.76
+      ],
+      "x": 719.988,
+      "y": 564.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-28",
+      "number": 28,
+      "name": "델리본",
+      "description": "감자튀김, 와플, 스무디",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        726.82,
+        280.22
+      ],
+      "x": 691.244,
+      "y": 471.235,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-29",
+      "number": 29,
+      "name": "오이씨푸드",
+      "description": "라멘, 우동, 돈까스, 볶음밥",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        686.83,
+        301.66
+      ],
+      "x": 642.476,
+      "y": 534.294,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-30",
+      "number": 30,
+      "name": "델키스",
+      "description": "케밥, 핫도그, 치킨, 에이드",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        538.57,
+        356.84
+      ],
+      "x": 461.671,
+      "y": 696.588,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-31",
+      "number": 31,
+      "name": "공차",
+      "description": "밀크티, 버블티",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        428.31,
+        381.37
+      ],
+      "x": 327.207,
+      "y": 768.735,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-32",
+      "number": 32,
+      "name": "김피라",
+      "description": "떡볶이, 라면, 퓨전 분식",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        410.46,
+        337.9
+      ],
+      "x": 305.439,
+      "y": 640.882,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-33",
+      "number": 33,
+      "name": "상하이",
+      "description": "짜장면, 짬뽕, 탕수육",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        376.95,
+        374.47
+      ],
+      "x": 264.573,
+      "y": 748.441,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-34",
+      "number": 34,
+      "name": "요거트월드",
+      "description": "요거트아이스크림, 그릭요거트",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        302.6,
+        364.4
+      ],
+      "x": 173.902,
+      "y": 718.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-35",
+      "number": 35,
+      "name": "라라코스트",
+      "description": "파스타, 피자, 커틀렛, 필라프",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        212.05,
+        334.84
+      ],
+      "x": 63.476,
+      "y": 631.882,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-36",
+      "number": 36,
+      "name": "부창제과",
+      "description": "호두과자",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        216.87,
+        381.48
+      ],
+      "x": 69.354,
+      "y": 769.059,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-2F-37",
+      "number": 37,
+      "name": "아이스팩토리",
+      "description": "스틱 아이스크림",
+      "category": "food",
+      "floor": "2F",
+      "pdf": [
+        207.5,
+        406.34
+      ],
+      "x": 57.927,
+      "y": 842.176,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-3F-38",
+      "number": 38,
+      "name": "엠테이블",
+      "description": "짜장면, 돈카츠, 로코모코",
+      "category": "food",
+      "floor": "3F",
+      "pdf": [
+        1281.58,
+        536.4
+      ],
+      "x": 836.294,
+      "y": 741.754,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-3F-39",
+      "number": 39,
+      "name": "비스트 스테이션 / 타이탄스낵",
+      "description": "비스트 젤라또, 타이탄 소프트콘",
+      "category": "food",
+      "floor": "3F",
+      "pdf": [
+        1172.19,
+        516.04
+      ],
+      "x": 702.074,
+      "y": 670.316,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-4F-40",
+      "number": 40,
+      "name": "오벨리스크",
+      "description": "생크림와플, 소떡소떡, 핫바, 츄러스, 구슬아이스크림",
+      "category": "food",
+      "floor": "4F",
+      "pdf": [
+        1615.28,
+        719.28
+      ],
+      "x": 688.565,
+      "y": 718.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-4F-41",
+      "number": 41,
+      "name": "뉴욕핫도그",
+      "description": "핫도그, 에이드",
+      "category": "food",
+      "floor": "4F",
+      "pdf": [
+        1536.45,
+        688.62
+      ],
+      "x": 595.824,
+      "y": 628.294,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-4F-42",
+      "number": 42,
+      "name": "파라오스낵",
+      "description": "떡볶이, 만두, 소시지, 소프트아이스크림",
+      "category": "food",
+      "floor": "4F",
+      "pdf": [
+        1399.36,
+        635.63
+      ],
+      "x": 434.541,
+      "y": 472.441,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-41",
+      "number": 41,
+      "name": "모리스딜라이트",
+      "description": "아이스 딸기 탕후루, 크라페",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        866.42,
+        679.08
+      ],
+      "x": 688.458,
+      "y": 838.564,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-42",
+      "number": 42,
+      "name": "투썸플레이스",
+      "description": "커피, 프라페, 주스",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        885.09,
+        515.5
+      ],
+      "x": 710.952,
+      "y": 628.846,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-43",
+      "number": 43,
+      "name": "와플대학",
+      "description": "와플, 젤라또 아이스크림, 에이드",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        867.08,
+        478.61
+      ],
+      "x": 689.253,
+      "y": 581.551,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-44",
+      "number": 44,
+      "name": "BHC",
+      "description": "콜팝, 치킨",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        751.68,
+        355.82
+      ],
+      "x": 550.217,
+      "y": 424.128,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-45",
+      "number": 45,
+      "name": "공차",
+      "description": "밀크티, 버블티",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        745.56,
+        315.48
+      ],
+      "x": 542.843,
+      "y": 372.41,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-46",
+      "number": 46,
+      "name": "짤즈빵젤라또",
+      "description": "소금빵 젤라또",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        634.11,
+        335.56
+      ],
+      "x": 408.566,
+      "y": 398.154,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-47",
+      "number": 47,
+      "name": "레이크뷰 매드포갈릭",
+      "description": "팝콜, 치즈포테이토, 소시지",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        535.43,
+        284.56
+      ],
+      "x": 289.675,
+      "y": 332.769,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-48",
+      "number": 48,
+      "name": "캔디캐슬",
+      "description": "자이로츄러스, 떡볶이, 감자튀김",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        552.95,
+        474.78
+      ],
+      "x": 310.783,
+      "y": 576.641,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-49",
+      "number": 49,
+      "name": "BBQ빌리지",
+      "description": "치킨, 통다리구이, 윙",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        448.6,
+        458.11
+      ],
+      "x": 185.06,
+      "y": 555.269,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-50",
+      "number": 50,
+      "name": "스쿨푸드",
+      "description": "김치볶음밥, 떡볶이, 돈까스, 라면",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        424.99,
+        520.35
+      ],
+      "x": 156.614,
+      "y": 635.064,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "food-MAGIC-51",
+      "number": 51,
+      "name": "메이플스위츠",
+      "description": "메이플스토리 카페 & 베이커리",
+      "category": "food",
+      "floor": "MAGIC",
+      "pdf": [
+        584.15,
+        705.03
+      ],
+      "x": 348.373,
+      "y": 871.833,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-1",
+      "number": 1,
+      "name": "환타지기프트샵",
+      "description": "캐릭터 상품, 헤어밴드, 가방",
+      "category": "shop",
+      "floor": "B1",
+      "pdf": [
+        1364.56,
+        615.41
+      ],
+      "x": 787.218,
+      "y": 713.838,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-2",
+      "number": 2,
+      "name": "픽시매직",
+      "description": "교복 대여, 특수 분장",
+      "category": "shop",
+      "floor": "B1",
+      "pdf": [
+        1449.97,
+        531.75
+      ],
+      "x": 882.648,
+      "y": 590.809,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-3",
+      "number": 3,
+      "name": "샤론캣프리미엄라운지",
+      "description": "프리미엄 드레스 대여, 퍼레이드 연기자 체험",
+      "category": "shop",
+      "floor": "B1",
+      "pdf": [
+        921.1,
+        443.72
+      ],
+      "x": 291.732,
+      "y": 461.353,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-4",
+      "number": 4,
+      "name": "샤론캣드레스",
+      "description": "드레스 대여 및 퍼레이드 연기자 체험",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        764.21,
+        368.99
+      ],
+      "x": 412.631,
+      "y": 426.303,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-5",
+      "number": 5,
+      "name": "로티스엠포리움",
+      "description": "대형 캐릭터 상품샵",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        674.04,
+        397.74
+      ],
+      "x": 332.48,
+      "y": 464.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-6",
+      "number": 6,
+      "name": "위니비니",
+      "description": "캔디, 초콜릿, 젤리",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        708.53,
+        440.77
+      ],
+      "x": 363.138,
+      "y": 520.75,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-7",
+      "number": 7,
+      "name": "포토스트리트",
+      "description": "다양한 컨셉의 포토부스",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        921.05,
+        616.94
+      ],
+      "x": 552.044,
+      "y": 752.553,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-8",
+      "number": 8,
+      "name": "툼오브호러",
+      "description": "좀비 공포 체험",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        954.95,
+        584.74
+      ],
+      "x": 582.178,
+      "y": 710.184,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-9",
+      "number": 9,
+      "name": "사진상점",
+      "description": "사진촬영, 인화 및 카메라 대여",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        1143.34,
+        562.43
+      ],
+      "x": 749.636,
+      "y": 680.829,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-10",
+      "number": 10,
+      "name": "토이플러스",
+      "description": "캐릭터 상품, 완구, 풍선",
+      "category": "shop",
+      "floor": "1F",
+      "pdf": [
+        1076.29,
+        378.22
+      ],
+      "x": 690.036,
+      "y": 438.447,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-11",
+      "number": 11,
+      "name": "위니비니",
+      "description": "캔디, 초콜릿, 젤리",
+      "category": "shop",
+      "floor": "2F",
+      "pdf": [
+        798.77,
+        294.18
+      ],
+      "x": 778.988,
+      "y": 512.294,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-12",
+      "number": 12,
+      "name": "타로카드",
+      "description": "타로 카드 점괘",
+      "category": "shop",
+      "floor": "2F",
+      "pdf": [
+        278.11,
+        399.96
+      ],
+      "x": 144.037,
+      "y": 823.412,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-13",
+      "number": 13,
+      "name": "오픈예정",
+      "description": "2026 가이드맵에 오픈예정으로 기재",
+      "category": "shop",
+      "floor": "2F",
+      "pdf": [
+        250.85,
+        386.82
+      ],
+      "x": 110.793,
+      "y": 784.765,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-14",
+      "number": 14,
+      "name": "콩X고질라 더 라이드 SHOP",
+      "description": "콩X고질라: 더 라이드 굿즈샵",
+      "category": "shop",
+      "floor": "3F",
+      "pdf": [
+        1176.61,
+        485.05
+      ],
+      "x": 707.497,
+      "y": 561.579,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-15",
+      "number": 15,
+      "name": "게임빌리지",
+      "description": "비디오 게임 오락실",
+      "category": "shop",
+      "floor": "3F",
+      "pdf": [
+        1062.73,
+        497.75
+      ],
+      "x": 567.767,
+      "y": 606.14,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-16",
+      "number": 16,
+      "name": "전망대게임장",
+      "description": "인형뽑기 오락실",
+      "category": "shop",
+      "floor": "4F",
+      "note": "원본의 목록에는 있으나 지도 번호가 누락되어 정확한 핀 위치를 표시하지 않습니다.",
+      "x": null,
+      "y": null,
+      "source": "guide-2026",
+      "coordinateQuality": "unlocated"
+    },
+    {
+      "id": "shop-17",
+      "number": 17,
+      "name": "헬로키티",
+      "description": "헬로키티 기프트샵",
+      "category": "shop",
+      "floor": "4F",
+      "pdf": [
+        1728.1,
+        783.66
+      ],
+      "alternatePDF": [
+        [
+          1700.95,
+          679.42
+        ]
+      ],
+      "note": "원본 지도에 같은 번호가 두 곳 표시되어 있습니다. 어느 곳이 16번 전망대게임장 또는 17번 헬로키티인지 현장 표지로 확인해 주세요.",
+      "x": 821.294,
+      "y": 907.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-18",
+      "number": 18,
+      "name": "파라오짱게임즈",
+      "description": "대형 오락실",
+      "category": "shop",
+      "floor": "4F",
+      "pdf": [
+        1633.06,
+        676.79
+      ],
+      "x": 709.482,
+      "y": 593.5,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-19",
+      "number": 19,
+      "name": "매직캐슬트래져스",
+      "description": "캐릭터 상품샵",
+      "category": "shop",
+      "floor": "MAGIC",
+      "pdf": [
+        734.94,
+        515.27
+      ],
+      "x": 530.048,
+      "y": 628.551,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-20",
+      "number": 20,
+      "name": "문보트",
+      "description": "문보트, UFO 보트 체험",
+      "category": "shop",
+      "floor": "MAGIC",
+      "pdf": [
+        415.1,
+        572.58
+      ],
+      "x": 144.699,
+      "y": 702.026,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "id": "shop-21",
+      "number": 21,
+      "name": "메이플스토어",
+      "description": "메이플스토리 굿즈샵",
+      "category": "shop",
+      "floor": "MAGIC",
+      "pdf": [
+        708.47,
+        672.59
+      ],
+      "x": 498.157,
+      "y": 830.244,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "B1",
+      "pdf": [
+        722.0,
+        230.0
+      ],
+      "id": "facility-B1-stairs-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 69.274,
+      "y": 147.059,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "B1",
+      "pdf": [
+        1511.5,
+        535.5
+      ],
+      "id": "facility-B1-stairs-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 951.397,
+      "y": 596.324,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "B1",
+      "pdf": [
+        1489.0,
+        535.5
+      ],
+      "id": "facility-B1-escalator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 926.257,
+      "y": 596.324,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "B1",
+      "pdf": [
+        1255.5,
+        716.0
+      ],
+      "id": "facility-B1-stairs-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 665.363,
+      "y": 861.765,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "B1",
+      "pdf": [
+        1085.5,
+        387.0
+      ],
+      "id": "facility-B1-stairs-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 475.419,
+      "y": 377.941,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "B1",
+      "pdf": [
+        1233.5,
+        716.0
+      ],
+      "id": "facility-B1-escalator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 640.782,
+      "y": 861.765,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "B1",
+      "pdf": [
+        700.5,
+        187.0
+      ],
+      "id": "facility-B1-elevator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 45.251,
+      "y": 83.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "B1",
+      "pdf": [
+        1292.5,
+        730.5
+      ],
+      "id": "facility-B1-elevator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 706.704,
+      "y": 883.088,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "B1",
+      "pdf": [
+        1286.5,
+        230.5
+      ],
+      "id": "facility-B1-elevator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 700.0,
+      "y": 147.794,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "B1",
+      "pdf": [
+        748.5,
+        198.5
+      ],
+      "id": "facility-B1-locker-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 98.883,
+      "y": 100.735,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "B1",
+      "pdf": [
+        1388.5,
+        250.0
+      ],
+      "id": "facility-B1-locker-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 813.966,
+      "y": 176.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "B1",
+      "pdf": [
+        995.5,
+        645.5
+      ],
+      "id": "facility-B1-locker-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 374.86,
+      "y": 758.088,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "B1",
+      "pdf": [
+        1118.5,
+        361.5
+      ],
+      "id": "facility-B1-restroom-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 512.291,
+      "y": 340.441,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "B1",
+      "pdf": [
+        1064.5,
+        387.0
+      ],
+      "id": "facility-B1-battery-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 451.955,
+      "y": 377.941,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "B1",
+      "pdf": [
+        1367.0,
+        250.0
+      ],
+      "id": "facility-B1-battery-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 789.944,
+      "y": 176.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "B1",
+      "pdf": [
+        1507.5,
+        644.5
+      ],
+      "id": "facility-B1-battery-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 946.927,
+      "y": 756.618,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "1F",
+      "pdf": [
+        645.0,
+        350.0
+      ],
+      "id": "facility-1F-restroom-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 306.667,
+      "y": 401.316,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "1F",
+      "pdf": [
+        1138.5,
+        96.5
+      ],
+      "id": "facility-1F-restroom-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 745.333,
+      "y": 67.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        1268.5,
+        334.5
+      ],
+      "id": "facility-1F-stairs-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 860.889,
+      "y": 380.921,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "1F",
+      "pdf": [
+        1290.0,
+        334.5
+      ],
+      "id": "facility-1F-escalator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 880.0,
+      "y": 380.921,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        472.5,
+        416.5
+      ],
+      "id": "facility-1F-stairs-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 153.333,
+      "y": 488.816,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "1F",
+      "pdf": [
+        584.0,
+        379.5
+      ],
+      "id": "facility-1F-escalator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 252.444,
+      "y": 440.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "1F",
+      "pdf": [
+        495.5,
+        416.5
+      ],
+      "id": "facility-1F-escalator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 173.778,
+      "y": 488.816,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "firstaid",
+      "name": "의무실",
+      "floor": "1F",
+      "pdf": [
+        944.5,
+        248.5
+      ],
+      "id": "facility-1F-firstaid-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 572.889,
+      "y": 267.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "water",
+      "name": "음수대",
+      "floor": "1F",
+      "pdf": [
+        513.5,
+        477.0
+      ],
+      "id": "facility-1F-water-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 189.778,
+      "y": 568.421,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        548.5,
+        273.5
+      ],
+      "id": "facility-1F-stairs-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 220.889,
+      "y": 300.658,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "1F",
+      "pdf": [
+        785.5,
+        718.0
+      ],
+      "id": "facility-1F-restroom-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 431.556,
+      "y": 885.526,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        764.0,
+        739.5
+      ],
+      "id": "facility-1F-elevator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 412.444,
+      "y": 913.816,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        785.5,
+        739.5
+      ],
+      "id": "facility-1F-stairs-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 431.556,
+      "y": 913.816,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        725.5,
+        391.5
+      ],
+      "id": "facility-1F-stairs-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 378.222,
+      "y": 455.921,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        548.5,
+        294.5
+      ],
+      "id": "facility-1F-elevator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 220.889,
+      "y": 328.289,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        1082.5,
+        188.0
+      ],
+      "id": "facility-1F-stairs-6",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 695.556,
+      "y": 188.158,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        1082.5,
+        209.0
+      ],
+      "id": "facility-1F-elevator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 695.556,
+      "y": 215.789,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "1F",
+      "pdf": [
+        1257.0,
+        234.0
+      ],
+      "id": "facility-1F-stairs-7",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 850.667,
+      "y": 248.684,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        1257.0,
+        255.0
+      ],
+      "id": "facility-1F-elevator-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 850.667,
+      "y": 276.316,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        1184.5,
+        466.5
+      ],
+      "id": "facility-1F-elevator-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 786.222,
+      "y": 554.605,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        1159.5,
+        641.5
+      ],
+      "id": "facility-1F-elevator-6",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 764.0,
+      "y": 784.868,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        965.5,
+        626.0
+      ],
+      "id": "facility-1F-elevator-7",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 591.556,
+      "y": 764.474,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "1F",
+      "pdf": [
+        570.0,
+        273.5
+      ],
+      "id": "facility-1F-locker-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 240.0,
+      "y": 300.658,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "1F",
+      "pdf": [
+        644.5,
+        322.5
+      ],
+      "id": "facility-1F-locker-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 306.222,
+      "y": 365.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "1F",
+      "pdf": [
+        556.0,
+        472.5
+      ],
+      "id": "facility-1F-locker-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 227.556,
+      "y": 562.5,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "1F",
+      "pdf": [
+        872.5,
+        669.5
+      ],
+      "id": "facility-1F-locker-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 508.889,
+      "y": 821.711,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "unknown",
+      "name": "기타 편의시설",
+      "floor": "1F",
+      "pdf": [
+        977.5,
+        323.5
+      ],
+      "id": "facility-1F-unknown-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 602.222,
+      "y": 366.447,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "sanitary",
+      "name": "여성용품",
+      "floor": "1F",
+      "pdf": [
+        645.0,
+        371.0
+      ],
+      "id": "facility-1F-sanitary-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 306.667,
+      "y": 428.947,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "1F",
+      "pdf": [
+        1372.5,
+        318.5
+      ],
+      "id": "facility-1F-restroom-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 953.333,
+      "y": 359.868,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "sanitary",
+      "name": "여성용품",
+      "floor": "1F",
+      "pdf": [
+        1372.5,
+        339.5
+      ],
+      "id": "facility-1F-sanitary-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 953.333,
+      "y": 387.5,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "sanitary",
+      "name": "여성용품",
+      "floor": "1F",
+      "pdf": [
+        1069.0,
+        348.0
+      ],
+      "id": "facility-1F-sanitary-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 683.556,
+      "y": 398.684,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "atm",
+      "name": "현금지급기",
+      "floor": "1F",
+      "pdf": [
+        944.5,
+        271.0
+      ],
+      "id": "facility-1F-atm-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 572.889,
+      "y": 297.368,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "1F",
+      "pdf": [
+        1311.5,
+        334.5
+      ],
+      "id": "facility-1F-battery-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 899.111,
+      "y": 380.921,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "1F",
+      "pdf": [
+        893.5,
+        669.5
+      ],
+      "id": "facility-1F-battery-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 527.556,
+      "y": 821.711,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "1F",
+      "pdf": [
+        624.0,
+        350.0
+      ],
+      "id": "facility-1F-battery-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 288.0,
+      "y": 401.316,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "1F",
+      "pdf": [
+        1033.5,
+        197.0
+      ],
+      "id": "facility-1F-battery-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 652.0,
+      "y": 200.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "photo",
+      "name": "포토스팟",
+      "floor": "1F",
+      "pdf": [
+        999.5,
+        323.5
+      ],
+      "id": "facility-1F-photo-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 621.778,
+      "y": 366.447,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "photo",
+      "name": "포토스팟",
+      "floor": "1F",
+      "pdf": [
+        1026.0,
+        407.5
+      ],
+      "id": "facility-1F-photo-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 645.333,
+      "y": 476.974,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "photo",
+      "name": "포토스팟",
+      "floor": "1F",
+      "pdf": [
+        1140.5,
+        431.0
+      ],
+      "id": "facility-1F-photo-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 747.111,
+      "y": 507.895,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "1F",
+      "pdf": [
+        1004.0,
+        270.5
+      ],
+      "id": "facility-1F-elevator-8",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 625.778,
+      "y": 296.711,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "lostchild",
+      "name": "미아보호소",
+      "floor": "1F",
+      "pdf": [
+        982.5,
+        227.5
+      ],
+      "id": "facility-1F-lostchild-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 606.667,
+      "y": 240.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "baby",
+      "name": "베이비라운지",
+      "floor": "1F",
+      "pdf": [
+        1035.5,
+        248.5
+      ],
+      "id": "facility-1F-baby-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 653.778,
+      "y": 267.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "wheelchair",
+      "name": "휠체어대여소",
+      "floor": "1F",
+      "pdf": [
+        1004.0,
+        227.5
+      ],
+      "id": "facility-1F-wheelchair-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 625.778,
+      "y": 240.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stroller",
+      "name": "유모차대여소",
+      "floor": "1F",
+      "pdf": [
+        1025.5,
+        227.5
+      ],
+      "id": "facility-1F-stroller-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 644.889,
+      "y": 240.132,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "1F",
+      "pdf": [
+        1014.5,
+        248.5
+      ],
+      "id": "facility-1F-locker-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 635.111,
+      "y": 267.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "lostfound",
+      "name": "분실물보관소",
+      "floor": "1F",
+      "pdf": [
+        971.5,
+        248.5
+      ],
+      "id": "facility-1F-lostfound-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 596.889,
+      "y": 267.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "info",
+      "name": "손님상담실",
+      "floor": "1F",
+      "pdf": [
+        992.5,
+        248.5
+      ],
+      "id": "facility-1F-info-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 615.556,
+      "y": 267.763,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "aed",
+      "name": "자동심장충격기(AED)",
+      "floor": "1F",
+      "pdf": [
+        1025.5,
+        270.5
+      ],
+      "id": "facility-1F-aed-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 644.889,
+      "y": 296.711,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "1F",
+      "pdf": [
+        982.5,
+        270.5
+      ],
+      "id": "facility-1F-battery-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 606.667,
+      "y": 296.711,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "2F",
+      "pdf": [
+        828.5,
+        341.5
+      ],
+      "id": "facility-2F-escalator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 815.244,
+      "y": 651.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        706.0,
+        268.5
+      ],
+      "id": "facility-2F-stairs-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 665.854,
+      "y": 436.765,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        260.5,
+        287.5
+      ],
+      "id": "facility-2F-stairs-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 122.561,
+      "y": 492.647,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        311.0,
+        411.5
+      ],
+      "id": "facility-2F-stairs-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 184.146,
+      "y": 857.353,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        516.5,
+        315.5
+      ],
+      "id": "facility-2F-stairs-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 434.756,
+      "y": 575.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "2F",
+      "pdf": [
+        314.0,
+        338.5
+      ],
+      "id": "facility-2F-escalator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 187.805,
+      "y": 642.647,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        293.5,
+        338.5
+      ],
+      "id": "facility-2F-stairs-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 162.805,
+      "y": 642.647,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "2F",
+      "pdf": [
+        186.0,
+        439.5
+      ],
+      "id": "facility-2F-escalator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 31.707,
+      "y": 939.706,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        207.5,
+        439.5
+      ],
+      "id": "facility-2F-stairs-6",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 57.927,
+      "y": 939.706,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "2F",
+      "pdf": [
+        569.0,
+        317.0
+      ],
+      "id": "facility-2F-elevator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 498.78,
+      "y": 579.412,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "2F",
+      "pdf": [
+        670.5,
+        259.5
+      ],
+      "id": "facility-2F-elevator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 622.561,
+      "y": 410.294,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        864.5,
+        269.5
+      ],
+      "id": "facility-2F-stairs-7",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 859.146,
+      "y": 439.706,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        850.0,
+        341.5
+      ],
+      "id": "facility-2F-stairs-8",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 841.463,
+      "y": 651.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "2F",
+      "pdf": [
+        866.0,
+        399.5
+      ],
+      "id": "facility-2F-stairs-9",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 860.976,
+      "y": 822.059,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "2F",
+      "pdf": [
+        843.5,
+        269.5
+      ],
+      "id": "facility-2F-elevator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 833.537,
+      "y": 439.706,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "2F",
+      "pdf": [
+        292.5,
+        318.5
+      ],
+      "id": "facility-2F-elevator-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 161.585,
+      "y": 583.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "atm",
+      "name": "현금지급기",
+      "floor": "2F",
+      "pdf": [
+        250.0,
+        318.5
+      ],
+      "id": "facility-2F-atm-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 109.756,
+      "y": 583.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "2F",
+      "pdf": [
+        270.5,
+        318.5
+      ],
+      "id": "facility-2F-battery-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 134.756,
+      "y": 583.824,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "water",
+      "name": "음수대",
+      "floor": "2F",
+      "pdf": [
+        569.5,
+        338.0
+      ],
+      "id": "facility-2F-water-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 499.39,
+      "y": 641.176,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "water",
+      "name": "음수대",
+      "floor": "2F",
+      "pdf": [
+        892.0,
+        314.0
+      ],
+      "id": "facility-2F-water-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 892.683,
+      "y": 570.588,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "2F",
+      "pdf": [
+        925.5,
+        404.5
+      ],
+      "id": "facility-2F-locker-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 933.537,
+      "y": 836.765,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "locker",
+      "name": "물품보관함",
+      "floor": "2F",
+      "pdf": [
+        248.0,
+        426.5
+      ],
+      "id": "facility-2F-locker-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 107.317,
+      "y": 901.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "2F",
+      "pdf": [
+        183.5,
+        375.5
+      ],
+      "id": "facility-2F-restroom-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 28.659,
+      "y": 751.471,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "2F",
+      "pdf": [
+        755.5,
+        269.0
+      ],
+      "id": "facility-2F-restroom-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 726.22,
+      "y": 438.235,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "3F",
+      "pdf": [
+        685.5,
+        536.5
+      ],
+      "id": "facility-3F-escalator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 104.908,
+      "y": 742.105,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        650.5,
+        476.5
+      ],
+      "id": "facility-3F-stairs-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 61.963,
+      "y": 531.579,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        903.5,
+        480.5
+      ],
+      "id": "facility-3F-stairs-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 372.393,
+      "y": 545.614,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        664.0,
+        536.5
+      ],
+      "id": "facility-3F-stairs-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 78.528,
+      "y": 742.105,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "3F",
+      "pdf": [
+        629.5,
+        476.5
+      ],
+      "id": "facility-3F-elevator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 36.196,
+      "y": 531.579,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "3F",
+      "pdf": [
+        1059.5,
+        439.5
+      ],
+      "id": "facility-3F-elevator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 563.804,
+      "y": 401.754,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "3F",
+      "pdf": [
+        1217.5,
+        461.5
+      ],
+      "id": "facility-3F-elevator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 757.669,
+      "y": 478.947,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        1082.0,
+        459.5
+      ],
+      "id": "facility-3F-stairs-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 591.411,
+      "y": 471.93,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        1239.5,
+        461.5
+      ],
+      "id": "facility-3F-stairs-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 784.663,
+      "y": 478.947,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        1238.5,
+        577.0
+      ],
+      "id": "facility-3F-stairs-6",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 783.436,
+      "y": 884.211,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "prayer",
+      "name": "무슬림기도실",
+      "floor": "3F",
+      "pdf": [
+        1154.5,
+        424.5
+      ],
+      "id": "facility-3F-prayer-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 680.368,
+      "y": 349.123,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "3F",
+      "pdf": [
+        1195.5,
+        537.5
+      ],
+      "id": "facility-3F-escalator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 730.675,
+      "y": 745.614,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "3F",
+      "pdf": [
+        1217.0,
+        537.5
+      ],
+      "id": "facility-3F-stairs-7",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 757.055,
+      "y": 745.614,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "water",
+      "name": "음수대",
+      "floor": "3F",
+      "pdf": [
+        1253.5,
+        509.5
+      ],
+      "id": "facility-3F-water-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 801.84,
+      "y": 647.368,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "3F",
+      "pdf": [
+        1176.5,
+        348.5
+      ],
+      "id": "facility-3F-restroom-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 707.362,
+      "y": 82.456,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "4F",
+      "pdf": [
+        1107.0,
+        747.0
+      ],
+      "id": "facility-4F-escalator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 90.588,
+      "y": 800.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1095.5,
+        681.0
+      ],
+      "id": "facility-4F-stairs-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 77.059,
+      "y": 605.882,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1348.5,
+        674.5
+      ],
+      "id": "facility-4F-stairs-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 374.706,
+      "y": 586.765,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1085.5,
+        747.0
+      ],
+      "id": "facility-4F-stairs-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 65.294,
+      "y": 800.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "4F",
+      "pdf": [
+        1074.0,
+        681.0
+      ],
+      "id": "facility-4F-elevator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 51.765,
+      "y": 605.882,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "4F",
+      "pdf": [
+        1480.5,
+        616.5
+      ],
+      "id": "facility-4F-elevator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 530.0,
+      "y": 416.176,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "4F",
+      "pdf": [
+        1682.5,
+        647.5
+      ],
+      "id": "facility-4F-elevator-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 767.647,
+      "y": 507.353,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1480.5,
+        637.5
+      ],
+      "id": "facility-4F-stairs-4",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 530.0,
+      "y": 477.941,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1705.0,
+        647.5
+      ],
+      "id": "facility-4F-stairs-5",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 794.118,
+      "y": 507.353,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1704.5,
+        784.5
+      ],
+      "id": "facility-4F-stairs-6",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 793.529,
+      "y": 910.294,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "4F",
+      "pdf": [
+        1665.5,
+        721.5
+      ],
+      "id": "facility-4F-escalator-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 747.647,
+      "y": 725.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "stairs",
+      "name": "계단",
+      "floor": "4F",
+      "pdf": [
+        1686.5,
+        721.5
+      ],
+      "id": "facility-4F-stairs-7",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 772.353,
+      "y": 725.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "4F",
+      "pdf": [
+        1625.5,
+        532.5
+      ],
+      "id": "facility-4F-restroom-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 700.588,
+      "y": 169.118,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "smoking",
+      "name": "흡연실",
+      "floor": "MAGIC",
+      "pdf": [
+        585.5,
+        276.5
+      ],
+      "id": "facility-MAGIC-smoking-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 350.0,
+      "y": 322.436,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "MAGIC",
+      "pdf": [
+        741.5,
+        291.5
+      ],
+      "id": "facility-MAGIC-restroom-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 537.952,
+      "y": 341.667,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "MAGIC",
+      "pdf": [
+        629.5,
+        579.5
+      ],
+      "id": "facility-MAGIC-restroom-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 403.012,
+      "y": 710.897,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "restroom",
+      "name": "화장실",
+      "floor": "MAGIC",
+      "pdf": [
+        417.5,
+        409.5
+      ],
+      "id": "facility-MAGIC-restroom-3",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 147.59,
+      "y": 492.949,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "escalator",
+      "name": "에스컬레이터",
+      "floor": "MAGIC",
+      "pdf": [
+        928.5,
+        722.5
+      ],
+      "id": "facility-MAGIC-escalator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 763.253,
+      "y": 894.231,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "water",
+      "name": "음수대",
+      "floor": "MAGIC",
+      "pdf": [
+        459.5,
+        411.5
+      ],
+      "id": "facility-MAGIC-water-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 198.193,
+      "y": 495.513,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "water",
+      "name": "음수대",
+      "floor": "MAGIC",
+      "pdf": [
+        582.5,
+        528.5
+      ],
+      "id": "facility-MAGIC-water-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 346.386,
+      "y": 645.513,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "elevator",
+      "name": "엘리베이터",
+      "floor": "MAGIC",
+      "pdf": [
+        952.5,
+        722.5
+      ],
+      "id": "facility-MAGIC-elevator-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 792.169,
+      "y": 894.231,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "sanitary",
+      "name": "여성용품",
+      "floor": "MAGIC",
+      "pdf": [
+        757.5,
+        515.5
+      ],
+      "id": "facility-MAGIC-sanitary-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 557.229,
+      "y": 628.846,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "battery",
+      "name": "보조배터리 대여장소",
+      "floor": "MAGIC",
+      "pdf": [
+        477.5,
+        484.5
+      ],
+      "id": "facility-MAGIC-battery-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 219.88,
+      "y": 589.103,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "photo",
+      "name": "포토스팟",
+      "floor": "MAGIC",
+      "pdf": [
+        830.5,
+        599.5
+      ],
+      "id": "facility-MAGIC-photo-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 645.181,
+      "y": 736.538,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "photo",
+      "name": "포토스팟",
+      "floor": "MAGIC",
+      "pdf": [
+        941.5,
+        746.5
+      ],
+      "id": "facility-MAGIC-photo-2",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 778.916,
+      "y": 925.0,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "baby",
+      "name": "베이비라운지",
+      "floor": "MAGIC",
+      "pdf": [
+        383.5,
+        489.5
+      ],
+      "id": "facility-MAGIC-baby-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 106.627,
+      "y": 595.513,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "firstaid",
+      "name": "의무실",
+      "floor": "MAGIC",
+      "pdf": [
+        383.5,
+        467.5
+      ],
+      "id": "facility-MAGIC-firstaid-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 106.627,
+      "y": 567.308,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    },
+    {
+      "category": "facility",
+      "kind": "aed",
+      "name": "자동심장충격기(AED)",
+      "floor": "MAGIC",
+      "pdf": [
+        383.5,
+        443.5
+      ],
+      "id": "facility-MAGIC-aed-1",
+      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
+      "x": 106.627,
+      "y": 536.538,
+      "source": "guide-2026",
+      "coordinateQuality": "guide-illustration"
+    }
+  ],
+  "notes": [
+    "가이드맵은 기울어진 조감도이며 측량 도면이 아닙니다.",
+    "1F 푸드 22번은 목록에만 기재되어 핀을 만들지 않았습니다.",
+    "4F 기프트샵의 17번 중복 및 16번 누락은 원본 표기를 보존합니다.",
+    "4F 어크로스다크는 5쪽 목록과 지도 핀 기준 32번으로 통일합니다."
+  ]
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5c2de8">
+  <meta name="description" content="롯데월드의 하루를 더 가볍게. 층별 공식 가이드맵, 어트랙션, 맛집, 편의시설, 내 위치 공유를 한곳에서.">
+  <meta name="referrer" content="no-referrer">
+  <title>롯데월드야호 · 오늘의 모험 지도</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#map">지도로 바로가기</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="롯데월드야호 처음으로">
+      <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 32V15l5-6 5 6v17M23 32V12l5-7 5 7v20M17 32V23l6-6 5 6v9" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M5 33h31M28 4V1m0 1 5 1-5 2M13 8V4m0 1 4 1-4 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span>롯데월드<span class="brand-yaho">야호</span><small>YOUR LITTLE ADVENTURE</small></span>
+    </a>
+    <nav class="header-nav" aria-label="주 메뉴">
+      <button class="nav-item active" id="navMap" type="button" aria-pressed="true">모험 지도</button>
+      <button class="nav-item" id="navFavorites" type="button" aria-pressed="false">즐겨찾기 <span id="favoriteCount">0</span></button>
+      <button class="nav-item" id="openGuide" type="button">이용 안내</button>
+    </nav>
+    <div class="header-actions">
+      <span class="seoul-tag"><span></span> SEOUL ADVENTURE</span>
+      <button id="shareLocation" class="btn btn-primary" type="button" data-icon="share">내 위치 공유</button>
+      <button id="mobileGuide" class="icon-btn mobile-only" type="button" aria-label="이용 안내" data-icon="info"></button>
+    </div>
+  </header>
+
+  <main class="app-layout">
+    <aside class="sidebar" id="sidebar" aria-label="장소 검색과 목록">
+      <div class="sheet-handle mobile-only"></div>
+      <div class="sidebar-intro">
+        <p class="eyebrow">LET'S SAY YAHO!</p>
+        <h1>오늘, 어디로 떠날까요<span>?</span></h1>
+        <p>설레는 하루를 위한 나만의 모험 지도</p>
+        <button id="closeSearch" class="icon-btn close-search mobile-only" type="button" aria-label="장소 목록 닫기" data-icon="close"></button>
+      </div>
+      <div class="search-box"><span data-icon="search" aria-hidden="true"></span><input type="search" id="search" placeholder="장소, 시설, 먹고 싶은 메뉴 검색" autocomplete="off" aria-label="장소 검색"><kbd>/</kbd></div>
+      <div class="sidebar-tabs" role="group" aria-label="목록 범위">
+        <button class="active" id="scopeFloor" aria-pressed="true" type="button">이 층에서</button>
+        <button id="scopeAll" aria-pressed="false" type="button">모든 층에서</button>
+      </div>
+      <div id="facilityFilters" class="facility-filters" hidden></div>
+      <div class="list-heading"><h2 id="listTitle">어트랙션</h2><span id="resultCount" aria-live="polite">불러오는 중</span><button id="clearFilters" type="button" hidden>필터 해제</button></div>
+      <div class="place-list" id="placeList" aria-label="검색 결과"><p class="loading-copy">모험 지도를 펼치고 있어요…</p></div>
+      <div class="sidebar-footer"><span data-icon="sparkles" aria-hidden="true"></span><span>오늘의 멋진 순간, 야호와 함께.</span><a href="assets/guide-2026.pdf" target="_blank" rel="noopener">원본 지도 <span aria-hidden="true">↗</span></a></div>
+    </aside>
+
+    <section class="map-panel" aria-label="롯데월드 층별 지도">
+      <div class="map-toolbar">
+        <div class="category-tabs" role="group" aria-label="장소 종류">
+          <button class="category-tab active" data-category="attraction" aria-pressed="true" type="button"><span data-icon="sparkles"></span>어트랙션</button>
+          <button class="category-tab" data-category="food" aria-pressed="false" type="button"><span data-icon="food"></span>푸드·카페</button>
+          <button class="category-tab" data-category="facility" aria-pressed="false" type="button"><span data-icon="facility"></span>편의시설</button>
+          <button class="category-tab" data-category="shop" aria-pressed="false" type="button"><span data-icon="bag"></span>샵·체험</button>
+          <button class="category-tab" data-category="all" aria-pressed="false" type="button"><span data-icon="layers"></span>전체</button>
+        </div>
+        <button id="openRoute" class="btn btn-route" type="button" data-icon="route">길찾기</button>
+      </div>
+      <div class="mobile-search-bar mobile-only"><button id="openSearch" type="button"><span data-icon="search"></span><span>가고 싶은 곳을 찾아보세요</span><span data-icon="sliders"></span></button></div>
+      <div class="floor-bar"><div id="floorTabs" role="group" aria-label="지도 층 선택"></div><span class="floor-hint" data-icon="layers">층은 직접 선택해 주세요</span></div>
+
+      <div class="map-stage" id="map" tabindex="0" role="application" aria-label="확대·축소 가능한 층별 지도. 방향키로 이동, 더하기와 빼기로 확대·축소할 수 있습니다.">
+        <div class="map-context"><span class="context-dot"></span><div><strong id="floorName">어드벤처 1층</strong><span>2026 GUIDE MAP</span></div></div>
+        <div class="map-world" id="mapWorld">
+          <img id="mapImage" src="assets/maps/1F.webp" alt="롯데월드 어드벤처 1층 공식 가이드맵" draggable="false" fetchpriority="high">
+          <svg id="routeLayer" class="route-layer" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div id="mapPins" class="map-pins"></div>
+          <div id="locationPins"></div>
+        </div>
+        <div id="pickBanner" class="pick-banner" hidden><span data-icon="pin"></span><span>지도에서 현재 있는 곳을 눌러 주세요</span><button id="cancelPick" type="button">취소</button></div>
+        <div class="map-controls" aria-label="지도 조작">
+          <button id="zoomIn" class="icon-btn" type="button" aria-label="지도 확대" data-icon="plus"></button>
+          <button id="zoomOut" class="icon-btn" type="button" aria-label="지도 축소" data-icon="minus"></button>
+          <span class="control-divider"></span>
+          <button id="fitMap" class="icon-btn" type="button" aria-label="지도 전체 보기" data-icon="maximize"></button>
+        </div>
+        <div class="map-bottom-tools"><button id="locate" class="location-btn" type="button" data-icon="locate">내 위치</button><button id="manualLocation" class="manual-btn" type="button" data-icon="pin">직접 지정</button></div>
+        <div class="map-credit"><span class="legend-dot attraction"></span>어트랙션 <span class="legend-dot food"></span>푸드 <span class="legend-dot facility"></span>편의시설 <span class="credit-source">지도 © 롯데월드 · 비공식 방문 도우미</span></div>
+        <div class="map-tip" id="mapTip"><span data-icon="hand"></span>지도를 움직이고, 장소를 눌러보세요</div>
+        <article id="detail" class="detail-panel" aria-label="장소 상세 정보" hidden></article>
+        <div id="sharedCard" class="shared-card" hidden></div>
+        <div id="routeCard" class="route-card" hidden></div>
+      </div>
+      <div class="status-bar"><span class="status-message" id="locationStatus"><span class="status-dot"></span>위치 권한 없이도 지도를 둘러볼 수 있어요</span><button id="waitStatus" type="button">대기 정보 확인 중 <span aria-hidden="true">↗</span></button></div>
+    </section>
+  </main>
+
+  <nav class="mobile-bottom-nav mobile-only" aria-label="모바일 메뉴">
+    <button id="mobileMap" class="active" type="button"><span data-icon="map"></span>지도</button>
+    <button id="mobileList" type="button"><span data-icon="search"></span>장소 찾기</button>
+    <button id="mobileFavorites" type="button"><span data-icon="heart"></span>즐겨찾기</button>
+    <button id="mobileShare" type="button"><span data-icon="share"></span>위치 공유</button>
+  </nav>
+
+  <dialog id="guideDialog" class="dialog guide-dialog" aria-labelledby="guideTitle"><div class="dialog-heading"><div><p class="eyebrow">A LITTLE HELP</p><h2 id="guideTitle">더 가벼운 모험을 위해</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="이용 안내 닫기" data-icon="close"></button></div><div class="dialog-body">
+    <div class="guide-feature"><span data-icon="layers"></span><div><h3>층을 고르고, 지도를 펼쳐요</h3><p>지하 1층부터 4층, 매직아일랜드까지 공식 가이드맵의 어트랙션·식당·샵·편의시설을 확인하세요. 확대하면 원본의 계단과 승강기 표시도 볼 수 있어요.</p></div></div>
+    <div class="guide-feature"><span data-icon="locate"></span><div><h3>GPS와 지도 위치는 구분해요</h3><p>GPS는 실제 위도·경도와 오차를 알려 줍니다. 실내에서는 신호가 약하고, 이 지도는 기울어진 조감도여서 GPS를 정확한 지도 좌표로 바꿀 수 없어요. 층을 고른 뒤 <b>직접 지정</b>으로 내 위치를 표시하세요.</p></div></div>
+    <div class="guide-feature"><span data-icon="share"></span><div><h3>지금 있는 곳을 한 번 공유해요</h3><p>공유 링크에는 지정한 지도 위치와 층, 수신한 경우 GPS 좌표, 공유 시각이 담깁니다. 링크를 가진 사람에게만 전달하세요. 실시간 추적은 하지 않으며, 이동하면 새 링크를 보내야 해요.</p></div></div>
+    <div class="guide-feature"><span data-icon="route"></span><div><h3>길찾기는 같은 층의 참고 동선이에요</h3><p>가이드맵의 통로를 따라 표시하는 참고 경로입니다. 실측 거리·소요시간은 제공하지 않아요. 층 사이 이동, 출입 통제, 무장애 경로는 현장 표지와 직원 안내를 확인하세요.</p></div></div>
+    <div class="guide-feature"><span data-icon="clock"></span><div><h3>확인된 대기 정보만 보여요</h3><p id="waitGuideText">공식 공개 데이터의 연동 가능 여부를 확인하고 있습니다. 확인되지 않은 시간을 임의로 표시하지 않습니다.</p></div></div>
+    <details class="source-details"><summary>지도 출처와 원본 표기 확인</summary><p>첨부된 2026 국문 가이드맵을 사용합니다. 현재 영업 여부·메뉴·탑승 제한은 현장 및 공식 안내가 우선입니다. 목록에는 있지만 위치가 누락된 1F 파스퇴르밀크바와 4F 전망대게임장은 임의의 핀을 찍지 않았습니다. 4F 17번 중복은 상세 정보에 표시합니다. 범례에 없는 기호는 기타 편의시설로 구분합니다.</p><a href="assets/guide-2026.pdf" target="_blank" rel="noopener">원본 가이드맵 보기 ↗</a></details>
+    <div class="guide-links"><a class="btn btn-primary" href="https://adventure.lotteworld.com/" target="_blank" rel="noopener noreferrer">롯데월드 공식 사이트 ↗</a><a class="btn btn-subtle" href="https://github.com/leewoojin1120sss/lotteworld" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+  </div></dialog>
+
+  <dialog id="routeDialog" class="dialog" aria-labelledby="routeTitle"><div class="dialog-heading"><div><p class="eyebrow">FIND YOUR WAY</p><h2 id="routeTitle">다음 모험으로 가는 길</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="길찾기 닫기" data-icon="close"></button></div><form id="routeForm" class="dialog-body">
+    <label class="field-label" for="routeFrom">출발지</label><select id="routeFrom" required></select>
+    <button class="text-button" id="pickRouteStart" type="button" data-icon="pin">지도에서 내 위치 지정하기</button>
+    <label class="field-label" for="routeTo">도착지</label><select id="routeTo" required></select>
+    <p class="form-note" data-icon="info">같은 층의 참고 동선을 표시합니다. 층 사이 경로는 현장 안내를 확인해 주세요.</p>
+    <p id="routeError" class="form-error" role="alert" hidden></p>
+    <button class="btn btn-primary btn-full" type="submit" data-icon="route">동선 보기</button>
+  </form></dialog>
+
+  <dialog id="shareDialog" class="dialog" aria-labelledby="shareTitle"><div class="dialog-heading"><div><p class="eyebrow">MEET ME HERE</p><h2 id="shareTitle">여기서 만나, 야호!</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="위치 공유 닫기" data-icon="close"></button></div><div class="dialog-body">
+    <div id="sharePreview" class="share-preview"></div><p class="form-note">현재 위치 한 번만 공유해요. 이동하면 새 링크를 보내 주세요.</p><label class="field-label" for="shareUrl">공유 링크</label><input id="shareUrl" readonly type="url"><div class="share-buttons"><button id="nativeShare" class="btn btn-primary" type="button" data-icon="share">공유하기</button><button id="copyShare" class="btn btn-subtle" type="button" data-icon="copy">링크 복사</button></div><button id="resetSharePosition" class="text-button" type="button" data-icon="pin">내 위치 다시 지정하기</button>
+  </div></dialog>
+
+  <dialog id="locationDialog" class="dialog" aria-labelledby="locationTitle"><div class="dialog-heading"><div><p class="eyebrow">YOU ARE HERE</p><h2 id="locationTitle">지금 내 위치</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="내 위치 닫기" data-icon="close"></button></div><div class="dialog-body" id="locationBody"></div></dialog>
+  <dialog id="officialMapDialog" class="dialog official-map-dialog" aria-labelledby="officialMapTitle"><div class="dialog-heading"><div><p class="eyebrow">OFFICIAL LOCATION</p><h2 id="officialMapTitle">공식 위치 지도</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="공식 위치 지도 닫기" data-icon="close"></button></div><div class="dialog-body" id="officialMapBody"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><div class="noscript">지도를 사용하려면 자바스크립트를 켜 주세요. <a href="assets/guide-2026.pdf">원본 PDF 보기</a></div></noscript>
+</body>
+</html>

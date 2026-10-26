@@ -1,0 +1,89 @@
+name: 롯데월드야호 · 데이터와 사이트 배포
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: 공식 데이터 갱신
+        type: choice
+        options: [none, waits, full]
+        default: none
+  schedule:
+    # 10:03–22:58 KST. GitHub schedules can run later than requested.
+    - cron: '3-58/5 1-13 * * *'
+    # Full official visitor catalog at 08:47 KST.
+    - cron: '47 23 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lotteworld-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh != 'none')
+        with:
+          python-version: '3.12'
+      - name: 공식 데이터 확인
+        id: official
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh != 'none')
+        continue-on-error: true
+        env:
+          FULL_REFRESH: ${{ github.event.schedule == '47 23 * * *' || inputs.refresh == 'full' }}
+        run: |
+          if [ "$FULL_REFRESH" = "true" ]; then
+            python scripts/sync_official.py --timeout 25 --workers 2
+          else
+            python scripts/sync_official.py --waits-only --timeout 20
+          fi
+      - name: 데이터 확인 결과 보존
+        if: steps.official.outcome == 'success' || steps.official.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/official.json data/waits.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh official visitor information'
+            git push origin HEAD:main
+          fi
+      - name: 공유·대기 정보·경로 테스트
+        run: node --test tests/*.test.mjs
+      - name: 데이터와 구문 확인
+        run: npm run check
+      - name: 정적 사이트 빌드
+        run: node scripts/build.mjs
+      - name: Pages 설정 확인
+        uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages 배포
+        id: deployment
+        uses: actions/deploy-pages@v4

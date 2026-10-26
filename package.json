@@ -1,0 +1,1 @@
+{"name":"lotteworld-yaho","version":"1.0.0","private":true,"type":"module","description":"롯데월드야호 — 공식 가이드맵 기반 방문 도우미","scripts":{"build":"node scripts/build.mjs","test":"node --test tests/*.test.mjs","check":"node --check app.js && node --check lib.js && node scripts/check-data.mjs"},"engines":{"node":">=22"}}
