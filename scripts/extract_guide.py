@@ -16,7 +16,7 @@ PDF = fitz.open(sys.argv[1])
 FLOORS = [
     dict(id='B1', label='B1', name='언더랜드', page=0, crop=[660,130,1555,810], bg='#fffaf7'),
     dict(id='1F', label='1F', name='어드벤처 1층', page=1, crop=[300,45,1425,805], bg='#fffafd'),
-    dict(id='2F', label='2F', name='어드벤처 2층', page=2, crop=[160,120,980,460], bg='#fffdf4', polygon=[[160,120],[980,120],[980,420],[940,460],[160,460]]),
+    dict(id='2F', label='2F', name='어드벤처 2층', page=2, crop=[160,120,980,460], bg='#fffdf4', polygon=[[160,120],[980,120],[980,420],[870,425],[800,385],[715,365],[630,355],[530,390],[420,410],[320,425],[230,460],[160,460]]),
     dict(id='3F', label='3F', name='어드벤처 3층', page=2, crop=[600,325,1415,610], bg='#fffdf4', polygon=[[600,460],[980,420],[1050,325],[1415,325],[1415,610],[600,610]]),
     dict(id='4F', label='4F', name='어드벤처 4층', page=2, crop=[1030,475,1880,815], bg='#fffdf4', polygon=[[1030,610],[1415,610],[1430,475],[1880,475],[1880,815],[1030,815]]),
     dict(id='MAGIC', label='매직', name='매직아일랜드', page=3, crop=[295,25,1125,805], bg='#ffffff'),
@@ -187,6 +187,8 @@ for f in FLOORS:
     if f['id']=='1F':
         # Remove only the clipped page-title fragment outside the floor artwork.
         ImageDraw.Draw(im).rectangle([0,0,(500-c[0])*2,(175-c[1])*2],fill=rendered[1].getpixel((800,60)))
+    if f['id']=='2F':
+        ImageDraw.Draw(im).rectangle([0,0,(600-c[0])*2,(180-c[1])*2],fill=rendered[2].getpixel((1100,100)))
     if 'polygon' in f:
         mask=Image.new('L',im.size);ImageDraw.Draw(mask).polygon([((x-c[0])*2,(y-c[1])*2) for x,y in f['polygon']],fill=255)
         back=Image.new('RGB',im.size,f['bg']);back.paste(im,(0,0),mask);im=back
