@@ -12,6 +12,10 @@ export function validGPS(g) {
 export function encodeShare({position,gps,floor,at=Date.now()}) {
   const p = new URLSearchParams({v:'1',floor:FLOOR_IDS.includes(floor)?floor:'1F',at:String(Math.round(at))});
   if (isMapPoint(position)) { p.set('floor',position.floor);p.set('x',position.x.toFixed(2));p.set('y',position.y.toFixed(2)); }
+  if(isMapPoint(position)&&position.source==='estimated'){
+    if(!Number.isFinite(position.accuracyM)||position.accuracyM<1||position.accuracyM>3000)throw new Error('추정 범위가 올바르지 않습니다.');
+    p.set('approx','1');p.set('radius',String(Math.ceil(position.accuracyM)));
+  }
   if (validGPS(gps)) {p.set('lat',gps.lat.toFixed(6));p.set('lng',gps.lng.toFixed(6));p.set('acc',Math.round(gps.accuracy).toString());}
   if (!p.has('x')&&!p.has('lat')) throw new Error('공유할 위치가 없습니다.');
   return `#meet=${encodeURIComponent(p.toString())}`;
@@ -23,23 +27,16 @@ export function decodeShare(hash,now=Date.now()) {
     const floor=p.get('floor');const at=Number(p.get('at'));
     if (p.get('v')!=='1'||!FLOOR_IDS.includes(floor)||!Number.isFinite(at)||at<1577836800000||at>now+300000) return null;
     const position=p.has('x')&&p.has('y')?{floor,x:Number(p.get('x')),y:Number(p.get('y'))}:null;
+    if(p.has('approx')){
+      const radius=Number(p.get('radius'));
+      if(p.get('approx')!=='1'||!position||!Number.isFinite(radius)||radius<1||radius>3000)return null;
+      position.source='estimated';position.accuracyM=radius;
+    }
     const gps=p.has('lat')&&p.has('lng')&&p.has('acc')?{lat:Number(p.get('lat')),lng:Number(p.get('lng')),accuracy:Number(p.get('acc'))}:null;
     if (position&&!isMapPoint(position)||gps&&!validGPS(gps)||!position&&!gps) return null;
     return {floor,position,gps,at};
   } catch{return null;}
 }
-export function waitState(entry,now=Date.now(),feed=null) {
-  if (!entry) return {label:'대기 정보 미제공',kind:'unknown',minutes:null};
-  if(feed?.available===false||entry.waitMinutes===null&&entry.status==='unknown')return {label:'대기 정보 미제공',kind:'unknown',minutes:null};
-  const time=Date.parse(entry.updatedAt??'');
-  const expiry=feed?.expiresAt?Date.parse(feed.expiresAt):time+5*60*1000;
-  const fresh=Number.isFinite(time)&&now-time<=5*60*1000&&now-time>=-60000&&now<=expiry&&!feed?.source?.stale;
-  if(!fresh)return {label:'최신 정보 없음',kind:'stale',minutes:null};
-  if (['closed','suspended','maintenance','운휴','점검','운영종료'].includes(entry.status))return {label:'운휴·운영 종료',kind:'closed',minutes:null};
-  const min=entry.waitMinutes;
-  return Number.isInteger(min)&&min>=0&&min<=600?{label:`대기 ${min}분`,kind:'fresh',minutes:min}:{label:'대기 정보 미제공',kind:'unknown',minutes:null};
-}
-
 const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
 function project(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1];const t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy||1)));return {point:[a[0]+t*dx,a[1]+t*dy],t};}
 // Paths are manually traced on the source illustration, in PDF points. Units

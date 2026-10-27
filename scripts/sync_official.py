@@ -2,8 +2,7 @@
 """Fetch Lotte World Adventure's public visitor APIs using only the stdlib.
 
 Full refresh: python scripts/sync_official.py
-Small live refresh: python scripts/sync_official.py --waits-only
-Never requires login, reuses cookies, calls management endpoints, or invents waits.
+No login or management endpoints.
 """
 
 from __future__ import annotations
@@ -11,7 +10,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import copy
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 import html
 from html.parser import HTMLParser
 import http.client
@@ -32,7 +31,6 @@ ORIGIN = "https://adventure.lotteworld.com"
 BASE = ORIGIN + "/api"
 PARAMS = {"storeCd": "HC01801", "langCd": "HC01701"}
 ROOT = Path(__file__).resolve().parents[1]
-TTL = 300
 MAX_BYTES = 12 * 1024 * 1024
 CATEGORIES = {
     "attractions": {
@@ -101,17 +99,6 @@ def number(value):
     if not math.isfinite(n) or n < 0:
         return None
     return int(n) if n.is_integer() else n
-
-
-def wait_minutes(row):
-    # The official public UI displays waitTm only when sttsSe == OPEN.
-    # Empty strings must not become zero, and CLOSE must not show a numeric wait.
-    if row.get("sttsSe") != "OPEN":
-        return None
-    value = row.get("waitTm")
-    if isinstance(value, bool) or not re.fullmatch(r"\d+", str(value).strip()):
-        return None
-    return int(str(value).strip())
 
 
 def upload_url(path):
@@ -459,79 +446,30 @@ def sync_full(client, old, workers, skip_details):
     return doc
 
 
-def sync_live(client, official, previous_waits, workers):
-    requests = [("waits", "/today/attraction-waits", "list", list),
-                ("operatingHours", "/today/operating-hours", "data", dict),
+def sync_operating_information(client, official, workers):
+    requests = [("operatingHours", "/today/operating-hours", "data", dict),
                 ("closures", "/today/closed-list", "list", list)]
-
     def fetch(item):
         name, path, key, kind = item
         body, source = client.fetch(path, field=key, kind=kind)
         return name, body, source
-
-    fetched = {}
     errors = []
     for name, body, source in concurrent_results(fetch, requests, workers):
-        fetched[name] = (body, source)
+        previous = official.get(name, {})
         if body is None:
             errors.append({"section": name, **source})
-        if name != "waits":
-            previous = official.get(name, {})
-            if body is not None:
-                if name == "operatingHours":
-                    raw = body["data"]
-                    official[name] = {"date": raw.get("operDt"), "open": raw.get("bgnTmFmt"),
-                                      "close": raw.get("endTmFmt"), "source": source}
-                else:
-                    official[name] = {"rides": [{"officialId": str(row.get("shopSysCd")), "name": plain(row.get("atrctNm")),
-                        "floorCode": row.get("pstnCd"), "statusCode": row.get("atrctSttsCd"),
-                        "statusLabel": plain(row.get("atrctSttsCdNm"))} for row in body["list"]], "source": source}
-            else:
-                previous["source"] = stale_source(previous.get("source"), source)
-                official[name] = previous
+            previous["source"] = stale_source(previous.get("source"), source)
+            official[name] = previous
+        elif name == "operatingHours":
+            raw = body["data"]
+            official[name] = {"date": raw.get("operDt"), "open": raw.get("bgnTmFmt"),
+                              "close": raw.get("endTmFmt"), "source": source}
+        else:
+            official[name] = {"rides": [{"officialId": str(row.get("shopSysCd")), "name": plain(row.get("atrctNm")),
+                "floorCode": row.get("pstnCd"), "statusCode": row.get("atrctSttsCd"),
+                "statusLabel": plain(row.get("atrctSttsCdNm"))} for row in body["list"]], "source": source}
         print(name + (": fetched" if body is not None else ": ERROR " + source.get("error", "unknown")), flush=True)
-
-    body, source = fetched["waits"]
-    if body is None:
-        source = stale_source(previous_waits.get("source"), source)
-    rows = body["list"] if body is not None else []
-    by_id = {str(row["shopSysCd"]): row for row in rows if row.get("shopSysCd") is not None}
-    by_name = {plain(row.get("atrctNm")): row for row in rows if plain(row.get("atrctNm"))}
-    rides = []
-    used_ids = set()
-    records = official.get("attractions", [])
-    for record in records:
-        row = by_id.get(record["officialId"]) or by_name.get(record.get("name"))
-        if row:
-            used_ids.add(str(row.get("shopSysCd")))
-        rides.append({"id": record["id"], "officialId": record["officialId"], "name": record["name"],
-                      "waitMinutes": wait_minutes(row) if row else None,
-                      "status": row.get("sttsSe", "unknown") if row else "unknown",
-                      "statusCode": row.get("atrctSttsCd") if row else None,
-                      "statusLabel": plain(row.get("atrctSttsCdNm")) if row else None,
-                      "observedAt": source.get("fetchedAt") if row else None})
-    # A new ride can appear in the live feed before the next full catalog sync.
-    for official_id, row in by_id.items():
-        if official_id not in used_ids:
-            rides.append({"id": "ride-" + official_id, "officialId": official_id, "name": plain(row.get("atrctNm")),
-                          "waitMinutes": wait_minutes(row), "status": row.get("sttsSe", "unknown"),
-                          "statusCode": row.get("atrctSttsCd"), "statusLabel": plain(row.get("atrctSttsCdNm")),
-                          "observedAt": source.get("fetchedAt")})
-    minutes_available = any(row["waitMinutes"] is not None for row in rides)
-    status = "error" if body is None else "live" if minutes_available else "empty" if not rows else "no-minutes"
-    fetched_at = source.get("fetchedAt")
-    expires = None
-    if body is not None and fetched_at:
-        expires = (datetime.fromisoformat(fetched_at.replace("Z", "+00:00")) + timedelta(seconds=TTL)).isoformat(timespec="seconds").replace("+00:00", "Z")
-    waits = {"schemaVersion": 1, "provider": "Lotte World Adventure official public visitor API",
-             "status": status, "available": minutes_available, "fetchedAt": fetched_at, "checkedAt": now(),
-             "expiresAt": expires, "ttlSeconds": TTL, "source": source, "sourceUpdatedAt": None,
-             "message": ("Official queue minutes available at fetch time; enforce expiresAt in the client."
-                         if minutes_available else "Official queue request failed. Wait times are unknown."
-                         if body is None else "Official public endpoint returned no verified queue minutes. Wait times are unknown."),
-             "rides": rides}
     official["liveSync"] = {"checkedAt": now(), "complete": not errors, "errors": errors}
-    return waits
 
 
 def concurrent_results(function, items, workers):
@@ -539,7 +477,7 @@ def concurrent_results(function, items, workers):
         yield from pool.map(function, items)
 
 
-def frontend_fields(official, waits):
+def frontend_fields(official):
     """Small display aliases; source IDs and detailed provenance remain available."""
     official["source"] = {
         "name": "Lotte World Adventure official public visitor APIs", "url": ORIGIN,
@@ -560,14 +498,10 @@ def frontend_fields(official, waits):
             if guide:
                 limits.append(guide)
             record["restrictions"] = " · ".join(limits) or None
-    for ride in waits.get("rides", []):
-        # Observation time, never represented as the operator's update timestamp.
-        ride["updatedAt"] = ride.get("observedAt")
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--waits-only", action="store_true", help="Fetch only waits, operating hours and closure status")
     parser.add_argument("--skip-details", action="store_true", help="Refresh catalog lists, retaining cached detail timestamps")
     parser.add_argument("--output-dir", type=Path, default=ROOT / "data")
     parser.add_argument("--timeout", type=float, default=30)
@@ -576,16 +510,15 @@ def main():
     args = parser.parse_args()
     if args.timeout <= 0 or args.timeout > 60 or args.request_interval < 0.25:
         parser.error("timeout must be 0 < seconds <= 60 and request-interval must be >= 0.25")
-    official_path, waits_path = args.output_dir / "official.json", args.output_dir / "waits.json"
+    official_path = args.output_dir / "official.json"
     previous = read_json(official_path)
     client = Client(args.timeout, args.request_interval)
-    official = copy.deepcopy(previous) if args.waits_only else sync_full(client, previous, args.workers, args.skip_details)
-    waits = sync_live(client, official, read_json(waits_path), args.workers)
-    frontend_fields(official, waits)
+    official = sync_full(client, previous, args.workers, args.skip_details)
+    sync_operating_information(client, official, args.workers)
+    frontend_fields(official)
     save_json(official_path, official)
-    save_json(waits_path, waits)
-    complete = official.get("liveSync", {}).get("complete", False) and (args.waits_only or official.get("sync", {}).get("complete", False))
-    print(json.dumps({"complete": complete, "waitStatus": waits["status"],
+    complete = official.get("liveSync", {}).get("complete", False) and official.get("sync", {}).get("complete", False)
+    print(json.dumps({"complete": complete,
                       "counts": {category: len(official.get(category, [])) for category in CATEGORIES}}, ensure_ascii=False))
     return 0 if complete else 1
 

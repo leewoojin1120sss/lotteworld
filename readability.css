@@ -21,7 +21,6 @@ body{font-size:16px}
 .place-meta{font-size:13px;flex-wrap:wrap;color:#746580}
 .place-sub{font-size:14px;color:#776882}
 .floor-chip{font-size:12px;padding:2px 5px;color:#77628e}
-.wait-tag{font-size:12px;color:#95869f}
 .fav-btn{width:32px;min-height:40px}
 .fav-btn svg{width:19px;height:19px}
 .sidebar-footer{min-height:48px;justify-content:flex-end}
@@ -44,8 +43,6 @@ body{font-size:16px}
 .map-controls .icon-btn{width:38px;height:38px;min-height:38px}
 .map-credit{font-size:10px}
 .map-tip{font-size:12px}
-.status-bar{height:38px;min-height:38px}
-.status-message,.status-bar>button{font-size:12px;color:#8b7b98}
 .pin>span{font-size:12px}
 .pin-label{font-size:13px!important}
 .location-dot span{font-size:12px}
@@ -55,9 +52,6 @@ body{font-size:16px}
 .detail-body h2{font-size:26px}
 .detail-category{font-size:13px;color:#8a779b}
 .detail-description{font-size:15px;color:#796b84;line-height:1.8}
-.detail-wait{justify-content:flex-start;gap:10px;font-size:15px}
-.detail-wait strong{font-size:15px}
-.detail-wait small{font-size:12px;margin-left:auto;margin-top:0}
 .detail-restrictions{font-size:14px;line-height:1.75;color:#776985}
 .detail-note{font-size:13px}
 .detail-actions .btn{font-size:14px;min-height:46px;white-space:normal;padding:10px}
@@ -71,9 +65,6 @@ body{font-size:16px}
 .dialog input,.dialog select{font-size:16px;min-height:48px}
 .dialog input[readonly]{font-size:13px}
 .field-label{font-size:14px;color:#796787}
-.guide-feature h3{font-size:17px}
-.guide-feature p,.source-details{font-size:14px;color:#7e6e8c;line-height:1.8}
-.guide-links .btn{font-size:14px}
 .gps-reading h3{font-size:18px}
 .gps-reading p,.gps-warning{font-size:14px}
 .location-options .btn,.share-buttons .btn{font-size:14px}
@@ -173,8 +164,6 @@ body{font-size:16px}
   .location-btn,.manual-btn{font-size:13px;min-height:44px;padding:10px 11px;gap:5px}
   .location-btn svg,.manual-btn svg{width:16px;height:16px}
   .map-credit{font-size:9px;bottom:13px;left:15px}.credit-source{display:none}
-  .status-bar{height:34px;min-height:34px;padding:0 13px}
-  .status-message,.status-bar>button{font-size:10px}
   .mobile-bottom-nav{height:calc(70px + env(safe-area-inset-bottom,0px));padding-top:7px}
   .mobile-bottom-nav button{font-size:12px;gap:5px;min-height:54px}
   .mobile-bottom-nav svg{width:21px;height:21px}
@@ -199,7 +188,41 @@ body{font-size:16px}
   .route-quick-facilities{gap:6px}.route-quick-facilities button{font-size:13px;min-height:44px;padding:8px 4px;gap:4px}
   .route-quick-facilities button svg{width:14px;height:14px}
   .route-nearby h3{font-size:14px}.route-submit-row{margin-top:15px;padding-top:14px;gap:8px}.route-submit-row>span{font-size:11px}
-  .route-submit-row .btn{min-width:127px;font-size:15px}
-  .guide-feature p,.source-details{font-size:14px}.guide-feature h3{font-size:16px}
-  .guide-links .btn{font-size:12px}.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));font-size:13px}
+  .route-submit-row .btn{min-width:127px;font-size:15px}.toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));font-size:13px}
+}
+/* Position inference stays in the map and its dialog; there is no bottom status bar. */
+.location-accuracy-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;overflow:visible}
+.location-uncertainty{fill:#2786ec18;stroke:#3689d1aa;stroke-width:1.5;stroke-dasharray:5 5;vector-effect:non-scaling-stroke}
+.location-uncertainty.stale{fill:#8e9bad15;stroke:#8e9bad88}
+.location-dot.estimated{background:#fff;border:4px solid #2786ec;box-shadow:0 0 0 7px #2786ec1a,0 2px 6px #1c4f7c40}
+.location-dot.stale{border-color:#8994a6}.location-dot.stale span{color:#6b7481}
+.location-btn.tracking>svg{color:#2587c7}.location-btn.tracking{border-color:#cee4f5}
+.location-floor-select{display:flex;align-items:center;gap:15px;margin-bottom:18px}
+.location-floor-select label{white-space:nowrap;margin:0;flex-shrink:0}
+.location-floor-select select{flex:1;min-width:0;padding:11px 12px;border:1px solid #e4dcee;border-radius:10px;background:#fff;color:var(--ink)}
+.gps-reading{padding:18px;border:1px solid #e6e0f1;border-radius:14px;background:#faf8fe;margin-bottom:16px}
+.gps-reading.has-estimate{background:#f2f8ff;border-color:#d7e7f9}
+.gps-heading{display:flex;align-items:center;gap:9px;color:var(--purple)}.gps-heading>svg{width:22px;height:22px;flex-shrink:0}
+.gps-heading h3{margin:0;font-size:19px}.gps-reading p{font-size:15px;line-height:1.75;color:#736580;margin:11px 0 0}
+.gps-metrics{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:#7d6c8c;margin-top:15px}.gps-metrics strong{color:#326caa}
+.gps-reading .estimate-radius{font-size:14px;color:#346eaa}
+.location-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+.location-options .btn{font-size:14px;padding:10px 8px;white-space:normal}
+.location-tracking-actions{display:flex;justify-content:space-between;gap:6px;margin-top:10px}
+.location-tracking-actions .text-button{font-size:13px;color:#78618c}
+.location-landmarks{margin-top:20px}.location-landmarks h3{font-size:14px;color:#786586;margin-bottom:8px;font-weight:600}
+.location-landmarks>button{display:flex;width:100%;gap:9px;align-items:center;text-align:left;padding:12px 10px;min-height:48px;border-bottom:1px solid #eee8f4;font-size:15px;color:#514260}
+.location-landmarks svg{width:17px;height:17px;flex-shrink:0;color:var(--purple)}.location-landmarks svg:last-child{margin-left:auto;color:#baa9ce}
+.location-privacy,.motion-note{font-size:13px;line-height:1.75;color:#7c6e87;margin:15px 0 0}
+.location-source{display:flex;flex-direction:column;gap:6px;margin-top:17px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:#8c7e98}
+.location-source a{color:#76648a;text-decoration:underline;text-underline-offset:2px}
+.map-credit a{pointer-events:auto;color:#8a7a9a;margin-left:8px;font-size:10px;text-decoration:none}
+@media(max-width:800px){
+ .map-bottom-tools{flex-wrap:wrap;max-width:calc(100% - 24px)}
+ .location-options .btn{font-size:13px}
+ .gps-reading{padding:15px}.gps-reading p{font-size:14px}
+ .gps-heading h3{font-size:18px}.gps-metrics{font-size:13px;gap:8px}
+ .location-floor-select{gap:10px}.location-floor-select select{font-size:15px}
+ .location-tracking-actions .text-button{font-size:13px}
+ .map-credit a{font-size:10px;margin-left:5px}
 }

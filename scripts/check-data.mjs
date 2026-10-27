@@ -14,8 +14,14 @@ for(const floor of park.floors){
 }
 for(const kind of ['stairs','elevator','escalator','restroom','firstaid','aed'])assert.ok(park.pois.some(p=>p.kind===kind),`Missing kind ${kind}`);
 const official=JSON.parse(fs.readFileSync(new URL('../data/official.json',import.meta.url)));
-const waits=JSON.parse(fs.readFileSync(new URL('../data/waits.json',import.meta.url)));
-assert.ok(Array.isArray(official.attractions)&&Array.isArray(waits.rides));
-for(const r of waits.rides)assert.ok(r.waitMinutes===null||Number.isInteger(r.waitMinutes)&&r.waitMinutes>=0);
-assert.ok(waits.available||waits.rides.every(r=>r.waitMinutes===null),'Unavailable feed must not publish numeric queues');
-console.log(`Validated ${park.pois.length} guide entries, ${park.floors.length} floor maps, official catalog and wait schema.`);
+assert.ok(Array.isArray(official.attractions));
+console.log(`Validated ${park.pois.length} guide entries, ${park.floors.length} floor maps and official catalog.`);
+const geo=JSON.parse(fs.readFileSync(new URL('../data/georeference.json',import.meta.url)));
+const anchorIds=new Set();
+for(const a of geo.anchors){
+ const p=park.pois.find(p=>p.id===a.id);
+ assert.ok(p&&p.floor===a.floor&&JSON.stringify(p.pdf)===JSON.stringify(a.pdf),`Mismatched geographic anchor ${a.id}`);
+ assert.ok(!anchorIds.has(a.id),`Duplicate geographic anchor ${a.id}`);anchorIds.add(a.id);
+ assert.ok(Number.isFinite(a.lat)&&Number.isFinite(a.lng)&&a.sourceUrl.startsWith('https://www.openstreetmap.org/node/'));
+}
+console.log(`Validated ${geo.anchors.length} attributed geographic anchors.`);

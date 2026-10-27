@@ -1,4 +1,6 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,isParkGPS,encodeShare,decodeShare,waitState,corridorRoute,nearbyFacilities,transferRecommendations} from './lib.js';
+import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations} from './lib.js';
+
+import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const paths={
@@ -20,7 +22,6 @@ const paths={
   map:'<path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/>',
   hand:'<path d="M8 13V5a2 2 0 0 1 4 0v7-3a2 2 0 0 1 4 0v3-1a2 2 0 0 1 4 0v5c0 4-2 6-6 6h-2c-2 0-4-2-5-4l-3-5a2 2 0 0 1 3-2l1 2Z"/>',
   sliders:'<path d="M4 6h16M4 18h16M7 3v6m10 6v6"/>',
-  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   copy:'<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
   restroom:'<circle cx="7" cy="4" r="1.5"/><circle cx="17" cy="4" r="1.5"/><path d="M4 13V8h6v5M7 13v8M3 21h8m4-13h4l3 8H12l3-8Zm0 8v5m4-5v5"/>',
   stairs:'<path d="M3 20h5v-5h5v-5h5V5h4M3 15v5m5-12 3-3 3 3m-3-3v8"/>',
@@ -48,10 +49,13 @@ function hydrate(root=document){root.querySelectorAll('[data-icon]').forEach(el=
 hydrate();
 const names={attraction:'어트랙션',food:'푸드·카페',facility:'편의시설',shop:'샵·체험',all:'모든 장소'};
 const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타'};
-let toastTimer,park,guidePois,walkways,official={},waits={},localAssets={};
+let toastTimer,park,guidePois,walkways,official={},localAssets={},georeference={anchors:[],floors:{}};
+let gpsWatch=null,calibrations=[];
+const fixFilter=new FixFilter(),stepBridge=new StepBridge();
 const safeStored=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}};
 const storedFavs=safeStored('yaho-favorites',[]);
 const state={floor:'1F',category:'attraction',query:'',allFloors:false,favoritesOnly:false,kind:null,favorites:new Set(Array.isArray(storedFavs)?storedFavs.filter(v=>typeof v==='string'):[]),selected:null,position:null,gps:null,gpsPending:false,gpsError:'',pick:false,shareAfterPick:false,routeAfterPick:null,shared:null,route:null};
+Object.assign(state,{locationFloor:'1F',tracking:false,estimate:null,manualHoldUntil:0,manualBaseGPS:null,motionEnabled:false,heading:null,headingAt:0,motionBase:null,motionSteps:0});
 state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};
 const view={x:0,y:0,scale:1,fit:1,width:1070,height:760};
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,4200);}
@@ -64,8 +68,6 @@ function poiIcon(p){return p.category==='facility'?(p.kind??'info'):{attraction:
 function poiById(id){return park.pois.find(p=>p.id===id);}
 function nearest(p,cat='attraction'){if(!p.pdf)return null;return park.pois.filter(q=>q.floor===p.floor&&q.category===cat&&q.pdf&&q.id!==p.id).sort((a,b)=>Math.hypot(a.pdf[0]-p.pdf[0],a.pdf[1]-p.pdf[1])-Math.hypot(b.pdf[0]-p.pdf[0],b.pdf[1]-p.pdf[1]))[0];}
 function officialEntry(p){return p._official??null;}
-function waitEntry(p){const o=officialEntry(p);return (waits.rides??[]).find(q=>o&&q.officialId===o.officialId||normalizeName(q.name)===normalizeName(p.name));}
-const currentWait=p=>waitState(waitEntry(p),Date.now(),waits);
 const codeFloors={HA00101:'1F',HA00102:'2F',HA00103:'3F',HA00104:'4F',HA00105:'MAGIC',HA00106:'B1',HA00107:'1F'};
 function combineOfficial(){
   const consumed=new Set();
@@ -110,10 +112,9 @@ function renderList(){
   $('#clearFilters').hidden=!state.query&&!state.kind;
   if(!list.length)$('#placeList').innerHTML=`<div class="empty-state">${icon(state.favoritesOnly?'heart':'search')}<strong>${state.favoritesOnly?'다음에 가고 싶은 곳을 모아보세요':'찾는 장소가 없어요'}</strong>${state.favoritesOnly?'장소 옆 하트를 누르면 여기에 모아드려요.':'다른 검색어를 쓰거나 모든 층에서 찾아보세요.'}</div>`;
   else $('#placeList').innerHTML=list.map(p=>{
-    const w=p.category==='attraction'?currentWait(p):null;
     const subtitle=p.category==='facility'?(p.kind==='unknown'?'원본 범례 미표기 기호':`${nearest(p)?.name??floorLabel(p.floor)} 주변`):p.category==='food'?p.description:p.category==='shop'?p.description:'';
     const photo=p.category==='attraction'?localAssets.attractions?.[p._official?.officialId]:null;
-    return `<article class="place-item ${state.selected===p.id?'selected':''}"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} · ${esc(floorLabel(p.floor))} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><h3>${esc(p.name)}</h3><div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(p.category==='facility'?kindNames[p.kind]??'편의시설':`${names[p.category]}${p.number?` · ${p.number}번`:' · 공식 웹 안내'}`)}</span>${w?`<span class="wait-tag ${w.kind}">${esc(w.label)}</span>`:''}</div>${subtitle?`<div class="place-sub">${esc(subtitle)}</div>`:''}</div>${favoriteButton(p)}</article>`;
+    return `<article class="place-item ${state.selected===p.id?'selected':''}"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} · ${esc(floorLabel(p.floor))} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><h3>${esc(p.name)}</h3><div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(p.category==='facility'?kindNames[p.kind]??'편의시설':`${names[p.category]}${p.number?` · ${p.number}번`:' · 공식 웹 안내'}`)}</span></div>${subtitle?`<div class="place-sub">${esc(subtitle)}</div>`:''}</div>${favoriteButton(p)}</article>`;
   }).join('');
   $('#favoriteCount').textContent=state.favorites.size;
   $('#scopeFloor').classList.toggle('active',!state.allFloors);$('#scopeFloor').setAttribute('aria-pressed',String(!state.allFloors));
@@ -141,7 +142,11 @@ function renderPins(){
 }
 function renderLocationPins(){
   const p=state.position,s=state.shared?.position;
-  $('#locationPins').innerHTML=(p&&p.floor===state.floor?`<div class="location-dot" style="left:${p.x/10}%;top:${p.y/10}%"><span>내가 지정한 위치</span></div>`:'')+(s&&s.floor===state.floor?`<div class="location-dot shared" style="left:${s.x/10}%;top:${s.y/10}%"><span>공유받은 위치</span></div>`:'');
+  const stale=positionIsStale(p);
+  const label=p?.source==='estimated'?(stale?'마지막 추정 위치':p.method==='steps'?'걸음 보조 · 추정 위치':'추정 위치'):'내가 지정한 위치';
+  $('#locationPins').innerHTML=(p&&p.floor===state.floor?`<div class="location-dot ${p.source==='estimated'?'estimated':''} ${stale?'stale':''}" style="left:${p.x/10}%;top:${p.y/10}%"><span>${label}</span></div>`:'')+(s&&s.floor===state.floor?`<div class="location-dot shared ${s.source==='estimated'?'estimated':''}" style="left:${s.x/10}%;top:${s.y/10}%"><span>${s.source==='estimated'?'공유받은 추정 위치':'공유받은 위치'}</span></div>`:'');
+  const area=p&&p.floor===state.floor&&p.source==='estimated'?uncertaintyPolygon(p):'';
+  $('#locationAccuracy').innerHTML=area?`<polygon class="location-uncertainty ${stale?'stale':''}" points="${area}"/>`:'';
 }
 function applyTransform(){
   $('#mapWorld').style.transform=`translate(${view.x}px,${view.y}px) scale(${view.scale})`;
@@ -185,7 +190,7 @@ function openPlace(id){
   state.selected=id;renderList();renderPins();renderDetail(p);focusPoint(p);mobileSheet(false);
 }
 function renderDetail(p){
-  const w=currentWait(p),o=officialEntry(p);
+  const o=officialEntry(p);
   const url=safeURL(o?.url)??(p.category==='attraction'?'https://adventure.lotteworld.com/enjoy/attrctn/list':p.category==='food'?'https://adventure.lotteworld.com/enjoy/restaurant/list':'https://adventure.lotteworld.com/usage-guide/service/convenient-facilities/information/list');
   const picture=localAssets.attractions?.[o?.officialId]??safeURL(o?.image),detail=$('#detail');
   const description=p.category==='facility'?`${nearest(p)?.name??floorLabel(p.floor)} 부근`:p.description;
@@ -194,7 +199,6 @@ function renderDetail(p){
   <div class="detail-body"><div class="detail-category"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직아일랜드':p.floor)}</span>${esc(names[p.category])}${p.number?` · ${p.number}번`:''}</div>
   <div class="detail-title-row"><h2>${esc(p.name)}</h2>${favoriteButton(p)}</div>
   <p class="detail-description">${esc(description)}</p>
-  ${p.category==='attraction'?`<div class="detail-wait">${icon('clock')}<strong>${esc(w.label)}</strong>${waitEntry(p)?.updatedAt?`<small>${esc(ageLabel(Date.parse(waitEntry(p).updatedAt)))}</small>`:''}</div>`:''}
   ${o?.restrictions?`<p class="detail-restrictions">${esc(typeof o.restrictions==='string'?o.restrictions:JSON.stringify(o.restrictions))}</p>`:''}
   ${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
   <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
@@ -218,38 +222,137 @@ function openOfficialMap(p){
 function closeDetail(){state.selected=null;$('#detail').hidden=true;renderList();renderPins();}
 function beginPick(afterShare=false){state.pick=true;state.shareAfterPick=afterShare;closeDetail();$$('dialog[open]').forEach(d=>d.close());mobileSheet(false);$('#map').classList.add('picking');$('#pickBanner').hidden=false;renderPins();$('#map').focus({preventScroll:true});}
 function endPick(){state.pick=false;state.shareAfterPick=false;state.routeAfterPick=null;$('#map').classList.remove('picking');$('#pickBanner').hidden=true;renderPins();}
-function positionName(p){if(!p)return '';const n=nearest({floor:p.floor,pdf:toPDF(p)});return n?`${n.name} 부근`:`${floorLabel(p.floor)}에서 지정한 위치`;}
+function positionIsStale(p){return p?.source==='estimated'&&(p.lastKnown||Date.now()-p.at>60000||p.method==='steps'&&Date.now()-(p.basedAt??p.at)>30000);}
+function positionName(p){if(!p)return '';const n=nearest({floor:p.floor,pdf:toPDF(p)});return `${p.source==='estimated'?(positionIsStale(p)?'마지막 추정 · ':'추정 · '):''}${n?`${n.name} 부근`:`${floorLabel(p.floor)}에서 지정한 위치`}`;}
 function setManualPosition(p){
-  if(p.x===null||!isMapPoint(p)){toast('이 장소의 정확한 위치는 원본에 표시되어 있지 않아요.');return;}
-  const after=state.shareAfterPick,routeAfter=state.routeAfterPick;
-  state.position={floor:p.floor,x:p.x,y:p.y,at:Date.now()};state.shareAfterPick=false;clearRoute();endPick();closeDetail();
-  updateLocationStatus();renderLocationPins();toast(`${floorLabel(p.floor)}에 내 위치를 표시했어요.`);
+  if(p.x===null||!isMapPoint(p)){toast('지도 안에서 현재 위치를 지정해 주세요.');return;}
+  const after=state.shareAfterPick,routeAfter=state.routeAfterPick,at=Date.now();
+  state.locationFloor=p.floor;state.position={floor:p.floor,x:p.x,y:p.y,at,source:'manual'};
+  calibrations=addCalibration(calibrations,{...state.position,pdf:toPDF(p)},state.gps);
+  state.manualHoldUntil=at+15000;state.manualBaseGPS=state.gps;state.motionBase=null;
+  if(state.gps){const e=projectFix(state.gps,p.floor,georeference,floorData(p.floor),calibrations);if(e.x!==undefined){state.motionBase={...e,x:p.x,y:p.y,at};stepBridge.seed(at);}}
+  state.shareAfterPick=false;clearRoute();endPick();closeDetail();
+  updateLocationUI();renderLocationPins();toast(`${floorLabel(p.floor)}에 내 위치를 표시했어요.`);
   if(after)openShare();
   else if(routeAfter){openRoute(routeAfter.toId,{nearestKind:routeAfter.nearestKind,preserve:true});if(routeAfter.autoRoute)runRoute();}
 }
-function updateLocationStatus(){
-  const s=$('#locationStatus');s.classList.toggle('located',!!state.position||!!state.gps);
-  const text=state.position?`${state.position.floor==='MAGIC'?'매직아일랜드':state.position.floor} · 내가 지정한 위치${state.gps?' · GPS 별도 수신':''}`:state.gps?`GPS ±${Math.round(state.gps.accuracy)}m · 지도 위치는 직접 지정해 주세요`:state.gpsPending?'GPS를 수신하고 있어요…':!navigator.onLine?'오프라인 · 저장된 지도를 보고 있어요':'층을 선택하고 내 위치를 지정하세요';
-  s.innerHTML=`<span class="status-dot"></span>${esc(text)}`;
+function updateLocationUI(){
+  const button=$('#locate');if(!button)return;
+  const current=state.position?.source==='estimated'&&!positionIsStale(state.position);
+  button.classList.toggle('tracking',state.tracking);button.setAttribute('aria-label','내 위치');
+  button.innerHTML=icon('locate')+`<span>${state.gpsPending?'위치 찾는 중':current?'추정 위치':'내 위치'}</span>`;
+  if($('#locationDialog').open&&document.activeElement?.id!=='locationFloor')renderLocationDialog();
+}
+function estimationMessage(){
+  if(state.gpsError)return state.gpsError;
+  if(!state.gps)return state.gpsPending?'GPS·네트워크 위치를 수신하고 있어요.':'자동 추정을 시작하거나 현재 위치를 지도에서 지정하세요.';
+  if(Date.now()-state.gps.at>60000)return '새 위치 신호를 찾고 있습니다. 지도에는 마지막 위치가 표시됩니다.';
+  const reason=state.estimate?.reason;
+  return reason==='outside'?'현재 신호는 이 층의 지도 범위 밖입니다. 층 또는 위치를 보정해 주세요.':reason==='accuracy'?'실내 신호의 오차가 큽니다. 가까운 장소를 선택해 위치를 보정하세요.':reason==='calibration'?state.position?.source==='manual'&&state.position.floor===state.locationFloor?'지정한 위치를 사용 중입니다. 이동 후 보정하면 이 층의 자동 추정을 학습합니다.':'이 층은 자동 변환 기준점이 부족합니다. 지도에서 위치를 보정해 주세요.':reason==='stale'?'새 위치 신호를 기다리고 있어요.':state.estimate?.x!==undefined?'실제 장소 기준점과 선택한 층으로 위치를 추정했습니다.':'위치 신호를 분석하고 있어요.';
 }
 function locationContent(){
-  const g=state.gps;return `${g?`<div class="gps-reading"><h3>${isParkGPS(g)?'GPS를 수신했어요':'현재 GPS가 롯데월드 밖을 가리켜요'}</h3><p>위도 ${g.lat.toFixed(6)} · 경도 ${g.lng.toFixed(6)}<br>수신 오차 <strong>±${Math.round(g.accuracy)}m</strong> · ${esc(ageLabel(g.at))}</p></div>`:`<div class="gps-reading"><h3>${state.gpsPending?'GPS를 수신하고 있어요…':'내 위치를 지도에 표시해 보세요'}</h3><p>${esc(state.gpsError||'GPS 권한을 허용하거나, 지도를 눌러 직접 위치를 지정할 수 있어요.')}</p></div>`}<p class="gps-warning">선택한 층: <b>${esc(floorLabel(state.floor))}</b><br>실내 위치는 지도를 눌러 지정해 주세요.</p><div class="location-options"><button class="btn btn-primary" type="button" id="locationPick">${icon('pin')}지도에서 직접 지정</button><button class="btn btn-subtle" type="button" id="locationRetry" ${state.gpsPending?'disabled':''}>${icon('locate')}${g?'GPS 새로고침':'GPS 사용'}</button></div>${g?`<a class="text-button" href="https://www.google.com/maps/search/?api=1&query=${g.lat.toFixed(6)},${g.lng.toFixed(6)}" target="_blank" rel="noopener noreferrer">GPS 위치를 지리 지도에서 보기 ↗</a>`:''}${state.position?`<button class="text-button" type="button" id="removePosition">직접 지정한 내 위치 지우기</button>`:''}`;
+  const g=state.gps,e=state.estimate,hasEstimate=e?.x!==undefined&&Date.now()-e.at<60000,candidates=g&&Date.now()-g.at<60000?nearbyAnchors(g,state.locationFloor,georeference):[];
+  return `<div class="location-floor-select"><label class="field-label" for="locationFloor">내가 있는 층</label><select id="locationFloor">${park.floors.map(f=>`<option value="${f.id}" ${f.id===state.locationFloor?'selected':''}>${esc(f.name)}</option>`).join('')}</select></div>
+  <div class="gps-reading ${hasEstimate?'has-estimate':''}"><div class="gps-heading">${icon(state.gpsPending?'locate':'pin')}<h3>${hasEstimate?'내 위치 후보':state.gpsPending?'실내 위치 추정 중':'내 위치 찾기'}</h3></div><p>${esc(estimationMessage())}</p>${g?`<div class="gps-metrics"><span>기기 오차 <strong>±${Math.round(g.accuracy)}m</strong></span><span>${g.samples??1}회 수신 · ${esc(ageLabel(g.at))}</span></div>`:''}${hasEstimate?`<p class="estimate-radius">지도 추정 범위 약 <b>${Math.ceil(e.accuracyM/5)*5}m</b>${e.method==='calibrated'?' · 위치 보정 적용':''}</p>`:''}</div>
+  ${hasEstimate?'<button class="btn btn-primary btn-full" type="button" id="useEstimated">이 추정 위치 사용</button>':''}
+  ${candidates.length?`<div class="location-landmarks"><h3>이 장소에 있다면 눌러 보정하세요</h3>${candidates.map(a=>`<button type="button" data-location-landmark="${esc(a.id)}">${icon('pin')}<span>${esc(a.name)}</span>${icon('check')}</button>`).join('')}</div>`:''}
+  <div class="location-options"><button class="btn ${hasEstimate?'btn-subtle':'btn-primary'}" type="button" id="locationRetry">${icon('locate')}${state.tracking?'위치 다시 수신':'자동 추정 시작'}</button><button class="btn btn-subtle" type="button" id="locationPick">${icon('pin')}지도에서 보정</button></div>
+  <div class="location-tracking-actions">${state.tracking?'<button class="text-button" type="button" id="stopTracking">위치 추적 중지</button>':''}${'DeviceMotionEvent'in window?`<button class="text-button" type="button" id="motionAssist">${state.motionEnabled?'걸음 보조 끄기':'걸음 보조 켜기'}</button>`:''}</div>
+  ${state.motionEnabled?`<p class="motion-note">${state.heading===null?'휴대전화를 수평으로 들고 윗부분을 진행 방향으로 향해 주세요.':'휴대전화 윗부분을 진행 방향으로 · 신호 단절 시 최대 30초 보완합니다.'}${state.motionSteps?` · ${state.motionSteps}걸음 보완`:''}</p>`:''}
+  <p class="location-privacy">위치와 보정값은 이 기기에만 머뭅니다. 공유 버튼을 누르면 선택한 위치를 전달합니다.</p>
+  <div class="location-source"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">좌표 기준 © OpenStreetMap contributors</a><span>실내·조감도 위치는 추정값입니다.</span></div>`;
 }
-function renderLocationDialog(){const body=$('#locationBody');body.innerHTML=locationContent();$('#locationPick').onclick=()=>beginPick(state.shareAfterPick);$('#locationRetry').onclick=()=>requestGPS();const remove=$('#removePosition');if(remove)remove.onclick=()=>{state.position=null;renderLocationPins();updateLocationStatus();renderLocationDialog();};}
-function openLocation({getGPS=false}={}){renderLocationDialog();if(!$('#locationDialog').open)$('#locationDialog').showModal();if(getGPS)requestGPS();}
+function renderLocationDialog(){
+  $('#locationBody').innerHTML=locationContent();
+  $('#locationPick').onclick=()=>beginPick(state.shareAfterPick);
+  $('#locationRetry').onclick=()=>requestGPS();
+  $('#locationFloor').onchange=e=>{const floor=e.target.value;state.locationFloor=floor;if(state.position?.floor!==floor){state.position=null;clearRoute();}setFloor(floor);updateEstimate();if(state.estimate?.x!==undefined)focusPoint(state.estimate);renderLocationDialog();};
+  const use=$('#useEstimated');if(use)use.onclick=useEstimatedPosition;
+  const stop=$('#stopTracking');if(stop)stop.onclick=()=>{stopGPS();renderLocationDialog();};
+  const motion=$('#motionAssist');if(motion)motion.onclick=toggleMotion;
+}
+function openLocation({getGPS=false}={}){if(!state.tracking&&!state.gps)state.locationFloor=state.floor;renderLocationDialog();if(!$('#locationDialog').open)$('#locationDialog').showModal();if(getGPS)requestGPS();}
+function updateEstimate(){
+  if(!state.gps)return;
+  state.estimate=projectFix(state.gps,state.locationFloor,georeference,floorData(state.locationFloor),calibrations);
+  const e=state.estimate;
+  const hold=state.position?.source==='manual'&&(Date.now()<state.manualHoldUntil||state.manualBaseGPS&&geoDistance(state.manualBaseGPS,state.gps)<8);
+  if(e.x!==undefined&&state.tracking&&!state.pick&&!hold){
+    const old=state.position;
+    state.position={...e,confirmed:old?.confirmed&&old.floor===e.floor&&Math.hypot(old.x-e.x,old.y-e.y)<30};
+    state.motionBase={...e};stepBridge.seed(e.at);state.motionSteps=0;
+  }else if(e.reason&&state.position?.source==='estimated'){
+    // Do not keep a plausible-looking current dot when a new fix is outside or
+    // too imprecise; retain only an explicitly labelled last known location.
+    state.position.lastKnown=true;
+  }
+  renderLocationPins();updateLocationUI();
+  if($('#routeDialog').open)renderRouteDestinations();
+}
+function receiveGPS(p){
+  if(!state.tracking)return;
+  const fix=fixFilter.push({lat:p.coords.latitude,lng:p.coords.longitude,accuracy:p.coords.accuracy,at:p.timestamp});
+  if(!fix)return;
+  const first=!state.gps;state.gpsPending=false;state.gpsError='';state.gps=fix;updateEstimate();
+  if(first&&state.position?.source==='estimated'&&state.position.floor===state.floor)focusPoint(state.position);
+}
+function gpsFailure(err){
+  state.gpsPending=false;
+  state.gpsError=err.code===1?'위치 권한이 꺼져 있습니다. 브라우저 설정에서 위치를 허용해 주세요.':err.code===3?'위치 신호를 더 기다리고 있어요. 실내에서는 보정이 필요할 수 있습니다.':'위치 신호를 찾지 못했습니다. 지도에서 현재 장소를 선택해 보정하세요.';
+  if(err.code===1)stopGPS();updateLocationUI();
+}
+function startWatch(){
+  if(gpsWatch!==null||!state.tracking||document.hidden)return;
+  gpsWatch=navigator.geolocation.watchPosition(receiveGPS,gpsFailure,{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+}
 function requestGPS(){
-  if(state.gpsPending)return;
-  if(!window.isSecureContext||!navigator.geolocation){state.gpsError='이 환경에서는 GPS를 사용할 수 없어요. HTTPS로 접속하거나 지도에서 직접 지정해 주세요.';renderLocationDialog();return;}
-  state.gpsPending=true;state.gpsError='';renderLocationDialog();updateLocationStatus();
-  navigator.geolocation.getCurrentPosition(p=>{state.gpsPending=false;state.gps={lat:p.coords.latitude,lng:p.coords.longitude,accuracy:p.coords.accuracy,at:p.timestamp};renderLocationDialog();updateLocationStatus();},err=>{state.gpsPending=false;state.gpsError=err.code===1?'위치 권한이 꺼져 있어요. 브라우저의 사이트 권한을 확인하거나 직접 지정해 주세요.':err.code===3?'GPS 수신 시간이 길어지고 있어요. 다시 시도하거나 직접 지정해 주세요.':'현재 GPS 신호를 찾지 못했어요. 지도에서 위치를 직접 지정할 수 있어요.';renderLocationDialog();updateLocationStatus();},{enableHighAccuracy:true,timeout:15000,maximumAge:15000});
+  if(!window.isSecureContext||!navigator.geolocation){state.gpsError='이 브라우저에서는 위치를 사용할 수 없습니다. 지도에서 위치를 지정해 주세요.';renderLocationDialog();return;}
+  if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;
+  fixFilter.reset();state.tracking=true;state.gpsPending=true;state.gpsError='';startWatch();updateLocationUI();
 }
+function stopGPS(){if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;state.tracking=false;state.gpsPending=false;disableMotion();updateLocationUI();}
+function useEstimatedPosition(){
+  const e=state.estimate;if(e?.x===undefined||Date.now()-e.at>60000){toast('새 위치 신호를 먼저 수신해 주세요.');return;}
+  const after=state.shareAfterPick,routeAfter=state.routeAfterPick;state.position={...e,confirmed:true};state.shareAfterPick=false;state.routeAfterPick=null;clearRoute();
+  $('#locationDialog').close();setFloor(e.floor);focusPoint(e);renderLocationPins();updateLocationUI();
+  if(after)openShare();else if(routeAfter){openRoute(routeAfter.toId,{nearestKind:routeAfter.nearestKind,preserve:true});if(routeAfter.autoRoute)runRoute();}
+}
+async function toggleMotion(){
+  if(state.motionEnabled){disableMotion();renderLocationDialog();return;}
+  try{
+    const requests=[];
+    if(typeof DeviceMotionEvent.requestPermission==='function')requests.push(DeviceMotionEvent.requestPermission());
+    if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function')requests.push(DeviceOrientationEvent.requestPermission());
+    const permissions=await Promise.all(requests);if(permissions.some(p=>p!=='granted'))throw new Error('permission');
+    state.motionEnabled=true;state.heading=null;state.headingAt=0;state.motionSteps=0;
+    window.addEventListener('deviceorientationabsolute',receiveHeading);window.addEventListener('deviceorientation',receiveHeading);window.addEventListener('devicemotion',receiveMotion);
+    renderLocationDialog();
+  }catch{toast('움직임 권한을 사용할 수 없습니다. GPS 추정은 계속 사용할 수 있어요.');}
+}
+function disableMotion(){state.motionEnabled=false;state.motionBase=null;state.heading=null;window.removeEventListener('deviceorientationabsolute',receiveHeading);window.removeEventListener('deviceorientation',receiveHeading);window.removeEventListener('devicemotion',receiveMotion);}
+function receiveHeading(e){
+  if(Number.isFinite(e.webkitCompassHeading)&&(!Number.isFinite(e.webkitCompassAccuracy)||e.webkitCompassAccuracy<=25))state.heading=e.webkitCompassHeading;
+  else if(e.absolute&&Number.isFinite(e.alpha)&&Math.abs(e.beta??90)<60&&Math.abs(e.gamma??90)<60)state.heading=(360-e.alpha)%360;
+  else return;
+  state.headingAt=Date.now();
+}
+function receiveMotion(e){
+  const now=Date.now(),base=state.motionBase;
+  if(!state.tracking||!state.motionEnabled||!base||state.heading===null||now-state.headingAt>3000||now-base.at<10000||now-base.at>30000||base.accuracyM>75||state.pick||state.route)return;
+  const step=stepBridge.feed(e.accelerationIncludingGravity,state.heading,now);if(!step)return;
+  const [east,north]=step.offset,j=base.jacobian,f=floorData(base.floor),x=base.x+(j[0][0]*east+j[0][1]*north)/f.width*1000,y=base.y+(j[1][0]*east+j[1][1]*north)/f.height*1000;
+  if(x<0||x>1000||y<0||y>1000)return;
+  state.motionSteps=step.steps;state.position={...base,x,y,at:now,basedAt:base.at,accuracyM:base.accuracyM+step.drift,method:'steps',confirmed:false};renderLocationPins();updateLocationUI();
+}
+
 function openShare(){
   const gps=state.gps&&Date.now()-state.gps.at<120000?state.gps:null;
-  if(!state.position&&!gps){state.shareAfterPick=true;openLocation();return;}
-  const hash=encodeShare({position:state.position,gps,floor:state.position?.floor??state.floor});
+  if(!state.position&&!gps){state.shareAfterPick=true;openLocation({getGPS:!state.tracking});return;}
+  const measuredAt=state.position?.source==='estimated'?state.position.at:!state.position&&gps?gps.at:Date.now();
+  const hash=encodeShare({position:state.position,gps,floor:state.position?.floor??state.locationFloor,at:measuredAt});
   const url=new URL(location.href);url.hash=hash;$('#shareUrl').value=url.href;
-  const floor=state.position?.floor??state.floor;
-  $('#sharePreview').innerHTML=`${icon('pin')}<strong>${esc(floorLabel(floor))}</strong><p>${state.position?esc(positionName(state.position)):'GPS 좌표만 공유 · 조감도 핀 없음'}${gps?`<br>GPS 오차 ±${Math.round(gps.accuracy)}m`:''}<br>지금 위치의 일회성 링크</p>`;
+  const floor=state.position?.floor??state.locationFloor;
+  $('#sharePreview').innerHTML=`${icon('pin')}<strong>${esc(floorLabel(floor))}</strong><p>${state.position?esc(positionName(state.position)):'기기 위치 좌표 공유'}${state.position?.source==='estimated'?`<br>지도 추정 범위 약 ${Math.ceil(state.position.accuracyM/5)*5}m`:''}${gps?`<br>기기 오차 ±${Math.round(gps.accuracy)}m`:''}<br>지금 위치의 일회성 링크</p>`;
   $('#nativeShare').hidden=!navigator.share;
   if(!$('#shareDialog').open)$('#shareDialog').showModal();
 }
@@ -258,14 +361,14 @@ function readHash(){
   const shared=decodeShare(location.hash);
   if(shared){state.shared=shared;setFloor(shared.floor);if(shared.position)focusPoint(shared.position);
     const old=Date.now()-shared.at>60*60000;
-    $('#sharedCard').innerHTML=`<button class="icon-btn" type="button" id="dismissShared" aria-label="공유 위치 표시 닫기">${icon('close')}</button><h3>친구가 공유한 위치</h3><p>${esc(floorLabel(shared.floor))} · ${esc(ageLabel(shared.at))}<br>${old?'한 시간 이상 지난 위치예요. 새 위치를 확인해 주세요.':'공유한 순간의 위치예요. 현재 위치와 다를 수 있어요.'}${!shared.position?'<br>GPS 좌표만 공유되어 지도 핀이 없습니다.':''}</p>${shared.gps?`<a class="text-button" href="https://www.google.com/maps/search/?api=1&query=${shared.gps.lat.toFixed(6)},${shared.gps.lng.toFixed(6)}" target="_blank" rel="noopener noreferrer">GPS 위치 보기 · ±${Math.round(shared.gps.accuracy)}m ↗</a>`:''}`;
+    $('#sharedCard').innerHTML=`<button class="icon-btn" type="button" id="dismissShared" aria-label="공유 위치 표시 닫기">${icon('close')}</button><h3>친구가 공유한 위치</h3><p>${esc(floorLabel(shared.floor))} · ${esc(ageLabel(shared.at))}<br>${old?'한 시간 이상 지난 위치예요. 새 위치를 확인해 주세요.':'공유한 순간의 위치예요. 현재 위치와 다를 수 있어요.'}${shared.position?.source==='estimated'?`<br>추정 위치 · 약 ${Math.round(shared.position.accuracyM)}m 범위`:!shared.position?'<br>기기 위치 좌표만 공유되었습니다.':''}</p>${shared.gps?`<a class="text-button" href="https://www.google.com/maps/search/?api=1&query=${shared.gps.lat.toFixed(6)},${shared.gps.lng.toFixed(6)}" target="_blank" rel="noopener noreferrer">GPS 위치 보기 · ±${Math.round(shared.gps.accuracy)}m ↗</a>`:''}`;
     $('#sharedCard').hidden=false;$('#dismissShared').onclick=()=>{state.shared=null;$('#sharedCard').hidden=true;renderLocationPins();history.replaceState(null,'',location.pathname+location.search);};
   }else if(location.hash.startsWith('#place=')){const id=decodeURIComponent(location.hash.slice(7));if(poiById(id))openPlace(id);else toast('이 장소를 찾을 수 없어요.');}
   else if(location.hash.startsWith('#meet='))toast('공유 링크의 위치 정보가 올바르지 않아요.');
 }
 const routeCategoryNames={all:'전체',attraction:'어트랙션',food:'식당·카페',shop:'기념품·체험'};
 const quickFacilityKinds=['restroom','battery','locker','water','firstaid','atm'];
-function currentRouteOrigin(){return state.position?{...state.position,pdf:toPDF(state.position),name:'현위치'}:null;}
+function currentRouteOrigin(){const p=state.position;if(!p)return null;if(p.source==='estimated'&&(positionIsStale(p)||p.accuracyM>75&&!p.confirmed))return null;return {...p,pdf:toPDF(p),name:p.source==='estimated'?'현위치(추정)':'현위치'};}
 function routePlaceLabel(p){return p.category==='facility'?`${nearest(p)?.name??floorLabel(p.floor)} 부근 ${kindNames[p.kind]??p.name}`:p.name;}
 function facilityQueryKinds(query){
   const q=normalizeName(query);if(!q)return [];
@@ -361,7 +464,7 @@ function runRoute(event){
     else return fail('목적지를 검색해서 선택해 주세요.');
   }
   const from=currentRouteOrigin();
-  if(!from){state.routeAfterPick={toId:draft.toId,nearestKind:draft.nearestKind,autoRoute:true};beginPick();return;}
+  if(!from){state.routeAfterPick={toId:draft.toId,nearestKind:draft.nearestKind,autoRoute:true};$('#routeDialog').close();openLocation({getGPS:!state.tracking});return;}
   let to=draft.toId?poiById(draft.toId):null;
   if(draft.nearestKind){
     const match=nearbyFacilities(from,park.pois,walkways.floors,{kinds:[draft.nearestKind]})[0];
@@ -399,12 +502,7 @@ function renderRoute(){
   svg.innerHTML=`<polyline class="route-outline" points="${pts}"/><polyline class="route-path" points="${pts}"/><path class="route-connector" d="M${start.x},${start.y} L${first.x},${first.y} M${last.x},${last.y} L${end.x},${end.y}"/>`;
 }
 async function refreshOfficial(){
-  const results=await Promise.allSettled([fetch('data/official.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{}),fetch('data/waits.json',{cache:'no-cache'}).then(r=>r.ok?r.json():{})]);
-  if(results[0].status==='fulfilled'&&Array.isArray(results[0].value?.attractions))official=results[0].value;
-  if(results[1].status==='fulfilled'&&Array.isArray(results[1].value?.rides))waits=results[1].value;
-  const fresh=(waits.rides??[]).filter(p=>waitState(p,Date.now(),waits).kind==='fresh').length;
-  $('#waitStatus').innerHTML=fresh?`대기 정보 ${fresh}곳 · ${esc(ageLabel(Date.parse(waits.fetchedAt)))} ↗`:'대기 시간 미제공 · 공식 안내 ↗';
-  $('#waitGuideText').textContent=fresh?'공식 공개 API에서 수신한 대기 정보입니다. 수신 후 5분이 지난 값은 숨깁니다. API의 현장 갱신 주기는 확인되지 않았으며, 현장 안내가 우선입니다.':'공식 대기 시간 API를 연동했지만 현재 확인된 대기 시간은 없습니다. 빈 응답을 0분으로 표시하지 않아요. 운영 중 데이터가 제공되면 표시하며, 수신 후 5분이 지난 값은 숨깁니다.';
+  try{const response=await fetch('data/official.json',{cache:'no-cache'});if(response.ok){const data=await response.json();if(Array.isArray(data.attractions))official=data;}}catch{}
   if(park){combineOfficial();renderList();renderPins();if(state.selected&&poiById(state.selected))renderDetail(poiById(state.selected));}
 }
 
@@ -425,6 +523,7 @@ function bindMapGestures(){
 function bindEvents(){
   document.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.locationLandmark){const p=poiById(b.dataset.locationLandmark);if(p){$('#locationDialog').close();setManualPosition(p);}return;}
     if(b.dataset.routeDestination){selectRouteDestination(b.dataset.routeDestination);return;}
     if(b.dataset.routeNearest){selectRouteFacility(b.dataset.routeNearest);return;}
     if(b.dataset.routeCategory){if(state.routeDraft.nearestKind||state.routeDraft.toId)state.routeDraft.query='';state.routeDraft.category=b.dataset.routeCategory;state.routeDraft.nearestKind=null;state.routeDraft.toId=null;$('#routeError').hidden=true;renderRouteDestinations();return;}
@@ -440,7 +539,7 @@ function bindEvents(){
     if(b.dataset.routeTo){openRoute(b.dataset.routeTo);return;}
     if(b.dataset.setPosition){setManualPosition(poiById(b.dataset.setPosition));return;}
     if(b.dataset.sharePlace){const u=new URL(location.href);u.hash=`place=${encodeURIComponent(b.dataset.sharePlace)}`;if(navigator.share)navigator.share({title:poiById(b.dataset.sharePlace).name,text:'롯데월드야호에서 이 장소를 확인해 봐!',url:u.href}).catch(err=>{if(err.name!=='AbortError')copy(u.href);});else copy(u.href);return;}
-    if('closeDialog'in b.dataset)b.closest('dialog').close();
+    if('closeDialog'in b.dataset){const d=b.closest('dialog');if(d.id==='locationDialog'){state.routeAfterPick=null;state.shareAfterPick=false;}d.close();}
   });
   $('#search').addEventListener('input',e=>{state.query=e.target.value;state.allFloors=!!state.query;if(state.query){state.category='all';state.kind=null;}renderList();renderPins();});
   $('#scopeFloor').onclick=()=>{state.allFloors=false;renderList();renderPins();};$('#scopeAll').onclick=()=>{state.allFloors=true;renderList();renderPins();};
@@ -448,12 +547,11 @@ function bindEvents(){
   const showMap=()=>{state.favoritesOnly=false;renderList();renderPins();mobileSheet(false);};
   const showFavorites=()=>{state.favoritesOnly=true;state.allFloors=true;state.category='all';state.query='';state.kind=null;$('#search').value='';renderList();renderPins();mobileSheet(true);};
   $('#navMap').onclick=showMap;$('#mobileMap').onclick=showMap;$('#navFavorites').onclick=showFavorites;$('#mobileFavorites').onclick=showFavorites;
-  const showGuide=()=>$('#guideDialog').showModal();$('#openGuide').onclick=showGuide;$('#mobileGuide').onclick=showGuide;$('#waitStatus').onclick=showGuide;
   $('#openSearch').onclick=()=>{state.favoritesOnly=false;renderList();mobileSheet(true);$('#search').focus();};
   $('#mobileList').onclick=()=>{state.favoritesOnly=false;renderList();mobileSheet(true);};$('#closeSearch').onclick=()=>mobileSheet(false);
   $('#zoomIn').onclick=()=>zoom(1.3);$('#zoomOut').onclick=()=>zoom(1/1.3);$('#fitMap').onclick=fitMap;
   $('#manualLocation').onclick=()=>beginPick();$('#cancelPick').onclick=()=>{state.shareAfterPick=false;endPick();};
-  $('#locate').onclick=()=>openLocation({getGPS:!state.gps});
+  $('#locate').onclick=()=>openLocation({getGPS:!state.tracking});
   $('#shareLocation').onclick=openShare;$('#mobileShare').onclick=openShare;
   $('#resetSharePosition').onclick=()=>beginPick(true);
   $('#copyShare').onclick=()=>copy($('#shareUrl').value);
@@ -461,21 +559,25 @@ function bindEvents(){
   $('#openRoute').onclick=()=>openRoute();$('#mobileRoute').onclick=()=>openRoute();$('#routeForm').onsubmit=runRoute;
   $('#pickRouteStart').onclick=()=>{state.routeAfterPick={toId:state.routeDraft.toId,nearestKind:state.routeDraft.nearestKind,autoRoute:false};if(state.position)setFloor(state.position.floor);beginPick();};
   $('#routeSearch').addEventListener('input',e=>{state.routeDraft.query=e.target.value;state.routeDraft.toId=null;state.routeDraft.nearestKind=null;state.routeDraft.category='all';$('#routeError').hidden=true;renderRouteDestinations();});
+  $('#locationDialog').addEventListener('cancel',()=>{state.routeAfterPick=null;state.shareAfterPick=false;});
   $('#clearRouteSearch').onclick=()=>{state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};renderRouteDestinations();$('#routeSearch').focus();};
   $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!e.target.closest('input,select,textarea')){e.preventDefault();mobileSheet(true);$('#search').focus();}if(e.key==='Escape'&&!$$('dialog[open]').length){if(state.pick)endPick();else if(state.selected)closeDetail();else mobileSheet(false);}});
-  window.addEventListener('hashchange',readHash);window.addEventListener('online',()=>{updateLocationStatus();refreshOfficial();});window.addEventListener('offline',updateLocationStatus);
+  window.addEventListener('hashchange',readHash);window.addEventListener('online',()=>{updateLocationUI();refreshOfficial();});window.addEventListener('offline',updateLocationUI);
   $('#mapImage').addEventListener('error',()=>{toast('지도 이미지를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.');$('#mapImage').dataset.error='true';});
   bindMapGestures();
 }
 
 async function init(){
   try{
-    const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json')]);
-    if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
+    const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json'),fetch('data/georeference.json')]);
+    if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways,georeference]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
     try{localAssets=await fetch('data/local-assets.json').then(r=>r.ok?r.json():{});}catch{}
-    bindEvents();setFloor('1F');updateLocationStatus();await refreshOfficial();readHash();
-    setInterval(()=>{if(!document.hidden)refreshOfficial();},120000);
+    bindEvents();setFloor('1F');updateLocationUI();await refreshOfficial();readHash();
+    setInterval(()=>{if(!document.hidden)refreshOfficial();},30*60000);
+    setInterval(()=>{if(state.tracking){renderLocationPins();updateLocationUI();}},5000);
+    document.addEventListener('visibilitychange',()=>{if(document.hidden){if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();}else if(state.tracking){state.gpsPending=true;fixFilter.reset();startWatch();updateLocationUI();}});
+    window.addEventListener('pagehide',()=>{if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();});
     if('serviceWorker'in navigator&&window.isSecureContext)navigator.serviceWorker.register('sw.js').catch(()=>{});
   }catch(e){console.error(e);$('#placeList').innerHTML='<div class="empty-state"><strong>지도를 펼치지 못했어요</strong>연결을 확인하고 새로고침해 주세요.<br><a href="assets/guide-2026.pdf">원본 가이드맵 보기 ↗</a></div>';$('#resultCount').textContent='연결 확인 필요';}
 }

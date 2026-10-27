@@ -8,11 +8,9 @@ on:
       refresh:
         description: 공식 데이터 갱신
         type: choice
-        options: [none, waits, full]
+        options: [none, full]
         default: none
   schedule:
-    # 10:03–22:58 KST. GitHub schedules can run later than requested.
-    - cron: '3-58/5 1-13 * * *'
     # Full official visitor catalog at 08:47 KST.
     - cron: '47 23 * * *'
 
@@ -43,26 +41,19 @@ jobs:
         id: official
         if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.refresh != 'none')
         continue-on-error: true
-        env:
-          FULL_REFRESH: ${{ github.event.schedule == '47 23 * * *' || inputs.refresh == 'full' }}
-        run: |
-          if [ "$FULL_REFRESH" = "true" ]; then
-            python scripts/sync_official.py --timeout 25 --workers 2
-          else
-            python scripts/sync_official.py --waits-only --timeout 20
-          fi
+        run: python scripts/sync_official.py --timeout 25 --workers 2
       - name: 데이터 확인 결과 보존
         if: steps.official.outcome == 'success' || steps.official.outcome == 'failure'
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/official.json data/waits.json
+          git add data/official.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh official visitor information'
             git push origin HEAD:main
           fi
-      - name: 공유·대기 정보·경로 테스트
+      - name: 위치·공유·경로 테스트
         run: node --test tests/*.test.mjs
       - name: 데이터와 구문 확인
         run: npm run check

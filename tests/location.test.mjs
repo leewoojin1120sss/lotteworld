@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {encodeShare,decodeShare,isMapPoint,waitState} from '../lib.js';
+import {encodeShare,decodeShare,isMapPoint} from '../lib.js';
 
 test('floor, manual location, GPS precision and timestamp survive a shared link',()=>{
   const at=Date.now(),p={floor:'4F',x:314.159,y:826.125};
@@ -19,12 +19,10 @@ test('malformed, out-of-range, future and oversized shared payloads are rejected
   for(const data of [{v:1,floor:'99F',x:2,y:3,at:Date.now()},{v:1,floor:'1F',x:-1,y:0,at:Date.now()},{v:1,floor:'1F',lat:91,lng:0,acc:2,at:Date.now()},{v:1,floor:'1F',x:2,y:3,at:Date.now()+3600000}])assert.equal(decodeShare('#meet='+encodeURIComponent(new URLSearchParams(data))),null);
   assert.equal(isMapPoint({floor:'1F',x:NaN,y:0}),false);assert.throws(()=>encodeShare({floor:'1F'}));
 });
-test('an empty wait never becomes zero and expired or stale data never appears live',()=>{
-  const now=Date.now(),updatedAt=new Date(now-30000).toISOString();
-  assert.equal(waitState({waitMinutes:null,updatedAt},now).minutes,null);
-  assert.equal(waitState({waitMinutes:0,updatedAt},now).minutes,0);
-  assert.equal(waitState({waitMinutes:30,updatedAt:new Date(now-301000).toISOString()},now).kind,'stale');
-  assert.equal(waitState({waitMinutes:30,updatedAt},now,{expiresAt:new Date(now-1).toISOString()}).kind,'stale');
-  assert.equal(waitState({waitMinutes:30,updatedAt},now,{source:{stale:true}}).kind,'stale');
-  assert.equal(waitState({waitMinutes:10,updatedAt,status:'closed'},now).minutes,null);
+test('estimated location sharing preserves uncertainty and stays compatible with old links',()=>{
+ const p={floor:'1F',x:400,y:600,source:'estimated',accuracyM:58.2};const s=decodeShare(encodeShare({position:p}));
+ assert.equal(s.position.source,'estimated');assert.equal(s.position.accuracyM,59);
+ assert.equal(decodeShare(encodeShare({position:{floor:'1F',x:400,y:600}})).position.source,undefined);
+ const bad='#meet='+encodeURIComponent(new URLSearchParams({v:1,floor:'1F',x:2,y:3,at:Date.now(),approx:1,radius:99999}));assert.equal(decodeShare(bad),null);
+ assert.throws(()=>encodeShare({position:{...p,accuracyM:NaN}}));
 });
