@@ -322,7 +322,7 @@ async function toggleMotion(){
   try{
     const requests=[];
     if(typeof DeviceMotionEvent.requestPermission==='function')requests.push(DeviceMotionEvent.requestPermission());
-    if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function')requests.push(DeviceOrientationEvent.requestPermission());
+    if(typeof DeviceOrientationEvent!=='undefined'&&typeof DeviceOrientationEvent.requestPermission==='function')requests.push(DeviceOrientationEvent.requestPermission(true));
     const permissions=await Promise.all(requests);if(permissions.some(p=>p!=='granted'))throw new Error('permission');
     state.motionEnabled=true;state.heading=null;state.headingAt=0;state.motionSteps=0;
     window.addEventListener('deviceorientationabsolute',receiveHeading);window.addEventListener('deviceorientation',receiveHeading);window.addEventListener('devicemotion',receiveMotion);
