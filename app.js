@@ -1,4 +1,4 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences} from './lib.js';
+import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,parseClosureResponse,closuresAreFresh,attractionClosure} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -51,6 +51,7 @@ const names={attraction:'어트랙션',food:'푸드·카페',facility:'편의시
 const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타'};
 let toastTimer,park,guidePois,walkways,official={},localAssets={},georeference={anchors:[],floors:{}};
 let gpsWatch=null,calibrations=[];
+let closures=null,closureBusy=false,closureError=false,closureAttempt=0,closureViewFresh=false;
 const fixFilter=new FixFilter(),stepBridge=new StepBridge();
 const safeStored=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}};
 const storedFavs=safeStored('yaho-favorites',[]);
@@ -108,7 +109,42 @@ function matches(p){
   return state.query.trim().split(/\s+/).every(word=>hay.includes(normalizeName(word)));
 }
 function favoriteButton(p){const on=state.favorites.has(p.id);return `<button class="fav-btn ${on?'saved':''}" type="button" data-favorite="${esc(p.id)}" aria-label="${esc(p.name)} 즐겨찾기 ${on?'해제':'추가'}" aria-pressed="${on}">${icon('heart')}</button>`;}
+function closureBadge(p,{detail=false}={}){
+  const status=attractionClosure(p,closures);
+  if(!status||status.kind==='unlisted'&&!detail)return '';
+  return `<span class="operation-badge ${status.kind}">${esc(status.label)}</span>`;
+}
+function renderClosureStatus(){
+ const visible=state.recommendations?state.rec.category==='attraction':['attraction','all'].includes(state.category);
+ $('#closureStatus').hidden=!visible;
+ const at=closures?.source?.fetchedAt,valid=at&&Number.isFinite(Date.parse(at));
+ const time=valid?new Intl.DateTimeFormat('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Seoul'}).format(new Date(at)):null;
+ $('#closureStatusText').textContent=closureBusy?'공식 운휴 정보 확인 중…':`${closureError?'갱신 실패 · ':''}${closuresAreFresh(closures)?'공식 운휴':'운휴 정보 확인 필요'}${time?` · ${time} 확인`:''}`;
+ $('#refreshClosures').disabled=closureBusy;
+ $('#refreshClosures').textContent=closureBusy?'확인 중':'새로 확인';
+}
+function renderOperationalViews(){
+ if(!park)return;closureViewFresh=closuresAreFresh(closures);renderList();renderPins();if(state.selected&&poiById(state.selected))renderDetail(poiById(state.selected));if($('#routeDialog').open)renderRouteDestinations();
+}
+async function refreshClosures({manual=false}={}){
+ if(closureBusy)return;
+ if(Date.now()-closureAttempt<30000){if(manual)toast('잠시 후 다시 확인해 주세요.');return;}
+ closureAttempt=Date.now();closureBusy=true;renderClosureStatus();
+ try{
+  const base='https://adventure.lotteworld.com/api/today/';
+  const query='?storeCd=HC01801&langCd=HC01701';
+  const options={credentials:'omit',cache:'no-store',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(15000)};
+  const responses=await Promise.all([fetch(base+'closed-list'+query,options),fetch(base+'operating-hours'+query,options)]);
+  if(responses.some(r=>!r.ok))throw new Error('NETWORK');
+  const [body,hours]=await Promise.all(responses.map(r=>r.json()));
+  const next=parseClosureResponse(body,hours);
+  if(!closuresAreFresh(next))throw new Error('DATE_MISMATCH');
+  closures=next;closureError=false;
+ }catch{closureError=true;}
+ finally{closureBusy=false;renderOperationalViews();}
+}
 function renderList(){
+  renderClosureStatus();
   $('#sidebar').classList.toggle('recommendation-mode',state.recommendations);
   $('#recommendationControls').hidden=!state.recommendations;
   $('.search-box').hidden=state.recommendations;$('.sidebar-tabs').hidden=state.recommendations;
@@ -121,7 +157,7 @@ function renderList(){
   else $('#placeList').innerHTML=list.map(p=>{
     const subtitle=p.category==='facility'?(p.kind==='unknown'?'원본 범례 미표기 기호':`${nearest(p)?.name??floorLabel(p.floor)} 주변`):p.category==='food'?p.description:p.category==='shop'?p.description:'';
     const photo=p.category==='attraction'?localAssets.attractions?.[p._official?.officialId]:null;
-    return `<article class="place-item ${state.selected===p.id?'selected':''}"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} · ${esc(floorLabel(p.floor))} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><h3>${esc(p.name)}</h3><div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(p.category==='facility'?kindNames[p.kind]??'편의시설':`${names[p.category]}${p.number?` · ${p.number}번`:' · 공식 웹 안내'}`)}</span></div>${subtitle?`<div class="place-sub">${esc(subtitle)}</div>`:''}</div>${favoriteButton(p)}</article>`;
+    return `<article class="place-item ${state.selected===p.id?'selected':''}"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} · ${esc(floorLabel(p.floor))} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><h3>${esc(p.name)}</h3>${closureBadge(p)}<div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(p.category==='facility'?kindNames[p.kind]??'편의시설':`${names[p.category]}${p.number?` · ${p.number}번`:' · 공식 웹 안내'}`)}</span></div>${subtitle?`<div class="place-sub">${esc(subtitle)}</div>`:''}</div>${favoriteButton(p)}</article>`;
   }).join('');
   $('#favoriteCount').textContent=state.favorites.size;
   $('#scopeFloor').classList.toggle('active',!state.allFloors);$('#scopeFloor').setAttribute('aria-pressed',String(!state.allFloors));
@@ -143,10 +179,12 @@ function recommendationPosition(){
 function renderRecommendations(){
   const c=state.rec,position=recommendationPosition(),prefs=Array.isArray(c.preferences[c.category])?c.preferences[c.category]:[];
   $('#listTitle').textContent='나에게 맞는 추천';$('#clearFilters').hidden=true;$('#facilityFilters').hidden=true;
-  $('#recommendationControls').innerHTML=`<div class="rec-intro"><span class="eyebrow">PICK YOUR ADVENTURE</span><p>취향을 고르면 가까운 곳부터 함께 골라드려요.</p></div><div class="rec-categories" role="group" aria-label="추천 종류">${[['attraction','어트랙션'],['food','식당'],['shop','기념품·체험']].map(([id,label])=>`<button type="button" data-rec-category="${id}" aria-pressed="${c.category===id}" class="${c.category===id?'active':''}">${label}</button>`).join('')}</div><div class="rec-preferences" role="group" aria-label="취향 선택 · 여러 개 선택 가능">${recommendationPreferences[c.category].map(([id,label])=>`<button type="button" data-rec-preference="${id}" aria-pressed="${prefs.includes(id)}" class="${prefs.includes(id)?'active':''}">${label}</button>`).join('')}</div><label class="rec-sort">추천 기준<select id="recBalance"><option value="balanced" ${c.balance==='balanced'?'selected':''}>취향과 거리 균형</option><option value="taste" ${c.balance==='taste'?'selected':''}>취향 우선</option><option value="distance" ${c.balance==='distance'?'selected':''}>거리 우선</option></select></label><label class="rec-floor"><input id="recSameFloor" type="checkbox" ${c.sameFloor?'checked':''} ${position?'':'disabled'}>현재 위치와 같은 층만</label><div class="rec-location"><span>${position?esc(positionName(position))+(position.source==='estimated'?' · 거리도 추정값':''):'현재 위치를 지정하면 거리를 반영해요.'}</span><button type="button" data-rec-locate>${position?'위치 변경':'위치 지정'}</button></div><p class="rec-note">${position?'지도 통로 기준 비교 · 다른 층은 거리 비교 제외':'위치 없이 취향으로 추천 중'}${prefs.length?'':' · 취향을 여러 개 골라보세요.'}</p>`;
-  const rows=recommendPlaces(park.pois,{...c,preferences:prefs,position,floors:walkways.floors,limit:12});
+  $('#recommendationControls').innerHTML=`<div class="rec-intro"><span class="eyebrow">PICK YOUR ADVENTURE</span><p>취향을 고르면 가까운 곳부터 함께 골라드려요.</p></div><div class="rec-categories" role="group" aria-label="추천 종류">${[['attraction','어트랙션'],['food','식당'],['shop','기념품·체험']].map(([id,label])=>`<button type="button" data-rec-category="${id}" aria-pressed="${c.category===id}" class="${c.category===id?'active':''}">${label}</button>`).join('')}</div><div class="rec-preferences" role="group" aria-label="취향 선택 · 여러 개 선택 가능">${recommendationPreferences[c.category].map(([id,label])=>`<button type="button" data-rec-preference="${id}" aria-pressed="${prefs.includes(id)}" class="${prefs.includes(id)?'active':''}">${label}</button>`).join('')}</div><label class="rec-sort">추천 기준<select id="recBalance"><option value="balanced" ${c.balance==='balanced'?'selected':''}>취향과 거리 균형</option><option value="taste" ${c.balance==='taste'?'selected':''}>취향 우선</option><option value="distance" ${c.balance==='distance'?'selected':''}>거리 우선</option></select></label><label class="rec-floor"><input id="recSameFloor" type="checkbox" ${c.sameFloor?'checked':''} ${position?'':'disabled'}>현재 위치와 같은 층만</label><div class="rec-location"><span>${position?esc(positionName(position))+(position.source==='estimated'?' · 거리도 추정값':''):'현재 위치를 지정하면 거리를 반영해요.'}</span><button type="button" data-rec-locate>${position?'위치 변경':'위치 지정'}</button></div><p class="rec-note">${position?'지도 통로 기준 비교 · 다른 층은 거리 비교 제외':'위치 없이 취향으로 추천 중'}${prefs.length?'':' · 취향을 여러 개 골라보세요.'}${c.category==='attraction'&&closuresAreFresh(closures)?' · 운휴·점검 시설 제외':''}</p>`;
+  const eligible=park.pois.filter(p=>!attractionClosure(p,closures)?.active);
+  renderClosureStatus();
+  const rows=recommendPlaces(eligible,{...c,preferences:prefs,position,floors:walkways.floors,limit:12});
   $('#resultCount').textContent=`${rows.length}곳`;
-  $('#placeList').innerHTML=rows.length?rows.map((r,i)=>{const p=r.poi,photo=localAssets.attractions?.[p._official?.officialId];return `<article class="place-item rec-item"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><div class="rec-rank">추천 ${i+1}</div><h3>${esc(p.name)}</h3><div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(r.distanceLabel)}</span></div><p class="rec-reason">${esc(r.matched.length?r.matched.map(([,label])=>label).join(' · '):prefs.length?'선택한 취향 외 다른 후보':r.tags.slice(0,2).map(([,label])=>label).join(' · ')||'새로운 장소 둘러보기')}</p>${p.description?`<div class="place-sub">${esc(p.description)}</div>`:''}</div>${favoriteButton(p)}</article>`;}).join(''):'<div class="empty-state"><strong>추천할 장소가 없어요</strong>같은 층만 보기를 해제해 보세요.</div>';
+  $('#placeList').innerHTML=rows.length?rows.map((r,i)=>{const p=r.poi,photo=localAssets.attractions?.[p._official?.officialId];return `<article class="place-item rec-item"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><div class="rec-rank">추천 ${i+1}</div><h3>${esc(p.name)}</h3>${closureBadge(p)}<div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(r.distanceLabel)}</span></div><p class="rec-reason">${esc(r.matched.length?r.matched.map(([,label])=>label).join(' · '):prefs.length?'선택한 취향 외 다른 후보':r.tags.slice(0,2).map(([,label])=>label).join(' · ')||'새로운 장소 둘러보기')}</p>${p.description?`<div class="place-sub">${esc(p.description)}</div>`:''}</div>${favoriteButton(p)}</article>`;}).join(''):'<div class="empty-state"><strong>추천할 장소가 없어요</strong>취향·층 조건 또는 운휴 정보를 확인해 주세요.</div>';
   $('#recBalance').onchange=e=>{c.balance=e.target.value;saveRecommendations();renderRecommendations();};
   $('#recSameFloor').onchange=e=>{c.sameFloor=e.target.checked;saveRecommendations();renderRecommendations();};
 }
@@ -160,8 +198,8 @@ function renderPins(){
   const pinVisible=p=>(state.category==='all'||p.category===state.category)&&(!state.kind||p.kind===state.kind)&&(!state.favoritesOnly||state.favorites.has(p.id))&&(!state.query||matches({...p,floor:state.floor}));
   items.sort((a,b)=>Number(pinVisible(a))-Number(pinVisible(b)));
   $('#mapPins').innerHTML=items.map(p=>{
-    const visible=pinVisible(p);const on=state.selected===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
-    return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${on?'selected':''} ${visible||on?'':'muted'}" style="left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
+    const visible=pinVisible(p),closed=attractionClosure(p,closures)?.active;const on=state.selected===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
+    return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${closed?'operation-stopped':''} ${on?'selected':''} ${visible||on?'':'muted'}" style="left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)}${closed?` · ${esc(attractionClosure(p,closures).label)}`:''} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
   }).join('');
   $('#mapPins').style.pointerEvents=state.pick?'none':'';
   $$('#mapPins button').forEach(b=>{if(state.pick)b.style.pointerEvents='none';});
@@ -225,7 +263,7 @@ function renderDetail(p){
   detail.innerHTML=`<div class="detail-top ${p.category}">${picture?`<img src="${esc(picture)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer">`:icon(poiIcon(p))}<button class="icon-btn detail-close" type="button" data-detail-close aria-label="상세 정보 닫기">${icon('close')}</button></div>
   <div class="detail-body"><div class="detail-category"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직아일랜드':p.floor)}</span>${esc(names[p.category])}${p.number?` · ${p.number}번`:''}</div>
   <div class="detail-title-row"><h2>${esc(p.name)}</h2>${favoriteButton(p)}</div>
-  <p class="detail-description">${esc(description)}</p>
+  ${closureBadge(p,{detail:true})}${p.category==='attraction'?`<p class="operation-checked">${attractionClosure(p,closures)?.checkedAt?`공식 정보 · ${esc(new Intl.DateTimeFormat('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Seoul'}).format(new Date(attractionClosure(p,closures).checkedAt)))} 확인`:"공식 운휴 정보 미수신"}<a href="https://adventure.lotteworld.com/usage-guide/service/closed" target="_blank" rel="noopener">공식 운휴 안내 ↗</a></p>`:''}<p class="detail-description">${esc(description)}</p>
   ${o?.restrictions?`<p class="detail-restrictions">${esc(typeof o.restrictions==='string'?o.restrictions:JSON.stringify(o.restrictions))}</p>`:''}
   ${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
   <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
@@ -407,7 +445,7 @@ function facilityQueryKinds(query){
 }
 function routePlaceButton(p){
   const selected=state.routeDraft.toId===p.id;
-  return `<button class="route-place ${selected?'selected':''}" type="button" data-route-destination="${esc(p.id)}" aria-pressed="${selected}"><span class="route-place-icon ${p.category}">${icon(poiIcon(p))}</span><span><strong>${esc(p.name)}</strong><small>${esc(floorLabel(p.floor))}${p.x===null?' · 공식 위치 지도':''}</small></span><span class="route-place-check">${selected?icon('check'):icon('plus')}</span></button>`;
+  return `<button class="route-place ${selected?'selected':''}" type="button" data-route-destination="${esc(p.id)}" aria-pressed="${selected}"><span class="route-place-icon ${p.category}">${icon(poiIcon(p))}</span><span><strong>${esc(p.name)}</strong>${closureBadge(p)}<small>${esc(floorLabel(p.floor))}${p.x===null?' · 공식 위치 지도':''}</small></span><span class="route-place-check">${selected?icon('check'):icon('plus')}</span></button>`;
 }
 function renderRouteDestinations(){
   const draft=state.routeDraft,from=currentRouteOrigin();
@@ -532,7 +570,7 @@ function renderRoute(){
   svg.innerHTML=`<polyline class="route-outline" points="${pts}"/><polyline class="route-path" points="${pts}"/><path class="route-connector" d="M${start.x},${start.y} L${first.x},${first.y} M${last.x},${last.y} L${end.x},${end.y}"/>`;
 }
 async function refreshOfficial(){
-  try{const response=await fetch('data/official.json',{cache:'no-cache'});if(response.ok){const data=await response.json();if(Array.isArray(data.attractions))official=data;}}catch{}
+  try{const response=await fetch('data/official.json',{cache:'no-cache'});if(response.ok){const data=await response.json();if(Array.isArray(data.attractions)){official=data;const cached={...data.closures,date:data.operatingHours?.date};if(!closures||Date.parse(cached.source?.fetchedAt)>Date.parse(closures.source?.fetchedAt))closures=cached;}}}catch{}
   if(park){combineOfficial();renderList();renderPins();if(state.selected&&poiById(state.selected))renderDetail(poiById(state.selected));}
 }
 
@@ -582,6 +620,7 @@ function bindEvents(){
   const showRecommendations=()=>{state.recommendations=true;state.favoritesOnly=false;renderList();mobileSheet(true);};
   $('#navRecommendations').onclick=showRecommendations;$('#mobileRecommendations').onclick=showRecommendations;
   $('#clearLocation').onclick=clearCurrentLocation;
+  $('#refreshClosures').onclick=()=>refreshClosures({manual:true});
   $('#navMap').onclick=showMap;$('#mobileMap').onclick=showMap;$('#navFavorites').onclick=showFavorites;$('#mobileFavorites').onclick=showFavorites;
   $('#openSearch').onclick=()=>{state.recommendations=false;state.favoritesOnly=false;renderList();mobileSheet(true);$('#search').focus();};
   $('#mobileList').onclick=()=>{state.recommendations=false;state.favoritesOnly=false;renderList();mobileSheet(true);};$('#closeSearch').onclick=()=>mobileSheet(false);
@@ -599,7 +638,7 @@ function bindEvents(){
   $('#clearRouteSearch').onclick=()=>{state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};renderRouteDestinations();$('#routeSearch').focus();};
   $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!e.target.closest('input,select,textarea')){e.preventDefault();state.recommendations=false;renderList();mobileSheet(true);$('#search').focus();}if(e.key==='Escape'&&!$$('dialog[open]').length){if(state.pick)endPick();else if(state.selected)closeDetail();else mobileSheet(false);}});
-  window.addEventListener('hashchange',readHash);window.addEventListener('online',()=>{updateLocationUI();refreshOfficial();});window.addEventListener('offline',updateLocationUI);
+  window.addEventListener('hashchange',readHash);window.addEventListener('online',()=>{updateLocationUI();refreshOfficial();refreshClosures();});window.addEventListener('offline',updateLocationUI);
   $('#mapImage').addEventListener('error',()=>{toast('지도 이미지를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.');$('#mapImage').dataset.error='true';});
   bindMapGestures();
 }
@@ -609,10 +648,12 @@ async function init(){
     const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json'),fetch('data/georeference.json')]);
     if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways,georeference]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
     try{localAssets=await fetch('data/local-assets.json').then(r=>r.ok?r.json():{});}catch{}
-    bindEvents();setFloor('1F');updateLocationUI();await refreshOfficial();readHash();
+    bindEvents();setFloor('1F');updateLocationUI();await refreshOfficial();readHash();refreshClosures();
+    setInterval(()=>{if(!document.hidden)refreshClosures();},5*60000);
+    setInterval(()=>{if(!document.hidden&&closureViewFresh!==closuresAreFresh(closures))renderOperationalViews();},60000);
     setInterval(()=>{if(!document.hidden)refreshOfficial();},30*60000);
     setInterval(()=>{if(state.tracking){renderLocationPins();updateLocationUI();}},5000);
-    document.addEventListener('visibilitychange',()=>{if(document.hidden){if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();}else if(state.tracking){state.gpsPending=true;fixFilter.reset();startWatch();updateLocationUI();}});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden){if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();}else{if(Date.now()-closureAttempt>=5*60000)refreshClosures();if(state.tracking){state.gpsPending=true;fixFilter.reset();startWatch();updateLocationUI();}}});
     window.addEventListener('pagehide',()=>{if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();});
     if('serviceWorker'in navigator&&window.isSecureContext)navigator.serviceWorker.register('sw.js').catch(()=>{});
   }catch(e){console.error(e);$('#placeList').innerHTML='<div class="empty-state"><strong>지도를 펼치지 못했어요</strong>연결을 확인하고 새로고침해 주세요.<br><a href="assets/guide-2026.pdf">원본 가이드맵 보기 ↗</a></div>';$('#resultCount').textContent='연결 확인 필요';}

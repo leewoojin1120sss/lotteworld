@@ -107,3 +107,31 @@ export function recommendPlaces(pois,{category='attraction',preferences=[],posit
  for(const row of rows){const rank=reachable.indexOf(row);row.near=rank<0?0:1-rank/Math.max(1,reachable.length);row.score=(wanted.length?weight*row.taste:0)+(position?(wanted.length?1-weight:1)*row.near:0);row.distanceLabel=!position?'위치 지정 후 거리 반영':row.poi.floor!==position.floor?'층·구역 이동 필요':row.cost===null?'같은 층 · 거리 미확인':rank===0?'같은 층 · 가장 가까운 후보':rank<Math.ceil(reachable.length/3)?'같은 층 · 가까운 편':'같은 층 · 통로 거리 반영';}
  return rows.sort((a,b)=>b.score-a.score||b.matched.length-a.matched.length||a.poi.id.localeCompare(b.poi.id,'ko',{numeric:true})).slice(0,limit);
 }
+
+
+export function koreaDate(at=Date.now()){
+ const parts=new Intl.DateTimeFormat('en',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(at);
+ return ['year','month','day'].map(k=>parts.find(p=>p.type===k).value).join('');
+}
+export function parseClosureResponse(body,hours,at=Date.now()){
+ if(String(body?.code)!=='200'||!Array.isArray(body.list)||String(hours?.code)!=='200'||!/^\d{8}$/.test(hours.data?.operDt))throw new Error('INVALID_CLOSURES');
+ const rides=body.list.map(row=>{
+  if(!/^\d+$/.test(String(row.shopSysCd))||typeof row.atrctNm!=='string'||!row.atrctNm.trim()||typeof row.atrctSttsCdNm!=='string'||!row.atrctSttsCdNm.trim()||typeof row.atrctSttsCd!=='string')throw new Error('INVALID_CLOSURES');
+  return {officialId:String(row.shopSysCd),name:row.atrctNm,statusCode:row.atrctSttsCd,statusLabel:row.atrctSttsCdNm};
+ });
+ return {rides,date:hours.data.operDt,source:{fetchedAt:new Date(at).toISOString(),stale:false,url:'https://adventure.lotteworld.com/api/today/closed-list',method:'GET'}};
+}
+export function closuresAreFresh(doc,now=Date.now()){
+ const at=Date.parse(doc?.source?.fetchedAt);
+ return !!doc&&!doc.source?.stale&&Array.isArray(doc.rides)&&Number.isFinite(at)&&at<=now+60000&&now-at<=30*60000&&doc.date===koreaDate(now);
+}
+export function attractionClosure(p,doc,now=Date.now()){
+ if(p.category!=='attraction')return null;
+ const fresh=closuresAreFresh(doc,now),id=p._official?.officialId;
+ const row=id?doc?.rides?.find(r=>String(r.officialId)===String(id)):null;
+ const listed=!!row,stopped=listed&&row.statusCode!=='HC02901';
+ const label=stopped?row.statusLabel:'운휴 공지 없음';
+ if(!fresh)return {kind:'unknown',active:false,label:stopped?`이전 정보 · ${label}`:'운휴 확인 필요',checkedAt:doc?.source?.fetchedAt??null};
+ if(!id)return {kind:'unknown',active:false,label:'운휴 확인 필요',checkedAt:doc.source.fetchedAt};
+ return {kind:stopped?(/점검/.test(label)?'maintenance':'closed'):'unlisted',active:stopped,label,checkedAt:doc.source.fetchedAt};
+}
