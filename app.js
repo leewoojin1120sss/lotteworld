@@ -1,4 +1,4 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,parseClosureResponse,closuresAreFresh,attractionClosure} from './lib.js';
+import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -59,7 +59,8 @@ const state={floor:'1F',category:'attraction',query:'',allFloors:false,favorites
 Object.assign(state,{locationFloor:'1F',tracking:false,estimate:null,manualHoldUntil:0,manualBaseGPS:null,motionEnabled:false,heading:null,headingAt:0,motionBase:null,motionSteps:0});
 state.recommendations=false;
 const savedRecommendations=safeStored('yaho-recommendations',{});
-state.rec={category:['attraction','food','shop'].includes(savedRecommendations.category)?savedRecommendations.category:'attraction',preferences:savedRecommendations.preferences??{},balance:['balanced','taste','distance'].includes(savedRecommendations.balance)?savedRecommendations.balance:'balanced',sameFloor:savedRecommendations.sameFloor===true};
+state.rec={category:['attraction','food','shop'].includes(savedRecommendations.category)?savedRecommendations.category:'attraction',preferences:savedRecommendations.preferences??{},balance:['balanced','taste','distance'].includes(savedRecommendations.balance)?savedRecommendations.balance:'balanced',sameFloor:savedRecommendations.sameFloor===true,area:['all','adventure','magic'].includes(savedRecommendations.area)?savedRecommendations.area:'all',avoid:Array.isArray(savedRecommendations.avoid)?savedRecommendations.avoid:[],onlyMatches:savedRecommendations.onlyMatches!==false,hideSaved:savedRecommendations.hideSaved===true};
+state.recSeed=0;state.recLimit=12;
 state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};
 const view={x:0,y:0,scale:1,fit:1,width:1070,height:760};
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,4200);}
@@ -177,17 +178,38 @@ function recommendationPosition(){
   return p&&!positionIsStale(p)&&!(p.source==='estimated'&&p.accuracyM>75&&!p.confirmed)?{...p,pdf:toPDF(p)}:null;
 }
 function renderRecommendations(){
-  const c=state.rec,position=recommendationPosition(),prefs=Array.isArray(c.preferences[c.category])?c.preferences[c.category]:[];
+  const c=state.rec,position=recommendationPosition(),prefs=Array.isArray(c.preferences[c.category])?c.preferences[c.category].filter(id=>recommendationPreferences[c.category].some(([key])=>key===id)):[];
+  const advancedOpen=$('#recAdvanced')?.open??false;
+  const tastesOpen=state.recOpenTastes??($('#recTasteDetails')?.open??true);state.recOpenTastes=undefined;
   $('#listTitle').textContent='나에게 맞는 추천';$('#clearFilters').hidden=true;$('#facilityFilters').hidden=true;
-  $('#recommendationControls').innerHTML=`<div class="rec-intro"><span class="eyebrow">PICK YOUR ADVENTURE</span><p>취향을 고르면 가까운 곳부터 함께 골라드려요.</p></div><div class="rec-categories" role="group" aria-label="추천 종류">${[['attraction','어트랙션'],['food','식당'],['shop','기념품·체험']].map(([id,label])=>`<button type="button" data-rec-category="${id}" aria-pressed="${c.category===id}" class="${c.category===id?'active':''}">${label}</button>`).join('')}</div><div class="rec-preferences" role="group" aria-label="취향 선택 · 여러 개 선택 가능">${recommendationPreferences[c.category].map(([id,label])=>`<button type="button" data-rec-preference="${id}" aria-pressed="${prefs.includes(id)}" class="${prefs.includes(id)?'active':''}">${label}</button>`).join('')}</div><label class="rec-sort">추천 기준<select id="recBalance"><option value="balanced" ${c.balance==='balanced'?'selected':''}>취향과 거리 균형</option><option value="taste" ${c.balance==='taste'?'selected':''}>취향 우선</option><option value="distance" ${c.balance==='distance'?'selected':''}>거리 우선</option></select></label><label class="rec-floor"><input id="recSameFloor" type="checkbox" ${c.sameFloor?'checked':''} ${position?'':'disabled'}>현재 위치와 같은 층만</label><div class="rec-location"><span>${position?esc(positionName(position))+(position.source==='estimated'?' · 거리도 추정값':''):'현재 위치를 지정하면 거리를 반영해요.'}</span><button type="button" data-rec-locate>${position?'위치 변경':'위치 지정'}</button></div><p class="rec-note">${position?'지도 통로 기준 비교 · 다른 층은 거리 비교 제외':'위치 없이 취향으로 추천 중'}${prefs.length?'':' · 취향을 여러 개 골라보세요.'}${c.category==='attraction'&&closuresAreFresh(closures)?' · 운휴·점검 시설 제외':''}</p>`;
+  $('#recommendationControls').innerHTML=`<div class="rec-intro"><p>오늘의 기분부터, 세부 취향까지 골라보세요.</p></div>
+  <div class="rec-categories" role="group" aria-label="추천 종류">${[['attraction','어트랙션'],['food','식당'],['shop','기념품·체험']].map(([id,label])=>`<button type="button" data-rec-category="${id}" aria-pressed="${c.category===id}" class="${c.category===id?'active':''}">${label}</button>`).join('')}</div>
+  <div class="rec-presets" role="group" aria-label="상황별 취향 묶음">${recommendationPresets[c.category].map(([id,label,ids])=>`<button type="button" data-rec-preset="${id}" aria-pressed="${ids.length===prefs.length&&ids.every(k=>prefs.includes(k))}">${label}</button>`).join('')}</div>
+  <details id="recTasteDetails" class="rec-taste-details" ${tastesOpen?'open':''}><summary>세부 취향 <span>${prefs.length?`${prefs.length}개 선택`:'여러 개 선택 가능'}</span></summary><div class="rec-section-title"><strong>마음에 드는 것을 모두 골라요</strong><button type="button" data-rec-reset>초기화</button></div>
+  <div class="rec-preferences" role="group" aria-label="취향 선택 · 여러 개 선택 가능">${recommendationPreferences[c.category].map(([id,label])=>`<button type="button" data-rec-preference="${id}" aria-pressed="${prefs.includes(id)}" class="${prefs.includes(id)?'active':''}">${label}</button>`).join('')}</div></details>
+  <label class="rec-floor"><input id="recOnlyMatches" type="checkbox" ${c.onlyMatches?'checked':''}>선택한 취향에 맞는 곳만</label>
+  <label class="rec-sort">추천 기준<select id="recBalance"><option value="balanced" ${c.balance==='balanced'?'selected':''}>취향과 거리 균형</option><option value="taste" ${c.balance==='taste'?'selected':''}>취향 우선</option><option value="distance" ${c.balance==='distance'?'selected':''}>거리 우선</option></select></label>
+  <details id="recAdvanced" class="rec-advanced" ${advancedOpen?'open':''}><summary>조건 더 고르기${c.area!=='all'||c.category==='attraction'&&c.avoid.length||c.sameFloor||c.hideSaved?' · 적용 중':''}</summary>
+  <label class="rec-sort">구역<select id="recArea"><option value="all" ${c.area==='all'?'selected':''}>모든 구역</option><option value="adventure" ${c.area==='adventure'?'selected':''}>어드벤처</option><option value="magic" ${c.area==='magic'?'selected':''}>매직아일랜드</option></select></label>
+  <label class="rec-floor"><input id="recSameFloor" type="checkbox" ${c.sameFloor?'checked':''} ${position?'':'disabled'}>현재 위치와 같은 층만</label>
+  <label class="rec-floor"><input id="recHideSaved" type="checkbox" ${c.hideSaved?'checked':''}>즐겨찾기 외 새로운 곳</label>
+  ${c.category==='attraction'?`<p class="rec-avoid-title">이번에는 피하고 싶어요</p><div class="rec-preferences rec-avoid" role="group" aria-label="피할 어트랙션 유형">${recommendationPreferences.attraction.filter(([id])=>['height','spin','water','dark'].includes(id)).map(([id,label])=>`<button type="button" data-rec-avoid="${id}" aria-pressed="${c.avoid.includes(id)}" class="${c.avoid.includes(id)?'active':''}">${label}</button>`).join('')}</div>`:''}</details>
+  <div class="rec-location"><span>${position?esc(positionName(position))+(position.source==='estimated'?' · 거리도 추정값':''):'현재 위치를 지정하면 거리를 반영해요.'}</span><button type="button" data-rec-locate>${position?'위치 변경':'위치 지정'}</button></div>
+  <p class="rec-note">설명·메뉴 기반 추천${position?' · 같은 층 통로 거리 반영':''}${c.category==='attraction'&&closuresAreFresh(closures)?' · 운휴·점검 제외':''}</p>`;
   const eligible=park.pois.filter(p=>!attractionClosure(p,closures)?.active);
   renderClosureStatus();
-  const rows=recommendPlaces(eligible,{...c,preferences:prefs,position,floors:walkways.floors,limit:12});
-  $('#resultCount').textContent=`${rows.length}곳`;
-  $('#placeList').innerHTML=rows.length?rows.map((r,i)=>{const p=r.poi,photo=localAssets.attractions?.[p._official?.officialId];return `<article class="place-item rec-item"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><div class="rec-rank">추천 ${i+1}</div><h3>${esc(p.name)}</h3>${closureBadge(p)}<div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(r.distanceLabel)}</span></div><p class="rec-reason">${esc(r.matched.length?r.matched.map(([,label])=>label).join(' · '):prefs.length?'선택한 취향 외 다른 후보':r.tags.slice(0,2).map(([,label])=>label).join(' · ')||'새로운 장소 둘러보기')}</p>${p.description?`<div class="place-sub">${esc(p.description)}</div>`:''}</div>${favoriteButton(p)}</article>`;}).join(''):'<div class="empty-state"><strong>추천할 장소가 없어요</strong>취향·층 조건 또는 운휴 정보를 확인해 주세요.</div>';
-  $('#recBalance').onchange=e=>{c.balance=e.target.value;saveRecommendations();renderRecommendations();};
-  $('#recSameFloor').onchange=e=>{c.sameFloor=e.target.checked;saveRecommendations();renderRecommendations();};
+  const allRows=recommendPlaces(eligible,{...c,preferences:prefs,position,floors:walkways.floors,excludeIds:c.hideSaved?[...state.favorites]:[],seed:state.recSeed,limit:eligible.length});
+  const rows=allRows.slice(0,state.recLimit);
+  $('#resultCount').textContent=`${allRows.length}곳`;
+  $('#placeList').innerHTML=rows.length?`<div class="rec-results-toolbar"><span>${rows.length}곳 추천${prefs.length?` · 취향 ${prefs.length}개 반영`:''}</span><button type="button" data-rec-refresh>다른 추천 보기 ${icon('sparkles')}</button></div>`+rows.map((r,i)=>{const p=r.poi,photo=localAssets.attractions?.[p._official?.officialId];return `<article class="place-item rec-item"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><div class="rec-rank">추천 ${i+1}</div><h3>${esc(p.name)}</h3>${closureBadge(p)}<div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(r.distanceLabel)}</span></div><p class="rec-reason">${esc(r.matched.length?r.matched.map(([,label])=>label).join(' · '):prefs.length?'선택한 취향 외 다른 후보':r.tags.slice(0,2).map(([,label])=>label).join(' · ')||'새로운 장소 둘러보기')}</p>${p.description?`<div class="place-sub">${esc(p.description)}</div>`:''}</div>${favoriteButton(p)}</article>`;}).join('')+(allRows.length>rows.length?`<button class="rec-more" type="button" data-rec-more>추천 더 보기 · ${allRows.length-rows.length}곳 남음</button>`:''):'<div class="empty-state"><strong>조건에 맞는 장소가 없어요</strong>취향이나 제외 조건을 줄여보세요.<button class="btn btn-subtle" type="button" data-rec-reset>추천 조건 초기화</button></div>';
+  const change=(key,value)=>{c[key]=value;state.recLimit=12;saveRecommendations();renderRecommendations();};
+  $('#recBalance').onchange=e=>change('balance',e.target.value);
+  $('#recSameFloor').onchange=e=>change('sameFloor',e.target.checked);
+  $('#recOnlyMatches').onchange=e=>change('onlyMatches',e.target.checked);
+  $('#recHideSaved').onchange=e=>change('hideSaved',e.target.checked);
+  $('#recArea').onchange=e=>change('area',e.target.value);
 }
+
 function saveRecommendations(){try{localStorage.setItem('yaho-recommendations',JSON.stringify(state.rec));}catch{}}
 function clearCurrentLocation(){
   stopGPS();state.position=null;state.gps=null;state.estimate=null;state.gpsError='';state.manualBaseGPS=null;state.manualHoldUntil=0;state.motionBase=null;calibrations=[];fixFilter.reset();
@@ -217,7 +239,7 @@ function applyTransform(){
   // Layout both layers at their final pixel size. A scaled compositor surface
   // plus inversely scaled children can rasterize pin text at the wrong scale.
   const world=$('#mapWorld'),artwork=$('#mapImage');
-  world.classList.toggle('native-markers',view.scale>=1.4);
+  world.classList.toggle('large-markers',view.scale>=1.4);
   world.style.setProperty('--map-scale',view.scale);
   for(const layer of [world,artwork]){
     layer.style.width=`${view.width*view.scale}px`;
@@ -596,8 +618,14 @@ function bindEvents(){
   document.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
     if('recLocate'in b.dataset){beginPick();return;}
-    if(b.dataset.recCategory){state.rec.category=b.dataset.recCategory;saveRecommendations();renderRecommendations();return;}
-    if(b.dataset.recPreference){const c=state.rec,k=b.dataset.recPreference,old=Array.isArray(c.preferences[c.category])?c.preferences[c.category]:[];c.preferences[c.category]=old.includes(k)?old.filter(x=>x!==k):[...old,k];saveRecommendations();renderRecommendations();return;}
+    if('recRefresh'in b.dataset){state.recSeed++;state.recLimit=12;renderRecommendations();return;}
+    if('recMore'in b.dataset){state.recLimit+=12;renderRecommendations();return;}
+    if('recReset'in b.dataset){state.rec.preferences[state.rec.category]=[];Object.assign(state.rec,{avoid:[],area:'all',sameFloor:false,hideSaved:false,onlyMatches:true});state.recLimit=12;saveRecommendations();renderRecommendations();return;}
+    if(b.dataset.recPreset){const preset=recommendationPresets[state.rec.category].find(([id])=>id===b.dataset.recPreset);if(preset){state.rec.preferences[state.rec.category]=[...preset[2]];state.recLimit=12;state.recOpenTastes=false;saveRecommendations();renderRecommendations();}return;}
+    if(b.dataset.recAvoid){const id=b.dataset.recAvoid;state.rec.avoid=state.rec.avoid.includes(id)?state.rec.avoid.filter(k=>k!==id):[...state.rec.avoid,id];state.recLimit=12;saveRecommendations();renderRecommendations();return;}
+
+    if(b.dataset.recCategory){state.rec.category=b.dataset.recCategory;state.recLimit=12;state.recOpenTastes=true;state.query='';$('#search').value='';saveRecommendations();setCategory(state.rec.category);return;}
+    if(b.dataset.recPreference){const c=state.rec,k=b.dataset.recPreference,old=Array.isArray(c.preferences[c.category])?c.preferences[c.category]:[];c.preferences[c.category]=old.includes(k)?old.filter(x=>x!==k):[...old,k];state.recLimit=12;saveRecommendations();renderRecommendations();return;}
     if(b.dataset.locationLandmark){const p=poiById(b.dataset.locationLandmark);if(p){$('#locationDialog').close();setManualPosition(p);}return;}
     if(b.dataset.routeDestination){selectRouteDestination(b.dataset.routeDestination);return;}
     if(b.dataset.routeNearest){selectRouteFacility(b.dataset.routeNearest);return;}
@@ -621,7 +649,7 @@ function bindEvents(){
   $('#clearFilters').onclick=()=>{state.query='';state.kind=null;$('#search').value='';renderList();renderPins();};
   const showMap=()=>{state.recommendations=false;state.favoritesOnly=false;renderList();renderPins();mobileSheet(false);};
   const showFavorites=()=>{state.recommendations=false;state.favoritesOnly=true;state.allFloors=true;state.category='all';state.query='';state.kind=null;$('#search').value='';renderList();renderPins();mobileSheet(true);};
-  const showRecommendations=()=>{state.recommendations=true;state.favoritesOnly=false;renderList();mobileSheet(true);};
+  const showRecommendations=()=>{state.recommendations=true;state.favoritesOnly=false;state.query='';$('#search').value='';setCategory(state.rec.category);mobileSheet(true);};
   $('#navRecommendations').onclick=showRecommendations;$('#mobileRecommendations').onclick=showRecommendations;
   $('#clearLocation').onclick=clearCurrentLocation;
   $('#refreshClosures').onclick=()=>refreshClosures({manual:true});

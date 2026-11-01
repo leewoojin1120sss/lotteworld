@@ -88,25 +88,79 @@ export function transferRecommendations(from,pois,floors) {
 
 // Tags are editorial keyword matches to the guide/catalogue, not ratings.
 export const recommendationPreferences={
- attraction:[['thrill','짜릿한 스릴','스릴|아찔|급발진|롤러코스터|자유낙하|자이로|후렌치|혜성특급'],['story','모험·스토리','모험|판타지|동화|탐사|여행|신비'],['gentle','여유·풍경','회전목마|모노레일|풍선비행|로티트레인|환타지드림|드림보트'],['game','슈팅·게임','슈팅|레이싱|카트라이더|배틀'],['kids','어린이와 함께','어린이|꼬마|키즈|놀이터|유아|햇님달님|스윙팡팡']],
- food:[['meal','든든한 식사','밥|한식|중식|돈까스|돈카츠|돈코츠|우동|라멘|라면|파스타|피자|버거|짜장|짬뽕|스테이크'],['snack','간편한 간식','츄러스|핫도그|소시지|소떡|떡볶이|프레즐|팝콘|콜팝|샌드위치'],['sweet','달콤한 디저트','아이스크림|젤라또|빙수|와플|탕후루|모찌|케이크|마카롱|베이커리|호두과자|소프트콘'],['cafe','커피·음료','커피|라떼|밀크티|버블티|에이드|주스|쉐이크|프라페|카페']],
- shop:[['character','캐릭터·굿즈','캐릭터|굿즈|기프트|헬로키티'],['toy','완구·소품','완구|풍선|헤어밴드|가방|인형'],['candy','캔디·초콜릿','캔디|초콜릿|젤리'],['photo','사진·꾸미기','사진|포토|드레스|교복|분장'],['play','게임·체험','게임|오락실|체험|타로|문보트']]
+ attraction:[
+ ['thrill','짜릿한 스릴','스릴|아찔|급발진|롤러코스터|자유낙하|자이로|후렌치|혜성특급'],
+ ['story','모험·스토리','모험|판타지|동화|탐사|여행|신비'],
+ ['gentle','여유·풍경','회전목마|모노레일|풍선비행|로티트레인|환타지드림|드림보트'],
+ ['game','슈팅·레이싱','슈팅|레이싱|카트라이더|배틀'],
+ ['kids','어린이와 함께','어린이|꼬마|키즈|놀이터|유아|햇님달님|스윙팡팡'],
+ ['height','높이·낙하','자이로드롭|자이로스윙|스페인해적선|풍선비행|폭포|자유낙하'],
+ ['spin','빙글빙글 회전','회전바구니|자이로스핀|자이로스윙|혜성특급|스윙팡팡'],
+ ['water','보트·급류','드림보트|신밧드|후룸라이드|아트란티스|와일드밸리|와일드 밸리|보트|급류'],
+ ['dark','어둠 속 모험','어둠|다크|동굴|어크로스다크|혜성특급'],
+ ['show','공연·관람','극장|뮤지컬|시어터|씨어터|관람']
+ ],
+ food:[
+ ['meal','든든한 식사','밥|한식|중식|돈까스|돈카츠|돈코츠|우동|라멘|라면|파스타|피자|버거|짜장|짬뽕|스테이크'],
+ ['snack','간편한 간식','츄러스|핫도그|소시지|소떡|떡볶이|프레즐|팝콘|콜팝|샌드위치'],
+ ['sweet','달콤한 디저트','아이스크림|젤라또|빙수|와플|탕후루|모찌|케이크|마카롱|베이커리|호두과자|소프트콘'],
+ ['cafe','커피·음료','커피|라떼|밀크티|버블티|에이드|주스|쉐이크|프라페|카페'],
+ ['korean','한식·분식','한식|분식|비빔밥|볶음밥|스팸마리|떡볶이|김계떡|김피라'],
+ ['japanese','돈까스·일식','돈까스|돈카츠|돈코츠|라멘|우동|유부|초밥'],
+ ['chinese','짜장·중식','중식|짜장|짬뽕|탕수육'],
+ ['western','피자·버거·양식','피자|파스타|스테이크|버거|샌드위치|필라프|타코|퀘사디아'],
+ ['chicken','치킨·콜팝','치킨|콜팝|통다리|BHC|BBQ'],
+ ['ice','아이스크림·빙수','아이스크림|젤라또|빙수|소프트콘|소프트아이스'],
+ ['bakery','빵·와플·츄러스','빵|와플|츄러스|프레즐|베이커리|호두과자'],
+ ['tea','밀크티·상큼한 음료','밀크티|버블티|에이드|주스|스무디|공차']
+ ],
+ shop:[
+ ['character','캐릭터·굿즈','캐릭터|굿즈|기프트|헬로키티'],
+ ['toy','완구·풍선','완구|풍선|인형|토이'],
+ ['candy','캔디·초콜릿','캔디|초콜릿|젤리'],
+ ['photo','사진 남기기','사진|포토|촬영|인화'],
+ ['play','게임·체험','게임|오락실|체험|타로|문보트'],
+ ['dress','교복·드레스','드레스|교복|분장'],
+ ['accessory','머리띠·소품','헤어밴드|머리띠|가방|소품|키링'],
+ ['maple','메이플스토리','메이플'],
+ ['sanrio','헬로키티','헬로키티|산리오']
+ ]
 };
-export function recommendPlaces(pois,{category='attraction',preferences=[],position=null,floors={},sameFloor=false,balance='balanced',limit=12}={}){
- const definitions=recommendationPreferences[category]??[],wanted=definitions.filter(([id])=>preferences.includes(id));
- const rows=pois.filter(p=>p.category===category&&!/오픈예정/.test(p.name)&&(!sameFloor||!position||p.floor===position.floor)).map(p=>{
-  const text=[p.name,p.description,p._official?.description,p._official?.menu].join(' ');
+export const recommendationPresets={
+ attraction:[['friends','친구와 신나게',['thrill','game']],['relax','여유롭게 구경',['gentle','story']],['family','아이와 함께',['kids','show']]],
+ food:[['lunch','든든한 한 끼',['meal','korean']],['sugar','달달하게 충전',['sweet','ice','bakery']],['quick','가볍게 쉬어가기',['snack','cafe']]],
+ shop:[['gift','선물 고르기',['character','accessory']],['memory','추억 남기기',['photo','dress']],['fan','캐릭터 팬이라면',['character','maple','sanrio']]]
+};
+function recommendationHash(id,seed){let h=(seed>>>0)^2166136261;for(const c of id)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
+export function recommendPlaces(pois,{category='attraction',preferences=[],position=null,floors={},sameFloor=false,balance='balanced',limit=12,area='all',avoid=[],onlyMatches=false,excludeIds=[],seed=0}={}){
+ const definitions=recommendationPreferences[category]??[],wanted=definitions.filter(([id])=>preferences.includes(id)),excluded=new Set(excludeIds);
+ const avoidance=category==='attraction'?definitions.filter(([id])=>avoid.includes(id)):[];
+ const rows=[];
+ for(const p of pois){
+  if(p.category!==category||/오픈예정/.test(p.name)||excluded.has(p.id)||sameFloor&&position&&p.floor!==position.floor||area==='magic'&&p.floor!=='MAGIC'||area==='adventure'&&p.floor==='MAGIC')continue;
+  // Prefer the guide's concrete description over an additional marketing blurb.
+  const text=[p.name,p.description,p._official?.menu].join(' ');
   const tags=definitions.filter(([,label,pattern])=>new RegExp(pattern,'i').test(text));
+  if(avoidance.some(([id])=>tags.some(([key])=>key===id)))continue;
   const matched=tags.filter(([id])=>wanted.some(([key])=>key===id));
+  if(onlyMatches&&wanted.length&&!matched.length)continue;
   let cost=null;
   if(position?.pdf&&p.floor===position.floor&&p.pdf){try{const route=corridorRoute(p.floor,position,p,floors[p.floor]);cost=route.illustrationLength+route.connectors.reduce((a,b)=>a+b,0);}catch{}}
-  return {poi:p,tags,matched,cost,taste:wanted.length?matched.length/wanted.length:0};
- });
+  rows.push({poi:p,tags,matched,cost,taste:wanted.length?matched.length/wanted.length:0,tie:recommendationHash(p.id,seed)});
+ }
  const reachable=rows.filter(r=>r.cost!==null).sort((a,b)=>a.cost-b.cost||a.poi.id.localeCompare(b.poi.id));
  const weight=balance==='taste'?.85:balance==='distance'?.25:.6;
  for(const row of rows){const rank=reachable.indexOf(row);row.near=rank<0?0:1-rank/Math.max(1,reachable.length);row.score=(wanted.length?weight*row.taste:0)+(position?(wanted.length?1-weight:1)*row.near:0);row.distanceLabel=!position?'위치 지정 후 거리 반영':row.poi.floor!==position.floor?'층·구역 이동 필요':row.cost===null?'같은 층 · 거리 미확인':rank===0?'같은 층 · 가장 가까운 후보':rank<Math.ceil(reachable.length/3)?'같은 층 · 가까운 편':'같은 층 · 통로 거리 반영';}
- return rows.sort((a,b)=>b.score-a.score||b.matched.length-a.matched.length||a.poi.id.localeCompare(b.poi.id,'ko',{numeric:true})).slice(0,limit);
+ const chosen=[],seenTags=new Set(),seenNames=new Set(),remaining=[...rows];
+ const strength=balance==='distance'?.025:.08;
+ while(remaining.length&&chosen.length<limit){
+  const value=row=>row.score+strength*row.matched.filter(([id])=>!seenTags.has(id)).length/Math.max(1,wanted.length)+(!wanted.length&&!position?strength*row.tags.filter(([id])=>!seenTags.has(id)).length/Math.max(1,row.tags.length):0)-(seenNames.has(normalizeName(row.poi.name))?strength:0);
+  remaining.sort((a,b)=>value(b)-value(a)||b.matched.length-a.matched.length||a.tie-b.tie||a.poi.id.localeCompare(b.poi.id,'ko',{numeric:true}));
+  const row=remaining.shift();chosen.push(row);row.tags.forEach(([id])=>seenTags.add(id));seenNames.add(normalizeName(row.poi.name));
+ }
+ return chosen;
 }
+
 
 
 export function koreaDate(at=Date.now()){
