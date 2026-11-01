@@ -304,3 +304,17 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[t
  .gps-reading p{font-size:15px}.location-options .btn{font-size:14px}.operation-badge{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Pin glyphs are painted at their final screen size, never counter-scaled. */
+.map-world{transform:none;will-change:auto}.pin,.location-dot{transform:translate(-50%,-50%)}
+.pin>span:not(.pin-label){font-size:12px;line-height:1;font-weight:800}.pin.muted{opacity:0}.pin.muted:hover{opacity:1}
+
+/* At close range the PDF's vector number is the visible marker; the HTML
+   button remains an aligned hit target, avoiding a second number on top. */
+.native-markers .guide-number-pin{width:calc(20px * var(--map-scale));height:calc(20px * var(--map-scale));min-height:34px}
+.native-markers .guide-number-pin::before{display:none}
+.native-markers .guide-number-pin>span:not(.pin-label){visibility:hidden}
+.native-markers .guide-number-pin:hover::before,.native-markers .guide-number-pin:focus-visible::before,.native-markers .guide-number-pin.selected::before{display:block;inset:-3px;background:transparent;border:2px solid currentColor;box-shadow:0 0 0 3px #fff9;border-radius:12px}
+.native-markers .guide-number-pin .pin-label{top:calc(100% + 5px);font-size:13px!important}
+.native-markers .guide-number-pin{min-width:44px;min-height:44px}
+.native-markers .guide-number-pin.operation-stopped{border-radius:14px}

@@ -199,7 +199,7 @@ function renderPins(){
   items.sort((a,b)=>Number(pinVisible(a))-Number(pinVisible(b)));
   $('#mapPins').innerHTML=items.map(p=>{
     const visible=pinVisible(p),closed=attractionClosure(p,closures)?.active;const on=state.selected===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
-    return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${closed?'operation-stopped':''} ${on?'selected':''} ${visible||on?'':'muted'}" style="left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)}${closed?` · ${esc(attractionClosure(p,closures).label)}`:''} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
+    return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${p.number&&p.source==='guide-2026'?'guide-number-pin':''} ${closed?'operation-stopped':''} ${on?'selected':''} ${visible||on?'':'muted'}" style="left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)}${closed?` · ${esc(attractionClosure(p,closures).label)}`:''} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
   }).join('');
   $('#mapPins').style.pointerEvents=state.pick?'none':'';
   $$('#mapPins button').forEach(b=>{if(state.pick)b.style.pointerEvents='none';});
@@ -214,15 +214,19 @@ function renderLocationPins(){
   $('#locationAccuracy').innerHTML=area?`<polygon class="location-uncertainty ${stale?'stale':''}" points="${area}"/>`:'';
 }
 function applyTransform(){
-  $('#mapWorld').style.transform=`translate(${view.x}px,${view.y}px) scale(${view.scale})`;
-  $('#mapWorld').style.setProperty('--inverse-scale',1/view.scale);
-  // Give the SVG its actual screen dimensions instead of magnifying a cached
-  // bitmap layer with the transformed pin container.
-  const artwork=$('#mapImage');
-  artwork.style.width=`${view.width*view.scale}px`;
-  artwork.style.height=`${view.height*view.scale}px`;
-  artwork.style.transform=`translate(${view.x}px,${view.y}px)`;
+  // Layout both layers at their final pixel size. A scaled compositor surface
+  // plus inversely scaled children can rasterize pin text at the wrong scale.
+  const world=$('#mapWorld'),artwork=$('#mapImage');
+  world.classList.toggle('native-markers',view.scale>=1.4);
+  world.style.setProperty('--map-scale',view.scale);
+  for(const layer of [world,artwork]){
+    layer.style.width=`${view.width*view.scale}px`;
+    layer.style.height=`${view.height*view.scale}px`;
+    layer.style.left=`${view.x}px`;
+    layer.style.top=`${view.y}px`;
+  }
 }
+
 function fitMap(){
   if(!park)return;const stage=$('#map');const w=stage.clientWidth,h=stage.clientHeight;
   if(!w||!h)return;
