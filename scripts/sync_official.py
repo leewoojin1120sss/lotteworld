@@ -51,6 +51,12 @@ CATEGORIES = {
         "detailPath": "/enjoy/giftshop/detail", "detailKey": "pifGiftShopDtlVo",
         "detailParam": "srchGiftSeq", "page": "/enjoy/giftshop/detail?srchGiftSeq=",
     },
+    "playshops": {
+        "path": "/enjoy/playshop/list", "key": "pifPlayShopMstVoList",
+        "id": "playSeq", "name": "playNm", "prefix": "playshop",
+        "detailPath": "/enjoy/playshop/detail", "detailKey": "pifPlayShopDtlVo",
+        "detailParam": "srchPlaySeq", "page": "/enjoy/playshop/detail?srchPlaySeq=",
+    },
     "facilities": {
         "path": "/usage-guide/service/convenient-facilities/information/list",
         "key": "convFacVoList", "id": "convnSeq", "name": "convnEquNm", "prefix": "facility",
@@ -86,6 +92,7 @@ def plain(value):
         value = html.unescape(value)
     parser = PlainText()
     parser.feed(value.replace("\\r", " ").replace("\\n", " "))
+    parser.close()  # Flush a final ampersand/entity fragment in literal shop names.
     return re.sub(r"\s+", " ", "".join(parser.parts)).strip() or None
 
 
@@ -220,9 +227,9 @@ def normalize(row, category, source):
             "singleRider": row.get("snglYn") == "Y", "boardingReservation": row.get("brdngResvYn") == "Y",
             "infantFacility": row.get("infntEquYn") == "Y", "accompanyingAdultAllowed": row.get("acmpyYn") == "Y",
         })
-    if category in ("restaurants", "shops"):
+    if category in ("restaurants", "shops", "playshops"):
         record.update({
-            "menu": plain(row.get("rstntMenuNm") or row.get("gdsNm")),
+            "menu": plain(row.get("rstntMenuNm") or row.get("gdsNm") or row.get("majorSrvcNm")),
             "weekdayHours": plain(row.get("wkdySalTmDesc")), "weekendHours": plain(row.get("wkendSalTmDesc")),
             "phone": row.get("rstntTelno") or row.get("shopTelno"),
         })
@@ -264,18 +271,29 @@ def map_entry(row, source, dimensions, floor_code=None, floor_name=None):
         "floorName": plain(floor_name or row.get("pstnCdNm")),
         "imageUrl": upload_url(file["flPath"]), "fileName": file.get("flNm"),
         "width": dimensions.get("width"), "height": dimensions.get("height"),
+        "coordinateCanvasWidth": dimensions.get("width"), "coordinateCanvasHeight": dimensions.get("height"),
         "coordinateSystem": "official-floorplan-pixels", "origin": "top-left",
         "source": source,
     }
 
 
+def signed_coordinate(value):
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        result = float(value)
+    except (ValueError, TypeError, OverflowError):
+        return None
+    return result if math.isfinite(result) else None
+
+
 def position(row, floor_map):
-    x, y = number(row.get("pstnXcrd")), number(row.get("pstnYcrd"))
+    x, y = signed_coordinate(row.get("pstnXcrd")), signed_coordinate(row.get("pstnYcrd"))
     if x is None or y is None:
         return None
     return {"x": x, "y": y, "floorCode": row.get("pstnCd") or (floor_map or {}).get("floorCode"),
             "mapId": floor_map["id"] if floor_map else None,
-            "coordinateSystem": "official-floorplan-pixels", "poiSeq": row.get("poiSeq"),
+            "coordinateSystem": "official-floorplan-pixels", "coordinateAnchor": "pin-box-top-left", "pinBox": {"width": 44, "height": 58}, "poiSeq": row.get("poiSeq"),
             "location": plain(row.get("pstnDesc"))}
 
 

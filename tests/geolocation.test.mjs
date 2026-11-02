@@ -65,3 +65,21 @@ test('step bridge ignores stillness and is limited by time and step count',()=>{
  assert.equal(b.feed({x:0,y:0,z:13},90,3100),null);
  assert.equal(b.feed({x:0,y:0,z:13},90,32000),null);
 });
+test('a thin calibration triangle cannot claim accuracy from a zero training residual',()=>{
+ const samples=[[0,0],[100,0],[200,2]].map(([e,n])=>({...fix(e,n),floor:'B1',pdf:[400+e*2,500-n*2]}));
+ assert.ok(fitAffine(samples));assert.equal(modelForFloor('B1',{anchors:[],floors:{}},fix(100,1),samples),null);
+});
+test('mirrored three-point calibration is rejected, including the real outdoor failure case',()=>{
+ const samples=anchors.slice(0,3).map(a=>({...a,floor:'B1',accuracy:10,at,pdf:[a.pdf[0],1000-a.pdf[1]]}));
+ assert.ok(fitAffine(samples).determinant>0);assert.equal(modelForFloor('B1',{anchors:[],floors:{}},fix(20,20),samples),null);
+ const real=['ride-36','ride-33','ride-35'].map(id=>({...data.anchors.find(a=>a.id===id),accuracy:10,at}));
+ const center=fromLocal(real.map(toLocal).reduce((p,g)=>p.map((v,i)=>v+g[i]/3),[0,0]));
+ assert.ok(fitAffine(real).determinant>0);
+ assert.equal(modelForFloor('MAGIC',data,{...center,at},real).method,'landmarks');
+});
+test('three safe points retain a conservative allowance and future references are excluded',()=>{
+ const samples=anchors.slice(0,3).map(a=>({...a,floor:'B1',accuracy:5,at}));
+ const info=modelForFloor('B1',{anchors:[],floors:{}},fix(20,20),samples);assert.ok(info.error>=45);assert.equal(info.validationErrorM,null);
+ assert.ok(projectFix(fix(20,20),'B1',{anchors:[],floors:{}},schematic,samples).accuracyM>=45);
+ assert.equal(modelForFloor('B1',{anchors:[],floors:{}},fix(20,20),samples.map(a=>({...a,at:at+10000}))),null);
+});

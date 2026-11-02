@@ -1,5 +1,6 @@
 // Geographic inference in metres, separate from the schematic's PDF coordinates.
 // All estimates are approximate. No user positions or calibration samples persist.
+import {pdfToMap,isFloorPoint} from './lib.js';
 const LAT0=37.5105,LNG0=127.0985,R=6371008.8,D=Math.PI/180;
 export const toLocal=g=>[(g.lng-LNG0)*D*R*Math.cos(LAT0*D),(g.lat-LAT0)*D*R];
 export const fromLocal=([e,n])=>({lat:LAT0+n/(D*R),lng:LNG0+e/(D*R*Math.cos(LAT0*D))});
@@ -29,7 +30,7 @@ export function fitAffine(anchors,near=null){
   const inverse=[[y[2]/det,-x[2]/det],[-y[1]/det,x[1]/det]];
   const projectLocal=g=>[x[0]+x[1]*(g[0]-center[0])+x[2]*(g[1]-center[1]),y[0]+y[1]*(g[0]-center[0])+y[2]*(g[1]-center[1])];
   const residual=Math.sqrt(rows.reduce((n,r)=>{const p=projectLocal(r.g),d=p.map((v,i)=>v-r.p[i]);return n+(inverse[0][0]*d[0]+inverse[0][1]*d[1])**2+(inverse[1][0]*d[0]+inverse[1][1]*d[1])**2;},0)/rows.length);
-  return {jacobian,inverse,residual,project:g=>projectLocal(toLocal(g)),projectLocal};
+  return {jacobian,inverse,residual,determinant:det,project:g=>projectLocal(toLocal(g)),projectLocal};
 }
 function hull(points){
   const p=[...points].sort((a,b)=>a[0]-b[0]||a[1]-b[1]);if(p.length<3)return p;
@@ -65,35 +66,54 @@ export class FixFilter{
     return {...location,accuracy:Math.max(fix.accuracy,spread),at:fix.at,samples:this.samples.length,raw:{...fix}};
   }
 }
+function wellSpread(samples){
+  if(samples.length<3)return false;
+  const points=samples.map(toLocal),center=points.reduce((v,p)=>v.map((x,i)=>x+p[i]/points.length),[0,0]);
+  let xx=0,xy=0,yy=0;
+  for(const p of points){const x=p[0]-center[0],y=p[1]-center[1];xx+=x*x/points.length;xy+=x*y/points.length;yy+=y*y/points.length;}
+  const gap=Math.hypot(xx-yy,2*xy),small=(xx+yy-gap)/2,large=(xx+yy+gap)/2;
+  // An area threshold alone accepts long, almost collinear triangles.
+  const accuracy=[...samples].map(a=>a.accuracy).sort((a,b)=>a-b)[Math.floor(samples.length/2)];
+  return small>=Math.max(8,accuracy*.7)**2&&large/small<=100;
+}
+function holdoutError(samples,sign){
+  if(samples.length===3)return null; // Three fitted points have no independent residual.
+  const errors=samples.map((a,i)=>{
+    const other=samples.filter((_,j)=>i!==j);if(!wellSpread(other))return Infinity;
+    const m=fitAffine(other,a);if(!m||Math.sign(m.determinant)!==sign)return Infinity;
+    const d=m.project(a).map((v,k)=>v-a.pdf[k]);return Math.hypot(...m.inverse.map(row=>row[0]*d[0]+row[1]*d[1]));
+  });
+  return Math.sqrt(errors.reduce((n,e)=>n+e*e,0)/errors.length);
+}
 export function modelForFloor(floor,data,g,calibrations=[]){
-  const surveyed=data.anchors.filter(a=>a.floor===floor),samples=calibrations.filter(a=>a.floor===floor&&g.at-a.at<30*60000&&a.accuracy<=40);
-  // Three distinct user-confirmed references can calibrate an unsupported floor.
-  const polygon=hull(samples.map(toLocal));
-  const area=Math.abs(polygon.reduce((v,p,i)=>v+cross([0,0],p,polygon[(i+1)%polygon.length]),0))/2;
-  const learned=samples.length>=3&&area>=100?fitAffine(samples,g):null;
-  if(learned&&learned.residual<25&&distanceFromSupport(g,samples)<=35)return {model:learned,anchors:samples,error:Math.max(25,...samples.map(a=>a.accuracy)),method:'calibrated'};
-  if(surveyed.length<3)return null;
-  const model=fitAffine(surveyed,g);if(!model)return null;
+  const landmarks=data.anchors.filter(a=>a.floor===floor),reference=fitAffine(landmarks);
+  const sign=reference?Math.sign(reference.determinant):-1;
+  const samples=calibrations.filter(a=>a.floor===floor&&g.at>=a.at&&g.at-a.at<30*60000&&a.accuracy>=0&&a.accuracy<=40&&Array.isArray(a.pdf)&&a.pdf.every(Number.isFinite));
+  const learned=wellSpread(samples)?fitAffine(samples,g):null;
+  const validation=learned?holdoutError(samples,sign):Infinity;
+  if(learned&&Math.sign(learned.determinant)===sign&&learned.residual<25&&(validation===null||validation<=35)&&distanceFromSupport(g,samples)<=35){
+    return {model:learned,anchors:samples,error:Math.max(45,validation??45,...samples.map(a=>a.accuracy)),method:'calibrated',validationErrorM:validation};
+  }
+  if(!reference)return null;
+  const model=fitAffine(landmarks,g);if(!model||Math.sign(model.determinant)!==sign)return null;
   const error=Math.max(data.floors[floor]?.modelAllowanceM??60,model.residual);
-  return {model,anchors:surveyed,error,method:'landmarks'};
+  return {model,anchors:landmarks,error,method:'landmarks'};
 }
 export function projectFix(g,floor,data,floorData,calibrations=[]){
   if(!g||Date.now()-g.at>60000)return {reason:'stale'};
   if(g.accuracy>150)return {reason:'accuracy'};
   const info=modelForFloor(floor,data,g,calibrations);if(!info)return {reason:'calibration'};
   const {model}=info;
-  const calibration=[...calibrations].reverse().find(a=>a.floor===floor&&g.at-a.at<10*60000&&a.accuracy<=60&&geoDistance(a,g)<100);
+  const calibration=[...calibrations].reverse().find(a=>a.floor===floor&&g.at>=a.at&&g.at-a.at<10*60000&&a.accuracy<=60&&geoDistance(a,g)<100);
   if(!calibration&&distanceFromSupport(g,info.anchors)>50)return {reason:'outside'};
   let pdf=model.project(g),allowance=info.error,method=info.method;
   // A recent manual landmark can cancel a roughly constant indoor bias.
-  if(calibration){const original=model.project(calibration);pdf=pdf.map((v,i)=>v+calibration.pdf[i]-original[i]);allowance=Math.hypot(20,calibration.accuracy,geoDistance(calibration,g)*.5);method='calibrated';}
-  const crop=floorData.crop,x=(pdf[0]-crop[0])/floorData.width*1000,y=(pdf[1]-crop[1])/floorData.height*1000;
-  if(x<0||x>1000||y<0||y>1000)return {reason:'outside'};
-  if(floorData.polygon&&!inPolygon(pdf,floorData.polygon))return {reason:'outside'};
+  if(calibration){const original=model.project(calibration);pdf=pdf.map((v,i)=>v+calibration.pdf[i]-original[i]);allowance=Math.max(info.method==='calibrated'?info.error:20,Math.hypot(20,calibration.accuracy,geoDistance(calibration,g)*.5));method='calibrated';}
+  const f={...floorData,id:floor},{x,y}=pdfToMap(pdf,f);
+  if(!isFloorPoint({floor,x,y},f))return {reason:'outside'};
   const accuracyM=Math.hypot(g.accuracy,allowance),j=model.jacobian;
   return {floor,x,y,pdf,at:g.at,source:'estimated',accuracyM,method,jacobian:j,samples:g.samples??1,ellipse:{east:[j[0][0]/floorData.width*1000,j[1][0]/floorData.height*1000],north:[j[0][1]/floorData.width*1000,j[1][1]/floorData.height*1000]}};
 }
-function inPolygon(p,polygon){let inside=false;for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){const a=polygon[i],b=polygon[j];if((a[1]>p[1])!==(b[1]>p[1])&&p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0])inside=!inside;}return inside;}
 export function uncertaintyPolygon(p){
   if(!p?.ellipse||!Number.isFinite(p.accuracyM))return '';
   return Array.from({length:40},(_,i)=>{const a=i/40*Math.PI*2,e=Math.cos(a)*p.accuracyM,n=Math.sin(a)*p.accuracyM;return `${p.x+p.ellipse.east[0]*e+p.ellipse.north[0]*n},${p.y+p.ellipse.east[1]*e+p.ellipse.north[1]*n}`;}).join(' ');

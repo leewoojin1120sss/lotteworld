@@ -189,3 +189,49 @@ export function attractionClosure(p,doc,now=Date.now()){
  if(!id)return {kind:'unknown',active:false,label:'운휴 확인 필요',checkedAt:doc.source.fetchedAt};
  return {kind:stopped?(/점검/.test(label)?'maintenance':'closed'):'unlisted',active:stopped,label,checkedAt:doc.source.fetchedAt};
 }
+
+// Explicit coordinate contracts: schematic PDF, normalized map and API pin boxes.
+export function pdfToMap(pdf,floor){
+ if(!floor||!Array.isArray(pdf)||pdf.length!==2||!pdf.every(Number.isFinite))throw new Error('INVALID_PDF_POINT');
+ return {floor:floor.id,x:(pdf[0]-floor.crop[0])/floor.width*1000,y:(pdf[1]-floor.crop[1])/floor.height*1000};
+}
+export function mapToPDF(p,floor){
+ if(!isMapPoint(p)||p.floor!==floor?.id)throw new Error('INVALID_FLOOR_POINT');
+ return [floor.crop[0]+p.x/1000*floor.width,floor.crop[1]+p.y/1000*floor.height];
+}
+export function pointInPolygon(point,polygon){
+ let inside=false;
+ for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
+  const a=polygon[j],b=polygon[i],dx=b[0]-a[0],dy=b[1]-a[1],t=((point[0]-a[0])*dx+(point[1]-a[1])*dy)/(dx*dx+dy*dy||1);
+  if(t>=0&&t<=1&&Math.hypot(point[0]-a[0]-t*dx,point[1]-a[1]-t*dy)<1e-6)return true;
+  if((a[1]>point[1])!==(b[1]>point[1])&&point[0]<(b[0]-a[0])*(point[1]-a[1])/(b[1]-a[1])+a[0])inside=!inside;
+ }
+ return inside;
+}
+export function isFloorPoint(p,floor){return isMapPoint(p)&&p.floor===floor?.id&&(!floor.polygon||pointInPolygon(mapToPDF(p,floor),floor.polygon));}
+export const OFFICIAL_FLOORS={HA00101:'1F',HA00102:'2F',HA00103:'3F',HA00104:'4F',HA00105:'MAGIC',HA00106:'B1',HA00107:'1F'};
+export function matchingOfficialRecords(p,items,link=null){
+ const eligible=items.filter(o=>p.category==='facility'||OFFICIAL_FLOORS[o.floorCode]===p.floor);
+ if(link?.recordIds?.length)return link.recordIds.map(id=>eligible.find(o=>o.id===id||(o.id?.slice(0,o.id.lastIndexOf('-'))===id.slice(0,id.lastIndexOf('-'))&&o.aliases?.includes(id.slice(id.lastIndexOf('-')+1))))).filter(Boolean);
+ const norm=normalizeName(p.name);let matches=eligible.filter(o=>normalizeName(o.name)===norm);
+ if(!matches.length&&norm.length>=3)matches=eligible.filter(o=>normalizeName(o.name).includes(norm));
+ return matches.length===1?matches:[];
+}
+export function officialLocationsFor(p,records,link=null,fallbackMaps=[]){
+ const seen=new Set(),result=[];
+ for(const record of records){
+  const locations=record.detail?.locations?.length?record.detail.locations:[record.detail?.position].filter(Boolean);
+  for(const location of locations){
+   const map=[...(record.detail?.maps??[]),...fallbackMaps].find(m=>m.id===location.mapId);
+   if(!map||OFFICIAL_FLOORS[location.floorCode??map.floorCode]!==p.floor||![location.x,location.y,map.width,map.height].every(Number.isFinite)||map.width<=0||map.height<=0)continue;
+   if(link?.locationIds?.length&&!link.locationIds.includes(location.officialLocationId))continue;
+   const key=[map.id,location.x,location.y,location.officialLocationId??''].join(':');if(seen.has(key))continue;seen.add(key);
+   result.push({location,map,recordName:record.name,recordId:record.id});
+  }
+ }
+ return result;
+}
+export function officialPinBox(location,map){
+ if(!location||!map||![location.x,location.y,map.width,map.height].every(Number.isFinite)||map.width<=0||map.height<=0)return null;
+ return {left:location.x/map.width*100,top:location.y/map.height*100,width:44/map.width*100,height:58/map.height*100};
+}

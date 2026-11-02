@@ -1,4 +1,4 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure} from './lib.js';
+import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords,officialLocationsFor,officialPinBox} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -44,12 +44,13 @@ const paths={
   smoking:'<path d="M3 16h16v4H3v-4Zm12 0v4m7-5v6M10 11c4-5-4-4 0-9m5 9c4-5-4-4 0-9"/>',
   check:'<path d="m5 12 4 4L20 5"/>',
 };
+paths.meeting='<circle cx="12" cy="12" r="9"/><path d="m5 11 4-3 3 2 3-2 4 3-5 6-3-1-2-2-2-1Z"/>';
 function icon(name){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]??paths.info}</svg>`;}
 function hydrate(root=document){root.querySelectorAll('[data-icon]').forEach(el=>{if(el.dataset.hydrated)return;el.insertAdjacentHTML('afterbegin',icon(el.dataset.icon));el.dataset.hydrated='true';});}
 hydrate();
 const names={attraction:'어트랙션',food:'푸드·카페',facility:'편의시설',shop:'샵·체험',all:'모든 장소'};
-const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타'};
-let toastTimer,park,guidePois,walkways,official={},localAssets={},georeference={anchors:[],floors:{}};
+const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타',meeting:'만남의 광장'};
+let toastTimer,park,guidePois,walkways,official={},officialLinks={links:{}},localAssets={},georeference={anchors:[],floors:{}};
 let gpsWatch=null,calibrations=[];
 let closures=null,closureBusy=false,closureError=false,closureAttempt=0,closureViewFresh=false;
 const fixFilter=new FixFilter(),stepBridge=new StepBridge();
@@ -67,25 +68,21 @@ function toast(message){$('#toast').textContent=message;$('#toast').hidden=false
 function mobileSheet(open){$('#sidebar').classList.toggle('mobile-open',open);$('#mobileList').classList.toggle('active',open&&!state.favoritesOnly&&!state.recommendations);$('#mobileMap').classList.toggle('active',!open);$('#mobileRecommendations').classList.toggle('active',open&&state.recommendations);$('#mobileFavorites').classList.toggle('active',open&&state.favoritesOnly);}
 function floorData(id=state.floor){return park.floors.find(f=>f.id===id);}
 function floorLabel(id){return id==='MAGIC'?'매직아일랜드':id==='B1'?'B1 언더랜드':`${id} 어드벤처`;}
-function toPDF(p){const f=floorData(p.floor),c=f.crop;return [c[0]+p.x/1000*f.width,c[1]+p.y/1000*f.height];}
-function fromPDF(floor,pdf){const f=floorData(floor);return {floor,x:(pdf[0]-f.crop[0])/f.width*1000,y:(pdf[1]-f.crop[1])/f.height*1000};}
+function toPDF(p){return mapToPDF(p,floorData(p.floor));}
+function fromPDF(floor,pdf){return pdfToMap(pdf,floorData(floor));}
 function poiIcon(p){return p.category==='facility'?(p.kind??'info'):{attraction:'sparkles',food:'food',shop:'bag'}[p.category];}
 function poiById(id){return park.pois.find(p=>p.id===id);}
 function nearest(p,cat='attraction'){if(!p.pdf)return null;return park.pois.filter(q=>q.floor===p.floor&&q.category===cat&&q.pdf&&q.id!==p.id).sort((a,b)=>Math.hypot(a.pdf[0]-p.pdf[0],a.pdf[1]-p.pdf[1])-Math.hypot(b.pdf[0]-p.pdf[0],b.pdf[1]-p.pdf[1]))[0];}
 function officialEntry(p){return p._official??null;}
-const codeFloors={HA00101:'1F',HA00102:'2F',HA00103:'3F',HA00104:'4F',HA00105:'MAGIC',HA00106:'B1',HA00107:'1F'};
+const codeFloors=OFFICIAL_FLOORS;
 function combineOfficial(){
   const consumed=new Set();
-  const group={attraction:official.attractions??[],food:official.restaurants??[],shop:official.shops??[],facility:official.facilities??[]};
+  const group={attraction:official.attractions??[],food:official.restaurants??[],shop:[...(official.shops??[]),...(official.playshops??[])],facility:official.facilities??[]};
   park.pois=guidePois.map(p=>({...p}));
   for(const p of park.pois){
-    const norm=normalizeName(p.name),list=group[p.category].filter(o=>p.category==='facility'||codeFloors[o.floorCode]===p.floor);
-    let candidates=list.filter(o=>normalizeName(o.name)===norm);
-    if(!candidates.length&&norm.length>=3)candidates=list.filter(o=>normalizeName(o.name).includes(norm));
-    if(p.id==='ride-2')candidates=list.filter(o=>o.name==='4D슈팅시어터');
-    if(p.id==='ride-29')candidates=list.filter(o=>o.name==='월드모노레일(실내운영)');
-    if(p.id==='shop-19')candidates=list.filter(o=>o.name==='매직캐슬 트레져스');
-    if(candidates.length===1){p._official=candidates[0];consumed.add(candidates[0].id);}
+    const candidates=matchingOfficialRecords(p,group[p.category],officialLinks.links[p.id]);
+    if(candidates.length){p._official=candidates[0];p._officialRelated=candidates;for(const o of candidates)consumed.add(o.id);}
+
   }
   for(const [category,items]of Object.entries(group))for(const o of items){
     if(consumed.has(o.id))continue;const floor=codeFloors[o.floorCode];if(!floor)continue;
@@ -216,12 +213,13 @@ function clearCurrentLocation(){
   endPick();clearRoute();$('#locationDialog').close();$('#shareDialog').close();$('#shareUrl').value='';$('#sharePreview').innerHTML='';updateLocationUI();renderLocationPins();if(state.recommendations)renderRecommendations();toast('내 위치를 지우고 위치 추적을 중지했어요.');
 }
 function renderPins(){
-  const items=park.pois.filter(p=>p.floor===state.floor&&p.x!==null).flatMap(p=>[p,...(p.alternatePDF??[]).map(pdf=>({...p,...fromPDF(p.floor,pdf)}))]);
+  const items=park.pois.filter(p=>p.floor===state.floor&&p.x!==null).flatMap(p=>[p,...(p.alternatePDF??[]).map((pdf,i)=>({...p,symbolBounds:p.alternateSymbolBounds?.[i]??p.symbolBounds,...fromPDF(p.floor,pdf)}))]);
   const pinVisible=p=>(state.category==='all'||p.category===state.category)&&(!state.kind||p.kind===state.kind)&&(!state.favoritesOnly||state.favorites.has(p.id))&&(!state.query||matches({...p,floor:state.floor}));
   items.sort((a,b)=>Number(pinVisible(a))-Number(pinVisible(b)));
   $('#mapPins').innerHTML=items.map(p=>{
+    const symbol=p.symbolBounds??[0,0,20,20],symbolStyle=`--symbol-width:${symbol[2]-symbol[0]+2};--symbol-height:${symbol[3]-symbol[1]+2};`;
     const visible=pinVisible(p),closed=attractionClosure(p,closures)?.active;const on=state.selected===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
-    return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${p.number&&p.source==='guide-2026'?'guide-number-pin':''} ${closed?'operation-stopped':''} ${on?'selected':''} ${visible||on?'':'muted'}" style="left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)}${closed?` · ${esc(attractionClosure(p,closures).label)}`:''} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
+    return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${p.number&&p.source==='guide-2026'?'guide-number-pin':''} ${closed?'operation-stopped':''} ${on?'selected':''} ${visible||on?'':'muted'}" style="${symbolStyle}left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)}${closed?` · ${esc(attractionClosure(p,closures).label)}`:''} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
   }).join('');
   $('#mapPins').style.pointerEvents=state.pick?'none':'';
   $$('#mapPins button').forEach(b=>{if(state.pick)b.style.pointerEvents='none';});
@@ -302,21 +300,30 @@ function renderDetail(p){
 }
 
 function openOfficialMap(p){
-  const o=officialEntry(p);if(!o)return;
-  const locations=o.detail?.locations?.length?o.detail.locations:[o.detail?.position].filter(Boolean);
-  const maps=o.detail?.maps??[];
+  const records=p._officialRelated??[officialEntry(p)].filter(Boolean);
+  const options=officialLocationsFor(p,records,officialLinks.links[p.id],official.maps??[]);
+  if(!options.length){toast('이 층과 연결된 공식 위치 정보가 없습니다.');return;}
   const body=$('#officialMapBody');
-  body.innerHTML=`<label class="field-label" for="officialLocationSelect">${esc(p.name)}</label><select id="officialLocationSelect">${locations.map((loc,i)=>`<option value="${i}">${esc(maps.find(m=>m.id===loc.mapId)?.floorName??o.floorName)}${loc.location?` · ${esc(loc.location)}`:''}</option>`).join('')}</select><div id="officialMapFigure"></div>`;
-  const render=i=>{const loc=locations[i],m=maps.find(a=>a.id===loc?.mapId)??(official.maps??[]).find(a=>a.id===loc?.mapId);if(!loc||!m)return;const image=localAssets.maps?.[m.id]??safeURL(m.imageUrl);$('#officialMapFigure').innerHTML=`<figure class="official-map-figure"><div style="aspect-ratio:${m.width}/${m.height}"><img src="${esc(image)}" alt="${esc(m.floorName)} 공식 위치 지도"><span class="official-position" style="left:${loc.x/m.width*100}%;top:${loc.y/m.height*100}%">${icon('pin')}</span></div><figcaption>${esc(m.floorName)} · 지도 © 롯데월드</figcaption></figure>`;};
-  $('#officialLocationSelect').onchange=e=>render(Number(e.target.value));render(0);$('#officialMapDialog').showModal();
+  body.innerHTML=`<label class="field-label" for="officialLocationSelect">${esc(p.name)}</label><select id="officialLocationSelect">${options.length>1?`<option value="all">${esc(floorLabel(p.floor))} · 공식 지점 ${options.length}곳 보기</option>`:''}${options.map((v,i)=>`<option value="${i}">${esc(v.map.floorName)}${records.length>1?` · ${esc(v.recordName)}`:''}${v.location.location?` · ${esc(v.location.location)}`:''}</option>`).join('')}</select><div id="officialMapFigure"></div>`;
+  const render=value=>{
+    const selected=value==='all'?options:[options[Number(value)]],groups=new Map();
+    for(const item of selected){if(!item)continue;if(!groups.has(item.map.id))groups.set(item.map.id,[]);groups.get(item.map.id).push(item);}
+    $('#officialMapFigure').innerHTML=[...groups.values()].map(group=>{
+      const map=group[0].map,image=localAssets.maps?.[map.id]??safeURL(map.imageUrl);
+      const markers=group.map(item=>{const box=officialPinBox(item.location,map);return box?`<img class="official-position" src="assets/official-map-pin.png" style="left:${box.left}%;top:${box.top}%;width:${box.width}%;height:${box.height}%" alt="${esc(item.recordName)} 공식 위치 표식" title="${esc(item.location.location??item.recordName)}">`:'';}).join('');
+      return `<figure class="official-map-figure"><div style="aspect-ratio:${map.width}/${map.height}"><img class="official-map-art" src="${esc(image)}" alt="${esc(map.floorName)} 공식 위치 지도">${markers}</div><figcaption>${esc(map.floorName)}${group.length>1?` · 공식 지점 ${group.length}곳`:''} · 지도 © 롯데월드</figcaption></figure>`;
+    }).join('');
+  };
+  $('#officialLocationSelect').onchange=e=>render(e.target.value);render(options.length>1?'all':'0');$('#officialMapDialog').showModal();
 }
+
 function closeDetail(){state.selected=null;$('#detail').hidden=true;renderList();renderPins();}
 function beginPick(afterShare=false){state.pick=true;state.shareAfterPick=afterShare;closeDetail();$$('dialog[open]').forEach(d=>d.close());mobileSheet(false);$('#map').classList.add('picking');$('#pickBanner').hidden=false;renderPins();$('#map').focus({preventScroll:true});}
 function endPick(){state.pick=false;state.shareAfterPick=false;state.routeAfterPick=null;$('#map').classList.remove('picking');$('#pickBanner').hidden=true;renderPins();}
 function positionIsStale(p){return p?.source==='estimated'&&(p.lastKnown||Date.now()-p.at>60000||p.method==='steps'&&Date.now()-(p.basedAt??p.at)>30000);}
 function positionName(p){if(!p)return '';const n=nearest({floor:p.floor,pdf:toPDF(p)});return `${p.source==='estimated'?(positionIsStale(p)?'마지막 추정 · ':'추정 · '):''}${n?`${n.name} 부근`:`${floorLabel(p.floor)}에서 지정한 위치`}`;}
 function setManualPosition(p){
-  if(p.x===null||!isMapPoint(p)){toast('지도 안에서 현재 위치를 지정해 주세요.');return;}
+  if(p.x===null||!isFloorPoint(p,floorData(p.floor))){toast('선택한 층의 지도 영역 안에서 위치를 지정해 주세요.');return;}
   const after=state.shareAfterPick,routeAfter=state.routeAfterPick,at=Date.now();
   state.locationFloor=p.floor;state.position={floor:p.floor,x:p.x,y:p.y,at,source:'manual'};
   calibrations=addCalibration(calibrations,{...state.position,pdf:toPDF(p)},state.gps);
@@ -435,7 +442,7 @@ function receiveMotion(e){
   if(!state.tracking||!state.motionEnabled||!base||state.heading===null||now-state.headingAt>3000||now-base.at<10000||now-base.at>30000||base.accuracyM>75||state.pick||state.route)return;
   const step=stepBridge.feed(e.accelerationIncludingGravity,state.heading,now);if(!step)return;
   const [east,north]=step.offset,j=base.jacobian,f=floorData(base.floor),x=base.x+(j[0][0]*east+j[0][1]*north)/f.width*1000,y=base.y+(j[1][0]*east+j[1][1]*north)/f.height*1000;
-  if(x<0||x>1000||y<0||y>1000)return;
+  if(!isFloorPoint({floor:base.floor,x,y},f))return;
   state.motionSteps=step.steps;state.position={...base,x,y,at:now,basedAt:base.at,accuracyM:base.accuracyM+step.drift,method:'steps',confirmed:false};renderLocationPins();updateLocationUI();
 }
 
@@ -453,6 +460,7 @@ function openShare(){
 async function copy(text){try{if(!navigator.clipboard)throw new Error();await navigator.clipboard.writeText(text);toast('링크를 복사했어요. 친구에게 보내 주세요.');return true;}catch{toast('링크를 선택한 뒤 직접 복사해 주세요.');$('#shareUrl').focus();$('#shareUrl').select();return false;}}
 function readHash(){
   const shared=decodeShare(location.hash);
+  if(shared?.position&&!isFloorPoint(shared.position,floorData(shared.floor))){toast('공유 위치가 선택한 층의 지도 영역 밖입니다.');return;}
   if(shared){state.shared=shared;setFloor(shared.floor);if(shared.position)focusPoint(shared.position);
     const old=Date.now()-shared.at>60*60000;
     $('#sharedCard').innerHTML=`<button class="icon-btn" type="button" id="dismissShared" aria-label="공유 위치 표시 닫기">${icon('close')}</button><h3>친구가 공유한 위치</h3><p>${esc(floorLabel(shared.floor))} · ${esc(ageLabel(shared.at))}<br>${old?'한 시간 이상 지난 위치예요. 새 위치를 확인해 주세요.':'공유한 순간의 위치예요. 현재 위치와 다를 수 있어요.'}${shared.position?.source==='estimated'?`<br>추정 위치 · 약 ${Math.round(shared.position.accuracyM)}m 범위`:!shared.position?'<br>기기 위치 좌표만 공유되었습니다.':''}</p>${shared.gps?`<a class="text-button" href="https://www.google.com/maps/search/?api=1&query=${shared.gps.lat.toFixed(6)},${shared.gps.lng.toFixed(6)}" target="_blank" rel="noopener noreferrer">GPS 위치 보기 · ±${Math.round(shared.gps.accuracy)}m ↗</a>`:''}`;
@@ -677,8 +685,8 @@ function bindEvents(){
 
 async function init(){
   try{
-    const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json'),fetch('data/georeference.json')]);
-    if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways,georeference]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
+    const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json'),fetch('data/georeference.json'),fetch('data/official-links.json')]);
+    if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways,georeference,officialLinks]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
     try{localAssets=await fetch('data/local-assets.json').then(r=>r.ok?r.json():{});}catch{}
     bindEvents();setFloor('1F');updateLocationUI();await refreshOfficial();readHash();refreshClosures();
     setInterval(()=>{if(!document.hidden)refreshClosures();},5*60000);

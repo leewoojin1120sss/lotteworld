@@ -1,0 +1,602 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-02",
+  "source": "© OpenStreetMap contributors, ODbL 1.0",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
+  "summary": {
+    "activeAnchors": 28,
+    "floorCounts": {
+      "MAGIC": 5,
+      "1F": 19,
+      "4F": 3,
+      "2F": 1
+    },
+    "liveCoordinatesExactlyMatch": 28,
+    "strongNameOrAliasIdentities": 27,
+    "provisionalGenericBalloonIdentity": 1,
+    "wrongFacilityProven": 0,
+    "recommendedLatLngEdits": [],
+    "additionalCandidatesNotActive": 4,
+    "allPhysicalPointRolesUnsurveyed": true,
+    "noSupportedAxisReflectionFix": true,
+    "doNotAdoptExactDelaunay": true
+  },
+  "anchors": [
+    {
+      "id": "ride-36",
+      "floor": "MAGIC",
+      "sourceUrl": "https://www.openstreetmap.org/node/2676374361",
+      "osmVersion": 8,
+      "osmUpdatedAt": "2026-08-29T04:59:50Z",
+      "lat": 37.5087165,
+      "lng": 127.1005386,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1206",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-33",
+      "floor": "MAGIC",
+      "sourceUrl": "https://www.openstreetmap.org/node/4681289893",
+      "osmVersion": 5,
+      "osmUpdatedAt": "2026-03-28T17:22:15Z",
+      "lat": 37.5087777,
+      "lng": 127.0992308,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance. OSM name:ko uses 아틀란티스, while OSM name and the official name are 아트란티스; this is a spelling alias, not evidence of a second facility.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=2286",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-34",
+      "floor": "MAGIC",
+      "sourceUrl": "https://www.openstreetmap.org/node/6002107497",
+      "osmVersion": 2,
+      "osmUpdatedAt": "2023-10-16T12:41:38Z",
+      "lat": 37.5082757,
+      "lng": 127.0997312,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1204",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-13",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774139",
+      "osmVersion": 2,
+      "osmUpdatedAt": "2026-03-28T17:03:37Z",
+      "lat": 37.5107888,
+      "lng": 127.0970498,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1189",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-31",
+      "floor": "4F",
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774140",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2023-10-16T12:41:38Z",
+      "lat": 37.5104969,
+      "lng": 127.0978101,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=2444",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-32",
+      "floor": "4F",
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774141",
+      "osmVersion": 2,
+      "osmUpdatedAt": "2026-09-12T04:22:48Z",
+      "lat": 37.5105439,
+      "lng": 127.0984757,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=5574",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-30",
+      "floor": "4F",
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774142",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2023-10-16T12:41:38Z",
+      "lat": 37.5106625,
+      "lng": 127.0968935,
+      "liveCoordinateMatch": true,
+      "identityStatus": "probable_generic_alias_not_independently_named",
+      "identityEvidence": "OSM says 풍선기구 (generic balloon apparatus), not 풍선비행, with layer=4. Official attraction 1199 is 풍선비행 on 4F. Context supports the intended join, but it is the weakest identity and is not an exact independently named geographic control.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1199",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-6",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774143",
+      "osmVersion": 2,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5107525,
+      "lng": 127.099186,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1188",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-26",
+      "floor": "2F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686755224",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:03:37Z",
+      "lat": 37.5110227,
+      "lng": 127.0970227,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1198",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-15",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686755226",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:03:37Z",
+      "lat": 37.51063,
+      "lng": 127.0973637,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4342",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-9",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823113",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5116254,
+      "lng": 127.0989503,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1193",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-7",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823116",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5109077,
+      "lng": 127.0992936,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1190",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-8",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823117",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5110283,
+      "lng": 127.099426,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1192",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-25",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823130",
+      "osmVersion": 3,
+      "osmUpdatedAt": "2026-08-29T05:00:02Z",
+      "lat": 37.5108382,
+      "lng": 127.0979651,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance. The guide’s shortened 카트라이더 matches the OSM/current official full name 카트라이더레이싱월드.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=5962",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-14",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823133",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5107191,
+      "lng": 127.0976271,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance. OSM 3D황야의무법자 and guide 황야의 무법자 are shortened versions of the official 3D 황야의 무법자 Ⅱ.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=3874",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-23",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823135",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5103616,
+      "lng": 127.0974662,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4162",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-22",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823136",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5104694,
+      "lng": 127.097434,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4161",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-21",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823137",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5104723,
+      "lng": 127.097307,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=2146",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-20",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823138",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5103446,
+      "lng": 127.0973177,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=5797",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-19",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823139",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.510329,
+      "lng": 127.0970835,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4613",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-17",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823141",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5105517,
+      "lng": 127.0970442,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1196",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-18",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823142",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5105489,
+      "lng": 127.0969172,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4116",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-16",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823144",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5106496,
+      "lng": 127.0971354,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4731",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-12",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823146",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5109488,
+      "lng": 127.0970138,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=5360",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-10",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823148",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5113417,
+      "lng": 127.0978578,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4154",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-11",
+      "floor": "1F",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823149",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:19:31Z",
+      "lat": 37.5112524,
+      "lng": 127.0975037,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=5997",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-35",
+      "floor": "MAGIC",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686830798",
+      "osmVersion": 3,
+      "osmUpdatedAt": "2026-08-29T05:00:02Z",
+      "lat": 37.5087143,
+      "lng": 127.1002517,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=4470",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    },
+    {
+      "id": "ride-38",
+      "floor": "MAGIC",
+      "sourceUrl": "https://www.openstreetmap.org/node/13686835406",
+      "osmVersion": 1,
+      "osmUpdatedAt": "2026-03-28T17:26:56Z",
+      "lat": 37.5091043,
+      "lng": 127.1006683,
+      "liveCoordinateMatch": true,
+      "identityStatus": "name_or_alias_and_zone_supported",
+      "identityEvidence": "OSM name or recognizable name variant matches the current official attraction; this identifies the facility, not a surveyed physical reference or entrance. Official classification is Magic Island; a themed dark ride in that zone must not be assumed to provide outdoor GPS or a surveyed outdoor entrance.",
+      "officialUrl": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1214",
+      "pointRole": "unspecified_community_facility_POI_not_verified_entrance_or_survey_control"
+    }
+  ],
+  "validationAfterSymbolCorrection": {
+    "method": "Leave one anchor out; fit runtime distance-weighted geo→PDF affine at held-out coordinate, convert PDF residual with that fit’s inverse Jacobian.",
+    "meaning": "Model/source disagreement in equivalent metres; not measured indoor GPS accuracy or entrance accuracy. No independent holdout is available with only three anchors.",
+    "floors": {
+      "MAGIC": {
+        "anchors": 5,
+        "independentHoldouts": 5,
+        "medianInverseEquivalentM": 29.853,
+        "maxInverseEquivalentM": 44.462,
+        "heldOut": [
+          {
+            "id": "ride-36",
+            "inverseEquivalentM": 29.853,
+            "outsideRemainingSupportM": 19.149
+          },
+          {
+            "id": "ride-33",
+            "inverseEquivalentM": 44.462,
+            "outsideRemainingSupportM": 70.13
+          },
+          {
+            "id": "ride-34",
+            "inverseEquivalentM": 26.97,
+            "outsideRemainingSupportM": 52.205
+          },
+          {
+            "id": "ride-35",
+            "inverseEquivalentM": 8.579,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-38",
+            "inverseEquivalentM": 32.284,
+            "outsideRemainingSupportM": 44.613
+          }
+        ]
+      },
+      "1F": {
+        "anchors": 19,
+        "independentHoldouts": 19,
+        "medianInverseEquivalentM": 17.552,
+        "maxInverseEquivalentM": 50.121,
+        "heldOut": [
+          {
+            "id": "ride-13",
+            "inverseEquivalentM": 20.943,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-6",
+            "inverseEquivalentM": 19.325,
+            "outsideRemainingSupportM": 12.804
+          },
+          {
+            "id": "ride-15",
+            "inverseEquivalentM": 11.219,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-9",
+            "inverseEquivalentM": 33.738,
+            "outsideRemainingSupportM": 54.132
+          },
+          {
+            "id": "ride-7",
+            "inverseEquivalentM": 18.213,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-8",
+            "inverseEquivalentM": 50.121,
+            "outsideRemainingSupportM": 15.676
+          },
+          {
+            "id": "ride-25",
+            "inverseEquivalentM": 32.105,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-14",
+            "inverseEquivalentM": 5.497,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-23",
+            "inverseEquivalentM": 22.044,
+            "outsideRemainingSupportM": 1.653
+          },
+          {
+            "id": "ride-22",
+            "inverseEquivalentM": 9.717,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-21",
+            "inverseEquivalentM": 17.552,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-20",
+            "inverseEquivalentM": 13.203,
+            "outsideRemainingSupportM": 0.481
+          },
+          {
+            "id": "ride-19",
+            "inverseEquivalentM": 20.563,
+            "outsideRemainingSupportM": 12.632
+          },
+          {
+            "id": "ride-17",
+            "inverseEquivalentM": 10.277,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-18",
+            "inverseEquivalentM": 11.918,
+            "outsideRemainingSupportM": 11.2
+          },
+          {
+            "id": "ride-16",
+            "inverseEquivalentM": 24.873,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-12",
+            "inverseEquivalentM": 16.316,
+            "outsideRemainingSupportM": 13.421
+          },
+          {
+            "id": "ride-10",
+            "inverseEquivalentM": 3.337,
+            "outsideRemainingSupportM": 0
+          },
+          {
+            "id": "ride-11",
+            "inverseEquivalentM": 17.352,
+            "outsideRemainingSupportM": 7.244
+          }
+        ]
+      },
+      "4F": {
+        "anchors": 3,
+        "independentHoldouts": 0,
+        "medianInverseEquivalentM": null,
+        "maxInverseEquivalentM": null,
+        "heldOut": []
+      },
+      "2F": {
+        "anchors": 1,
+        "independentHoldouts": 0,
+        "medianInverseEquivalentM": null,
+        "maxInverseEquivalentM": null,
+        "heldOut": []
+      }
+    }
+  },
+  "calibrationRegression": {
+    "synthetic": true,
+    "realUserDataUsed": false,
+    "inputIds": [
+      "ride-36",
+      "ride-33",
+      "ride-35"
+    ],
+    "accuracyInputM": 10,
+    "geographicAreaM2": 100.21453483025702,
+    "query": {
+      "lat": 37.508736166666665,
+      "lng": 127.10000703333333
+    },
+    "actualResult": {
+      "method": "calibrated",
+      "trainingResidualInverseEquivalentM": 6.224785058843897e-14,
+      "determinant": 36.343191196456715,
+      "errorAllowanceM": 25
+    },
+    "expectedReferenceOrientation": "negative determinant in this floor’s x-right/y-down PDF coordinates",
+    "conclusion": "Area alone does not reject almost-collinear, mirrored three-reference fits."
+  },
+  "decision": [
+    "Keep the verified geographic coordinates; update only their guide-symbol target points.",
+    "Reject nearly collinear or mirrored manual affine models. Three fitted points cannot establish independent accuracy.",
+    "Keep conservative model allowance. Do not replace the schematic with a folded exact triangulation or claim surveyed entrances."
+  ]
+}

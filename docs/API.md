@@ -25,6 +25,8 @@ python scripts/sync_official.py --skip-details
 | POST | `/enjoy/restaurant/detail` | `pifRstntDtlVo` |
 | POST | `/enjoy/giftshop/list` | `pifGiftShopMstVoList` |
 | POST | `/enjoy/giftshop/detail` | `pifGiftShopDtlVo` |
+| POST | `/enjoy/playshop/list` | `pifPlayShopMstVoList` |
+| POST | `/enjoy/playshop/detail` | `pifPlayShopDtlVo` |
 | POST | `/usage-guide/service/convenient-facilities/information/list` | `convFacVoList` |
 | POST | `/usage-guide/service/convenient-facilities/information/detail` | `convFacDtlVo`, `convFacPstnVo` |
 | POST | `/enjoy/attrctn/imageSize` | `mapSizeVo` |
@@ -32,13 +34,15 @@ python scripts/sync_official.py --skip-details
 | GET | `/today/operating-hours` | `data` |
 | GET | `/today/closed-list` | `list` |
 
-목록 POST 본문은 `{"storeCd":"HC01801","langCd":"HC01701","deviceType":"pc","isApp":"N"}`입니다. 상세 요청은 목록에서 받은 ID를 추가합니다. 어트랙션 `shopSysCd`, 식당 `srchRstntSeq`, 샵 `srchGiftSeq`, 편의시설 `srchConvnSeq`입니다. HTTP 상태뿐 아니라 JSON `code`와 필수 필드도 검증합니다.
+목록 POST 본문은 `{"storeCd":"HC01801","langCd":"HC01701","deviceType":"pc","isApp":"N"}`입니다. 상세 요청은 목록에서 받은 ID를 추가합니다. 어트랙션 `shopSysCd`, 식당 `srchRstntSeq`, 샵 `srchGiftSeq`, 체험샵 `srchPlaySeq`, 편의시설 `srchConvnSeq`입니다. HTTP 상태뿐 아니라 JSON `code`와 필수 필드도 검증합니다.
 
 ## 지도 좌표
 
-공식 상세 API의 위치는 **해당 공식 그림의 픽셀 좌표**입니다. `mapSizeVo`에서 확인된 표시는 570×427입니다. 위경도가 아니며 PDF 좌표계와도 다릅니다. 별도 공식 위치 지도에서만 사용합니다. PDF 지도에 겹치거나 GPS 지리 기준점으로 오용하지 않습니다.
+공식 상세 API의 위치는 **해당 공식 그림의 픽셀 좌표**입니다. `mapSizeVo`에서 확인된 표시는 570×427입니다. 위경도가 아니며 PDF 좌표계와도 다릅니다. `pstnXcrd/pstnYcrd`는 44×58 원본 핀 상자의 왼쪽 위이고 음수도 유효합니다. 원본 이미지의 자연 해상도와 관계없이 570×427 표시 캔버스를 유지하고 전체를 비례 축소합니다. 별도 공식 위치 지도에서만 사용합니다. PDF 지도에 겹치거나 GPS 지리 기준점으로 오용하지 않습니다.
 
 `park.json`의 `ride-1` 같은 ID는 가이드맵 번호입니다. `official.json`의 공식 시설 ID와 숫자가 같다고 연결하지 않고 이름·층 등을 검증해 연결합니다. 원본에서 위치가 빠진 시설은 임의로 좌표를 채우지 않습니다.
+
+`data/official-links.json`에 검증된 장소 ID·편의시설 지점 ID를 명시합니다. 체험샵은 `playshop-*`으로 기프트샵과 구별합니다. 편의시설은 같은 물리 층만 후보로 남기며, 지점을 확정할 근거가 없으면 같은 층의 모든 공식 지점을 기본 표시합니다. 파크 외 1층/쇼핑몰 B1은 가이드 1F/B1으로 해석하지 않습니다. [좌표 검산 기록](COORDINATES.md)을 참고하세요.
 
 GPS와 조감도 간 추정은 [LOCATION.md](LOCATION.md)에 기록된 별도 공개 지리 기준점과 세션 내 사용자 보정으로 수행합니다.
 

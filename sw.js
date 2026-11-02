@@ -1,5 +1,5 @@
 const CACHE='yaho-v1.0.0';
-const CORE=['./','index.html','styles.css','readability.css','app.js','lib.js','geo.js','manifest.webmanifest','assets/icon.svg','data/park.json','data/georeference.json','data/walkways.json','assets/maps/B1.webp','assets/maps/1F.webp','assets/maps/2F.webp','assets/maps/3F.webp','assets/maps/4F.webp','assets/maps/MAGIC.webp'];
+const CORE=['./','index.html','styles.css','readability.css','app.js','lib.js','geo.js','manifest.webmanifest','assets/icon.svg','data/official-links.json','assets/official-map-pin.png','data/park.json','data/georeference.json','data/walkways.json','assets/maps/B1.webp','assets/maps/1F.webp','assets/maps/2F.webp','assets/maps/3F.webp','assets/maps/4F.webp','assets/maps/MAGIC.webp'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('yaho-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{

@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-02",
+  "links": {
+    "ride-2": {
+      "recordIds": [
+        "ride-4704"
+      ]
+    },
+    "ride-29": {
+      "recordIds": [
+        "ride-1201"
+      ]
+    },
+    "shop-19": {
+      "recordIds": [
+        "shop-264"
+      ]
+    },
+    "shop-3": {
+      "recordIds": [
+        "playshop-3"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "3"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=3"
+        }
+      ]
+    },
+    "shop-4": {
+      "recordIds": [
+        "playshop-13"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "13"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=13"
+        }
+      ]
+    },
+    "shop-7": {
+      "recordIds": [
+        "playshop-24"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "24"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=24"
+        }
+      ]
+    },
+    "shop-8": {
+      "recordIds": [
+        "playshop-22"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "22"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=22"
+        }
+      ]
+    },
+    "shop-12": {
+      "recordIds": [
+        "playshop-5"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "5"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=5"
+        }
+      ]
+    },
+    "shop-15": {
+      "recordIds": [
+        "playshop-23"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "23"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=23"
+        }
+      ]
+    },
+    "shop-16": {
+      "recordIds": [
+        "playshop-20"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "20"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=20"
+        }
+      ]
+    },
+    "shop-18": {
+      "recordIds": [
+        "playshop-19"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "19"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=19"
+        }
+      ]
+    },
+    "shop-20": {
+      "recordIds": [
+        "playshop-21"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/playshop/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchPlaySeq": "21"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=21"
+        }
+      ]
+    },
+    "food-1F-23": {
+      "recordIds": [
+        "restaurant-526"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchRstntSeq": "526"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=526"
+        }
+      ]
+    },
+    "food-2F-24": {
+      "recordIds": [
+        "restaurant-704"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchRstntSeq": "704"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=704"
+        }
+      ]
+    },
+    "food-2F-27": {
+      "recordIds": [
+        "restaurant-69"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchRstntSeq": "69"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=69"
+        }
+      ]
+    },
+    "food-4F-41": {
+      "recordIds": [
+        "restaurant-76"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchRstntSeq": "76"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=76"
+        }
+      ]
+    },
+    "food-MAGIC-49": {
+      "recordIds": [
+        "restaurant-647"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchRstntSeq": "647"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=647"
+        }
+      ]
+    },
+    "food-MAGIC-50": {
+      "recordIds": [
+        "restaurant-88"
+      ],
+      "evidence": [
+        {
+          "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/detail",
+          "method": "POST",
+          "requestBody": {
+            "storeCd": "HC01801",
+            "langCd": "HC01701",
+            "deviceType": "pc",
+            "srchRstntSeq": "88"
+          },
+          "publicPage": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=88"
+        }
+      ]
+    },
+    "facility-1F-lostfound-1": {
+      "recordIds": [
+        "facility-38"
+      ],
+      "evidence": [
+        "https://adventure.lotteworld.com/usage-guide/service/convenient-facilities/information/detail?srchConvnSeq=38"
+      ]
+    },
+    "shop-17": {
+      "recordIds": [
+        "shop-50"
+      ]
+    },
+    "food-3F-39": {
+      "recordIds": [
+        "restaurant-725",
+        "restaurant-74"
+      ]
+    },
+    "facility-1F-firstaid-1": {
+      "recordIds": [
+        "facility-31"
+      ],
+      "locationIds": [
+        "1"
+      ]
+    },
+    "facility-MAGIC-firstaid-1": {
+      "recordIds": [
+        "facility-31"
+      ],
+      "locationIds": [
+        "2"
+      ]
+    },
+    "facility-1F-atm-1": {
+      "recordIds": [
+        "facility-36"
+      ],
+      "locationIds": [
+        "2"
+      ]
+    },
+    "facility-2F-atm-1": {
+      "recordIds": [
+        "facility-36"
+      ],
+      "locationIds": [
+        "1"
+      ]
+    },
+    "facility-1F-baby-1": {
+      "recordIds": [
+        "facility-33"
+      ],
+      "locationIds": [
+        "1"
+      ]
+    },
+    "facility-MAGIC-baby-1": {
+      "recordIds": [
+        "facility-33"
+      ],
+      "locationIds": [
+        "2"
+      ]
+    },
+    "facility-2F-battery-1": {
+      "recordIds": [
+        "facility-50"
+      ],
+      "locationIds": [
+        "2"
+      ]
+    },
+    "facility-MAGIC-battery-1": {
+      "recordIds": [
+        "facility-50"
+      ],
+      "locationIds": [
+        "1"
+      ]
+    }
+  },
+  "sourceContract": {
+    "anchor": "pin-box-top-left",
+    "pinBoxWidth": 44,
+    "pinBoxHeight": 58,
+    "coordinateCanvasWidth": 570,
+    "coordinateCanvasHeight": 427
+  },
+  "sources": {
+    "officialGuideEn": {
+      "url": "https://adventure.lotteworld.com/api/common/download-view-file/download?atchFileId=198ca3d10b42&seq=1",
+      "sha256": "ed23a58d54d285093afeafeb2be59c7deefafc6c28c5c95d4e2c9e3d37ea3c1e",
+      "pages": [
+        2,
+        3
+      ]
+    },
+    "officialJs": {
+      "url": "https://adventure.lotteworld.com/assets/index-B3fLM4fD.js",
+      "sha256": "15213c9bdde9b561fc482f2a6249f969bcbaf59bbf23a7154f23fa73e9b7dd5b"
+    },
+    "officialCss": {
+      "url": "https://adventure.lotteworld.com/assets/index-tfmbxL8h.css",
+      "sha256": "1bdfda63f6128cb862d9c765db44b7726f4dfcf442548b60cbb7e25ac46fd158"
+    }
+  }
+}

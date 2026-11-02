@@ -312,7 +312,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[t
 
 /* Keep the interactive icon visible at every zoom; repaint it at its actual
    pixel size and cover the printed marker so numbers do not overlap. */
-.large-markers .guide-number-pin{width:max(44px,calc(22px * var(--map-scale)));height:max(44px,calc(22px * var(--map-scale)));min-height:44px}
+.large-markers .guide-number-pin{width:max(44px,calc(var(--symbol-width,22) * var(--map-scale) * 1px));height:max(44px,calc(var(--symbol-height,22) * var(--map-scale) * 1px));min-height:44px}
 .large-markers .guide-number-pin::before{inset:0;border-radius:max(9px,calc(3px * var(--map-scale)));background:#fff;border-width:2px}
 .large-markers .guide-number-pin>span:not(.pin-label){visibility:visible;font-size:max(16px,calc(11px * var(--map-scale)));font-weight:800}
 .large-markers .guide-number-pin.selected::before{background:currentColor}
@@ -329,3 +329,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[t
 .empty-state .btn{margin:16px auto 0}.rec-floor:has(#recOnlyMatches){font-size:14px;padding:0 0 14px}
 
 .rec-taste-details{border-top:1px solid #ece5f2;border-bottom:1px solid #ece5f2;margin:12px 0 15px}.rec-taste-details summary{font-size:15px;font-weight:700;color:#534260;padding:12px 0;min-height:46px;cursor:pointer}.rec-taste-details summary>span{font-size:13px;font-weight:500;color:#75647f;margin-left:7px}.rec-taste-details .rec-section-title{font-size:13px;margin:0 0 5px}.rec-taste-details .rec-preferences{margin-top:5px}.recommendation-mode .sidebar-intro{padding-bottom:10px}.recommendation-mode .rec-intro p{margin-bottom:12px}
+
+.large-markers .pin.facility{width:max(40px,calc(var(--symbol-width,22) * var(--map-scale) * 1px));height:max(40px,calc(var(--symbol-height,22) * var(--map-scale) * 1px))}.large-markers .pin.facility::before{inset:0;background:#fff;border-radius:max(8px,calc(3px * var(--map-scale)))}.large-markers .pin.facility.selected::before{background:currentColor}.large-markers .pin.facility>svg{width:max(18px,calc(13px * var(--map-scale)));height:max(18px,calc(13px * var(--map-scale)))}
+.official-map-figure .official-position{position:absolute;inset:auto;transform:none;object-fit:fill;filter:none;max-width:none;z-index:2}.official-map-figure .official-map-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}

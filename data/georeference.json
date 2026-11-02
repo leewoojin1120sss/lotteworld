@@ -5,7 +5,8 @@
     "url": "https://www.openstreetmap.org/copyright",
     "license": "ODbL-1.0",
     "observedAt": "2026-10-27T02:37:05Z",
-    "notice": "Community POIs, not surveyed entrances; schematic matching is approximate."
+    "notice": "Community facility POIs verified against current OSM nodes; not surveyed entrances. PDF symbol centers audited separately.",
+    "verifiedAt": "2026-11-02"
   },
   "anchors": [
     {
@@ -13,336 +14,476 @@
       "name": "자이로드롭",
       "floor": "MAGIC",
       "pdf": [
-        514.74,
-        413.29
+        514.54652,
+        412.68492
       ],
       "lat": 37.5087165,
       "lng": 127.1005386,
-      "sourceUrl": "https://www.openstreetmap.org/node/2676374361"
+      "sourceUrl": "https://www.openstreetmap.org/node/2676374361",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 8,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-33",
       "name": "아트란티스",
       "floor": "MAGIC",
       "pdf": [
-        803.67,
-        339.05
+        803.47122,
+        338.45348
       ],
       "lat": 37.5087777,
       "lng": 127.0992308,
-      "sourceUrl": "https://www.openstreetmap.org/node/4681289893"
+      "sourceUrl": "https://www.openstreetmap.org/node/4681289893",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 5,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-34",
       "name": "자이로스윙",
       "floor": "MAGIC",
       "pdf": [
-        759.69,
-        247.49
+        759.46579,
+        246.88658
       ],
       "lat": 37.5082757,
       "lng": 127.0997312,
-      "sourceUrl": "https://www.openstreetmap.org/node/6002107497"
+      "sourceUrl": "https://www.openstreetmap.org/node/6002107497",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 2,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-13",
       "name": "회전목마",
       "floor": "1F",
       "pdf": [
-        1200.54,
-        394.11
+        1200.29883,
+        393.6234
       ],
       "lat": 37.5107888,
       "lng": 127.0970498,
-      "sourceUrl": "https://www.openstreetmap.org/node/11266774139"
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774139",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 2,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-31",
       "name": "파라오의 분노",
       "floor": "4F",
       "pdf": [
-        1565.99,
-        661.21
+        1565.94409,
+        660.72998
       ],
       "lat": 37.5104969,
       "lng": 127.0978101,
-      "sourceUrl": "https://www.openstreetmap.org/node/11266774140"
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774140",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-32",
       "name": "어크로스다크",
       "floor": "4F",
       "pdf": [
-        1288.98,
-        679.28
+        1288.91516,
+        678.68762
       ],
       "lat": 37.5105439,
       "lng": 127.0984757,
-      "sourceUrl": "https://www.openstreetmap.org/node/11266774141"
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774141",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 2,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-30",
       "name": "풍선비행",
       "floor": "4F",
       "pdf": [
-        1744.71,
-        726.19
+        1744.97266,
+        725.55261
       ],
       "lat": 37.5106625,
       "lng": 127.0968935,
-      "sourceUrl": "https://www.openstreetmap.org/node/11266774142"
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774142",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "contextual"
     },
     {
       "id": "ride-6",
       "name": "신밧드의 모험",
       "floor": "1F",
       "pdf": [
-        488.12,
-        482.03
+        487.7007,
+        481.54997
       ],
       "lat": 37.5107525,
       "lng": 127.099186,
-      "sourceUrl": "https://www.openstreetmap.org/node/11266774143"
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774143",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 2,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-26",
       "name": "후렌치레볼루션",
       "floor": "2F",
       "pdf": [
-        913.42,
-        379.22
+        913.36801,
+        378.4727
       ],
       "lat": 37.5110227,
       "lng": 127.0970227,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686755224"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686755224",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-15",
       "name": "키즈토리아",
       "floor": "1F",
       "pdf": [
-        1134.57,
-        330.43
+        1134.3252,
+        329.95177
       ],
       "lat": 37.51063,
       "lng": 127.0973637,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686755226"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686755226",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-9",
       "name": "회전바구니",
       "floor": "1F",
       "pdf": [
-        738.28,
-        676.61
+        738.23129,
+        676.1272
       ],
       "lat": 37.5116254,
       "lng": 127.0989503,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823113"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823113",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-7",
       "name": "스페인해적선",
       "floor": "1F",
       "pdf": [
-        477.61,
-        551.34
+        477.68159,
+        550.862
       ],
       "lat": 37.5109077,
       "lng": 127.0992936,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823116"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823116",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-8",
       "name": "후룸라이드",
       "floor": "1F",
       "pdf": [
-        574.65,
-        688.11
+        574.09427,
+        687.62451
       ],
       "lat": 37.5110283,
       "lng": 127.099426,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823117"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823117",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-25",
       "name": "카트라이더",
       "floor": "1F",
       "pdf": [
-        919.52,
-        307.0
+        919.27176,
+        306.51927
       ],
       "lat": 37.5108382,
       "lng": 127.0979651,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823130"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823130",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 3,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-14",
       "name": "황야의 무법자",
       "floor": "1F",
       "pdf": [
-        1043.47,
-        325.4
+        1043.22314,
+        324.91502
       ],
       "lat": 37.5107191,
       "lng": 127.0976271,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823133"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823133",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-23",
       "name": "매직붕붕카",
       "floor": "1F",
       "pdf": [
-        1036.98,
-        144.73
+        1036.90112,
+        144.24388
       ],
       "lat": 37.5103616,
       "lng": 127.0974662,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823135"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823135",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-22",
       "name": "스윙팡팡",
       "floor": "1F",
       "pdf": [
-        1106.87,
-        180.86
+        1107.19727,
+        180.3781
       ],
       "lat": 37.5104694,
       "lng": 127.097434,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823136"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823136",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-21",
       "name": "유레카",
       "floor": "1F",
       "pdf": [
-        1143.99,
-        159.84
+        1144.31689,
+        159.3546
       ],
       "lat": 37.5104723,
       "lng": 127.097307,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823137"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823137",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-20",
       "name": "언더씨킹덤",
       "floor": "1F",
       "pdf": [
-        1195.31,
-        142.75
+        1194.98682,
+        142.27287
       ],
       "lat": 37.5103446,
       "lng": 127.0973177,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823138"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823138",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-19",
       "name": "점핑피쉬",
       "floor": "1F",
       "pdf": [
-        1312.39,
-        206.48
+        1312.14941,
+        206.00047
       ],
       "lat": 37.510329,
       "lng": 127.0970835,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823139"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823139",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-17",
       "name": "어린이 범퍼카",
       "floor": "1F",
       "pdf": [
-        1298.16,
-        304.37
+        1297.91455,
+        303.8914
       ],
       "lat": 37.5105517,
       "lng": 127.0970442,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823141"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823141",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-18",
       "name": "햇님달님",
       "floor": "1F",
       "pdf": [
-        1354.0,
-        258.38
+        1353.75854,
+        257.90239
       ],
       "lat": 37.5105489,
       "lng": 127.0969172,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823142"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823142",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-16",
       "name": "드래곤 와일드슈팅",
       "floor": "1F",
       "pdf": [
-        1287.21,
-        389.34
+        1286.96484,
+        388.86162
       ],
       "lat": 37.5106496,
       "lng": 127.0971354,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823144"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823144",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-12",
       "name": "플라이벤처",
       "floor": "1F",
       "pdf": [
-        1247.32,
-        464.18
+        1247.27197,
+        463.70189
       ],
       "lat": 37.5109488,
       "lng": 127.0970138,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823146"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823146",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-10",
       "name": "로티트레인",
       "floor": "1F",
       "pdf": [
-        1041.36,
-        550.47
+        1040.81421,
+        549.98602
       ],
       "lat": 37.5113417,
       "lng": 127.0978578,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823148"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823148",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-11",
       "name": "배틀그라운드",
       "floor": "1F",
       "pdf": [
-        1171.49,
-        488.27
+        1171.77344,
+        487.79137
       ],
       "lat": 37.5112524,
       "lng": 127.0975037,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686823149"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823149",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-35",
       "name": "쁘띠빵빵",
       "floor": "MAGIC",
       "pdf": [
-        597.29,
-        417.29
+        597.22354,
+        416.68541
       ],
       "lat": 37.5087143,
       "lng": 127.1002517,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686830798"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686830798",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 3,
+      "identityStatus": "name-or-documented-alias"
     },
     {
       "id": "ride-38",
       "name": "혜성특급",
       "floor": "MAGIC",
       "pdf": [
-        496.65,
-        551.08
+        496.32201,
+        550.47971
       ],
       "lat": 37.5091043,
       "lng": 127.1006683,
-      "sourceUrl": "https://www.openstreetmap.org/node/13686835406"
+      "sourceUrl": "https://www.openstreetmap.org/node/13686835406",
+      "referenceRole": "community-facility-point-to-guide-symbol",
+      "geographicSurveyed": false,
+      "verifiedAt": "2026-11-02",
+      "osmVersion": 1,
+      "identityStatus": "name-or-documented-alias"
     }
   ],
   "floors": {

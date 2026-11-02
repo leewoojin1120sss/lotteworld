@@ -3,8 +3,9 @@
 Usage: python scripts/export_vector_maps.py /path/to/2026-guide.pdf --validate
 
 Requires PyMuPDF. Optional render validation also uses Inkscape, Pillow and
-NumPy. Only assets/maps/<floor>.svg and data/map-quality.json are written;
-park.json and the existing WebPs remain inputs. Render intermediates use /tmp.
+NumPy. Writes floor SVGs and data/map-quality.json. The optional
+--refresh-corrected-fallback also renders the corrected 4F WebP with Inkscape.
+Render intermediates use /tmp; the source PDF is never changed.
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ from __future__ import annotations
 import argparse
 import base64
 from collections import Counter, defaultdict, deque
+from copy import deepcopy
 import json
 import math
 from pathlib import Path
@@ -206,6 +208,35 @@ def source_characters(page):
             for char in span.get("chars", [])]
 
 
+def correct_fourth_floor_number(root, page, floor):
+    """Correct the Korean guide's lower 17 to 16, using its own font outline.
+
+    The official English guide labels this position Observatory Game Room 16;
+    the upper 17 is Hello Kitty. Keep the original PDF untouched.
+    """
+    if floor["id"] != "4F":
+        return []
+    cx, cy = floor["crop"][:2]
+    targets = []
+    for node in root.iter(tag("use")):
+        matrix = [float(n) for n in NUMBER.findall(node.get("transform", ""))]
+        if node.get("data-text") == "7" and len(matrix) == 6 and abs(matrix[4] + cx - 1726.9509) < .02 and abs(matrix[5] + cy - 787.0078) < .02:
+            targets.append(node)
+    if len(targets) != 1:
+        raise ValueError("4F: expected exactly one lower duplicate 17")
+    full = ET.fromstring(page.get_svg_image(text_as_path=True))
+    six = next(n for n in full.iter(tag("use")) if n.get("data-text") == "6" and n.get("transform", "").startswith("matrix(12.392,"))
+    ref = six.get(f"{{{XLINK}}}href", six.get("href"))[1:]
+    outline = deepcopy(next(n for n in full.iter() if n.get("id") == ref))
+    outline.set("id", "corrected-shop16-digit6")
+    root.find(tag("defs")).append(outline)
+    target = targets[0]
+    target.set("data-text", "6")
+    target.set(f"{{{XLINK}}}href", "#corrected-shop16-digit6")
+    return [{"guideId": "shop-16", "original": "17", "corrected": "16",
+             "evidence": "Official English guide page 3: Observatory Game Room 16"}]
+
+
 def check_structure(root, floor, characters, background_bytes):
     ids = [node.get("id") for node in root.iter() if node.get("id")]
     if len(ids) != len(set(ids)):
@@ -352,11 +383,28 @@ def validate_render(doc, floor, svg_path, color, pois):
     return metrics
 
 
+def corrected_fallback(svg_path, floor):
+    from PIL import Image
+    inkscape = shutil.which("inkscape")
+    if not inkscape:
+        raise RuntimeError("--refresh-corrected-fallback requires Inkscape")
+    with tempfile.TemporaryDirectory(prefix="lotte-corrected-fallback-") as tmp:
+        png = Path(tmp) / "4F.png"
+        subprocess.run([inkscape, str(svg_path), "--export-area-page", "--export-type=png",
+                        f"--export-width={floor['width'] * 2}", f"--export-filename={png}",
+                        "--export-background=#ffffff", "--export-background-opacity=1"],
+                       check=True, capture_output=True, text=True)
+        with Image.open(png) as image:
+            image.convert("RGB").save(ROOT / "assets/maps/4F.webp", "WEBP", quality=91, method=6)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pdf", type=Path)
     parser.add_argument("--validate", action="store_true",
                         help="Compare local Inkscape renders with PDF crops and existing WebPs")
+    parser.add_argument("--refresh-corrected-fallback", action="store_true",
+                        help="Also render the corrected 4F number into its WebP fallback")
     args = parser.parse_args()
     park = json.loads((ROOT / "data/park.json").read_text())
     floors = park["floors"]
@@ -398,6 +446,7 @@ def main():
             mask_floor(root, floor, color)
             removed = prune_unused_definitions(root)
             checks = check_structure(root, floor, text_chars[page.number], background_bytes)
+            corrections = correct_fourth_floor_number(root, page, floor)
             image_path = f"assets/maps/{fid}.svg"
             target = ROOT / image_path
             data = ET.tostring(root, encoding="utf-8", xml_declaration=True)
@@ -415,9 +464,12 @@ def main():
                 ],
                 "titleWipe": {"rect": TITLE_WIPES[fid][0], "fill": color} if color else None,
                 "prunedUnusedDefinitions": removed, **checks,
+                "editorialCorrectionsAfterSourceValidation": corrections,
             }
             if args.validate:
                 quality["renderValidation"] = validate_render(doc, floor, target, color, park["pois"])
+            if corrections and args.refresh_corrected_fallback:
+                corrected_fallback(target, floor)
             report["floors"][fid] = quality
             print(f"{image_path}: {len(data):,} bytes; "
                   f"{checks['vectorPaths']} paths; "

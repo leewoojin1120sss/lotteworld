@@ -55,6 +55,8 @@ jobs:
           fi
       - name: 위치·공유·경로 테스트
         run: node --test tests/*.test.mjs
+      - name: 공식 좌표 파서 확인
+        run: python tests/test_sync_coordinates.py
       - name: 데이터와 구문 확인
         run: npm run check
       - name: 정적 사이트 빌드

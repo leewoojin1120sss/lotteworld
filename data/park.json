@@ -223,13 +223,21 @@
       "category": "attraction",
       "floor": "B1",
       "pdf": [
-        1277.7,
-        332.43
+        1278.0979,
+        331.90477
       ],
-      "x": 690.168,
-      "y": 297.691,
+      "x": 690.61218,
+      "y": 296.91878,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1267.59839,
+        321.40527,
+        1288.59741,
+        342.40427
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-2",
@@ -239,13 +247,21 @@
       "category": "attraction",
       "floor": "B1",
       "pdf": [
-        1011.84,
-        462.51
+        1011.69022,
+        461.98802
       ],
-      "x": 393.117,
-      "y": 488.985,
+      "x": 392.94997,
+      "y": 488.21768,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1001.19073,
+        451.48853,
+        1022.1897,
+        472.48752
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-3",
@@ -255,13 +271,21 @@
       "category": "attraction",
       "floor": "B1",
       "pdf": [
-        906.2,
-        353.13
+        905.9155,
+        352.5999
       ],
-      "x": 275.084,
-      "y": 328.132,
+      "x": 274.76592,
+      "y": 327.35279,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        895.41602,
+        342.1004,
+        916.41498,
+        363.0994
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-4",
@@ -271,13 +295,21 @@
       "category": "attraction",
       "floor": "B1",
       "pdf": [
-        922.98,
-        240.12
+        923.32571,
+        239.59837
       ],
-      "x": 293.832,
-      "y": 161.941,
+      "x": 294.21867,
+      "y": 161.17407,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        912.82623,
+        229.09888,
+        933.8252,
+        250.09787
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-5",
@@ -287,13 +319,21 @@
       "category": "attraction",
       "floor": "B1",
       "pdf": [
-        790.84,
-        230.05
+        791.05246,
+        229.52458
       ],
-      "x": 146.19,
-      "y": 147.132,
+      "x": 146.42733,
+      "y": 146.35968,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        780.55298,
+        219.02509,
+        801.55194,
+        240.02408
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-6",
@@ -303,13 +343,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        488.12,
-        482.03
+        487.7007,
+        481.54997
       ],
-      "x": 167.218,
-      "y": 575.039,
+      "x": 166.84507,
+      "y": 574.40786,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        477.2012,
+        471.05048,
+        498.2002,
+        492.04947
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-7",
@@ -319,13 +367,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        477.61,
-        551.34
+        477.68159,
+        550.862
       ],
-      "x": 157.876,
-      "y": 666.237,
+      "x": 157.93919,
+      "y": 665.60789,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        467.1821,
+        540.36249,
+        488.18109,
+        561.36151
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-8",
@@ -335,13 +391,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        574.65,
-        688.11
+        574.09427,
+        687.62451
       ],
-      "x": 244.133,
-      "y": 846.197,
+      "x": 243.63935,
+      "y": 845.55857,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        563.59479,
+        677.125,
+        584.59375,
+        698.12402
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-9",
@@ -351,13 +415,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        738.28,
-        676.61
+        738.23129,
+        676.1272
       ],
-      "x": 389.582,
-      "y": 831.066,
+      "x": 389.53892,
+      "y": 830.43053,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        727.73181,
+        665.62769,
+        748.73077,
+        686.62671
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-10",
@@ -367,13 +439,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1041.36,
-        550.47
+        1040.81421,
+        549.98602
       ],
-      "x": 658.987,
-      "y": 665.092,
+      "x": 658.50152,
+      "y": 664.45529,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1030.3147,
+        539.48651,
+        1051.31372,
+        560.48553
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-11",
@@ -383,13 +463,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1171.49,
-        488.27
+        1171.77344,
+        487.79137
       ],
-      "x": 774.658,
-      "y": 583.25,
+      "x": 774.90972,
+      "y": 582.62022,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1161.27393,
+        477.29187,
+        1182.27295,
+        498.29086
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-12",
@@ -399,13 +487,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1247.32,
-        464.18
+        1247.27197,
+        463.70189
       ],
-      "x": 842.062,
-      "y": 551.553,
+      "x": 842.01953,
+      "y": 550.92354,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1236.77246,
+        453.20239,
+        1257.77148,
+        474.20139
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-13",
@@ -415,13 +511,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1200.54,
-        394.11
+        1200.29883,
+        393.6234
       ],
-      "x": 800.48,
-      "y": 459.355,
+      "x": 800.26563,
+      "y": 458.715,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1189.79932,
+        383.1239,
+        1210.79834,
+        404.12289
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-14",
@@ -431,13 +535,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1043.47,
-        325.4
+        1043.22314,
+        324.91502
       ],
-      "x": 660.862,
-      "y": 368.947,
+      "x": 660.64279,
+      "y": 368.30924,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1032.72363,
+        314.41553,
+        1053.72266,
+        335.41452
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-15",
@@ -447,13 +559,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1134.57,
-        330.43
+        1134.3252,
+        329.95177
       ],
-      "x": 741.84,
-      "y": 375.566,
+      "x": 741.6224,
+      "y": 374.93654,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1123.82568,
+        319.45227,
+        1144.82471,
+        340.45126
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-16",
@@ -463,13 +583,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1287.21,
-        389.34
+        1286.96484,
+        388.86162
       ],
-      "x": 877.52,
-      "y": 453.079,
+      "x": 877.30208,
+      "y": 452.4495,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1276.46533,
+        378.36212,
+        1297.46436,
+        399.36111
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-17",
@@ -479,13 +607,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1298.16,
-        304.37
+        1297.91455,
+        303.8914
       ],
-      "x": 887.253,
-      "y": 341.276,
+      "x": 887.03516,
+      "y": 340.64658,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1287.41504,
+        293.39191,
+        1308.41406,
+        314.3909
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-18",
@@ -495,13 +631,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1354.0,
-        258.38
+        1353.75854,
+        257.90239
       ],
-      "x": 936.889,
-      "y": 280.763,
+      "x": 936.67426,
+      "y": 280.13472,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1343.25903,
+        247.40289,
+        1364.25806,
+        268.40189
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-19",
@@ -511,13 +655,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1312.39,
-        206.48
+        1312.14941,
+        206.00047
       ],
-      "x": 899.902,
-      "y": 212.474,
+      "x": 899.68836,
+      "y": 211.84272,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1301.6499,
+        195.50098,
+        1322.64893,
+        216.49997
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-20",
@@ -527,13 +679,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1195.31,
-        142.75
+        1194.98682,
+        142.27287
       ],
-      "x": 795.831,
-      "y": 128.618,
+      "x": 795.54384,
+      "y": 127.99062,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1184.4873,
+        131.77338,
+        1205.48633,
+        152.77237
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-21",
@@ -543,13 +703,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1143.99,
-        159.84
+        1144.31689,
+        159.3546
       ],
-      "x": 750.213,
-      "y": 151.105,
+      "x": 750.5039,
+      "y": 150.46658,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1133.81738,
+        148.8551,
+        1154.81641,
+        169.8541
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-22",
@@ -559,13 +727,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1106.87,
-        180.86
+        1107.19727,
+        180.3781
       ],
-      "x": 717.218,
-      "y": 178.763,
+      "x": 717.50868,
+      "y": 178.12908,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1096.69775,
+        169.8786,
+        1117.69678,
+        190.87759
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-23",
@@ -575,13 +751,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        1036.98,
-        144.73
+        1036.90112,
+        144.24388
       ],
-      "x": 655.093,
-      "y": 131.224,
+      "x": 655.02322,
+      "y": 130.58405,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1026.40161,
+        133.74438,
+        1047.40063,
+        154.74338
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-24",
@@ -591,13 +775,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        979.74,
-        167.06
+        979.49557,
+        166.58141
       ],
-      "x": 604.213,
-      "y": 160.605,
+      "x": 603.99606,
+      "y": 159.97554,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        968.99609,
+        156.08191,
+        989.99506,
+        177.0809
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-25",
@@ -607,13 +799,21 @@
       "category": "attraction",
       "floor": "1F",
       "pdf": [
-        919.52,
-        307.0
+        919.27176,
+        306.51927
       ],
-      "x": 550.684,
-      "y": 344.737,
+      "x": 550.46379,
+      "y": 344.1043,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        908.77228,
+        296.01978,
+        929.77124,
+        317.01877
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-26",
@@ -623,13 +823,21 @@
       "category": "attraction",
       "floor": "2F",
       "pdf": [
-        913.42,
-        379.22
+        913.36801,
+        378.4727
       ],
-      "x": 918.805,
-      "y": 762.412,
+      "x": 918.74148,
+      "y": 760.21382,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        902.86853,
+        367.97321,
+        923.86749,
+        388.9722
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-27",
@@ -639,13 +847,21 @@
       "category": "attraction",
       "floor": "2F",
       "pdf": [
-        809.69,
-        195.66
+        809.5643,
+        195.17369
       ],
-      "x": 792.305,
-      "y": 222.529,
+      "x": 792.15159,
+      "y": 221.09909,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        799.06482,
+        184.67419,
+        820.06378,
+        205.67319
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-28",
@@ -655,13 +871,21 @@
       "category": "attraction",
       "floor": "3F",
       "pdf": [
-        1127.32,
-        464.91
+        1127.00879,
+        463.83672
       ],
-      "x": 647.018,
-      "y": 490.912,
+      "x": 646.63655,
+      "y": 487.14639,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1116.50928,
+        453.33722,
+        1137.5083,
+        474.33621
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-29",
@@ -671,13 +895,21 @@
       "category": "attraction",
       "floor": "3F",
       "pdf": [
-        749.65,
-        527.22
+        749.73471,
+        526.74304
       ],
-      "x": 183.62,
-      "y": 709.544,
+      "x": 183.72357,
+      "y": 707.87032,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        739.23523,
+        516.24353,
+        760.23419,
+        537.24255
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-30",
@@ -687,13 +919,21 @@
       "category": "attraction",
       "floor": "4F",
       "pdf": [
-        1744.71,
-        726.19
+        1744.97266,
+        725.55261
       ],
-      "x": 840.835,
-      "y": 738.794,
+      "x": 841.14431,
+      "y": 736.91944,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1734.47314,
+        715.0531,
+        1755.47217,
+        736.05212
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-31",
@@ -703,13 +943,21 @@
       "category": "attraction",
       "floor": "4F",
       "pdf": [
-        1565.99,
-        661.21
+        1565.94409,
+        660.72998
       ],
-      "x": 630.576,
-      "y": 547.676,
+      "x": 630.52246,
+      "y": 546.26465,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1555.44458,
+        650.23047,
+        1576.4436,
+        671.22949
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-32",
@@ -719,13 +967,21 @@
       "category": "attraction",
       "floor": "4F",
       "pdf": [
-        1288.98,
-        679.28
+        1288.91516,
+        678.68762
       ],
-      "x": 304.682,
-      "y": 600.824,
+      "x": 304.60607,
+      "y": 599.08124,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1278.41565,
+        668.18811,
+        1299.41467,
+        689.18713
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-33",
@@ -735,13 +991,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        803.67,
-        339.05
+        803.47122,
+        338.45348
       ],
-      "x": 612.855,
-      "y": 402.628,
+      "x": 612.61593,
+      "y": 401.86344,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        792.81573,
+        327.79797,
+        814.12671,
+        349.10898
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-34",
@@ -751,13 +1015,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        759.69,
-        247.49
+        759.46579,
+        246.88658
       ],
-      "x": 559.867,
-      "y": 285.244,
+      "x": 559.59734,
+      "y": 284.46997,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        748.8103,
+        236.23108,
+        770.12128,
+        257.54208
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-35",
@@ -767,13 +1039,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        597.29,
-        417.29
+        597.22354,
+        416.68541
       ],
-      "x": 364.205,
-      "y": 502.936,
+      "x": 364.12475,
+      "y": 502.16078,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        586.56805,
+        406.02991,
+        607.87903,
+        427.34091
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-36",
@@ -783,13 +1063,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        514.74,
-        413.29
+        514.54652,
+        412.68492
       ],
-      "x": 264.747,
-      "y": 497.808,
+      "x": 264.51388,
+      "y": 497.03195,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        503.89102,
+        402.02942,
+        525.20203,
+        423.34042
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-37",
@@ -799,13 +1087,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        487.57,
-        451.51
+        487.8766,
+        450.91179
       ],
-      "x": 232.012,
-      "y": 546.808,
+      "x": 232.38145,
+      "y": 546.04076,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        477.2211,
+        440.25629,
+        498.5321,
+        461.56729
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-38",
@@ -815,13 +1111,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        496.65,
-        551.08
+        496.32201,
+        550.47971
       ],
-      "x": 242.952,
-      "y": 674.462,
+      "x": 242.55664,
+      "y": 673.69194,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        485.6665,
+        539.82422,
+        506.97751,
+        561.13519
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-39",
@@ -831,13 +1135,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        475.18,
-        592.42
+        474.9861,
+        591.81821
       ],
-      "x": 217.084,
-      "y": 727.462,
+      "x": 216.85072,
+      "y": 726.69001,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        464.3306,
+        581.16272,
+        485.6416,
+        602.47369
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-40",
@@ -847,13 +1159,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        558.04,
-        679.54
+        557.66623,
+        678.94162
       ],
-      "x": 316.916,
-      "y": 839.154,
+      "x": 316.46534,
+      "y": 838.38669,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        547.01074,
+        668.28613,
+        568.32172,
+        689.59711
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-41",
@@ -863,13 +1183,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        667.92,
-        721.77
+        668.01004,
+        721.16745
       ],
-      "x": 449.301,
-      "y": 893.295,
+      "x": 449.40969,
+      "y": 892.52237,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        657.35455,
+        710.51196,
+        678.66553,
+        731.82294
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "ride-42",
@@ -879,13 +1207,21 @@
       "category": "attraction",
       "floor": "MAGIC",
       "pdf": [
-        656.23,
-        638.76
+        656.00864,
+        638.1572
       ],
-      "x": 435.217,
-      "y": 786.872,
+      "x": 434.95017,
+      "y": 786.09897,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        645.35315,
+        627.50171,
+        666.66412,
+        648.81268
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-B1-1",
@@ -895,13 +1231,21 @@
       "category": "food",
       "floor": "B1",
       "pdf": [
-        1474.01,
-        452.75
+        1474.49927,
+        451.40707
       ],
-      "x": 909.508,
-      "y": 474.632,
+      "x": 910.05505,
+      "y": 472.65746,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1461.29175,
+        442.48758,
+        1487.70679,
+        460.32657
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-B1-2",
@@ -911,13 +1255,21 @@
       "category": "food",
       "floor": "B1",
       "pdf": [
-        1127.48,
-        421.46
+        1127.47772,
+        420.1105
       ],
-      "x": 522.324,
-      "y": 428.618,
+      "x": 522.32147,
+      "y": 426.63309,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1114.27026,
+        411.19101,
+        1140.68518,
+        429.03
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-B1-3",
@@ -927,13 +1279,21 @@
       "category": "food",
       "floor": "B1",
       "pdf": [
-        987.5,
-        565.89
+        987.53128,
+        564.54501
       ],
-      "x": 365.922,
-      "y": 641.015,
+      "x": 365.95674,
+      "y": 639.03678,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        974.32379,
+        555.62549,
+        1000.73877,
+        573.46454
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-B1-4",
@@ -943,13 +1303,21 @@
       "category": "food",
       "floor": "B1",
       "pdf": [
-        999.67,
-        597.31
+        1000.99551,
+        595.96152
       ],
-      "x": 379.52,
-      "y": 687.221,
+      "x": 381.00057,
+      "y": 685.23753,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        987.78802,
+        587.04199,
+        1014.203,
+        604.88104
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-B1-5",
@@ -959,13 +1327,21 @@
       "category": "food",
       "floor": "B1",
       "pdf": [
-        1050.18,
-        680.13
+        1050.36444,
+        678.78693
       ],
-      "x": 435.955,
-      "y": 809.015,
+      "x": 436.16139,
+      "y": 807.0396,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1037.15698,
+        669.86743,
+        1063.5719,
+        687.70642
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-B1-6",
@@ -975,13 +1351,21 @@
       "category": "food",
       "floor": "B1",
       "pdf": [
-        1140.61,
-        718.99
+        1140.78882,
+        717.64963
       ],
-      "x": 536.994,
-      "y": 866.162,
+      "x": 537.19421,
+      "y": 864.19063,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1127.5813,
+        708.7301,
+        1153.99634,
+        726.56915
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-7",
@@ -991,13 +1375,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        525.47,
-        451.38
+        525.65372,
+        450.03781
       ],
-      "x": 200.418,
-      "y": 534.711,
+      "x": 200.58108,
+      "y": 532.94449,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        512.44623,
+        441.11832,
+        538.86121,
+        458.95731
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-8",
@@ -1007,13 +1399,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        622.27,
-        427.73
+        622.44962,
+        426.38632
       ],
-      "x": 286.462,
-      "y": 503.592,
+      "x": 286.62188,
+      "y": 501.82411,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        609.24213,
+        417.46683,
+        635.6571,
+        435.30582
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-9",
@@ -1023,13 +1423,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        644.06,
-        446.35
+        644.23959,
+        445.00089
       ],
-      "x": 305.831,
-      "y": 528.092,
+      "x": 305.99075,
+      "y": 526.31696,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        631.0321,
+        436.08139,
+        657.44708,
+        453.92038
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-10",
@@ -1039,13 +1447,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        635.84,
-        480.62
+        636.02731,
+        479.27371
       ],
-      "x": 298.524,
-      "y": 573.184,
+      "x": 298.69094,
+      "y": 571.41278,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        622.81982,
+        470.35422,
+        649.2348,
+        488.19321
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-11",
@@ -1055,13 +1471,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        597.52,
-        492.44
+        597.70309,
+        491.0994
       ],
-      "x": 264.462,
-      "y": 588.737,
+      "x": 264.62497,
+      "y": 586.97289,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        584.49561,
+        482.1799,
+        610.91058,
+        500.01889
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-12",
@@ -1071,13 +1495,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        629.38,
-        525.08
+        629.56686,
+        523.72971
       ],
-      "x": 292.782,
-      "y": 631.684,
+      "x": 292.94832,
+      "y": 629.90751,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        616.35938,
+        514.81018,
+        642.77435,
+        532.64923
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-13",
@@ -1087,13 +1519,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        811.04,
-        612.62
+        811.22336,
+        611.27301
       ],
-      "x": 454.258,
-      "y": 746.868,
+      "x": 454.42076,
+      "y": 745.09607,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        798.01587,
+        602.35352,
+        824.43085,
+        620.1925
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-14",
@@ -1103,13 +1543,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        780.49,
-        662.22
+        780.67361,
+        660.87546
       ],
-      "x": 427.102,
-      "y": 812.132,
+      "x": 427.26543,
+      "y": 810.36245,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        767.46613,
+        651.95593,
+        793.8811,
+        669.79498
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-15",
@@ -1119,13 +1567,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        850.46,
-        642.84
+        850.64261,
+        641.49435
       ],
-      "x": 489.298,
-      "y": 786.632,
+      "x": 489.4601,
+      "y": 784.86099,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        837.43512,
+        632.57483,
+        863.8501,
+        650.41388
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-16",
@@ -1135,13 +1591,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        989.9,
-        566.96
+        990.0878,
+        565.61252
       ],
-      "x": 613.244,
-      "y": 686.789,
+      "x": 613.41138,
+      "y": 685.01647,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        976.88031,
+        556.69299,
+        1003.29529,
+        574.53204
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-17",
@@ -1151,13 +1615,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        1197.73,
-        338.76
+        1197.91425,
+        337.41953
       ],
-      "x": 797.982,
-      "y": 386.526,
+      "x": 798.146,
+      "y": 384.76254,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1184.70679,
+        328.50003,
+        1211.1217,
+        346.33902
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-18",
@@ -1167,13 +1639,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        1312.05,
-        257.52
+        1312.22974,
+        256.17227
       ],
-      "x": 899.6,
-      "y": 279.632,
+      "x": 899.75977,
+      "y": 277.85825,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1299.02222,
+        247.25278,
+        1325.43726,
+        265.09177
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-19",
@@ -1183,13 +1663,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        1106.19,
-        368.55
+        1106.37427,
+        367.20291
       ],
-      "x": 716.613,
-      "y": 425.724,
+      "x": 716.77713,
+      "y": 423.9512,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1093.16675,
+        358.28342,
+        1119.58179,
+        376.12241
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-20",
@@ -1199,13 +1687,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        1019.09,
-        295.4
+        1018.99515,
+        294.05838
       ],
-      "x": 639.191,
-      "y": 329.474,
+      "x": 639.1068,
+      "y": 327.70839,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1005.78766,
+        285.13889,
+        1032.20264,
+        302.97787
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-21",
@@ -1215,13 +1711,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        919.7,
-        335.81
+        920.4473,
+        334.46298
       ],
-      "x": 550.844,
-      "y": 382.645,
+      "x": 551.50871,
+      "y": 380.87234,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        907.23981,
+        325.54349,
+        933.65479,
+        343.38248
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-1F-22",
@@ -1244,13 +1748,21 @@
       "category": "food",
       "floor": "1F",
       "pdf": [
-        597.46,
-        323.87
+        597.3746,
+        322.5278
       ],
-      "x": 264.409,
-      "y": 366.934,
+      "x": 264.33298,
+      "y": 365.16816,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        584.16711,
+        313.60831,
+        610.58209,
+        331.4473
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-24",
@@ -1260,13 +1772,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        904.4,
-        340.0
+        904.31021,
+        338.65298
       ],
-      "x": 907.805,
-      "y": 647.059,
+      "x": 907.69538,
+      "y": 643.097,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        891.10272,
+        329.73349,
+        917.5177,
+        347.57248
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-25",
@@ -1276,13 +1796,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        863.39,
-        295.55
+        863.35806,
+        294.19699
       ],
-      "x": 857.793,
-      "y": 516.324,
+      "x": 857.75373,
+      "y": 512.34409,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        850.15057,
+        285.2775,
+        876.56555,
+        303.11649
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-26",
@@ -1292,13 +1820,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        780.61,
-        326.65
+        780.57791,
+        325.29428
       ],
-      "x": 756.841,
-      "y": 607.794,
+      "x": 756.80233,
+      "y": 603.80671,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        767.37042,
+        316.37479,
+        793.7854,
+        334.21378
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-27",
@@ -1308,13 +1844,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        750.39,
-        311.76
+        750.35648,
+        310.40262
       ],
-      "x": 719.988,
-      "y": 564.0,
+      "x": 719.94693,
+      "y": 560.00771,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        737.14899,
+        301.48312,
+        763.56396,
+        319.32211
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-28",
@@ -1324,13 +1868,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        726.82,
-        280.22
+        726.7872,
+        278.86728
       ],
-      "x": 691.244,
-      "y": 471.235,
+      "x": 691.2039,
+      "y": 467.25671,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        713.57971,
+        269.94778,
+        739.99469,
+        287.78677
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-29",
@@ -1340,13 +1892,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        686.83,
-        301.66
+        686.79318,
+        300.30148
       ],
-      "x": 642.476,
-      "y": 534.294,
+      "x": 642.43071,
+      "y": 530.29847,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        673.58569,
+        291.38199,
+        700.00067,
+        309.22098
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-30",
@@ -1356,13 +1916,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        538.57,
-        356.84
+        538.53342,
+        355.48831
       ],
-      "x": 461.671,
-      "y": 696.588,
+      "x": 461.62612,
+      "y": 692.61268,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        525.32593,
+        346.56882,
+        551.74091,
+        364.40781
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-31",
@@ -1372,13 +1940,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        428.31,
-        381.37
+        428.2693,
+        380.01572
       ],
-      "x": 327.207,
-      "y": 768.735,
+      "x": 327.15768,
+      "y": 764.75212,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        415.0618,
+        371.09622,
+        441.47681,
+        388.93521
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-32",
@@ -1388,13 +1964,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        410.46,
-        337.9
+        410.42122,
+        336.5452
       ],
-      "x": 305.439,
-      "y": 640.882,
+      "x": 305.39173,
+      "y": 636.89765,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        397.21371,
+        327.6257,
+        423.62872,
+        345.46469
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-33",
@@ -1404,13 +1988,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        376.95,
-        374.47
+        376.91499,
+        373.1174
       ],
-      "x": 264.573,
-      "y": 748.441,
+      "x": 264.53048,
+      "y": 744.46294,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        363.70749,
+        364.19791,
+        390.1225,
+        382.0369
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-34",
@@ -1420,13 +2012,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        302.6,
-        364.4
+        302.56612,
+        363.04361
       ],
-      "x": 173.902,
-      "y": 718.824,
+      "x": 173.86112,
+      "y": 714.83415,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        289.35861,
+        354.12411,
+        315.77362,
+        371.9631
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-35",
@@ -1436,13 +2036,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        212.05,
-        334.84
+        212.0115,
+        333.47928
       ],
-      "x": 63.476,
-      "y": 631.882,
+      "x": 63.42866,
+      "y": 627.88024,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        198.804,
+        324.55978,
+        225.21899,
+        342.39877
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-36",
@@ -1452,13 +2060,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        216.87,
-        381.48
+        216.8294,
+        380.12521
       ],
-      "x": 69.354,
-      "y": 769.059,
+      "x": 69.30415,
+      "y": 765.07415,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        203.6219,
+        371.20572,
+        230.0369,
+        389.04471
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-2F-37",
@@ -1468,13 +2084,21 @@
       "category": "food",
       "floor": "2F",
       "pdf": [
-        207.5,
-        406.34
+        208.0696,
+        404.98117
       ],
-      "x": 57.927,
-      "y": 842.176,
+      "x": 58.62146,
+      "y": 838.17991,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        194.86211,
+        396.06168,
+        221.2771,
+        413.90067
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-3F-38",
@@ -1484,13 +2108,21 @@
       "category": "food",
       "floor": "3F",
       "pdf": [
-        1281.58,
-        536.4
+        1281.54047,
+        535.04755
       ],
-      "x": 836.294,
-      "y": 741.754,
+      "x": 836.24598,
+      "y": 737.00895,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1268.33301,
+        526.12805,
+        1294.74792,
+        543.96704
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-3F-39",
@@ -1500,13 +2132,21 @@
       "category": "food",
       "floor": "3F",
       "pdf": [
-        1172.19,
-        516.04
+        1172.15228,
+        514.68102
       ],
-      "x": 702.074,
-      "y": 670.316,
+      "x": 702.02734,
+      "y": 665.54744,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1158.94482,
+        505.76151,
+        1185.35974,
+        523.60052
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-4F-40",
@@ -1516,13 +2156,21 @@
       "category": "food",
       "floor": "4F",
       "pdf": [
-        1615.28,
-        719.28
+        1615.24847,
+        717.92523
       ],
-      "x": 688.565,
-      "y": 718.471,
+      "x": 688.52761,
+      "y": 714.48597,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1602.04102,
+        709.00574,
+        1628.45593,
+        726.84473
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-4F-41",
@@ -1532,13 +2180,21 @@
       "category": "food",
       "floor": "4F",
       "pdf": [
-        1536.45,
-        688.62
+        1536.41016,
+        687.26593
       ],
-      "x": 595.824,
-      "y": 628.294,
+      "x": 595.77666,
+      "y": 624.31156,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1523.20264,
+        678.34644,
+        1549.61768,
+        696.18542
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-4F-42",
@@ -1548,13 +2204,21 @@
       "category": "food",
       "floor": "4F",
       "pdf": [
-        1399.36,
-        635.63
+        1399.31927,
+        634.26901
       ],
-      "x": 434.541,
-      "y": 472.441,
+      "x": 434.49326,
+      "y": 468.43826,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1386.11182,
+        625.34949,
+        1412.52673,
+        643.18854
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-41",
@@ -1564,13 +2228,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        866.42,
-        679.08
+        867.21283,
+        677.70013
       ],
-      "x": 688.458,
-      "y": 838.564,
+      "x": 689.41305,
+      "y": 836.79504,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        853.80884,
+        668.64813,
+        880.61682,
+        686.75214
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-42",
@@ -1580,13 +2252,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        885.09,
-        515.5
+        885.88184,
+        514.12433
       ],
-      "x": 710.952,
-      "y": 628.846,
+      "x": 711.90583,
+      "y": 627.08247,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        872.47784,
+        505.07233,
+        899.28583,
+        523.17633
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-43",
@@ -1596,13 +2276,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        867.08,
-        478.61
+        867.87964,
+        477.23077
       ],
-      "x": 689.253,
-      "y": 581.551,
+      "x": 690.21643,
+      "y": 579.78304,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        854.47565,
+        468.17877,
+        881.28363,
+        486.28278
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-44",
@@ -1612,13 +2300,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        751.68,
-        355.82
+        752.47583,
+        354.43842
       ],
-      "x": 550.217,
-      "y": 424.128,
+      "x": 551.1757,
+      "y": 422.35695,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        739.07184,
+        345.38641,
+        765.87982,
+        363.49042
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-45",
@@ -1628,13 +2324,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        745.56,
-        315.48
+        746.35803,
+        314.09991
       ],
-      "x": 542.843,
-      "y": 372.41,
+      "x": 543.80486,
+      "y": 370.64091,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        732.95404,
+        305.04791,
+        759.76202,
+        323.15192
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-46",
@@ -1644,13 +2348,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        634.11,
-        335.56
+        634.90631,
+        334.18542
       ],
-      "x": 408.566,
-      "y": 398.154,
+      "x": 409.52567,
+      "y": 396.39156,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        621.50232,
+        325.13342,
+        648.3103,
+        343.23743
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-47",
@@ -1660,13 +2372,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        535.43,
-        284.56
+        536.22742,
+        283.17908
       ],
-      "x": 289.675,
-      "y": 332.769,
+      "x": 290.63545,
+      "y": 330.99882,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        522.82343,
+        274.12708,
+        549.63141,
+        292.23108
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-48",
@@ -1676,13 +2396,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        552.95,
-        474.78
+        553.74634,
+        473.40668
       ],
-      "x": 310.783,
-      "y": 576.641,
+      "x": 311.74258,
+      "y": 574.88036,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        540.34235,
+        464.35468,
+        567.15033,
+        482.45868
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-49",
@@ -1692,13 +2420,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        448.6,
-        458.11
+        449.4001,
+        456.73798
       ],
-      "x": 185.06,
-      "y": 555.269,
+      "x": 186.02422,
+      "y": 553.51023,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        435.99609,
+        447.68597,
+        462.80411,
+        465.78998
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-50",
@@ -1708,13 +2444,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        424.99,
-        520.35
+        424.5081,
+        518.9679
       ],
-      "x": 156.614,
-      "y": 635.064,
+      "x": 156.03386,
+      "y": 633.29218,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        411.1041,
+        509.91589,
+        437.91211,
+        528.0199
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "food-MAGIC-51",
@@ -1724,13 +2468,21 @@
       "category": "food",
       "floor": "MAGIC",
       "pdf": [
-        584.15,
-        705.03
+        584.07983,
+        703.65363
       ],
-      "x": 348.373,
-      "y": 871.833,
+      "x": 348.28895,
+      "y": 870.06876,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        570.67584,
+        694.60162,
+        597.48383,
+        712.70563
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-1",
@@ -1740,13 +2492,21 @@
       "category": "shop",
       "floor": "B1",
       "pdf": [
-        1364.56,
-        615.41
+        1364.61194,
+        613.10309
       ],
-      "x": 787.218,
-      "y": 713.838,
+      "x": 787.27591,
+      "y": 710.44572,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1354.11292,
+        602.50507,
+        1375.11096,
+        623.70111
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-2",
@@ -1756,13 +2516,21 @@
       "category": "shop",
       "floor": "B1",
       "pdf": [
-        1449.97,
-        531.75
+        1450.02002,
+        529.44742
       ],
-      "x": 882.648,
-      "y": 590.809,
+      "x": 882.70393,
+      "y": 587.42268,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1439.521,
+        518.84991,
+        1460.51904,
+        540.04492
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-3",
@@ -1772,13 +2540,21 @@
       "category": "shop",
       "floor": "B1",
       "pdf": [
-        921.1,
-        443.72
+        921.14642,
+        441.41127
       ],
-      "x": 291.732,
-      "y": 461.353,
+      "x": 291.78371,
+      "y": 457.95775,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        910.6474,
+        430.81378,
+        931.64545,
+        452.00876
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-4",
@@ -1788,13 +2564,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        764.21,
-        368.99
+        764.26001,
+        366.68977
       ],
-      "x": 412.631,
-      "y": 426.303,
+      "x": 412.67556,
+      "y": 423.27601,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        753.76099,
+        356.09229,
+        774.75903,
+        377.28726
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-5",
@@ -1804,13 +2588,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        674.04,
-        397.74
+        674.08881,
+        395.43288
       ],
-      "x": 332.48,
-      "y": 464.132,
+      "x": 332.52339,
+      "y": 461.09589,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        663.58978,
+        384.83539,
+        684.58783,
+        406.03036
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-6",
@@ -1820,13 +2612,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        708.53,
-        440.77
+        708.58057,
+        438.46547
       ],
-      "x": 363.138,
-      "y": 520.75,
+      "x": 363.18273,
+      "y": 517.71772,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        698.08154,
+        427.86798,
+        719.07959,
+        449.06296
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-7",
@@ -1836,13 +2636,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        921.05,
-        616.94
+        921.099,
+        614.63773
       ],
-      "x": 552.044,
-      "y": 752.553,
+      "x": 552.088,
+      "y": 749.52333,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        910.59998,
+        604.04022,
+        931.59802,
+        625.23523
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-8",
@@ -1852,13 +2660,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        954.95,
-        584.74
+        954.99927,
+        582.43161
       ],
-      "x": 582.178,
-      "y": 710.184,
+      "x": 582.22157,
+      "y": 707.14686,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        944.50024,
+        571.83411,
+        965.49829,
+        593.02911
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-9",
@@ -1868,13 +2684,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        1143.34,
-        562.43
+        1143.38477,
+        560.12314
       ],
-      "x": 749.636,
-      "y": 680.829,
+      "x": 749.67535,
+      "y": 677.79361,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1132.88574,
+        549.52563,
+        1153.88379,
+        570.72064
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-10",
@@ -1884,13 +2708,21 @@
       "category": "shop",
       "floor": "1F",
       "pdf": [
-        1076.29,
-        378.22
+        1076.34229,
+        375.91737
       ],
-      "x": 690.036,
-      "y": 438.447,
+      "x": 690.08204,
+      "y": 435.41759,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1065.84326,
+        365.31989,
+        1086.84131,
+        386.51486
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-11",
@@ -1900,13 +2732,21 @@
       "category": "shop",
       "floor": "2F",
       "pdf": [
-        798.77,
-        294.18
+        798.82031,
+        291.87721
       ],
-      "x": 778.988,
-      "y": 512.294,
+      "x": 779.04916,
+      "y": 505.52121,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        788.32129,
+        281.27972,
+        809.31934,
+        302.4747
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-12",
@@ -1916,13 +2756,21 @@
       "category": "shop",
       "floor": "2F",
       "pdf": [
-        278.11,
-        399.96
+        278.15909,
+        397.65187
       ],
-      "x": 144.037,
-      "y": 823.412,
+      "x": 144.09645,
+      "y": 816.62315,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        267.6601,
+        387.05438,
+        288.65808,
+        408.24936
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-13",
@@ -1932,13 +2780,21 @@
       "category": "shop",
       "floor": "2F",
       "pdf": [
-        250.85,
-        386.82
+        250.89429,
+        384.51222
       ],
-      "x": 110.793,
-      "y": 784.765,
+      "x": 110.8467,
+      "y": 777.97712,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        240.39529,
+        373.91473,
+        261.39328,
+        395.10971
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-14",
@@ -1948,13 +2804,21 @@
       "category": "shop",
       "floor": "3F",
       "pdf": [
-        1176.61,
-        485.05
+        1176.65283,
+        482.74208
       ],
-      "x": 707.497,
-      "y": 561.579,
+      "x": 707.54948,
+      "y": 553.48098,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1166.15381,
+        472.14459,
+        1187.15186,
+        493.33957
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-15",
@@ -1964,13 +2828,21 @@
       "category": "shop",
       "floor": "3F",
       "pdf": [
-        1062.73,
-        497.75
+        1062.77527,
+        495.44392
       ],
-      "x": 567.767,
-      "y": 606.14,
+      "x": 567.82242,
+      "y": 598.04884,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1052.27625,
+        484.84644,
+        1073.27429,
+        506.04141
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-16",
@@ -1979,11 +2851,24 @@
       "description": "인형뽑기 오락실",
       "category": "shop",
       "floor": "4F",
-      "note": "원본의 목록에는 있으나 지도 번호가 누락되어 정확한 핀 위치를 표시하지 않습니다.",
-      "x": null,
-      "y": null,
+      "note": "국문 지도 중복 번호를 영문 공식 가이드맵과 대조하여 16번 전망대게임장·17번 헬로키티 위치를 구분했습니다.",
+      "x": 821.35484,
+      "y": 901.05491,
       "source": "guide-2026",
-      "coordinateQuality": "unlocated"
+      "coordinateQuality": "guide-symbol-audited",
+      "pdf": [
+        1728.15161,
+        781.35867
+      ],
+      "symbolBounds": [
+        1717.65259,
+        770.76117,
+        1738.65063,
+        791.95618
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02",
+      "sourceGuideNumber": 17
     },
     {
       "id": "shop-17",
@@ -1993,20 +2878,22 @@
       "category": "shop",
       "floor": "4F",
       "pdf": [
-        1728.1,
-        783.66
+        1700.99634,
+        677.11697
       ],
-      "alternatePDF": [
-        [
-          1700.95,
-          679.42
-        ]
-      ],
-      "note": "원본 지도에 같은 번호가 두 곳 표시되어 있습니다. 어느 곳이 16번 전망대게임장 또는 17번 헬로키티인지 현장 표지로 확인해 주세요.",
-      "x": 821.294,
-      "y": 907.824,
+      "note": "국문 지도 중복 번호를 영문 공식 가이드맵과 대조하여 16번 전망대게임장·17번 헬로키티 위치를 구분했습니다.",
+      "x": 789.40746,
+      "y": 594.46168,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1690.49731,
+        666.51947,
+        1711.49536,
+        687.71448
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-18",
@@ -2016,13 +2903,21 @@
       "category": "shop",
       "floor": "4F",
       "pdf": [
-        1633.06,
-        676.79
+        1633.10767,
+        674.48904
       ],
-      "x": 709.482,
-      "y": 593.5,
+      "x": 709.53844,
+      "y": 586.73247,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1622.60864,
+        663.89154,
+        1643.60669,
+        685.08655
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-19",
@@ -2032,13 +2927,21 @@
       "category": "shop",
       "floor": "MAGIC",
       "pdf": [
-        734.94,
-        515.27
+        734.98489,
+        512.93694
       ],
-      "x": 530.048,
-      "y": 628.551,
+      "x": 530.10228,
+      "y": 625.56018,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        724.3299,
+        502.18143,
+        745.63989,
+        523.69244
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-20",
@@ -2048,13 +2951,21 @@
       "category": "shop",
       "floor": "MAGIC",
       "pdf": [
-        415.1,
-        572.58
+        415.14587,
+        570.23788
       ],
-      "x": 144.699,
-      "y": 702.026,
+      "x": 144.75406,
+      "y": 699.02292,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        404.49088,
+        559.48236,
+        425.80087,
+        580.99341
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "id": "shop-21",
@@ -2064,13 +2975,21 @@
       "category": "shop",
       "floor": "MAGIC",
       "pdf": [
-        708.47,
-        672.59
+        708.51559,
+        670.25021
       ],
-      "x": 498.157,
-      "y": 830.244,
+      "x": 498.21155,
+      "y": 827.24386,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        697.8606,
+        659.49469,
+        719.17059,
+        681.00574
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2078,15 +2997,23 @@
       "name": "계단",
       "floor": "B1",
       "pdf": [
-        722.0,
-        230.0
+        721.0,
+        229.0
       ],
       "id": "facility-B1-stairs-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 69.274,
-      "y": 147.059,
+      "x": 68.15642,
+      "y": 145.58824,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        711.0,
+        219.0,
+        731.0,
+        239.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2094,15 +3021,23 @@
       "name": "계단",
       "floor": "B1",
       "pdf": [
-        1511.5,
-        535.5
+        1510.5,
+        535.0
       ],
       "id": "facility-B1-stairs-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 951.397,
-      "y": 596.324,
+      "x": 950.27933,
+      "y": 595.58824,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1501.0,
+        525.0,
+        1520.0,
+        545.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2110,15 +3045,23 @@
       "name": "에스컬레이터",
       "floor": "B1",
       "pdf": [
-        1489.0,
-        535.5
+        1488.0,
+        535.0
       ],
       "id": "facility-B1-escalator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 926.257,
-      "y": 596.324,
+      "x": 925.13966,
+      "y": 595.58824,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1478.0,
+        525.0,
+        1498.0,
+        545.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2126,15 +3069,23 @@
       "name": "계단",
       "floor": "B1",
       "pdf": [
-        1255.5,
-        716.0
+        1255.0,
+        715.0
       ],
       "id": "facility-B1-stairs-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 665.363,
-      "y": 861.765,
+      "x": 664.80447,
+      "y": 860.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1245.0,
+        705.0,
+        1265.0,
+        725.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2142,15 +3093,23 @@
       "name": "계단",
       "floor": "B1",
       "pdf": [
-        1085.5,
-        387.0
+        1084.0,
+        386.0
       ],
       "id": "facility-B1-stairs-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 475.419,
-      "y": 377.941,
+      "x": 473.74302,
+      "y": 376.47059,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1074.0,
+        376.0,
+        1094.0,
+        396.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2158,15 +3117,23 @@
       "name": "에스컬레이터",
       "floor": "B1",
       "pdf": [
-        1233.5,
-        716.0
+        1232.0,
+        715.0
       ],
       "id": "facility-B1-escalator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 640.782,
-      "y": 861.765,
+      "x": 639.10615,
+      "y": 860.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1222.0,
+        705.0,
+        1242.0,
+        725.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2174,15 +3141,23 @@
       "name": "엘리베이터",
       "floor": "B1",
       "pdf": [
-        700.5,
-        187.0
+        700.0,
+        186.0
       ],
       "id": "facility-B1-elevator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 45.251,
-      "y": 83.824,
+      "x": 44.69274,
+      "y": 82.35294,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        690.0,
+        176.0,
+        710.0,
+        196.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2190,15 +3165,23 @@
       "name": "엘리베이터",
       "floor": "B1",
       "pdf": [
-        1292.5,
-        730.5
+        1291.5,
+        729.0
       ],
       "id": "facility-B1-elevator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 706.704,
-      "y": 883.088,
+      "x": 705.58659,
+      "y": 880.88235,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1282.0,
+        719.0,
+        1301.0,
+        739.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2206,15 +3189,23 @@
       "name": "엘리베이터",
       "floor": "B1",
       "pdf": [
-        1286.5,
-        230.5
+        1286.0,
+        230.0
       ],
       "id": "facility-B1-elevator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 700.0,
-      "y": 147.794,
+      "x": 699.44134,
+      "y": 147.05882,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1276.0,
+        220.0,
+        1296.0,
+        240.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2222,15 +3213,23 @@
       "name": "물품보관함",
       "floor": "B1",
       "pdf": [
-        748.5,
-        198.5
+        748.0,
+        197.5
       ],
       "id": "facility-B1-locker-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 98.883,
-      "y": 100.735,
+      "x": 98.32402,
+      "y": 99.26471,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        738.0,
+        188.0,
+        758.0,
+        207.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2238,15 +3237,23 @@
       "name": "물품보관함",
       "floor": "B1",
       "pdf": [
-        1388.5,
-        250.0
+        1387.5,
+        249.0
       ],
       "id": "facility-B1-locker-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 813.966,
-      "y": 176.471,
+      "x": 812.84916,
+      "y": 175.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1378.0,
+        239.0,
+        1397.0,
+        259.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2254,15 +3261,23 @@
       "name": "물품보관함",
       "floor": "B1",
       "pdf": [
-        995.5,
-        645.5
+        995.0,
+        645.0
       ],
       "id": "facility-B1-locker-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 374.86,
-      "y": 758.088,
+      "x": 374.30168,
+      "y": 757.35294,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        985.0,
+        635.0,
+        1005.0,
+        655.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2270,15 +3285,23 @@
       "name": "화장실",
       "floor": "B1",
       "pdf": [
-        1118.5,
-        361.5
+        1117.0,
+        361.0
       ],
       "id": "facility-B1-restroom-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 512.291,
-      "y": 340.441,
+      "x": 510.61453,
+      "y": 339.70588,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1107.0,
+        351.0,
+        1127.0,
+        371.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2286,15 +3309,23 @@
       "name": "보조배터리 대여장소",
       "floor": "B1",
       "pdf": [
-        1064.5,
-        387.0
+        1063.5,
+        386.0
       ],
       "id": "facility-B1-battery-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 451.955,
-      "y": 377.941,
+      "x": 450.83799,
+      "y": 376.47059,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1054.0,
+        376.0,
+        1073.0,
+        396.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2302,15 +3333,23 @@
       "name": "보조배터리 대여장소",
       "floor": "B1",
       "pdf": [
-        1367.0,
-        250.0
+        1366.0,
+        249.0
       ],
       "id": "facility-B1-battery-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 789.944,
-      "y": 176.471,
+      "x": 788.82682,
+      "y": 175.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1356.0,
+        239.0,
+        1376.0,
+        259.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2318,15 +3357,23 @@
       "name": "보조배터리 대여장소",
       "floor": "B1",
       "pdf": [
-        1507.5,
-        644.5
+        1507.0,
+        644.0
       ],
       "id": "facility-B1-battery-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 946.927,
-      "y": 756.618,
+      "x": 946.36872,
+      "y": 755.88235,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1497.0,
+        634.0,
+        1517.0,
+        654.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2334,15 +3381,23 @@
       "name": "화장실",
       "floor": "1F",
       "pdf": [
-        645.0,
-        350.0
+        644.0,
+        349.0
       ],
       "id": "facility-1F-restroom-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 306.667,
-      "y": 401.316,
+      "x": 305.77778,
+      "y": 400.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        634.0,
+        339.0,
+        654.0,
+        359.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2350,15 +3405,23 @@
       "name": "화장실",
       "floor": "1F",
       "pdf": [
-        1138.5,
-        96.5
+        1137.5,
+        96.0
       ],
       "id": "facility-1F-restroom-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 745.333,
-      "y": 67.763,
+      "x": 744.44444,
+      "y": 67.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1128.0,
+        86.0,
+        1147.0,
+        106.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2366,15 +3429,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        1268.5,
-        334.5
+        1268.0,
+        333.5
       ],
       "id": "facility-1F-stairs-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 860.889,
-      "y": 380.921,
+      "x": 860.44444,
+      "y": 379.60526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1258.0,
+        324.0,
+        1278.0,
+        343.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2382,15 +3453,23 @@
       "name": "에스컬레이터",
       "floor": "1F",
       "pdf": [
-        1290.0,
-        334.5
+        1289.0,
+        333.5
       ],
       "id": "facility-1F-escalator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 880.0,
-      "y": 380.921,
+      "x": 879.11111,
+      "y": 379.60526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1279.0,
+        324.0,
+        1299.0,
+        343.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2398,15 +3477,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        472.5,
-        416.5
+        471.5,
+        416.0
       ],
       "id": "facility-1F-stairs-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 153.333,
-      "y": 488.816,
+      "x": 152.44444,
+      "y": 488.15789,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        462.0,
+        406.0,
+        481.0,
+        426.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2414,15 +3501,23 @@
       "name": "에스컬레이터",
       "floor": "1F",
       "pdf": [
-        584.0,
-        379.5
+        583.0,
+        379.0
       ],
       "id": "facility-1F-escalator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 252.444,
-      "y": 440.132,
+      "x": 251.55556,
+      "y": 439.47368,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        573.0,
+        369.0,
+        593.0,
+        389.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2430,15 +3525,23 @@
       "name": "에스컬레이터",
       "floor": "1F",
       "pdf": [
-        495.5,
-        416.5
+        494.5,
+        416.0
       ],
       "id": "facility-1F-escalator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 173.778,
-      "y": 488.816,
+      "x": 172.88889,
+      "y": 488.15789,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        485.0,
+        406.0,
+        504.0,
+        426.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2446,15 +3549,23 @@
       "name": "의무실",
       "floor": "1F",
       "pdf": [
-        944.5,
-        248.5
+        943.5,
+        247.5
       ],
       "id": "facility-1F-firstaid-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 572.889,
-      "y": 267.763,
+      "x": 572.0,
+      "y": 266.44737,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        934.0,
+        238.0,
+        953.0,
+        257.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2462,15 +3573,23 @@
       "name": "음수대",
       "floor": "1F",
       "pdf": [
-        513.5,
-        477.0
+        513.0,
+        476.0
       ],
       "id": "facility-1F-water-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 189.778,
-      "y": 568.421,
+      "x": 189.33333,
+      "y": 567.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        503.0,
+        466.0,
+        523.0,
+        486.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2478,15 +3597,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        548.5,
-        273.5
+        547.5,
+        272.5
       ],
       "id": "facility-1F-stairs-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 220.889,
-      "y": 300.658,
+      "x": 220.0,
+      "y": 299.34211,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        538.0,
+        263.0,
+        557.0,
+        282.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2494,15 +3621,23 @@
       "name": "화장실",
       "floor": "1F",
       "pdf": [
-        785.5,
-        718.0
+        784.5,
+        717.0
       ],
       "id": "facility-1F-restroom-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 431.556,
-      "y": 885.526,
+      "x": 430.66667,
+      "y": 884.21053,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        775.0,
+        707.0,
+        794.0,
+        727.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2510,15 +3645,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        764.0,
-        739.5
+        763.0,
+        738.0
       ],
       "id": "facility-1F-elevator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 412.444,
-      "y": 913.816,
+      "x": 411.55556,
+      "y": 911.84211,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        753.0,
+        728.0,
+        773.0,
+        748.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2526,15 +3669,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        785.5,
-        739.5
+        784.5,
+        738.5
       ],
       "id": "facility-1F-stairs-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 431.556,
-      "y": 913.816,
+      "x": 430.66667,
+      "y": 912.5,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        775.0,
+        729.0,
+        794.0,
+        748.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2542,15 +3693,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        725.5,
-        391.5
+        725.0,
+        391.0
       ],
       "id": "facility-1F-stairs-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 378.222,
-      "y": 455.921,
+      "x": 377.77778,
+      "y": 455.26316,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        715.0,
+        381.0,
+        735.0,
+        401.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2558,15 +3717,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        548.5,
-        294.5
+        547.5,
+        294.0
       ],
       "id": "facility-1F-elevator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 220.889,
-      "y": 328.289,
+      "x": 220.0,
+      "y": 327.63158,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        538.0,
+        284.0,
+        557.0,
+        304.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2574,15 +3741,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        1082.5,
-        188.0
+        1081.5,
+        187.0
       ],
       "id": "facility-1F-stairs-6",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 695.556,
-      "y": 188.158,
+      "x": 694.66667,
+      "y": 186.84211,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1072.0,
+        177.0,
+        1091.0,
+        197.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2590,15 +3765,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        1082.5,
-        209.0
+        1081.5,
+        208.0
       ],
       "id": "facility-1F-elevator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 695.556,
-      "y": 215.789,
+      "x": 694.66667,
+      "y": 214.47368,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1072.0,
+        198.0,
+        1091.0,
+        218.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2606,15 +3789,23 @@
       "name": "계단",
       "floor": "1F",
       "pdf": [
-        1257.0,
-        234.0
+        1256.0,
+        233.0
       ],
       "id": "facility-1F-stairs-7",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 850.667,
-      "y": 248.684,
+      "x": 849.77778,
+      "y": 247.36842,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1246.0,
+        223.0,
+        1266.0,
+        243.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2622,15 +3813,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        1257.0,
-        255.0
+        1256.0,
+        254.0
       ],
       "id": "facility-1F-elevator-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 850.667,
-      "y": 276.316,
+      "x": 849.77778,
+      "y": 275.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1246.0,
+        244.0,
+        1266.0,
+        264.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2638,15 +3837,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        1184.5,
-        466.5
+        1184.0,
+        465.5
       ],
       "id": "facility-1F-elevator-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 786.222,
-      "y": 554.605,
+      "x": 785.77778,
+      "y": 553.28947,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1174.0,
+        456.0,
+        1194.0,
+        475.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2654,15 +3861,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        1159.5,
-        641.5
+        1159.0,
+        641.0
       ],
       "id": "facility-1F-elevator-6",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 764.0,
-      "y": 784.868,
+      "x": 763.55556,
+      "y": 784.21053,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1149.0,
+        631.0,
+        1169.0,
+        651.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2670,15 +3885,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        965.5,
-        626.0
+        964.0,
+        625.0
       ],
       "id": "facility-1F-elevator-7",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 591.556,
-      "y": 764.474,
+      "x": 590.22222,
+      "y": 763.15789,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        954.0,
+        615.0,
+        974.0,
+        635.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2686,15 +3909,23 @@
       "name": "물품보관함",
       "floor": "1F",
       "pdf": [
-        570.0,
-        273.5
+        569.0,
+        272.5
       ],
       "id": "facility-1F-locker-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 240.0,
-      "y": 300.658,
+      "x": 239.11111,
+      "y": 299.34211,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        559.0,
+        263.0,
+        579.0,
+        282.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2702,15 +3933,23 @@
       "name": "물품보관함",
       "floor": "1F",
       "pdf": [
-        644.5,
-        322.5
+        643.5,
+        322.0
       ],
       "id": "facility-1F-locker-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 306.222,
-      "y": 365.132,
+      "x": 305.33333,
+      "y": 364.47368,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        634.0,
+        312.0,
+        653.0,
+        332.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2718,15 +3957,23 @@
       "name": "물품보관함",
       "floor": "1F",
       "pdf": [
-        556.0,
-        472.5
+        555.0,
+        472.0
       ],
       "id": "facility-1F-locker-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 227.556,
-      "y": 562.5,
+      "x": 226.66667,
+      "y": 561.84211,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        545.0,
+        462.0,
+        565.0,
+        482.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2734,31 +3981,47 @@
       "name": "물품보관함",
       "floor": "1F",
       "pdf": [
-        872.5,
-        669.5
+        871.5,
+        669.0
       ],
       "id": "facility-1F-locker-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 508.889,
-      "y": 821.711,
+      "x": 508.0,
+      "y": 821.05263,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        862.0,
+        659.0,
+        881.0,
+        679.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
-      "kind": "unknown",
-      "name": "기타 편의시설",
+      "kind": "meeting",
+      "name": "만남의 광장",
       "floor": "1F",
       "pdf": [
-        977.5,
-        323.5
+        976.5,
+        323.0
       ],
       "id": "facility-1F-unknown-1",
-      "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 602.222,
-      "y": 366.447,
+      "description": "국문·영문 공식 가이드맵의 화살표로 확인한 만남의 광장입니다.",
+      "x": 601.33333,
+      "y": 365.78947,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        967.0,
+        313.0,
+        986.0,
+        333.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2766,15 +4029,23 @@
       "name": "여성용품",
       "floor": "1F",
       "pdf": [
-        645.0,
-        371.0
+        644.0,
+        370.0
       ],
       "id": "facility-1F-sanitary-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 306.667,
-      "y": 428.947,
+      "x": 305.77778,
+      "y": 427.63158,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        634.0,
+        360.0,
+        654.0,
+        380.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2782,15 +4053,23 @@
       "name": "화장실",
       "floor": "1F",
       "pdf": [
-        1372.5,
-        318.5
+        1372.0,
+        317.5
       ],
       "id": "facility-1F-restroom-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 953.333,
-      "y": 359.868,
+      "x": 952.88889,
+      "y": 358.55263,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1362.0,
+        308.0,
+        1382.0,
+        327.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2798,15 +4077,23 @@
       "name": "여성용품",
       "floor": "1F",
       "pdf": [
-        1372.5,
-        339.5
+        1372.0,
+        338.5
       ],
       "id": "facility-1F-sanitary-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 953.333,
-      "y": 387.5,
+      "x": 952.88889,
+      "y": 386.18421,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1362.0,
+        329.0,
+        1382.0,
+        348.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2814,15 +4101,23 @@
       "name": "여성용품",
       "floor": "1F",
       "pdf": [
-        1069.0,
-        348.0
+        1068.0,
+        347.0
       ],
       "id": "facility-1F-sanitary-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 683.556,
-      "y": 398.684,
+      "x": 682.66667,
+      "y": 397.36842,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1058.0,
+        337.0,
+        1078.0,
+        357.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2830,15 +4125,23 @@
       "name": "현금지급기",
       "floor": "1F",
       "pdf": [
-        944.5,
-        271.0
+        943.5,
+        270.0
       ],
       "id": "facility-1F-atm-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 572.889,
-      "y": 297.368,
+      "x": 572.0,
+      "y": 296.05263,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        934.0,
+        260.0,
+        953.0,
+        280.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2846,15 +4149,23 @@
       "name": "보조배터리 대여장소",
       "floor": "1F",
       "pdf": [
-        1311.5,
-        334.5
+        1310.0,
+        333.5
       ],
       "id": "facility-1F-battery-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 899.111,
-      "y": 380.921,
+      "x": 897.77778,
+      "y": 379.60526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1300.0,
+        324.0,
+        1320.0,
+        343.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2862,15 +4173,23 @@
       "name": "보조배터리 대여장소",
       "floor": "1F",
       "pdf": [
-        893.5,
-        669.5
+        893.0,
+        669.0
       ],
       "id": "facility-1F-battery-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 527.556,
-      "y": 821.711,
+      "x": 527.11111,
+      "y": 821.05263,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        883.0,
+        659.0,
+        903.0,
+        679.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2878,15 +4197,23 @@
       "name": "보조배터리 대여장소",
       "floor": "1F",
       "pdf": [
-        624.0,
-        350.0
+        623.0,
+        349.0
       ],
       "id": "facility-1F-battery-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 288.0,
-      "y": 401.316,
+      "x": 287.11111,
+      "y": 400.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        613.0,
+        339.0,
+        633.0,
+        359.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2894,15 +4221,23 @@
       "name": "보조배터리 대여장소",
       "floor": "1F",
       "pdf": [
-        1033.5,
-        197.0
+        1032.5,
+        196.0
       ],
       "id": "facility-1F-battery-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 652.0,
-      "y": 200.0,
+      "x": 651.11111,
+      "y": 198.68421,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1023.0,
+        186.0,
+        1042.0,
+        206.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2910,15 +4245,23 @@
       "name": "포토스팟",
       "floor": "1F",
       "pdf": [
-        999.5,
-        323.5
+        999.0,
+        323.0
       ],
       "id": "facility-1F-photo-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 621.778,
-      "y": 366.447,
+      "x": 621.33333,
+      "y": 365.78947,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        989.0,
+        313.0,
+        1009.0,
+        333.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2926,15 +4269,23 @@
       "name": "포토스팟",
       "floor": "1F",
       "pdf": [
-        1026.0,
-        407.5
+        1025.0,
+        407.0
       ],
       "id": "facility-1F-photo-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 645.333,
-      "y": 476.974,
+      "x": 644.44444,
+      "y": 476.31579,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1015.0,
+        397.0,
+        1035.0,
+        417.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2942,15 +4293,23 @@
       "name": "포토스팟",
       "floor": "1F",
       "pdf": [
-        1140.5,
-        431.0
+        1140.0,
+        430.0
       ],
       "id": "facility-1F-photo-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 747.111,
-      "y": 507.895,
+      "x": 746.66667,
+      "y": 506.57895,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1130.0,
+        420.0,
+        1150.0,
+        440.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2958,15 +4317,23 @@
       "name": "엘리베이터",
       "floor": "1F",
       "pdf": [
-        1004.0,
-        270.5
+        1003.0,
+        269.5
       ],
       "id": "facility-1F-elevator-8",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 625.778,
-      "y": 296.711,
+      "x": 624.88889,
+      "y": 295.39474,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        993.0,
+        260.0,
+        1013.0,
+        279.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2974,15 +4341,23 @@
       "name": "미아보호소",
       "floor": "1F",
       "pdf": [
-        982.5,
-        227.5
+        981.5,
+        226.5
       ],
       "id": "facility-1F-lostchild-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 606.667,
-      "y": 240.132,
+      "x": 605.77778,
+      "y": 238.81579,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        972.0,
+        217.0,
+        991.0,
+        236.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -2990,15 +4365,23 @@
       "name": "베이비라운지",
       "floor": "1F",
       "pdf": [
-        1035.5,
-        248.5
+        1035.0,
+        248.0
       ],
       "id": "facility-1F-baby-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 653.778,
-      "y": 267.763,
+      "x": 653.33333,
+      "y": 267.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1025.0,
+        238.0,
+        1045.0,
+        258.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3006,15 +4389,23 @@
       "name": "휠체어대여소",
       "floor": "1F",
       "pdf": [
-        1004.0,
-        227.5
+        1003.0,
+        226.5
       ],
       "id": "facility-1F-wheelchair-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 625.778,
-      "y": 240.132,
+      "x": 624.88889,
+      "y": 238.81579,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        993.0,
+        217.0,
+        1013.0,
+        236.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3022,15 +4413,23 @@
       "name": "유모차대여소",
       "floor": "1F",
       "pdf": [
-        1025.5,
-        227.5
+        1024.5,
+        226.5
       ],
       "id": "facility-1F-stroller-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 644.889,
-      "y": 240.132,
+      "x": 644.0,
+      "y": 238.81579,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1015.0,
+        217.0,
+        1034.0,
+        236.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3038,15 +4437,23 @@
       "name": "물품보관함",
       "floor": "1F",
       "pdf": [
-        1014.5,
-        248.5
+        1013.0,
+        248.0
       ],
       "id": "facility-1F-locker-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 635.111,
-      "y": 267.763,
+      "x": 633.77778,
+      "y": 267.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1003.0,
+        238.0,
+        1023.0,
+        258.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3054,15 +4461,23 @@
       "name": "분실물보관소",
       "floor": "1F",
       "pdf": [
-        971.5,
-        248.5
+        970.5,
+        248.0
       ],
       "id": "facility-1F-lostfound-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 596.889,
-      "y": 267.763,
+      "x": 596.0,
+      "y": 267.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        961.0,
+        238.0,
+        980.0,
+        258.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3070,15 +4485,23 @@
       "name": "손님상담실",
       "floor": "1F",
       "pdf": [
-        992.5,
-        248.5
+        992.0,
+        248.0
       ],
       "id": "facility-1F-info-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 615.556,
-      "y": 267.763,
+      "x": 615.11111,
+      "y": 267.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        982.0,
+        238.0,
+        1002.0,
+        258.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3086,15 +4509,23 @@
       "name": "자동심장충격기(AED)",
       "floor": "1F",
       "pdf": [
-        1025.5,
-        270.5
+        1024.5,
+        269.5
       ],
       "id": "facility-1F-aed-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 644.889,
-      "y": 296.711,
+      "x": 644.0,
+      "y": 295.39474,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1015.0,
+        260.0,
+        1034.0,
+        279.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3102,15 +4533,23 @@
       "name": "보조배터리 대여장소",
       "floor": "1F",
       "pdf": [
-        982.5,
-        270.5
+        981.5,
+        269.5
       ],
       "id": "facility-1F-battery-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 606.667,
-      "y": 296.711,
+      "x": 605.77778,
+      "y": 295.39474,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        972.0,
+        260.0,
+        991.0,
+        279.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3118,15 +4557,23 @@
       "name": "에스컬레이터",
       "floor": "2F",
       "pdf": [
-        828.5,
-        341.5
+        828.0,
+        341.0
       ],
       "id": "facility-2F-escalator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 815.244,
-      "y": 651.471,
+      "x": 814.63415,
+      "y": 650.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        818.0,
+        331.0,
+        838.0,
+        351.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3134,15 +4581,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        706.0,
-        268.5
+        705.0,
+        268.0
       ],
       "id": "facility-2F-stairs-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 665.854,
-      "y": 436.765,
+      "x": 664.63415,
+      "y": 435.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        695.0,
+        258.0,
+        715.0,
+        278.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3150,15 +4605,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        260.5,
-        287.5
+        259.5,
+        286.5
       ],
       "id": "facility-2F-stairs-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 122.561,
-      "y": 492.647,
+      "x": 121.34146,
+      "y": 489.70588,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        250.0,
+        277.0,
+        269.0,
+        296.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3166,15 +4629,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        311.0,
-        411.5
+        310.0,
+        411.0
       ],
       "id": "facility-2F-stairs-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 184.146,
-      "y": 857.353,
+      "x": 182.92683,
+      "y": 855.88235,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        300.0,
+        401.0,
+        320.0,
+        421.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3182,15 +4653,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        516.5,
-        315.5
+        515.5,
+        315.0
       ],
       "id": "facility-2F-stairs-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 434.756,
-      "y": 575.0,
+      "x": 433.53659,
+      "y": 573.52941,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        506.0,
+        305.0,
+        525.0,
+        325.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3198,15 +4677,23 @@
       "name": "에스컬레이터",
       "floor": "2F",
       "pdf": [
-        314.0,
-        338.5
+        313.0,
+        338.0
       ],
       "id": "facility-2F-escalator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 187.805,
-      "y": 642.647,
+      "x": 186.58537,
+      "y": 641.17647,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        303.0,
+        328.0,
+        323.0,
+        348.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3214,15 +4701,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        293.5,
-        338.5
+        292.0,
+        338.0
       ],
       "id": "facility-2F-stairs-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 162.805,
-      "y": 642.647,
+      "x": 160.97561,
+      "y": 641.17647,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        282.0,
+        328.0,
+        302.0,
+        348.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3230,15 +4725,23 @@
       "name": "에스컬레이터",
       "floor": "2F",
       "pdf": [
-        186.0,
-        439.5
+        185.0,
+        438.0
       ],
       "id": "facility-2F-escalator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 31.707,
-      "y": 939.706,
+      "x": 30.4878,
+      "y": 935.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        175.0,
+        428.0,
+        195.0,
+        448.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3246,15 +4749,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        207.5,
-        439.5
+        206.0,
+        438.0
       ],
       "id": "facility-2F-stairs-6",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 57.927,
-      "y": 939.706,
+      "x": 56.09756,
+      "y": 935.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        196.0,
+        428.0,
+        216.0,
+        448.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3262,15 +4773,23 @@
       "name": "엘리베이터",
       "floor": "2F",
       "pdf": [
-        569.0,
-        317.0
+        568.0,
+        316.0
       ],
       "id": "facility-2F-elevator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 498.78,
-      "y": 579.412,
+      "x": 497.56098,
+      "y": 576.47059,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        558.0,
+        306.0,
+        578.0,
+        326.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3278,15 +4797,23 @@
       "name": "엘리베이터",
       "floor": "2F",
       "pdf": [
-        670.5,
-        259.5
+        669.5,
+        258.5
       ],
       "id": "facility-2F-elevator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 622.561,
-      "y": 410.294,
+      "x": 621.34146,
+      "y": 407.35294,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        660.0,
+        249.0,
+        679.0,
+        268.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3294,15 +4821,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        864.5,
-        269.5
+        864.0,
+        269.0
       ],
       "id": "facility-2F-stairs-7",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 859.146,
-      "y": 439.706,
+      "x": 858.53659,
+      "y": 438.23529,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        854.0,
+        259.0,
+        874.0,
+        279.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3310,15 +4845,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        850.0,
-        341.5
+        849.0,
+        341.0
       ],
       "id": "facility-2F-stairs-8",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 841.463,
-      "y": 651.471,
+      "x": 840.2439,
+      "y": 650.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        839.0,
+        331.0,
+        859.0,
+        351.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3326,15 +4869,23 @@
       "name": "계단",
       "floor": "2F",
       "pdf": [
-        866.0,
-        399.5
+        865.0,
+        399.0
       ],
       "id": "facility-2F-stairs-9",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 860.976,
-      "y": 822.059,
+      "x": 859.7561,
+      "y": 820.58824,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        855.0,
+        389.0,
+        875.0,
+        409.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3342,15 +4893,23 @@
       "name": "엘리베이터",
       "floor": "2F",
       "pdf": [
-        843.5,
-        269.5
+        843.0,
+        269.0
       ],
       "id": "facility-2F-elevator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 833.537,
-      "y": 439.706,
+      "x": 832.92683,
+      "y": 438.23529,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        833.0,
+        259.0,
+        853.0,
+        279.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3358,15 +4917,23 @@
       "name": "엘리베이터",
       "floor": "2F",
       "pdf": [
-        292.5,
-        318.5
+        291.0,
+        317.5
       ],
       "id": "facility-2F-elevator-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 161.585,
-      "y": 583.824,
+      "x": 159.7561,
+      "y": 580.88235,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        281.0,
+        308.0,
+        301.0,
+        327.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3374,15 +4941,23 @@
       "name": "현금지급기",
       "floor": "2F",
       "pdf": [
-        250.0,
-        318.5
+        249.0,
+        317.5
       ],
       "id": "facility-2F-atm-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 109.756,
-      "y": 583.824,
+      "x": 108.53659,
+      "y": 580.88235,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        239.0,
+        308.0,
+        259.0,
+        327.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3390,15 +4965,23 @@
       "name": "보조배터리 대여장소",
       "floor": "2F",
       "pdf": [
-        270.5,
-        318.5
+        270.0,
+        317.5
       ],
       "id": "facility-2F-battery-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 134.756,
-      "y": 583.824,
+      "x": 134.14634,
+      "y": 580.88235,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        260.0,
+        308.0,
+        280.0,
+        327.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3406,15 +4989,23 @@
       "name": "음수대",
       "floor": "2F",
       "pdf": [
-        569.5,
-        338.0
+        568.0,
+        337.0
       ],
       "id": "facility-2F-water-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 499.39,
-      "y": 641.176,
+      "x": 497.56098,
+      "y": 638.23529,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        558.0,
+        327.0,
+        578.0,
+        347.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3422,15 +5013,23 @@
       "name": "음수대",
       "floor": "2F",
       "pdf": [
-        892.0,
-        314.0
+        891.0,
+        313.0
       ],
       "id": "facility-2F-water-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 892.683,
-      "y": 570.588,
+      "x": 891.46341,
+      "y": 567.64706,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        881.0,
+        303.0,
+        901.0,
+        323.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3438,15 +5037,23 @@
       "name": "물품보관함",
       "floor": "2F",
       "pdf": [
-        925.5,
-        404.5
+        925.0,
+        403.5
       ],
       "id": "facility-2F-locker-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 933.537,
-      "y": 836.765,
+      "x": 932.92683,
+      "y": 833.82353,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        915.0,
+        394.0,
+        935.0,
+        413.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3454,15 +5061,23 @@
       "name": "물품보관함",
       "floor": "2F",
       "pdf": [
-        248.0,
-        426.5
+        247.0,
+        426.0
       ],
       "id": "facility-2F-locker-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 107.317,
-      "y": 901.471,
+      "x": 106.09756,
+      "y": 900.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        237.0,
+        416.0,
+        257.0,
+        436.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3470,15 +5085,23 @@
       "name": "화장실",
       "floor": "2F",
       "pdf": [
-        183.5,
-        375.5
+        183.0,
+        375.0
       ],
       "id": "facility-2F-restroom-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 28.659,
-      "y": 751.471,
+      "x": 28.04878,
+      "y": 750.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        173.0,
+        365.0,
+        193.0,
+        385.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3486,15 +5109,23 @@
       "name": "화장실",
       "floor": "2F",
       "pdf": [
-        755.5,
-        269.0
+        754.5,
+        268.0
       ],
       "id": "facility-2F-restroom-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 726.22,
-      "y": 438.235,
+      "x": 725.0,
+      "y": 435.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        745.0,
+        258.0,
+        764.0,
+        278.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3502,15 +5133,23 @@
       "name": "에스컬레이터",
       "floor": "3F",
       "pdf": [
-        685.5,
-        536.5
+        685.0,
+        535.5
       ],
       "id": "facility-3F-escalator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 104.908,
-      "y": 742.105,
+      "x": 104.29448,
+      "y": 738.59649,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        675.0,
+        526.0,
+        695.0,
+        545.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3518,15 +5157,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        650.5,
-        476.5
+        649.5,
+        475.5
       ],
       "id": "facility-3F-stairs-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 61.963,
-      "y": 531.579,
+      "x": 60.7362,
+      "y": 528.07018,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        640.0,
+        466.0,
+        659.0,
+        485.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3534,15 +5181,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        903.5,
-        480.5
+        903.0,
+        480.0
       ],
       "id": "facility-3F-stairs-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 372.393,
-      "y": 545.614,
+      "x": 371.77914,
+      "y": 543.85965,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        893.0,
+        470.0,
+        913.0,
+        490.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3550,15 +5205,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        664.0,
-        536.5
+        663.0,
+        535.5
       ],
       "id": "facility-3F-stairs-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 78.528,
-      "y": 742.105,
+      "x": 77.30061,
+      "y": 738.59649,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        653.0,
+        526.0,
+        673.0,
+        545.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3566,15 +5229,23 @@
       "name": "엘리베이터",
       "floor": "3F",
       "pdf": [
-        629.5,
-        476.5
+        628.0,
+        475.5
       ],
       "id": "facility-3F-elevator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 36.196,
-      "y": 531.579,
+      "x": 34.35583,
+      "y": 528.07018,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        618.0,
+        466.0,
+        638.0,
+        485.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3582,15 +5253,23 @@
       "name": "엘리베이터",
       "floor": "3F",
       "pdf": [
-        1059.5,
-        439.5
+        1059.0,
+        439.0
       ],
       "id": "facility-3F-elevator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 563.804,
-      "y": 401.754,
+      "x": 563.19018,
+      "y": 400.0,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1049.0,
+        429.0,
+        1069.0,
+        449.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3598,15 +5277,23 @@
       "name": "엘리베이터",
       "floor": "3F",
       "pdf": [
-        1217.5,
-        461.5
+        1216.5,
+        461.0
       ],
       "id": "facility-3F-elevator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 757.669,
-      "y": 478.947,
+      "x": 756.44172,
+      "y": 477.19298,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1207.0,
+        451.0,
+        1226.0,
+        471.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3614,15 +5301,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        1082.0,
-        459.5
+        1081.0,
+        458.5
       ],
       "id": "facility-3F-stairs-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 591.411,
-      "y": 471.93,
+      "x": 590.18405,
+      "y": 468.42105,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1071.0,
+        449.0,
+        1091.0,
+        468.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3630,15 +5325,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        1239.5,
-        461.5
+        1239.0,
+        461.0
       ],
       "id": "facility-3F-stairs-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 784.663,
-      "y": 478.947,
+      "x": 784.04908,
+      "y": 477.19298,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1229.0,
+        451.0,
+        1249.0,
+        471.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3646,15 +5349,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        1238.5,
-        577.0
+        1238.0,
+        576.0
       ],
       "id": "facility-3F-stairs-6",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 783.436,
-      "y": 884.211,
+      "x": 782.82209,
+      "y": 880.70175,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1228.0,
+        566.0,
+        1248.0,
+        586.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3662,15 +5373,23 @@
       "name": "무슬림기도실",
       "floor": "3F",
       "pdf": [
-        1154.5,
-        424.5
+        1153.5,
+        424.0
       ],
       "id": "facility-3F-prayer-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 680.368,
-      "y": 349.123,
+      "x": 679.1411,
+      "y": 347.36842,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1144.0,
+        414.0,
+        1163.0,
+        434.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3678,15 +5397,23 @@
       "name": "에스컬레이터",
       "floor": "3F",
       "pdf": [
-        1195.5,
-        537.5
+        1195.0,
+        536.5
       ],
       "id": "facility-3F-escalator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 730.675,
-      "y": 745.614,
+      "x": 730.06135,
+      "y": 742.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1185.0,
+        527.0,
+        1205.0,
+        546.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3694,15 +5421,23 @@
       "name": "계단",
       "floor": "3F",
       "pdf": [
-        1217.0,
-        537.5
+        1216.0,
+        536.5
       ],
       "id": "facility-3F-stairs-7",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 757.055,
-      "y": 745.614,
+      "x": 755.82822,
+      "y": 742.10526,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1206.0,
+        527.0,
+        1226.0,
+        546.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3710,15 +5445,23 @@
       "name": "음수대",
       "floor": "3F",
       "pdf": [
-        1253.5,
-        509.5
+        1253.0,
+        508.5
       ],
       "id": "facility-3F-water-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 801.84,
-      "y": 647.368,
+      "x": 801.22699,
+      "y": 643.85965,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1243.0,
+        499.0,
+        1263.0,
+        518.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3726,15 +5469,23 @@
       "name": "화장실",
       "floor": "3F",
       "pdf": [
-        1176.5,
-        348.5
+        1175.0,
+        347.5
       ],
       "id": "facility-3F-restroom-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 707.362,
-      "y": 82.456,
+      "x": 705.52147,
+      "y": 78.94737,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1165.0,
+        338.0,
+        1185.0,
+        357.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3742,15 +5493,23 @@
       "name": "에스컬레이터",
       "floor": "4F",
       "pdf": [
-        1107.0,
-        747.0
+        1106.0,
+        746.0
       ],
       "id": "facility-4F-escalator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 90.588,
-      "y": 800.0,
+      "x": 89.41176,
+      "y": 797.05882,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1096.0,
+        736.0,
+        1116.0,
+        756.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3758,15 +5517,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1095.5,
-        681.0
+        1094.0,
+        680.0
       ],
       "id": "facility-4F-stairs-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 77.059,
-      "y": 605.882,
+      "x": 75.29412,
+      "y": 602.94118,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1084.0,
+        670.0,
+        1104.0,
+        690.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3774,15 +5541,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1348.5,
-        674.5
+        1348.0,
+        674.0
       ],
       "id": "facility-4F-stairs-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 374.706,
-      "y": 586.765,
+      "x": 374.11765,
+      "y": 585.29412,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1338.0,
+        664.0,
+        1358.0,
+        684.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3790,15 +5565,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1085.5,
-        747.0
+        1085.0,
+        746.0
       ],
       "id": "facility-4F-stairs-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 65.294,
-      "y": 800.0,
+      "x": 64.70588,
+      "y": 797.05882,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1075.0,
+        736.0,
+        1095.0,
+        756.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3806,15 +5589,23 @@
       "name": "엘리베이터",
       "floor": "4F",
       "pdf": [
-        1074.0,
-        681.0
+        1073.0,
+        680.0
       ],
       "id": "facility-4F-elevator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 51.765,
-      "y": 605.882,
+      "x": 50.58824,
+      "y": 602.94118,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1063.0,
+        670.0,
+        1083.0,
+        690.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3822,15 +5613,23 @@
       "name": "엘리베이터",
       "floor": "4F",
       "pdf": [
-        1480.5,
-        616.5
+        1479.5,
+        616.0
       ],
       "id": "facility-4F-elevator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 530.0,
-      "y": 416.176,
+      "x": 528.82353,
+      "y": 414.70588,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1470.0,
+        606.0,
+        1489.0,
+        626.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3838,15 +5637,23 @@
       "name": "엘리베이터",
       "floor": "4F",
       "pdf": [
-        1682.5,
-        647.5
+        1682.0,
+        646.5
       ],
       "id": "facility-4F-elevator-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 767.647,
-      "y": 507.353,
+      "x": 767.05882,
+      "y": 504.41176,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1672.0,
+        637.0,
+        1692.0,
+        656.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3854,15 +5661,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1480.5,
-        637.5
+        1479.5,
+        637.0
       ],
       "id": "facility-4F-stairs-4",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 530.0,
-      "y": 477.941,
+      "x": 528.82353,
+      "y": 476.47059,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1470.0,
+        627.0,
+        1489.0,
+        647.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3870,15 +5685,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1705.0,
-        647.5
+        1704.0,
+        646.5
       ],
       "id": "facility-4F-stairs-5",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 794.118,
-      "y": 507.353,
+      "x": 792.94118,
+      "y": 504.41176,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1694.0,
+        637.0,
+        1714.0,
+        656.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3886,15 +5709,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1704.5,
-        784.5
+        1703.5,
+        784.0
       ],
       "id": "facility-4F-stairs-6",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 793.529,
-      "y": 910.294,
+      "x": 792.35294,
+      "y": 908.82353,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1694.0,
+        774.0,
+        1713.0,
+        794.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3902,15 +5733,23 @@
       "name": "에스컬레이터",
       "floor": "4F",
       "pdf": [
-        1665.5,
-        721.5
+        1664.5,
+        721.0
       ],
       "id": "facility-4F-escalator-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 747.647,
-      "y": 725.0,
+      "x": 746.47059,
+      "y": 723.52941,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1655.0,
+        711.0,
+        1674.0,
+        731.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3918,15 +5757,23 @@
       "name": "계단",
       "floor": "4F",
       "pdf": [
-        1686.5,
-        721.5
+        1686.0,
+        721.0
       ],
       "id": "facility-4F-stairs-7",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 772.353,
-      "y": 725.0,
+      "x": 771.76471,
+      "y": 723.52941,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1676.0,
+        711.0,
+        1696.0,
+        731.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3934,15 +5781,23 @@
       "name": "화장실",
       "floor": "4F",
       "pdf": [
-        1625.5,
-        532.5
+        1625.0,
+        531.5
       ],
       "id": "facility-4F-restroom-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 700.588,
-      "y": 169.118,
+      "x": 700.0,
+      "y": 166.17647,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        1615.0,
+        522.0,
+        1635.0,
+        541.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3950,15 +5805,23 @@
       "name": "흡연실",
       "floor": "MAGIC",
       "pdf": [
-        585.5,
-        276.5
+        585.0,
+        276.0
       ],
       "id": "facility-MAGIC-smoking-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 350.0,
-      "y": 322.436,
+      "x": 349.39759,
+      "y": 321.79487,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        575.0,
+        266.0,
+        595.0,
+        286.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3966,15 +5829,23 @@
       "name": "화장실",
       "floor": "MAGIC",
       "pdf": [
-        741.5,
-        291.5
+        740.0,
+        291.0
       ],
       "id": "facility-MAGIC-restroom-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 537.952,
-      "y": 341.667,
+      "x": 536.14458,
+      "y": 341.02564,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        730.0,
+        281.0,
+        750.0,
+        301.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3982,15 +5853,23 @@
       "name": "화장실",
       "floor": "MAGIC",
       "pdf": [
-        629.5,
-        579.5
+        629.0,
+        579.0
       ],
       "id": "facility-MAGIC-restroom-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 403.012,
-      "y": 710.897,
+      "x": 402.40964,
+      "y": 710.25641,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        619.0,
+        569.0,
+        639.0,
+        589.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -3998,15 +5877,23 @@
       "name": "화장실",
       "floor": "MAGIC",
       "pdf": [
-        417.5,
-        409.5
+        416.0,
+        409.0
       ],
       "id": "facility-MAGIC-restroom-3",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 147.59,
-      "y": 492.949,
+      "x": 145.78313,
+      "y": 492.30769,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        406.0,
+        399.0,
+        426.0,
+        419.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4014,15 +5901,23 @@
       "name": "에스컬레이터",
       "floor": "MAGIC",
       "pdf": [
-        928.5,
-        722.5
+        927.0,
+        722.0
       ],
       "id": "facility-MAGIC-escalator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 763.253,
-      "y": 894.231,
+      "x": 761.44578,
+      "y": 893.58974,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        917.0,
+        712.0,
+        937.0,
+        732.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4030,15 +5925,23 @@
       "name": "음수대",
       "floor": "MAGIC",
       "pdf": [
-        459.5,
-        411.5
+        459.0,
+        411.0
       ],
       "id": "facility-MAGIC-water-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 198.193,
-      "y": 495.513,
+      "x": 197.59036,
+      "y": 494.87179,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        449.0,
+        401.0,
+        469.0,
+        421.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4046,15 +5949,23 @@
       "name": "음수대",
       "floor": "MAGIC",
       "pdf": [
-        582.5,
-        528.5
+        582.0,
+        528.0
       ],
       "id": "facility-MAGIC-water-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 346.386,
-      "y": 645.513,
+      "x": 345.78313,
+      "y": 644.87179,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        572.0,
+        518.0,
+        592.0,
+        538.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4062,15 +5973,23 @@
       "name": "엘리베이터",
       "floor": "MAGIC",
       "pdf": [
-        952.5,
-        722.5
+        951.0,
+        722.0
       ],
       "id": "facility-MAGIC-elevator-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 792.169,
-      "y": 894.231,
+      "x": 790.36145,
+      "y": 893.58974,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        941.0,
+        712.0,
+        961.0,
+        732.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4078,15 +5997,23 @@
       "name": "여성용품",
       "floor": "MAGIC",
       "pdf": [
-        757.5,
-        515.5
+        757.0,
+        514.0
       ],
       "id": "facility-MAGIC-sanitary-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 557.229,
-      "y": 628.846,
+      "x": 556.62651,
+      "y": 626.92308,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        747.0,
+        504.0,
+        767.0,
+        524.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4094,15 +6021,23 @@
       "name": "보조배터리 대여장소",
       "floor": "MAGIC",
       "pdf": [
-        477.5,
-        484.5
+        476.0,
+        484.0
       ],
       "id": "facility-MAGIC-battery-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 219.88,
-      "y": 589.103,
+      "x": 218.07229,
+      "y": 588.46154,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        466.0,
+        474.0,
+        486.0,
+        494.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4110,15 +6045,23 @@
       "name": "포토스팟",
       "floor": "MAGIC",
       "pdf": [
-        830.5,
-        599.5
+        830.0,
+        599.0
       ],
       "id": "facility-MAGIC-photo-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 645.181,
-      "y": 736.538,
+      "x": 644.57831,
+      "y": 735.89744,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        820.0,
+        589.0,
+        840.0,
+        609.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4126,15 +6069,23 @@
       "name": "포토스팟",
       "floor": "MAGIC",
       "pdf": [
-        941.5,
-        746.5
+        941.0,
+        746.0
       ],
       "id": "facility-MAGIC-photo-2",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 778.916,
-      "y": 925.0,
+      "x": 778.31325,
+      "y": 924.35897,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        931.0,
+        736.0,
+        951.0,
+        756.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4142,15 +6093,23 @@
       "name": "베이비라운지",
       "floor": "MAGIC",
       "pdf": [
-        383.5,
-        489.5
+        383.0,
+        489.0
       ],
       "id": "facility-MAGIC-baby-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 106.627,
-      "y": 595.513,
+      "x": 106.0241,
+      "y": 594.87179,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        373.0,
+        479.0,
+        393.0,
+        499.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4158,15 +6117,23 @@
       "name": "의무실",
       "floor": "MAGIC",
       "pdf": [
-        383.5,
-        467.5
+        383.0,
+        466.0
       ],
       "id": "facility-MAGIC-firstaid-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 106.627,
-      "y": 567.308,
+      "x": 106.0241,
+      "y": 565.38462,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        373.0,
+        456.0,
+        393.0,
+        476.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     },
     {
       "category": "facility",
@@ -4174,21 +6141,29 @@
       "name": "자동심장충격기(AED)",
       "floor": "MAGIC",
       "pdf": [
-        383.5,
-        443.5
+        382.0,
+        443.0
       ],
       "id": "facility-MAGIC-aed-1",
       "description": "2026 공식 가이드맵에 표시된 편의시설입니다.",
-      "x": 106.627,
-      "y": 536.538,
+      "x": 104.81928,
+      "y": 535.89744,
       "source": "guide-2026",
-      "coordinateQuality": "guide-illustration"
+      "coordinateQuality": "guide-symbol-audited",
+      "symbolBounds": [
+        372.0,
+        433.0,
+        392.0,
+        453.0
+      ],
+      "positionRole": "guide-symbol-center",
+      "coordinateAudit": "2026-11-02"
     }
   ],
   "notes": [
     "가이드맵은 기울어진 조감도이며 측량 도면이 아닙니다.",
     "1F 푸드 22번은 목록에만 기재되어 핀을 만들지 않았습니다.",
-    "4F 기프트샵의 17번 중복 및 16번 누락은 원본 표기를 보존합니다.",
-    "4F 어크로스다크는 5쪽 목록과 지도 핀 기준 32번으로 통일합니다."
+    "4F 어크로스다크는 5쪽 목록과 지도 핀 기준 32번으로 통일합니다.",
+    "4F 국문 지도 중복 17번을 영문 공식 지도와 대조하여 16·17번으로 보정했습니다."
   ]
 }

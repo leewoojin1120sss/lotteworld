@@ -607,7 +607,7 @@
       "image": "assets/maps/4F.svg",
       "width": 850,
       "height": 340,
-      "bytes": 1375967,
+      "bytes": 1377708,
       "withinPreferred10MiB": true,
       "crop": [
         1030,
@@ -752,7 +752,15 @@
         "webpMeanAbsoluteChannelDifference": 3.1678,
         "poiRegionsCompared": 21,
         "poiRegionMedianAbsoluteChannelDifference": 8.8485
-      }
+      },
+      "editorialCorrectionsAfterSourceValidation": [
+        {
+          "guideId": "shop-16",
+          "original": "17",
+          "corrected": "16",
+          "evidence": "Official English guide page 3: Observatory Game Room 16"
+        }
+      ]
     },
     "MAGIC": {
       "image": "assets/maps/MAGIC.svg",

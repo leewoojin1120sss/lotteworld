@@ -4,7 +4,7 @@ Development dependencies: pymupdf, Pillow, numpy. No OCR or invented locations.
 Usage: python scripts/extract_guide.py /path/to/2026-guide.pdf
 """
 from pathlib import Path
-import sys, json, math
+import sys, json, math, hashlib
 import fitz
 import numpy as np
 from PIL import Image, ImageDraw
@@ -175,11 +175,29 @@ for j,p in enumerate(fac_pins):
     p['description']='2026 공식 가이드맵에 표시된 편의시설입니다.'
     pois.append({k:v for k,v in p.items() if k not in ['match','box']})
 
+# Reapply evidence-backed symbol centers only to the identical audited PDF.
+# This keeps re-extraction from silently restoring text-box/shadow centers.
+audit_path=ROOT/'data/coordinate-audit.json'
+if audit_path.exists():
+    audit=json.loads(audit_path.read_text())
+    if audit['source']['sha256']==hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest():
+        for p in pois:
+            points=sorted((a for a in audit['locations'] if a['id']==p['id']),key=lambda a:a['locationIndex'])
+            if points:
+                p['pdf']=points[0]['pdf'];p['symbolBounds']=points[0]['evidence']['symbolBounds']
+                p['positionRole']='guide-symbol-center';p['coordinateAudit']=audit['auditedAt']
+                if len(points)>1:
+                    p['alternatePDF']=[a['pdf'] for a in points[1:]]
+                    p['alternateSymbolBounds']=[a['evidence']['symbolBounds'] for a in points[1:]]
+                else:
+                    p.pop('alternatePDF',None);p.pop('alternateSymbolBounds',None)
+            p.update(audit.get('overrides',{}).get(p['id'],{}))
+
 for p in pois:
     f=floor_by_id[p['floor']];c=f['crop']
-    if 'pdf' in p:p['x']=round((p['pdf'][0]-c[0])/(c[2]-c[0])*1000,3);p['y']=round((p['pdf'][1]-c[1])/(c[3]-c[1])*1000,3)
+    if 'pdf' in p:p['x']=round((p['pdf'][0]-c[0])/(c[2]-c[0])*1000,5);p['y']=round((p['pdf'][1]-c[1])/(c[3]-c[1])*1000,5)
     else:p['x']=None;p['y']=None
-    p['source']='guide-2026';p['coordinateQuality']='guide-illustration' if p['x'] is not None else 'unlocated'
+    p['source']='guide-2026';p['coordinateQuality']='guide-symbol-audited' if p.get('coordinateAudit') else 'guide-illustration' if p['x'] is not None else 'unlocated'
 
 assets=ROOT/'assets/maps';assets.mkdir(parents=True,exist_ok=True)
 for f in FLOORS:
@@ -199,6 +217,7 @@ for f in FLOORS:
     f['positionMode']='manual-or-estimated'
 
 out={'title':'롯데월드야호','guideYear':2026,'sourceName':'2026 가이드맵_국문_FS2.pdf','floors':FLOORS,'pois':pois,'notes':['가이드맵은 기울어진 조감도이며 측량 도면이 아닙니다.','1F 푸드 22번은 목록에만 기재되어 핀을 만들지 않았습니다.','4F 기프트샵의 17번 중복 및 16번 누락은 원본 표기를 보존합니다.','4F 어크로스다크는 5쪽 목록과 지도 핀 기준 32번으로 통일합니다.']}
+if audit_path.exists() and audit['source']['sha256']==hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest():out['notes']=audit.get('notes',out['notes'])
 (ROOT/'data').mkdir(exist_ok=True)
 (ROOT/'data/park.json').write_text(json.dumps(out,ensure_ascii=False,indent=2))
 # Development contact sheet: verify each extracted icon against its human label.

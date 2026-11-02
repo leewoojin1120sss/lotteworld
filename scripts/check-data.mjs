@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {isMapPoint} from '../lib.js';
+import {isMapPoint,isFloorPoint,mapToPDF} from '../lib.js';
 const park=JSON.parse(fs.readFileSync(new URL('../data/park.json',import.meta.url)));
 const ids=new Set();
 for(const p of park.pois){assert.ok(!ids.has(p.id),`Duplicate ${p.id}`);ids.add(p.id);assert.ok(p.name&&p.category);if(p.x!==null)assert.ok(isMapPoint(p),`Bad map coordinate ${p.id}`);else assert.ok(p.note,`Unlocated entry has no explanation: ${p.id}`);}
@@ -13,6 +13,17 @@ for(const floor of park.floors){
   assert.ok(!/(?:href|xlink:href)="https?:/i.test(svg),`Vector map must contain its own artwork: ${floor.id}`);
 }
 for(const kind of ['stairs','elevator','escalator','restroom','firstaid','aed'])assert.ok(park.pois.some(p=>p.kind===kind),`Missing kind ${kind}`);
+const audit=JSON.parse(fs.readFileSync(new URL('../data/coordinate-audit.json',import.meta.url)));
+for(const p of park.pois.filter(p=>p.pdf)){
+ const floor=park.floors.find(f=>f.id===p.floor);
+ assert.ok(isFloorPoint(p,floor),`Point outside floor artwork: ${p.id}`);
+ assert.ok(Math.hypot(...mapToPDF(p,floor).map((v,i)=>v-p.pdf[i]))<.00002,`PDF/map coordinates disagree: ${p.id}`);
+ const evidence=audit.locations.find(a=>a.id===p.id);
+ assert.deepEqual(p.pdf,evidence?.pdf,`Missing audited symbol: ${p.id}`);
+ assert.deepEqual(p.symbolBounds,evidence.evidence.symbolBounds,`Symbol bounds differ: ${p.id}`);
+}
+assert.equal(park.pois.filter(p=>p.pdf).length,247);
+assert.equal(audit.summary.unmatchedFacilityGlyphs,0);
 const official=JSON.parse(fs.readFileSync(new URL('../data/official.json',import.meta.url)));
 assert.ok(Array.isArray(official.attractions));
 console.log(`Validated ${park.pois.length} guide entries, ${park.floors.length} floor maps and official catalog.`);
