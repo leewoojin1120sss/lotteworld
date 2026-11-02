@@ -695,7 +695,7 @@ async function init(){
     setInterval(()=>{if(state.tracking){renderLocationPins();updateLocationUI();}},5000);
     document.addEventListener('visibilitychange',()=>{if(document.hidden){if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();}else{if(Date.now()-closureAttempt>=5*60000)refreshClosures();if(state.tracking){state.gpsPending=true;fixFilter.reset();startWatch();updateLocationUI();}}});
     window.addEventListener('pagehide',()=>{if(gpsWatch!==null)navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;disableMotion();});
-    if('serviceWorker'in navigator&&window.isSecureContext)navigator.serviceWorker.register('sw.js').catch(()=>{});
+    if('serviceWorker'in navigator&&window.isSecureContext)navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
   }catch(e){console.error(e);$('#placeList').innerHTML='<div class="empty-state"><strong>지도를 펼치지 못했어요</strong>연결을 확인하고 새로고침해 주세요.<br><a href="assets/guide-2026.pdf">원본 가이드맵 보기 ↗</a></div>';$('#resultCount').textContent='연결 확인 필요';}
 }
 init();
