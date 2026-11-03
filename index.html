@@ -68,7 +68,7 @@
       <div class="floor-bar"><div id="floorTabs" role="group" aria-label="지도 층 선택"></div><span class="floor-hint" data-icon="layers">층은 직접 선택해 주세요</span></div>
 
       <div class="map-stage" id="map" tabindex="0" role="application" aria-label="확대·축소 가능한 층별 지도. 방향키로 이동, 더하기와 빼기로 확대·축소할 수 있습니다.">
-        <div class="map-context"><span class="context-dot"></span><div><strong id="floorName">어드벤처 1층</strong><span>2026 GUIDE MAP</span></div></div>
+        <div class="map-context" role="status" aria-live="polite" hidden><span class="context-dot"></span><div><strong id="floorName">어드벤처 1층</strong><span>2026 GUIDE MAP</span></div></div>
         <img id="mapImage" class="map-artwork" src="assets/maps/1F.svg" alt="롯데월드 어드벤처 1층 지도" draggable="false" fetchpriority="high" decoding="async">
         <div class="map-world" id="mapWorld">
           <svg id="routeLayer" class="route-layer" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"></svg>
@@ -82,7 +82,7 @@
           <span class="control-divider"></span>
           <button id="fitMap" class="icon-btn" type="button" aria-label="지도 전체 보기" data-icon="maximize"></button>
         </div>
-        <div class="map-bottom-tools"><button id="mobileRoute" class="location-btn mobile-only" type="button" data-icon="route">길찾기</button><button id="locate" class="location-btn" type="button" data-icon="locate">내 위치</button><button id="clearLocation" class="manual-btn" type="button" hidden>위치 지우기</button><button id="manualLocation" class="manual-btn" type="button" data-icon="pin">위치 지정</button></div>
+        <div class="map-bottom-tools"><button id="mobileRoute" class="location-btn mobile-only" type="button" data-icon="route">길찾기</button><details id="locationTools" class="location-tools" open><summary aria-label="위치 도구" data-icon="locate"><span>위치</span></summary><div class="location-actions"><button id="locate" class="location-btn" type="button" data-icon="locate">내 위치</button><button id="clearLocation" class="manual-btn" type="button" hidden>위치 지우기</button><button id="manualLocation" class="manual-btn" type="button" data-icon="pin">위치 지정</button></div></details></div>
         <div class="map-credit"><span class="legend-dot attraction"></span>어트랙션 <span class="legend-dot food"></span>푸드 <span class="legend-dot facility"></span>편의시설 <span class="credit-source">지도 © 롯데월드 · 비공식 방문 도우미</span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></div>
         <div class="map-tip" id="mapTip"><span data-icon="hand"></span>지도를 움직이고, 장소를 눌러보세요</div>
         <article id="detail" class="detail-panel" aria-label="장소 상세 정보" hidden></article>
@@ -117,7 +117,7 @@
   </div></dialog>
 
   <dialog id="locationDialog" class="dialog" aria-labelledby="locationTitle"><div class="dialog-heading"><div><p class="eyebrow">YOU ARE HERE</p><h2 id="locationTitle">지금 내 위치</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="내 위치 닫기" data-icon="close"></button></div><div class="dialog-body" id="locationBody"></div></dialog>
-  <dialog id="officialMapDialog" class="dialog official-map-dialog" aria-labelledby="officialMapTitle"><div class="dialog-heading"><div><p class="eyebrow">OFFICIAL LOCATION</p><h2 id="officialMapTitle">공식 위치 지도</h2></div><button class="icon-btn" data-close-dialog type="button" aria-label="공식 위치 지도 닫기" data-icon="close"></button></div><div class="dialog-body" id="officialMapBody"></div></dialog>
+
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <noscript><div class="noscript">지도를 사용하려면 자바스크립트를 켜 주세요. <a href="assets/guide-2026.pdf">원본 PDF 보기</a></div></noscript>
 </body>

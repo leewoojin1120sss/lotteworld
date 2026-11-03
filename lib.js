@@ -98,7 +98,11 @@ export const recommendationPreferences={
  ['spin','빙글빙글 회전','회전바구니|자이로스핀|자이로스윙|혜성특급|스윙팡팡'],
  ['water','보트·급류','드림보트|신밧드|후룸라이드|아트란티스|와일드밸리|와일드 밸리|보트|급류'],
  ['dark','어둠 속 모험','어둠|다크|동굴|어크로스다크|혜성특급'],
- ['show','공연·관람','극장|뮤지컬|시어터|씨어터|관람']
+ ['show','공연·관람','극장|뮤지컬|시어터|씨어터|관람'],
+ ['coaster','롤러코스터','롤러코스터|후렌치|혜성특급|아트란티스'],
+ ['classic','대표 어트랙션','회전목마|신밧드|스페인해적선|후룸라이드|후렌치|아트란티스|자이로드롭'],
+ ['sky','하늘에서 구경','풍선비행|모노레일'],
+ ['interactive','직접 조작·참여','슈팅|범퍼카|카트라이더|배틀|황야의 무법자']
  ],
  food:[
  ['meal','든든한 식사','밥|한식|중식|돈까스|돈카츠|돈코츠|우동|라멘|라면|파스타|피자|버거|짜장|짬뽕|스테이크'],
@@ -112,7 +116,12 @@ export const recommendationPreferences={
  ['chicken','치킨·콜팝','치킨|콜팝|통다리|BHC|BBQ'],
  ['ice','아이스크림·빙수','아이스크림|젤라또|빙수|소프트콘|소프트아이스'],
  ['bakery','빵·와플·츄러스','빵|와플|츄러스|프레즐|베이커리|호두과자'],
- ['tea','밀크티·상큼한 음료','밀크티|버블티|에이드|주스|스무디|공차']
+ ['tea','밀크티·상큼한 음료','밀크티|버블티|에이드|주스|스무디|공차'],
+ ['noodles','면 요리','우동|라멘|라면|파스타|짜장|짬뽕'],
+ ['rice','밥 요리','비빔밥|볶음밥|덮밥|스팸마리|한식|필라프'],
+ ['fruit','과일·상큼한 맛','과일|탕후루|주스|에이드|스무디|요거트'],
+ ['chocolate','초콜릿·진한 달콤함','초콜릿|초코|오레오|브라우니'],
+ ['coffee','커피 한 잔','커피|라떼|카페라떼|아메리카노|룽고']
  ],
  shop:[
  ['character','캐릭터·굿즈','캐릭터|굿즈|기프트|헬로키티'],
@@ -123,16 +132,20 @@ export const recommendationPreferences={
  ['dress','교복·드레스','드레스|교복|분장'],
  ['accessory','머리띠·소품','헤어밴드|머리띠|가방|소품|키링'],
  ['maple','메이플스토리','메이플'],
- ['sanrio','헬로키티','헬로키티|산리오']
+ ['sanrio','헬로키티','헬로키티|산리오'],
+ ['plush','인형 모으기','인형|봉제'],
+ ['small','작은 기념품','키링|문구|스티커|머리띠|헤어밴드|소품'],
+ ['lottie','로티·로리','로티|로리|롯데월드 캐릭터'],
+ ['fortune','타로·운세 체험','타로|운세|아벤투라']
  ]
 };
 export const recommendationPresets={
- attraction:[['friends','친구와 신나게',['thrill','game']],['relax','여유롭게 구경',['gentle','story']],['family','아이와 함께',['kids','show']]],
- food:[['lunch','든든한 한 끼',['meal','korean']],['sugar','달달하게 충전',['sweet','ice','bakery']],['quick','가볍게 쉬어가기',['snack','cafe']]],
- shop:[['gift','선물 고르기',['character','accessory']],['memory','추억 남기기',['photo','dress']],['fan','캐릭터 팬이라면',['character','maple','sanrio']]]
+ attraction:[['friends','친구와 신나게',['thrill','game']],['relax','여유롭게 구경',['gentle','story']],['family','아이와 함께',['kids','show']],['signature','대표 놀이기구',['classic']],['pilot','직접 즐기는 재미',['game','interactive']],['view','전망 즐기기',['gentle','sky']]],
+ food:[['lunch','든든한 한 끼',['meal','korean']],['sugar','달달하게 충전',['sweet','ice','bakery']],['quick','가볍게 쉬어가기',['snack','cafe']],['noodlemeal','면이 당기는 날',['noodles']],['fruitbreak','상큼하게 쉬기',['fruit','tea']],['coffeebreak','커피와 디저트',['coffee','bakery']]],
+ shop:[['gift','선물 고르기',['character','accessory']],['memory','추억 남기기',['photo','dress']],['fan','캐릭터 팬이라면',['character','maple','sanrio']],['collect','인형 수집가',['plush','toy']],['smallgift','가벼운 기념품',['small','accessory']],['experience','체험으로 추억 남기기',['play','fortune']]]
 };
 function recommendationHash(id,seed){let h=(seed>>>0)^2166136261;for(const c of id)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0;}
-export function recommendPlaces(pois,{category='attraction',preferences=[],position=null,floors={},sameFloor=false,balance='balanced',limit=12,area='all',avoid=[],onlyMatches=false,excludeIds=[],seed=0}={}){
+export function recommendPlaces(pois,{category='attraction',preferences=[],position=null,floors={},sameFloor=false,balance='balanced',limit=12,area='all',avoid=[],onlyMatches=false,excludeIds=[],seed=0,party='all',heightCm=null,knownHeightOnly=false}={}){
  const definitions=recommendationPreferences[category]??[],wanted=definitions.filter(([id])=>preferences.includes(id)),excluded=new Set(excludeIds);
  const avoidance=category==='attraction'?definitions.filter(([id])=>avoid.includes(id)):[];
  const rows=[];
@@ -144,13 +157,23 @@ export function recommendPlaces(pois,{category='attraction',preferences=[],posit
   if(avoidance.some(([id])=>tags.some(([key])=>key===id)))continue;
   const matched=tags.filter(([id])=>wanted.some(([key])=>key===id));
   if(onlyMatches&&wanted.length&&!matched.length)continue;
+  let heightLabel='';
+  if(category==='attraction'&&Number.isFinite(heightCm)&&heightCm>=50&&heightCm<=230){
+   const o=p._official,min=o?.heightMinCm,max=o?.heightMaxCm;
+   const hasMin=Number.isFinite(min)&&min>0,hasMax=Number.isFinite(max)&&max>0;
+   if(hasMin&&heightCm<min||hasMax&&heightCm>max||knownHeightOnly&&!hasMin&&!hasMax)continue;
+   heightLabel=hasMin||hasMax?`키 ${heightCm}cm · 공개 키 제한 범위 내`:'키 제한 확인 필요';
+  }
+  const partyTags={friends:{attraction:['thrill','game','interactive'],food:['snack','chicken'],shop:['play','photo']},family:{attraction:['kids','gentle','show'],food:['meal','ice'],shop:['toy','plush','lottie']},couple:{attraction:['gentle','story','sky'],food:['cafe','sweet'],shop:['photo','dress']},solo:{attraction:['game','story'],food:['snack','coffee'],shop:['small','character']}}[party]?.[category]??[];
+  const partyMatches=tags.filter(([id])=>partyTags.includes(id));
+  const partyReason=partyMatches.length?`동행 취향 · ${partyMatches.slice(0,2).map(([,label])=>label).join(' · ')}`:'';
   let cost=null;
   if(position?.pdf&&p.floor===position.floor&&p.pdf){try{const route=corridorRoute(p.floor,position,p,floors[p.floor]);cost=route.illustrationLength+route.connectors.reduce((a,b)=>a+b,0);}catch{}}
-  rows.push({poi:p,tags,matched,cost,taste:wanted.length?matched.length/wanted.length:0,tie:recommendationHash(p.id,seed)});
+  rows.push({poi:p,tags,matched,cost,partyReason,heightLabel,partyAffinity:partyMatches.length/Math.max(1,partyTags.length),taste:wanted.length?matched.length/wanted.length:0,tie:recommendationHash(p.id,seed)});
  }
  const reachable=rows.filter(r=>r.cost!==null).sort((a,b)=>a.cost-b.cost||a.poi.id.localeCompare(b.poi.id));
  const weight=balance==='taste'?.85:balance==='distance'?.25:.6;
- for(const row of rows){const rank=reachable.indexOf(row);row.near=rank<0?0:1-rank/Math.max(1,reachable.length);row.score=(wanted.length?weight*row.taste:0)+(position?(wanted.length?1-weight:1)*row.near:0);row.distanceLabel=!position?'위치 지정 후 거리 반영':row.poi.floor!==position.floor?'층·구역 이동 필요':row.cost===null?'같은 층 · 거리 미확인':rank===0?'같은 층 · 가장 가까운 후보':rank<Math.ceil(reachable.length/3)?'같은 층 · 가까운 편':'같은 층 · 통로 거리 반영';}
+ for(const row of rows){const rank=reachable.indexOf(row);row.near=rank<0?0:1-rank/Math.max(1,reachable.length);row.score=(wanted.length?weight*row.taste:0)+(position?(wanted.length?1-weight:1)*row.near:0)+.12*row.partyAffinity;row.distanceLabel=!position?'위치 지정 후 거리 반영':row.poi.floor!==position.floor?'층·구역 이동 필요':row.cost===null?'같은 층 · 거리 미확인':rank===0?'같은 층 · 가장 가까운 후보':rank<Math.ceil(reachable.length/3)?'같은 층 · 가까운 편':'같은 층 · 통로 거리 반영';}
  const chosen=[],seenTags=new Set(),seenNames=new Set(),remaining=[...rows];
  const strength=balance==='distance'?.025:.08;
  while(remaining.length&&chosen.length<limit){

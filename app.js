@@ -1,4 +1,4 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords,officialLocationsFor,officialPinBox} from './lib.js';
+import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -50,6 +50,7 @@ function hydrate(root=document){root.querySelectorAll('[data-icon]').forEach(el=
 hydrate();
 const names={attraction:'어트랙션',food:'푸드·카페',facility:'편의시설',shop:'샵·체험',all:'모든 장소'};
 const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타',meeting:'만남의 광장'};
+let floorNoticeTimer;
 let toastTimer,park,guidePois,walkways,official={},officialLinks={links:{}},localAssets={},georeference={anchors:[],floors:{}};
 let gpsWatch=null,calibrations=[];
 let closures=null,closureBusy=false,closureError=false,closureAttempt=0,closureViewFresh=false;
@@ -60,7 +61,7 @@ const state={floor:'1F',category:'attraction',query:'',allFloors:false,favorites
 Object.assign(state,{locationFloor:'1F',tracking:false,estimate:null,manualHoldUntil:0,manualBaseGPS:null,motionEnabled:false,heading:null,headingAt:0,motionBase:null,motionSteps:0});
 state.recommendations=false;
 const savedRecommendations=safeStored('yaho-recommendations',{});
-state.rec={category:['attraction','food','shop'].includes(savedRecommendations.category)?savedRecommendations.category:'attraction',preferences:savedRecommendations.preferences??{},balance:['balanced','taste','distance'].includes(savedRecommendations.balance)?savedRecommendations.balance:'balanced',sameFloor:savedRecommendations.sameFloor===true,area:['all','adventure','magic'].includes(savedRecommendations.area)?savedRecommendations.area:'all',avoid:Array.isArray(savedRecommendations.avoid)?savedRecommendations.avoid:[],onlyMatches:savedRecommendations.onlyMatches!==false,hideSaved:savedRecommendations.hideSaved===true};
+state.rec={party:['all','friends','family','couple','solo'].includes(savedRecommendations.party)?savedRecommendations.party:'all',heightCm:Number.isFinite(savedRecommendations.heightCm)&&savedRecommendations.heightCm>=50&&savedRecommendations.heightCm<=230?savedRecommendations.heightCm:null,knownHeightOnly:savedRecommendations.knownHeightOnly===true,category:['attraction','food','shop'].includes(savedRecommendations.category)?savedRecommendations.category:'attraction',preferences:savedRecommendations.preferences??{},balance:['balanced','taste','distance'].includes(savedRecommendations.balance)?savedRecommendations.balance:'balanced',sameFloor:savedRecommendations.sameFloor===true,area:['all','adventure','magic'].includes(savedRecommendations.area)?savedRecommendations.area:'all',avoid:Array.isArray(savedRecommendations.avoid)?savedRecommendations.avoid:[],onlyMatches:savedRecommendations.onlyMatches!==false,hideSaved:savedRecommendations.hideSaved===true};
 state.recSeed=0;state.recLimit=12;
 state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};
 const view={x:0,y:0,scale:1,fit:1,width:1070,height:760};
@@ -90,7 +91,7 @@ function combineOfficial(){
     // Keep unmatched official entries in the catalogue without projecting
     // independent official pixel coordinates onto the guide illustration.
     const kind=category==='facility'?(o.name.includes('피크닉')?'picnic':'info'):undefined;
-    park.pois.push({id:`web-${o.id}`,name:o.name,description:o.description??o.menu??'공식 웹 안내에 수록된 장소입니다.',category,floor,number:null,x:null,y:null,kind,_official:o,source:'official-public-api',coordinateQuality:'official-separate-map',note:'공식 웹 안내에 수록된 장소입니다. 아래 공식 위치 지도에서 위치를 확인하세요.'});
+    park.pois.push({id:`web-${o.id}`,name:o.name,description:o.description??o.menu??'공식 웹 안내에 수록된 장소입니다.',category,floor,number:null,x:null,y:null,kind,_official:o,source:'official-public-api',coordinateQuality:'official-separate-map',note:'공식 웹 안내에 수록된 장소입니다. 가이드맵 좌표가 없어 지도 핀은 제공하지 않습니다.'});
   }
 }
 function safeURL(v){try{const u=new URL(v);return u.protocol==='https:'?u.href:null;}catch{return null;}}
@@ -181,6 +182,7 @@ function renderRecommendations(){
   $('#listTitle').textContent='나에게 맞는 추천';$('#clearFilters').hidden=true;$('#facilityFilters').hidden=true;
   $('#recommendationControls').innerHTML=`<div class="rec-intro"><p>오늘의 기분부터, 세부 취향까지 골라보세요.</p></div>
   <div class="rec-categories" role="group" aria-label="추천 종류">${[['attraction','어트랙션'],['food','식당'],['shop','기념품·체험']].map(([id,label])=>`<button type="button" data-rec-category="${id}" aria-pressed="${c.category===id}" class="${c.category===id?'active':''}">${label}</button>`).join('')}</div>
+  <label class="rec-sort rec-party">누구와 함께<select id="recParty">${[['all','상관없어요'],['friends','친구와'],['family','어린이와'],['couple','둘이서'],['solo','혼자서']].map(([v,t])=>`<option value="${v}" ${c.party===v?'selected':''}>${t}</option>`).join('')}</select></label>
   <div class="rec-presets" role="group" aria-label="상황별 취향 묶음">${recommendationPresets[c.category].map(([id,label,ids])=>`<button type="button" data-rec-preset="${id}" aria-pressed="${ids.length===prefs.length&&ids.every(k=>prefs.includes(k))}">${label}</button>`).join('')}</div>
   <details id="recTasteDetails" class="rec-taste-details" ${tastesOpen?'open':''}><summary>세부 취향 <span>${prefs.length?`${prefs.length}개 선택`:'여러 개 선택 가능'}</span></summary><div class="rec-section-title"><strong>마음에 드는 것을 모두 골라요</strong><button type="button" data-rec-reset>초기화</button></div>
   <div class="rec-preferences" role="group" aria-label="취향 선택 · 여러 개 선택 가능">${recommendationPreferences[c.category].map(([id,label])=>`<button type="button" data-rec-preference="${id}" aria-pressed="${prefs.includes(id)}" class="${prefs.includes(id)?'active':''}">${label}</button>`).join('')}</div></details>
@@ -188,6 +190,7 @@ function renderRecommendations(){
   <label class="rec-sort">추천 기준<select id="recBalance"><option value="balanced" ${c.balance==='balanced'?'selected':''}>취향과 거리 균형</option><option value="taste" ${c.balance==='taste'?'selected':''}>취향 우선</option><option value="distance" ${c.balance==='distance'?'selected':''}>거리 우선</option></select></label>
   <details id="recAdvanced" class="rec-advanced" ${advancedOpen?'open':''}><summary>조건 더 고르기${c.area!=='all'||c.category==='attraction'&&c.avoid.length||c.sameFloor||c.hideSaved?' · 적용 중':''}</summary>
   <label class="rec-sort">구역<select id="recArea"><option value="all" ${c.area==='all'?'selected':''}>모든 구역</option><option value="adventure" ${c.area==='adventure'?'selected':''}>어드벤처</option><option value="magic" ${c.area==='magic'?'selected':''}>매직아일랜드</option></select></label>
+  ${c.category==='attraction'?`<label class="rec-sort">탑승할 사람의 키<span class="rec-height-field"><input id="recHeight" type="number" inputmode="numeric" min="50" max="230" step="1" placeholder="선택 · cm" value="${c.heightCm??''}"><button type="button" id="applyRecHeight">적용</button></span></label><label class="rec-floor"><input id="recKnownHeight" type="checkbox" ${c.knownHeightOnly?'checked':''} ${c.heightCm===null?'disabled':''}>키 제한이 확인된 곳만</label><p class="rec-note">공식 키 제한만 반영하며 동반자·건강 조건은 상세에서 확인해요.</p>`:''}
   <label class="rec-floor"><input id="recSameFloor" type="checkbox" ${c.sameFloor?'checked':''} ${position?'':'disabled'}>현재 위치와 같은 층만</label>
   <label class="rec-floor"><input id="recHideSaved" type="checkbox" ${c.hideSaved?'checked':''}>즐겨찾기 외 새로운 곳</label>
   ${c.category==='attraction'?`<p class="rec-avoid-title">이번에는 피하고 싶어요</p><div class="rec-preferences rec-avoid" role="group" aria-label="피할 어트랙션 유형">${recommendationPreferences.attraction.filter(([id])=>['height','spin','water','dark'].includes(id)).map(([id,label])=>`<button type="button" data-rec-avoid="${id}" aria-pressed="${c.avoid.includes(id)}" class="${c.avoid.includes(id)?'active':''}">${label}</button>`).join('')}</div>`:''}</details>
@@ -198,8 +201,11 @@ function renderRecommendations(){
   const allRows=recommendPlaces(eligible,{...c,preferences:prefs,position,floors:walkways.floors,excludeIds:c.hideSaved?[...state.favorites]:[],seed:state.recSeed,limit:eligible.length});
   const rows=allRows.slice(0,state.recLimit);
   $('#resultCount').textContent=`${allRows.length}곳`;
-  $('#placeList').innerHTML=rows.length?`<div class="rec-results-toolbar"><span>${rows.length}곳 추천${prefs.length?` · 취향 ${prefs.length}개 반영`:''}</span><button type="button" data-rec-refresh>다른 추천 보기 ${icon('sparkles')}</button></div>`+rows.map((r,i)=>{const p=r.poi,photo=localAssets.attractions?.[p._official?.officialId];return `<article class="place-item rec-item"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><div class="rec-rank">추천 ${i+1}</div><h3>${esc(p.name)}</h3>${closureBadge(p)}<div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(r.distanceLabel)}</span></div><p class="rec-reason">${esc(r.matched.length?r.matched.map(([,label])=>label).join(' · '):prefs.length?'선택한 취향 외 다른 후보':r.tags.slice(0,2).map(([,label])=>label).join(' · ')||'새로운 장소 둘러보기')}</p>${p.description?`<div class="place-sub">${esc(p.description)}</div>`:''}</div>${favoriteButton(p)}</article>`;}).join('')+(allRows.length>rows.length?`<button class="rec-more" type="button" data-rec-more>추천 더 보기 · ${allRows.length-rows.length}곳 남음</button>`:''):'<div class="empty-state"><strong>조건에 맞는 장소가 없어요</strong>취향이나 제외 조건을 줄여보세요.<button class="btn btn-subtle" type="button" data-rec-reset>추천 조건 초기화</button></div>';
+  $('#placeList').innerHTML=rows.length?`<div class="rec-results-toolbar"><span>${rows.length}곳 추천${prefs.length?` · 취향 ${prefs.length}개 반영`:''}</span><button type="button" data-rec-refresh>다른 추천 보기 ${icon('sparkles')}</button></div>`+rows.map((r,i)=>{const p=r.poi,photo=localAssets.attractions?.[p._official?.officialId];return `<article class="place-item rec-item"><button type="button" class="place-open" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)} 상세 보기"></button><div class="place-art ${p.category}">${photo?`<img src="${esc(photo)}" alt="" loading="lazy">`:icon(poiIcon(p))}</div><div class="place-text"><div class="rec-rank">추천 ${i+1}</div><h3>${esc(p.name)}</h3>${closureBadge(p)}<div class="place-meta"><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span>${esc(r.distanceLabel)}</span></div><p class="rec-reason">${esc(r.matched.length?r.matched.map(([,label])=>label).join(' · '):prefs.length?'선택한 취향 외 다른 후보':r.tags.slice(0,2).map(([,label])=>label).join(' · ')||'새로운 장소 둘러보기')}</p>${r.partyReason?`<p class="rec-context">${esc(r.partyReason)}</p>`:''}${r.heightLabel?`<p class="rec-context">${esc(r.heightLabel)}</p>`:''}${p.description?`<div class="place-sub">${esc(p.description)}</div>`:''}</div>${favoriteButton(p)}</article>`;}).join('')+(allRows.length>rows.length?`<button class="rec-more" type="button" data-rec-more>추천 더 보기 · ${allRows.length-rows.length}곳 남음</button>`:''):'<div class="empty-state"><strong>조건에 맞는 장소가 없어요</strong>취향이나 제외 조건을 줄여보세요.<button class="btn btn-subtle" type="button" data-rec-reset>추천 조건 초기화</button></div>';
   const change=(key,value)=>{c[key]=value;state.recLimit=12;saveRecommendations();renderRecommendations();};
+  $('#recParty').onchange=e=>change('party',e.target.value);
+  const height=$('#recHeight');if(height){const apply=()=>{if(height.value&&!height.checkValidity()){height.reportValidity();return;}change('heightCm',height.value?Number(height.value):null);};$('#applyRecHeight').onclick=apply;height.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();apply();}};}
+  const known=$('#recKnownHeight');if(known)known.onchange=e=>change('knownHeightOnly',e.target.checked);
   $('#recBalance').onchange=e=>change('balance',e.target.value);
   $('#recSameFloor').onchange=e=>change('sameFloor',e.target.checked);
   $('#recOnlyMatches').onchange=e=>change('onlyMatches',e.target.checked);
@@ -209,6 +215,7 @@ function renderRecommendations(){
 
 function saveRecommendations(){try{localStorage.setItem('yaho-recommendations',JSON.stringify(state.rec));}catch{}}
 function clearCurrentLocation(){
+  $('#locationTools').open=!matchMedia('(max-width:800px)').matches;
   stopGPS();state.position=null;state.gps=null;state.estimate=null;state.gpsError='';state.manualBaseGPS=null;state.manualHoldUntil=0;state.motionBase=null;calibrations=[];fixFilter.reset();
   endPick();clearRoute();$('#locationDialog').close();$('#shareDialog').close();$('#shareUrl').value='';$('#sharePreview').innerHTML='';updateLocationUI();renderLocationPins();if(state.recommendations)renderRecommendations();toast('내 위치를 지우고 위치 추적을 중지했어요.');
 }
@@ -265,6 +272,7 @@ function setFloor(id,{focus=false}={}){
   $('#mapWorld').style.width=`${f.width}px`;$('#mapWorld').style.height=`${f.height}px`;
   $('#mapImage').src=f.vectorImage??f.image;$('#mapImage').alt=`${f.name} 지도`;
   $('#floorName').textContent=f.name;
+  clearTimeout(floorNoticeTimer);$('.map-context').hidden=false;floorNoticeTimer=setTimeout(()=>$('.map-context').hidden=true,1800);
   $('#floorTabs').innerHTML=park.floors.map(a=>`<button type="button" data-floor="${a.id}" class="${a.id===id?'active':''}" aria-pressed="${a.id===id}" aria-label="${esc(a.name)}">${a.id==='MAGIC'?'매직아일랜드':a.label}</button>`).join('');
   if(state.selected&&poiById(state.selected)?.floor!==id){state.selected=null;$('#detail').hidden=true;}
   renderList();renderPins();renderRoute();fitMap();
@@ -293,28 +301,7 @@ function renderDetail(p){
   <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
   <div class="detail-extra"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
   const img=detail.querySelector('img');if(img)img.addEventListener('error',()=>img.replaceWith(document.createRange().createContextualFragment(icon(poiIcon(p)))),{once:true});
-  if(o?.detail?.position||o?.detail?.locations?.length){
-    const action=document.createElement('button');action.type='button';action.className=`btn ${p.x===null?'btn-primary':'btn-subtle'} btn-full official-map-button`;action.innerHTML=icon('map')+'공식 위치 지도';action.addEventListener('click',()=>openOfficialMap(p));detail.querySelector('.detail-actions').before(action);
-  }
   detail.hidden=false;$('#mapTip').hidden=true;
-}
-
-function openOfficialMap(p){
-  const records=p._officialRelated??[officialEntry(p)].filter(Boolean);
-  const options=officialLocationsFor(p,records,officialLinks.links[p.id],official.maps??[]);
-  if(!options.length){toast('이 층과 연결된 공식 위치 정보가 없습니다.');return;}
-  const body=$('#officialMapBody');
-  body.innerHTML=`<label class="field-label" for="officialLocationSelect">${esc(p.name)}</label><select id="officialLocationSelect">${options.length>1?`<option value="all">${esc(floorLabel(p.floor))} · 공식 지점 ${options.length}곳 보기</option>`:''}${options.map((v,i)=>`<option value="${i}">${esc(v.map.floorName)}${records.length>1?` · ${esc(v.recordName)}`:''}${v.location.location?` · ${esc(v.location.location)}`:''}</option>`).join('')}</select><div id="officialMapFigure"></div>`;
-  const render=value=>{
-    const selected=value==='all'?options:[options[Number(value)]],groups=new Map();
-    for(const item of selected){if(!item)continue;if(!groups.has(item.map.id))groups.set(item.map.id,[]);groups.get(item.map.id).push(item);}
-    $('#officialMapFigure').innerHTML=[...groups.values()].map(group=>{
-      const map=group[0].map,image=localAssets.maps?.[map.id]??safeURL(map.imageUrl);
-      const markers=group.map(item=>{const box=officialPinBox(item.location,map);return box?`<img class="official-position" src="assets/official-map-pin.png" style="left:${box.left}%;top:${box.top}%;width:${box.width}%;height:${box.height}%" alt="${esc(item.recordName)} 공식 위치 표식" title="${esc(item.location.location??item.recordName)}">`:'';}).join('');
-      return `<figure class="official-map-figure"><div style="aspect-ratio:${map.width}/${map.height}"><img class="official-map-art" src="${esc(image)}" alt="${esc(map.floorName)} 공식 위치 지도">${markers}</div><figcaption>${esc(map.floorName)}${group.length>1?` · 공식 지점 ${group.length}곳`:''} · 지도 © 롯데월드</figcaption></figure>`;
-    }).join('');
-  };
-  $('#officialLocationSelect').onchange=e=>render(e.target.value);render(options.length>1?'all':'0');$('#officialMapDialog').showModal();
 }
 
 function closeDetail(){state.selected=null;$('#detail').hidden=true;renderList();renderPins();}
@@ -479,7 +466,7 @@ function facilityQueryKinds(query){
 }
 function routePlaceButton(p){
   const selected=state.routeDraft.toId===p.id;
-  return `<button class="route-place ${selected?'selected':''}" type="button" data-route-destination="${esc(p.id)}" aria-pressed="${selected}"><span class="route-place-icon ${p.category}">${icon(poiIcon(p))}</span><span><strong>${esc(p.name)}</strong>${closureBadge(p)}<small>${esc(floorLabel(p.floor))}${p.x===null?' · 공식 위치 지도':''}</small></span><span class="route-place-check">${selected?icon('check'):icon('plus')}</span></button>`;
+  return `<button class="route-place ${selected?'selected':''}" type="button" data-route-destination="${esc(p.id)}" aria-pressed="${selected}"><span class="route-place-icon ${p.category}">${icon(poiIcon(p))}</span><span><strong>${esc(p.name)}</strong>${closureBadge(p)}<small>${esc(floorLabel(p.floor))}${p.x===null?' · 지도 위치 미확인':''}</small></span><span class="route-place-check">${selected?icon('check'):icon('plus')}</span></button>`;
 }
 function renderRouteDestinations(){
   const draft=state.routeDraft,from=currentRouteOrigin();
@@ -591,7 +578,7 @@ function runRoute(event){
     if(officialEntry(to)?.detail?.position){$('#routeDialog').close();openOfficialMap(to);return;}
     return fail('이 장소의 지도 위치가 아직 등록되지 않았습니다.');
   }
-  if(to.note?.includes('두 곳'))return fail('지도 번호가 중복된 장소입니다. 공식 위치 지도로 확인해 주세요.');
+  if(to.note?.includes('두 곳'))return fail('지도 위치가 확정되지 않은 장소입니다. 공식 안내를 확인해 주세요.');
   try{showPlannedRoute(corridorRoute(from.floor,from,to,walkways.floors[from.floor]),{destination:to});}
   catch(e){fail(e.message==='TOO_FAR'?'통로 가까이에서 현위치를 다시 지정해 주세요.':'이 위치에서 이어지는 통로를 찾지 못했습니다.');}
 }
@@ -611,7 +598,7 @@ async function refreshOfficial(){
 function bindMapGestures(){
   const stage=$('#map'),active=new Map();let gesture=null,moved=false,down=null;
   const local=e=>{const r=stage.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
-  const ignored=target=>target.closest('button,a,.detail-panel,.route-card,.shared-card');
+  const ignored=target=>target.closest('button,a,summary,.location-tools,.detail-panel,.route-card,.shared-card');
   stage.addEventListener('wheel',e=>{if(ignored(e.target))return;e.preventDefault();const p=local(e);zoom(Math.exp(-e.deltaY*.0015),p.x,p.y);},{passive:false});
   stage.addEventListener('pointerdown',e=>{if(ignored(e.target)||e.button>0)return;active.set(e.pointerId,local(e));stage.setPointerCapture(e.pointerId);moved=false;down={...local(e),id:e.pointerId};if(active.size===1)gesture={type:'pan',last:local(e)};else if(active.size===2){const [a,b]=[...active.values()];gesture={type:'pinch',distance:Math.hypot(a.x-b.x,a.y-b.y),center:{x:(a.x+b.x)/2,y:(a.y+b.y)/2}};moved=true;}});
   stage.addEventListener('pointermove',e=>{if(!active.has(e.pointerId))return;const p=local(e);active.set(e.pointerId,p);if(down&&Math.hypot(p.x-down.x,p.y-down.y)>5)moved=true;if(active.size===2){const[a,b]=[...active.values()],d=Math.hypot(a.x-b.x,a.y-b.y),c={x:(a.x+b.x)/2,y:(a.y+b.y)/2};if(gesture?.type==='pinch'&&gesture.distance>0){zoom(d/gesture.distance,c.x,c.y);view.x+=c.x-gesture.center.x;view.y+=c.y-gesture.center.y;applyTransform();}gesture={type:'pinch',distance:d,center:c};}else if(gesture?.type==='pan'){view.x+=p.x-gesture.last.x;view.y+=p.y-gesture.last.y;gesture.last=p;applyTransform();}});
@@ -623,12 +610,15 @@ function bindMapGestures(){
 }
 
 function bindEvents(){
+  const locationLayout=matchMedia('(max-width:800px)');
+  const adaptLocationTools=()=>{$('#locationTools').open=!locationLayout.matches;};
+  adaptLocationTools();locationLayout.addEventListener('change',adaptLocationTools);
   document.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
     if('recLocate'in b.dataset){beginPick();return;}
     if('recRefresh'in b.dataset){state.recSeed++;state.recLimit=12;renderRecommendations();return;}
     if('recMore'in b.dataset){state.recLimit+=12;renderRecommendations();return;}
-    if('recReset'in b.dataset){state.rec.preferences[state.rec.category]=[];Object.assign(state.rec,{avoid:[],area:'all',sameFloor:false,hideSaved:false,onlyMatches:true});state.recLimit=12;saveRecommendations();renderRecommendations();return;}
+    if('recReset'in b.dataset){state.rec.preferences[state.rec.category]=[];Object.assign(state.rec,{avoid:[],area:'all',sameFloor:false,hideSaved:false,onlyMatches:true,party:'all',heightCm:null,knownHeightOnly:false});state.recLimit=12;saveRecommendations();renderRecommendations();return;}
     if(b.dataset.recPreset){const preset=recommendationPresets[state.rec.category].find(([id])=>id===b.dataset.recPreset);if(preset){state.rec.preferences[state.rec.category]=[...preset[2]];state.recLimit=12;state.recOpenTastes=false;saveRecommendations();renderRecommendations();}return;}
     if(b.dataset.recAvoid){const id=b.dataset.recAvoid;state.rec.avoid=state.rec.avoid.includes(id)?state.rec.avoid.filter(k=>k!==id):[...state.rec.avoid,id];state.recLimit=12;saveRecommendations();renderRecommendations();return;}
 
@@ -665,8 +655,8 @@ function bindEvents(){
   $('#openSearch').onclick=()=>{state.recommendations=false;state.favoritesOnly=false;renderList();mobileSheet(true);$('#search').focus();};
   $('#mobileList').onclick=()=>{state.recommendations=false;state.favoritesOnly=false;renderList();mobileSheet(true);};$('#closeSearch').onclick=()=>mobileSheet(false);
   $('#zoomIn').onclick=()=>zoom(1.3);$('#zoomOut').onclick=()=>zoom(1/1.3);$('#fitMap').onclick=fitMap;
-  $('#manualLocation').onclick=()=>beginPick();$('#cancelPick').onclick=()=>{state.shareAfterPick=false;endPick();};
-  $('#locate').onclick=()=>openLocation({getGPS:!state.tracking});
+  $('#manualLocation').onclick=()=>{$('#locationTools').open=!matchMedia('(max-width:800px)').matches;beginPick();};$('#cancelPick').onclick=()=>{state.shareAfterPick=false;endPick();};
+  $('#locate').onclick=()=>{$('#locationTools').open=!matchMedia('(max-width:800px)').matches;openLocation({getGPS:!state.tracking});};
   $('#shareLocation').onclick=openShare;$('#mobileShare').onclick=openShare;
   $('#resetSharePosition').onclick=()=>beginPick(true);
   $('#copyShare').onclick=()=>copy($('#shareUrl').value);

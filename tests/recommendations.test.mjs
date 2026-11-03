@@ -46,3 +46,23 @@ test('equally relevant results cover multiple selected tastes rather than repeat
  const rows=recommendPlaces(items,{preferences:['thrill','gentle'],onlyMatches:true,limit:2});
  assert.ok(rows.some(r=>r.poi.id==='gentle'));assert.ok(rows.some(r=>r.poi.id.startsWith('thrill-')));
 });
+test('party preferences change ranking without inventing suitability or relaxing exclusions',()=>{
+ const items=[{id:'gentle',name:'회전목마',category:'attraction',floor:'1F'},{id:'thrill',name:'후렌치 레볼루션',description:'스릴 롤러코스터',category:'attraction',floor:'1F'}];
+ assert.equal(recommendPlaces(items,{party:'family'})[0].poi.id,'gentle');
+ assert.equal(recommendPlaces(items,{party:'friends'})[0].poi.id,'thrill');
+ assert.deepEqual(recommendPlaces(items,{party:'friends',preferences:['gentle'],onlyMatches:true}).map(r=>r.poi.id),['gentle']);
+});
+test('height filters use official bounds, retain unknowns explicitly and respect boundaries',()=>{
+ const ride=(id,min,max)=>({id,name:id,category:'attraction',floor:'1F',_official:{heightMinCm:min,heightMaxCm:max}});
+ const items=[ride('low',90,120),ride('high',140,190),ride('unknown',null,null)];
+ const rows=recommendPlaces(items,{heightCm:120});assert.deepEqual(rows.map(r=>r.poi.id).sort(),['low','unknown']);
+ assert.equal(rows.find(r=>r.poi.id==='unknown').heightLabel,'키 제한 확인 필요');
+ assert.deepEqual(recommendPlaces(items,{heightCm:120,knownHeightOnly:true}).map(r=>r.poi.id),['low']);
+ assert.equal(recommendPlaces(items,{heightCm:null,knownHeightOnly:true}).length,3);
+});
+test('new specific tastes select their stated food and souvenir descriptions',()=>{
+ const foods=[{id:'noodle',name:'우동',category:'food'},{id:'fruit',name:'과일 주스',category:'food'},{id:'rice',name:'볶음밥',category:'food'}];
+ assert.deepEqual(recommendPlaces(foods,{category:'food',preferences:['noodles'],onlyMatches:true}).map(r=>r.poi.id),['noodle']);
+ const shops=[{id:'plush',name:'인형 가게',category:'shop'},{id:'small',name:'문구 스티커 키링',category:'shop'}];
+ assert.deepEqual(recommendPlaces(shops,{category:'shop',preferences:['small'],onlyMatches:true}).map(r=>r.poi.id),['small']);
+});
