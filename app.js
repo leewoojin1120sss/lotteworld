@@ -59,6 +59,7 @@ const safeStored=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key
 const storedFavs=safeStored('yaho-favorites',[]);
 const state={floor:'1F',category:'attraction',query:'',allFloors:false,favoritesOnly:false,kind:null,favorites:new Set(Array.isArray(storedFavs)?storedFavs.filter(v=>typeof v==='string'):[]),selected:null,position:null,gps:null,gpsPending:false,gpsError:'',pick:false,shareAfterPick:false,routeAfterPick:null,shared:null,route:null};
 Object.assign(state,{locationFloor:'1F',tracking:false,estimate:null,manualHoldUntil:0,manualBaseGPS:null,motionEnabled:false,heading:null,headingAt:0,motionBase:null,motionSteps:0});
+state.lastViewed=typeof safeStored('yaho-last-viewed',null)==='string'?safeStored('yaho-last-viewed',null):null;
 state.recommendations=false;
 const savedRecommendations=safeStored('yaho-recommendations',{});
 state.rec={party:['all','friends','family','couple','solo'].includes(savedRecommendations.party)?savedRecommendations.party:'all',heightCm:Number.isFinite(savedRecommendations.heightCm)&&savedRecommendations.heightCm>=50&&savedRecommendations.heightCm<=230?savedRecommendations.heightCm:null,knownHeightOnly:savedRecommendations.knownHeightOnly===true,category:['attraction','food','shop'].includes(savedRecommendations.category)?savedRecommendations.category:'attraction',preferences:savedRecommendations.preferences??{},balance:['balanced','taste','distance'].includes(savedRecommendations.balance)?savedRecommendations.balance:'balanced',sameFloor:savedRecommendations.sameFloor===true,area:['all','adventure','magic'].includes(savedRecommendations.area)?savedRecommendations.area:'all',avoid:Array.isArray(savedRecommendations.avoid)?savedRecommendations.avoid:[],onlyMatches:savedRecommendations.onlyMatches!==false,hideSaved:savedRecommendations.hideSaved===true};
@@ -258,7 +259,7 @@ function fitMap(){
   if(!park)return;const stage=$('#map');const w=stage.clientWidth,h=stage.clientHeight;
   if(!w||!h)return;
   view.fit=Math.min((w-35)/view.width,(h-125)/view.height)*.97;
-  view.fit=Math.max(.15,view.fit);view.scale=view.fit;
+  view.fit=Math.max(.02,view.fit);view.scale=view.fit;
   view.x=(w-view.width*view.scale)/2;view.y=(h-view.height*view.scale)/2+4;applyTransform();
 }
 function zoom(factor,cx=$('#map').clientWidth/2,cy=$('#map').clientHeight/2){
@@ -280,10 +281,15 @@ function setFloor(id,{focus=false}={}){
 }
 function setCategory(category){state.category=category;state.kind=null;renderList();renderPins();}
 function toggleFavorite(id){if(!poiById(id))return;state.favorites.has(id)?state.favorites.delete(id):state.favorites.add(id);try{localStorage.setItem('yaho-favorites',JSON.stringify([...state.favorites]));}catch{toast('브라우저에서 저장을 허용하지 않아 이번 방문 중에만 유지돼요.');}renderList();renderPins();if(state.selected)renderDetail(poiById(state.selected));}
+function renderRecentPlace(){
+ const host=$('#recentPlace'),p=poiById(state.lastViewed);host.hidden=!p;
+ host.innerHTML=p?`<button type="button" class="recent-open" data-open-place="${esc(p.id)}"><span>최근 본 장소</span><strong>${esc(p.name)}</strong><span class="floor-chip">${esc(p.floor==='MAGIC'?'매직':p.floor)}</span><span aria-hidden="true">↗</span></button><button type="button" class="recent-clear" data-clear-recent aria-label="최근 본 장소 지우기">${icon('close')}</button>`:'';
+}
 function openPlace(id){
   const p=poiById(id);if(!p)return;
   if(state.pick){setManualPosition(p);return;}
   if(p.floor!==state.floor)setFloor(p.floor);
+  state.lastViewed=id;try{localStorage.setItem('yaho-last-viewed',JSON.stringify(id));}catch{}renderRecentPlace();
   state.selected=id;renderList();renderPins();renderDetail(p);focusPoint(p);mobileSheet(false);
 }
 function renderDetail(p){
@@ -600,21 +606,54 @@ function bindMapGestures(){
   const local=e=>{const r=stage.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
   const ignored=target=>target.closest('button,a,summary,.location-tools,.detail-panel,.route-card,.shared-card');
   stage.addEventListener('wheel',e=>{if(ignored(e.target))return;e.preventDefault();const p=local(e);zoom(Math.exp(-e.deltaY*.0015),p.x,p.y);},{passive:false});
-  stage.addEventListener('pointerdown',e=>{if(ignored(e.target)||e.button>0)return;active.set(e.pointerId,local(e));stage.setPointerCapture(e.pointerId);moved=false;down={...local(e),id:e.pointerId};if(active.size===1)gesture={type:'pan',last:local(e)};else if(active.size===2){const [a,b]=[...active.values()];gesture={type:'pinch',distance:Math.hypot(a.x-b.x,a.y-b.y),center:{x:(a.x+b.x)/2,y:(a.y+b.y)/2}};moved=true;}});
-  stage.addEventListener('pointermove',e=>{if(!active.has(e.pointerId))return;const p=local(e);active.set(e.pointerId,p);if(down&&Math.hypot(p.x-down.x,p.y-down.y)>5)moved=true;if(active.size===2){const[a,b]=[...active.values()],d=Math.hypot(a.x-b.x,a.y-b.y),c={x:(a.x+b.x)/2,y:(a.y+b.y)/2};if(gesture?.type==='pinch'&&gesture.distance>0){zoom(d/gesture.distance,c.x,c.y);view.x+=c.x-gesture.center.x;view.y+=c.y-gesture.center.y;applyTransform();}gesture={type:'pinch',distance:d,center:c};}else if(gesture?.type==='pan'){view.x+=p.x-gesture.last.x;view.y+=p.y-gesture.last.y;gesture.last=p;applyTransform();}});
-  const finish=(e,cancel=false)=>{if(!active.has(e.pointerId))return;const p=local(e),wasMulti=gesture?.type==='pinch';active.delete(e.pointerId);if(state.pick&&!moved&&!cancel&&!wasMulti){const x=(p.x-view.x)/view.scale/view.width*1000,y=(p.y-view.y)/view.scale/view.height*1000;if(x>=0&&x<=1000&&y>=0&&y<=1000)setManualPosition({floor:state.floor,x,y});else toast('지도 안에서 현재 위치를 눌러 주세요.');}if(active.size===1)gesture={type:'pan',last:[...active.values()][0]};else gesture=null;down=null;};
+  let pressedPoi=null,multi=false,suppressClickUntil=0;
+  stage.addEventListener('pointerdown',e=>{
+    const pin=e.target.closest('#mapPins .pin:not(.muted)');
+    if((ignored(e.target)&&!pin)||e.button>0)return;
+    if(!active.size){moved=false;multi=false;pressedPoi=pin?.dataset.openPlace??null;down={...local(e),id:e.pointerId};}
+    active.set(e.pointerId,local(e));stage.setPointerCapture(e.pointerId);
+    if(active.size===1)gesture={type:'pan',last:local(e)};
+    else{multi=true;moved=true;pressedPoi=null;const[a,b]=[...active.values()];gesture={type:'pinch',distance:Math.hypot(a.x-b.x,a.y-b.y),center:{x:(a.x+b.x)/2,y:(a.y+b.y)/2}};}
+  });
+  stage.addEventListener('pointermove',e=>{
+    if(!active.has(e.pointerId))return;
+    const p=local(e);active.set(e.pointerId,p);
+    if(down&&Math.hypot(p.x-down.x,p.y-down.y)>(e.pointerType==='touch'?8:5))moved=true;
+    if(!moved)return;
+    if(!stage.hasPointerCapture(e.pointerId))stage.setPointerCapture(e.pointerId);
+    if(active.size===2){const[a,b]=[...active.values()],d=Math.hypot(a.x-b.x,a.y-b.y),c={x:(a.x+b.x)/2,y:(a.y+b.y)/2};if(gesture?.type==='pinch'&&gesture.distance>0){zoom(d/gesture.distance,c.x,c.y);view.x+=c.x-gesture.center.x;view.y+=c.y-gesture.center.y;applyTransform();}gesture={type:'pinch',distance:d,center:c};}
+    else if(gesture?.type==='pan'){view.x+=p.x-gesture.last.x;view.y+=p.y-gesture.last.y;gesture.last=p;applyTransform();}
+  });
+  const finish=(e,cancel=false)=>{
+    if(!active.has(e.pointerId))return;
+    const p=local(e),tap=!moved&&!multi&&!cancel,poi=pressedPoi;
+    active.delete(e.pointerId);if(stage.hasPointerCapture(e.pointerId))stage.releasePointerCapture(e.pointerId);
+    if(tap&&state.pick){const x=(p.x-view.x)/view.scale/view.width*1000,y=(p.y-view.y)/view.scale/view.height*1000;if(x>=0&&x<=1000&&y>=0&&y<=1000)setManualPosition({floor:state.floor,x,y});else toast('지도 안에서 현재 위치를 눌러 주세요.');}
+    else if(tap&&poi){suppressClickUntil=Date.now()+400;openPlace(poi);}
+    if(moved||multi||cancel)suppressClickUntil=Date.now()+400;
+    if(active.size===1)gesture={type:'pan',last:[...active.values()][0]};
+    else{gesture=null;down=null;pressedPoi=null;multi=false;}
+  };
   stage.addEventListener('pointerup',e=>finish(e));stage.addEventListener('pointercancel',e=>finish(e,true));
+  stage.addEventListener('lostpointercapture',e=>{if(active.has(e.pointerId))finish(e,true);});
+  stage.addEventListener('click',e=>{if(e.detail>0&&Date.now()<suppressClickUntil&&(!ignored(e.target)||e.target.closest('#mapPins .pin'))){e.preventDefault();e.stopPropagation();}},true);
   stage.addEventListener('dblclick',e=>{if(ignored(e.target)||state.pick)return;const p=local(e);zoom(1.5,p.x,p.y);});
   stage.addEventListener('keydown',e=>{if(e.target!==stage)return;if(['+','=','-','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','0','Enter'].includes(e.key))e.preventDefault();if(e.key==='+'||e.key==='=')zoom(1.25);if(e.key==='-')zoom(.8);if(e.key==='0')fitMap();if(e.key==='ArrowLeft')view.x+=40;if(e.key==='ArrowRight')view.x-=40;if(e.key==='ArrowUp')view.y+=40;if(e.key==='ArrowDown')view.y-=40;if(e.key==='Enter'&&state.pick){const x=($('#map').clientWidth/2-view.x)/view.scale/view.width*1000,y=($('#map').clientHeight/2-view.y)/view.scale/view.height*1000;setManualPosition({floor:state.floor,x,y});}applyTransform();});
-  new ResizeObserver(()=>{if(park)fitMap();}).observe(stage);
+  new ResizeObserver(()=>{if(park){fitMap();const selected=poiById(state.selected);if(selected&&selected.floor===state.floor)focusPoint(selected);}}).observe(stage);
 }
 
 function bindEvents(){
   const locationLayout=matchMedia('(max-width:800px)');
   const adaptLocationTools=()=>{$('#locationTools').open=!locationLayout.matches;};
   adaptLocationTools();locationLayout.addEventListener('change',adaptLocationTools);
+  const headerButton=$('#toggleMapHeader');
+  const setHeaderCompact=compact=>{document.body.classList.toggle('map-expanded',compact);headerButton.setAttribute('aria-expanded',String(!compact));headerButton.textContent=compact?'상단 펼치기':'상단 접기';try{localStorage.setItem('yaho-map-expanded',JSON.stringify(compact));}catch{}};
+  setHeaderCompact(safeStored('yaho-map-expanded',false)===true);
+  headerButton.onclick=()=>setHeaderCompact(!document.body.classList.contains('map-expanded'));
+  renderRecentPlace();
   document.addEventListener('click',e=>{
     const b=e.target.closest('button');if(!b)return;
+    if('clearRecent'in b.dataset){state.lastViewed=null;try{localStorage.removeItem('yaho-last-viewed');}catch{}renderRecentPlace();return;}
     if('recLocate'in b.dataset){beginPick();return;}
     if('recRefresh'in b.dataset){state.recSeed++;state.recLimit=12;renderRecommendations();return;}
     if('recMore'in b.dataset){state.recLimit+=12;renderRecommendations();return;}

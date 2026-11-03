@@ -26,7 +26,7 @@
       <button class="nav-item" id="navFavorites" type="button" aria-pressed="false">즐겨찾기 <span id="favoriteCount">0</span></button>
     </nav>
     <div class="header-actions">
-      <span class="seoul-tag"><span></span> SEOUL ADVENTURE</span>
+      <button id="toggleMapHeader" class="map-header-toggle mobile-only" type="button" aria-expanded="true" aria-controls="mapToolbar mobileSearchBar">상단 접기</button><span class="seoul-tag"><span></span> SEOUL ADVENTURE</span>
       <button id="shareLocation" class="btn btn-primary" type="button" data-icon="share">내 위치 공유</button>
     </div>
   </header>
@@ -54,7 +54,7 @@
     </aside>
 
     <section class="map-panel" aria-label="롯데월드 층별 지도">
-      <div class="map-toolbar">
+      <div class="map-toolbar" id="mapToolbar">
         <div class="category-tabs" role="group" aria-label="장소 종류">
           <button class="category-tab active" data-category="attraction" aria-pressed="true" type="button"><span data-icon="sparkles"></span>어트랙션</button>
           <button class="category-tab" data-category="food" aria-pressed="false" type="button"><span data-icon="food"></span>푸드·카페</button>
@@ -64,8 +64,10 @@
         </div>
         <button id="openRoute" class="btn btn-route" type="button" data-icon="route">길찾기</button>
       </div>
-      <div class="mobile-search-bar mobile-only"><button id="openSearch" type="button"><span data-icon="search"></span><span>가고 싶은 곳을 찾아보세요</span><span data-icon="sliders"></span></button></div>
+      <div class="mobile-search-bar mobile-only" id="mobileSearchBar"><button id="openSearch" type="button"><span data-icon="search"></span><span>가고 싶은 곳을 찾아보세요</span><span data-icon="sliders"></span></button></div>
       <div class="floor-bar"><div id="floorTabs" role="group" aria-label="지도 층 선택"></div><span class="floor-hint" data-icon="layers">층은 직접 선택해 주세요</span></div>
+
+      <div id="recentPlace" class="recent-place" aria-label="최근 본 장소" hidden></div>
 
       <div class="map-stage" id="map" tabindex="0" role="application" aria-label="확대·축소 가능한 층별 지도. 방향키로 이동, 더하기와 빼기로 확대·축소할 수 있습니다.">
         <div class="map-context" role="status" aria-live="polite" hidden><span class="context-dot"></span><div><strong id="floorName">어드벤처 1층</strong><span>2026 GUIDE MAP</span></div></div>
