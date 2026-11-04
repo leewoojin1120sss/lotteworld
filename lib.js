@@ -258,3 +258,9 @@ export function officialPinBox(location,map){
  if(!location||!map||![location.x,location.y,map.width,map.height].every(Number.isFinite)||map.width<=0||map.height<=0)return null;
  return {left:location.x/map.width*100,top:location.y/map.height*100,width:44/map.width*100,height:58/map.height*100};
 }
+
+// Search/list filters must not trap the map after opening a result.
+export function mapPinVisible(p,{browseAll=false,category='all',kind=null,favoritesOnly=false,isFavorite=false,matchesSearch=true}={}){
+ return browseAll||((category==='all'||category===p.category)&&(!kind||kind===p.kind)&&(!favoritesOnly||isFavorite)&&matchesSearch);
+}
+export function namuSearchURL(p){return p?.category==='attraction'?'https://namu.wiki/Search?q='+encodeURIComponent(p.name+' 롯데월드'):null;}

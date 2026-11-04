@@ -1,4 +1,4 @@
-import {escapeHTML as esc,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
+import {escapeHTML as esc,mapPinVisible,namuSearchURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -60,6 +60,7 @@ const storedFavs=safeStored('yaho-favorites',[]);
 const state={floor:'1F',category:'attraction',query:'',allFloors:false,favoritesOnly:false,kind:null,favorites:new Set(Array.isArray(storedFavs)?storedFavs.filter(v=>typeof v==='string'):[]),selected:null,position:null,gps:null,gpsPending:false,gpsError:'',pick:false,shareAfterPick:false,routeAfterPick:null,shared:null,route:null};
 Object.assign(state,{locationFloor:'1F',tracking:false,estimate:null,manualHoldUntil:0,manualBaseGPS:null,motionEnabled:false,heading:null,headingAt:0,motionBase:null,motionSteps:0});
 state.lastViewed=typeof safeStored('yaho-last-viewed',null)==='string'?safeStored('yaho-last-viewed',null):null;
+state.mapBrowseAll=false;state.mapHighlight=null;
 state.recommendations=false;
 const savedRecommendations=safeStored('yaho-recommendations',{});
 state.rec={party:['all','friends','family','couple','solo'].includes(savedRecommendations.party)?savedRecommendations.party:'all',heightCm:Number.isFinite(savedRecommendations.heightCm)&&savedRecommendations.heightCm>=50&&savedRecommendations.heightCm<=230?savedRecommendations.heightCm:null,knownHeightOnly:savedRecommendations.knownHeightOnly===true,category:['attraction','food','shop'].includes(savedRecommendations.category)?savedRecommendations.category:'attraction',preferences:savedRecommendations.preferences??{},balance:['balanced','taste','distance'].includes(savedRecommendations.balance)?savedRecommendations.balance:'balanced',sameFloor:savedRecommendations.sameFloor===true,area:['all','adventure','magic'].includes(savedRecommendations.area)?savedRecommendations.area:'all',avoid:Array.isArray(savedRecommendations.avoid)?savedRecommendations.avoid:[],onlyMatches:savedRecommendations.onlyMatches!==false,hideSaved:savedRecommendations.hideSaved===true};
@@ -222,11 +223,11 @@ function clearCurrentLocation(){
 }
 function renderPins(){
   const items=park.pois.filter(p=>p.floor===state.floor&&p.x!==null).flatMap(p=>[p,...(p.alternatePDF??[]).map((pdf,i)=>({...p,symbolBounds:p.alternateSymbolBounds?.[i]??p.symbolBounds,...fromPDF(p.floor,pdf)}))]);
-  const pinVisible=p=>(state.category==='all'||p.category===state.category)&&(!state.kind||p.kind===state.kind)&&(!state.favoritesOnly||state.favorites.has(p.id))&&(!state.query||matches({...p,floor:state.floor}));
+  const pinVisible=p=>mapPinVisible(p,{browseAll:state.mapBrowseAll,category:state.category,kind:state.kind,favoritesOnly:state.favoritesOnly,isFavorite:state.favorites.has(p.id),matchesSearch:!state.query||matches({...p,floor:state.floor})});
   items.sort((a,b)=>Number(pinVisible(a))-Number(pinVisible(b)));
   $('#mapPins').innerHTML=items.map(p=>{
     const symbol=p.symbolBounds??[0,0,20,20],symbolStyle=`--symbol-width:${symbol[2]-symbol[0]+2};--symbol-height:${symbol[3]-symbol[1]+2};`;
-    const visible=pinVisible(p),closed=attractionClosure(p,closures)?.active;const on=state.selected===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
+    const visible=pinVisible(p),closed=attractionClosure(p,closures)?.active;const on=state.selected===p.id||state.mapHighlight===p.id||(state.route?.transfer?.id??state.route?.destinationId)===p.id;
     return `<button type="button" tabindex="${visible||on?'0':'-1'}" class="pin ${p.category} ${p.number&&p.source==='guide-2026'?'guide-number-pin':''} ${closed?'operation-stopped':''} ${on?'selected':''} ${visible||on?'':'muted'}" style="${symbolStyle}left:${p.x/10}%;top:${p.y/10}%;${visible||on?'z-index:3;':''}" data-open-place="${esc(p.id)}" aria-label="${esc(p.name)}${closed?` · ${esc(attractionClosure(p,closures).label)}`:''} ${p.number?`${p.number}번`:''}" title="${esc(p.name)}">${p.category==='facility'?icon(poiIcon(p)):`<span>${p.number}</span>`}<span class="pin-label">${esc(p.name)}</span></button>`;
   }).join('');
   $('#mapPins').style.pointerEvents=state.pick?'none':'';
@@ -279,7 +280,7 @@ function setFloor(id,{focus=false}={}){
   renderList();renderPins();renderRoute();fitMap();
   if(focus)$('#map').focus({preventScroll:true});
 }
-function setCategory(category){state.category=category;state.kind=null;renderList();renderPins();}
+function setCategory(category){state.mapBrowseAll=false;state.mapHighlight=null;state.query='';$('#search').value='';state.category=category;state.kind=null;renderList();renderPins();}
 function toggleFavorite(id){if(!poiById(id))return;state.favorites.has(id)?state.favorites.delete(id):state.favorites.add(id);try{localStorage.setItem('yaho-favorites',JSON.stringify([...state.favorites]));}catch{toast('브라우저에서 저장을 허용하지 않아 이번 방문 중에만 유지돼요.');}renderList();renderPins();if(state.selected)renderDetail(poiById(state.selected));}
 function renderRecentPlace(){
  const host=$('#recentPlace'),p=poiById(state.lastViewed);host.hidden=!p;
@@ -288,9 +289,19 @@ function renderRecentPlace(){
 function openPlace(id){
   const p=poiById(id);if(!p)return;
   if(state.pick){setManualPosition(p);return;}
+  state.mapBrowseAll=true;state.mapHighlight=id;state.category='all';state.kind=null;state.favoritesOnly=false;
   if(p.floor!==state.floor)setFloor(p.floor);
   state.lastViewed=id;try{localStorage.setItem('yaho-last-viewed',JSON.stringify(id));}catch{}renderRecentPlace();
   state.selected=id;renderList();renderPins();renderDetail(p);focusPoint(p);mobileSheet(false);
+}
+function showPlaceOnMap(id){
+ const p=poiById(id);if(!p||!isMapPoint(p)){toast('이 장소는 지도 위치가 확인되지 않았어요.');return;}
+ state.mapBrowseAll=true;state.mapHighlight=id;state.selected=null;state.category='all';state.kind=null;state.favoritesOnly=false;
+ if(p.floor!==state.floor)setFloor(p.floor);
+ $('#detail').hidden=true;mobileSheet(false);renderList();renderPins();
+ const stage=$('#map');view.scale=Math.min(view.fit*5,Math.max(view.fit*2.7,1.25));
+ view.x=stage.clientWidth*.5-p.x/1000*view.width*view.scale;view.y=stage.clientHeight*.45-p.y/1000*view.height*view.scale;applyTransform();
+ $('#map').focus({preventScroll:true});toast(`${p.name} 위치를 표시했어요.`);
 }
 function renderDetail(p){
   const o=officialEntry(p);
@@ -304,8 +315,9 @@ function renderDetail(p){
   ${closureBadge(p,{detail:true})}${p.category==='attraction'?`<p class="operation-checked">${attractionClosure(p,closures)?.checkedAt?`공식 정보 · ${esc(new Intl.DateTimeFormat('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Seoul'}).format(new Date(attractionClosure(p,closures).checkedAt)))} 확인`:"공식 운휴 정보 미수신"}<a href="https://adventure.lotteworld.com/usage-guide/service/closed" target="_blank" rel="noopener">공식 운휴 안내 ↗</a></p>`:''}<p class="detail-description">${esc(description)}</p>
   ${o?.restrictions?`<p class="detail-restrictions">${esc(typeof o.restrictions==='string'?o.restrictions:JSON.stringify(o.restrictions))}</p>`:''}
   ${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
+  <button type="button" class="btn btn-subtle btn-full show-on-map" data-show-on-map="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('map')}지도에서 보기</button>
   <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
-  <div class="detail-extra"><a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
+  <div class="detail-extra">${p.category==='attraction'?`<a class="namu-link" href="${esc(namuSearchURL(p))}" target="_blank" rel="noopener noreferrer" title="나무위키에서 ${esc(p.name)} 검색">나무위키 검색 ↗</a>`:''}<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
   const img=detail.querySelector('img');if(img)img.addEventListener('error',()=>img.replaceWith(document.createRange().createContextualFragment(icon(poiIcon(p)))),{once:true});
   detail.hidden=false;$('#mapTip').hidden=true;
 }
@@ -671,6 +683,7 @@ function bindEvents(){
     if('routeContinue'in b.dataset){continueRouteAfterTransfer();return;}
     if('clearRoute'in b.dataset){clearRoute();renderPins();return;}
     if(b.dataset.favorite){toggleFavorite(b.dataset.favorite);return;}
+    if(b.dataset.showOnMap){showPlaceOnMap(b.dataset.showOnMap);return;}
     if(b.dataset.openPlace){openPlace(b.dataset.openPlace);return;}
     if(b.dataset.category){setCategory(b.dataset.category);return;}
     if(b.dataset.floor){setFloor(b.dataset.floor);return;}
@@ -681,10 +694,10 @@ function bindEvents(){
     if(b.dataset.sharePlace){const u=new URL(location.href);u.hash=`place=${encodeURIComponent(b.dataset.sharePlace)}`;if(navigator.share)navigator.share({title:poiById(b.dataset.sharePlace).name,text:'롯데월드야호에서 이 장소를 확인해 봐!',url:u.href}).catch(err=>{if(err.name!=='AbortError')copy(u.href);});else copy(u.href);return;}
     if('closeDialog'in b.dataset){const d=b.closest('dialog');if(d.id==='locationDialog'){state.routeAfterPick=null;state.shareAfterPick=false;}d.close();}
   });
-  $('#search').addEventListener('input',e=>{state.query=e.target.value;state.allFloors=!!state.query;if(state.query){state.category='all';state.kind=null;}renderList();renderPins();});
+  $('#search').addEventListener('input',e=>{state.mapBrowseAll=false;state.mapHighlight=null;state.query=e.target.value;state.allFloors=!!state.query;if(state.query){state.category='all';state.kind=null;}renderList();renderPins();});
   $('#scopeFloor').onclick=()=>{state.allFloors=false;renderList();renderPins();};$('#scopeAll').onclick=()=>{state.allFloors=true;renderList();renderPins();};
   $('#clearFilters').onclick=()=>{state.query='';state.kind=null;$('#search').value='';renderList();renderPins();};
-  const showMap=()=>{state.recommendations=false;state.favoritesOnly=false;renderList();renderPins();mobileSheet(false);};
+  const showMap=()=>{state.mapBrowseAll=true;state.query='';state.kind=null;state.category='all';$('#search').value='';state.recommendations=false;state.favoritesOnly=false;renderList();renderPins();mobileSheet(false);};
   const showFavorites=()=>{state.recommendations=false;state.favoritesOnly=true;state.allFloors=true;state.category='all';state.query='';state.kind=null;$('#search').value='';renderList();renderPins();mobileSheet(true);};
   const showRecommendations=()=>{state.recommendations=true;state.favoritesOnly=false;state.query='';$('#search').value='';setCategory(state.rec.category);mobileSheet(true);};
   $('#navRecommendations').onclick=showRecommendations;$('#mobileRecommendations').onclick=showRecommendations;

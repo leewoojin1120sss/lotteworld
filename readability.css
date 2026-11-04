@@ -359,3 +359,6 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[t
  .map-expanded .floor-bar{min-height:44px;height:44px}.map-bottom-tools{bottom:34px}.recent-place{padding:0 10px}.recent-open{gap:7px}.recent-open strong{font-size:14px}
 }
 @media(max-width:800px){.sidebar{transition:none}.sidebar button,.recent-place button{touch-action:manipulation}}
+
+.show-on-map{margin:12px 0 8px;min-height:46px}.detail-extra .namu-link{color:#276952;font-weight:700}.pin.selected{z-index:6!important}.pin.selected::after{content:'';position:absolute;inset:-7px;border:3px solid #7b45dc88;border-radius:14px;pointer-events:none}
+.detail-extra{flex-wrap:wrap;row-gap:12px}
