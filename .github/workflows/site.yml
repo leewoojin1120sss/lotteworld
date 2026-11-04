@@ -18,8 +18,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: lotteworld-pages
-  cancel-in-progress: false
+  group: lotteworld-pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
