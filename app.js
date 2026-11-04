@@ -1,4 +1,4 @@
-import {escapeHTML as esc,mapPinVisible,namuDocumentURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
+import {escapeHTML as esc,mapPinVisible,namuDocumentURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferLinks,connectedTransferRoutes,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -51,7 +51,7 @@ hydrate();
 const names={attraction:'어트랙션',food:'푸드·카페',facility:'편의시설',shop:'샵·체험',all:'모든 장소'};
 const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타',meeting:'만남의 광장'};
 let floorNoticeTimer;
-let toastTimer,park,guidePois,walkways,official={},officialLinks={links:{}},localAssets={},georeference={anchors:[],floors:{}};
+let toastTimer,park,guidePois,walkways,transfers={connections:[],unresolved:[]},official={},officialLinks={links:{}},localAssets={},georeference={anchors:[],floors:{}};
 let gpsWatch=null,calibrations=[];
 let closures=null,closureBusy=false,closureError=false,closureAttempt=0,closureViewFresh=false;
 const fixFilter=new FixFilter(),stepBridge=new StepBridge();
@@ -314,12 +314,20 @@ function renderDetail(p){
   <div class="detail-title-row"><h2>${esc(p.name)}</h2>${favoriteButton(p)}</div>
   ${closureBadge(p,{detail:true})}${p.category==='attraction'?`<p class="operation-checked">${attractionClosure(p,closures)?.checkedAt?`공식 정보 · ${esc(new Intl.DateTimeFormat('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Seoul'}).format(new Date(attractionClosure(p,closures).checkedAt)))} 확인`:"공식 운휴 정보 미수신"}<a href="https://adventure.lotteworld.com/usage-guide/service/closed" target="_blank" rel="noopener">공식 운휴 안내 ↗</a></p>`:''}<p class="detail-description">${esc(description)}</p>
   ${o?.restrictions?`<p class="detail-restrictions">${esc(typeof o.restrictions==='string'?o.restrictions:JSON.stringify(o.restrictions))}</p>`:''}
-  ${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
+  ${renderTransferDetail(p)}${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
   <button type="button" class="btn btn-subtle btn-full show-on-map" data-show-on-map="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('map')}지도에서 보기</button>
   <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
   <div class="detail-extra">${namuDocumentURL(p)?`<a class="namu-link" href="${esc(namuDocumentURL(p))}" target="_blank" rel="noopener noreferrer" title="${esc(p.name)} 나무위키 문서 열기">나무위키 문서 ↗</a>`:''}<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
   const img=detail.querySelector('img');if(img)img.addEventListener('error',()=>img.replaceWith(document.createRange().createContextualFragment(icon(poiIcon(p)))),{once:true});
   detail.hidden=false;$('#mapTip').hidden=true;
+}
+
+function transferDirection(a,b){const levels={B1:0,'1F':1,'2F':2,'3F':3,'4F':4};return levels[b.floor]>levels[a.floor]?'↑ 올라가는 층':'↓ 내려가는 층';}
+function renderTransferDetail(p){
+ if(!['stairs','escalator','elevator'].includes(p.kind))return '';
+ const links=transferLinks(p.id,park.pois,transfers);
+ const unknown=transfers.unresolved.find(x=>x.id===p.id);
+ return `<section class="transfer-detail"><h3>이어지는 위치 <span>도면 대조 · 현장 미확인</span></h3>${links.length?links.map(({from,to})=>`<button type="button" data-show-on-map="${esc(to.id)}"><strong>${transferDirection(from,to)} · ${esc(to.floor)}</strong><span>${esc(routePlaceLabel(to))} ${icon('map')}</span></button>`).join(''):'<p>연결 지점 미확인</p>'}${p.kind==='escalator'&&links.length?'<p class="transfer-direction-note">개별 에스컬레이터의 운행방향은 현장에서 확인하세요.</p>':''}<details><summary>연결 근거</summary><p>${esc(links.length?links.map(x=>x.edge.evidence).join(' / '):unknown?.reason??'반대편 도착 지점을 식별하지 못했습니다.')}</p></details></section>`;
 }
 
 function closeDetail(){state.selected=null;$('#detail').hidden=true;renderList();renderPins();}
@@ -533,8 +541,8 @@ function selectRouteFacility(kind){
   state.routeDraft={toId:null,nearestKind:kind,query:`가까운 ${kindNames[kind]}`,category:'all'};
   $('#routeError').hidden=true;renderRouteDestinations();
 }
-function showPlannedRoute(route,{destination,transfer=null,alternatives=[],nearestKind=null}){
-  state.route={...route,fromName:'현위치',toName:destination.name,destinationId:destination.id,destinationFloor:destination.floor,transfer,alternatives,nearestKind};
+function showPlannedRoute(route,{destination,transfer=null,connection=null,alternatives=[],nearestKind=null}){
+  state.route={...route,fromName:'현위치',toName:destination.name,destinationId:destination.id,destinationFloor:destination.floor,transfer,connection,alternatives,nearestKind};
   $('#routeDialog').close();closeDetail();setFloor(route.floor);mobileSheet(false);renderRoute();renderRouteCard();
 }
 function renderRouteCard(){
@@ -542,23 +550,26 @@ function renderRouteCard(){
   const destination=poiById(r.destinationId);
   const close=`<button class="icon-btn" type="button" data-clear-route aria-label="경로 지우기">${icon('close')}</button>`;
   if(r.transfer){
-    card.innerHTML=`${close}<span class="route-card-badge">${esc(floorLabel(r.destinationFloor))} 목적지</span><h3>먼저 가까운 이동시설로</h3><p>${esc(routePlaceLabel(r.transfer))}</p><div class="transfer-choices">${r.alternatives.map(a=>`<button type="button" data-transfer-choice="${esc(a.poi.id)}" class="${r.transfer.id===a.poi.id?'active':''}" aria-pressed="${r.transfer.id===a.poi.id}">${icon(a.poi.kind)}${a.poi.kind==='elevator'?'승강기':esc(kindNames[a.poi.kind])}</button>`).join('')}</div><button class="btn btn-primary btn-full" type="button" data-route-continue>${esc(r.destinationFloor==='MAGIC'?'매직아일랜드':r.destinationFloor)} 도착 후 계속 ${icon('route')}</button>`;
+    const c=r.connection,arrival=c?.arrival;
+    const chain=c?[r.floor,...c.steps.filter(s=>s.type==='transfer').map(s=>s.to.floor)].join(' → '):'';
+    card.innerHTML=`${close}<span class="route-card-badge">도면 대조 경로 · 현장 미확인</span><h3>${esc(routePlaceLabel(r.transfer))} 경유</h3><p class="route-floor-chain">${esc(chain)} → ${esc(r.toName)}</p><div class="transfer-choices">${r.alternatives.map(a=>`<button type="button" data-transfer-choice="${esc(a.poi.id)}" class="${r.transfer.id===a.poi.id?'active':''}" aria-pressed="${r.transfer.id===a.poi.id}">${icon(a.poi.kind)}${a.poi.kind==='elevator'?'승강기':esc(kindNames[a.poi.kind])}</button>`).join('')}</div>${arrival?`<p><strong>다음 도착: ${esc(arrival.floor)}</strong><br>${esc(routePlaceLabel(arrival))}</p><div class="route-transfer-preview"><button type="button" data-show-on-map="${esc(r.transfer.id)}">출발 지점 보기</button><button type="button" data-show-on-map="${esc(arrival.id)}">${esc(arrival.floor)} 연결 위치 보기 ↗</button></div>${r.transfer.kind==='escalator'?'<p class="transfer-direction-note">운행방향 현장 확인</p>':''}<button class="btn btn-primary btn-full" type="button" data-route-continue>${esc(arrival.floor)} 도착했어요 · 계속 ${icon('route')}</button>`:''}`;
+
   }else{
     card.innerHTML=`${close}${r.nearestKind?`<span class="route-card-badge">가까운 ${esc(kindNames[r.nearestKind])} 추천</span>`:''}<h3>${esc(destination?routePlaceLabel(destination):r.toName)}</h3><p>${esc(floorLabel(r.floor))} · 현위치에서 출발</p>`;
   }
   card.hidden=false;
 }
 function continueRouteAfterTransfer(){
-  const r=state.route;if(!r?.transfer)return;
-  const destinationId=r.destinationId,nearestKind=r.nearestKind;
-  clearRoute();setFloor(poiById(destinationId).floor);
-  state.routeAfterPick={toId:destinationId,nearestKind,autoRoute:true};
-  beginPick();
+ const r=state.route,arrival=r?.connection?.arrival;if(!arrival)return;
+ const {destinationId,nearestKind}=r,kind=r.connection.kind;
+ clearRoute();setFloor(arrival.floor);setManualPosition(arrival);
+ openRoute(destinationId,{nearestKind,preserve:true});state.routeDraft.transferKind=kind;runRoute();
 }
+
 function changeTransfer(id){
   const r=state.route,choice=r?.alternatives.find(a=>a.poi.id===id);if(!choice)return;
   const destination=poiById(r.destinationId);
-  showPlannedRoute(choice.route,{destination,transfer:choice.poi,alternatives:r.alternatives,nearestKind:r.nearestKind});
+  showPlannedRoute(choice.route,{destination,transfer:choice.poi,connection:choice,alternatives:r.alternatives,nearestKind:r.nearestKind});
 }
 function runRoute(event){
   event?.preventDefault();const draft=state.routeDraft,error=$('#routeError');
@@ -580,20 +591,20 @@ function runRoute(event){
       if(sameFloor)return fail('이 시설까지 연결된 통로가 아직 등록되지 않았습니다.');
       const levels={B1:0,'1F':1,'2F':2,'3F':3,'4F':4,MAGIC:2};
       const other=park.pois.filter(p=>p.kind===draft.nearestKind&&p.x!==null&&p.floor!==from.floor).sort((a,b)=>Math.abs(levels[a.floor]-levels[from.floor])-Math.abs(levels[b.floor]-levels[from.floor]));
-      const choices=transferRecommendations(from,park.pois,walkways.floors);
-      if(other.length&&choices.length)return showPlannedRoute(choices[0].route,{destination:other[0],transfer:choices[0].poi,alternatives:choices,nearestKind:draft.nearestKind});
+      const options=other.flatMap(destination=>connectedTransferRoutes(from,destination,park.pois,walkways.floors,transfers,park.floors).map(connection=>({destination,connection}))).sort((a,b)=>a.connection.cost-b.connection.cost);
+      if(options.length){const {destination,connection}=options[0];const choices=connectedTransferRoutes(from,destination,park.pois,walkways.floors,transfers,park.floors);return showPlannedRoute(connection.route,{destination,transfer:connection.poi,connection,alternatives:choices,nearestKind:draft.nearestKind});}
       return fail(`가까운 ${kindNames[draft.nearestKind]}을 찾지 못했습니다.`);
     }
     return showPlannedRoute(match.route,{destination:match.poi,nearestKind:draft.nearestKind});
   }
   if(!to)return fail('목적지를 다시 선택해 주세요.');
   if(from.floor!==to.floor){
-    const choices=transferRecommendations(from,park.pois,walkways.floors);
-    if(!choices.length)return fail('이 위치에서 연결되는 이동시설을 찾지 못했습니다. 위치를 통로 위에 다시 지정해 주세요.');
-    return showPlannedRoute(choices[0].route,{destination:to,transfer:choices[0].poi,alternatives:choices});
+    const choices=connectedTransferRoutes(from,to,park.pois,walkways.floors,transfers,park.floors);
+    if(!choices.length)return fail('이 목적지까지 도면에서 대조된 층간 연결이 없습니다. 연결 지점 미확인 시설을 임의로 안내하지 않습니다.');
+    const connection=choices.find(c=>c.kind===draft.transferKind)??choices[0];
+    return showPlannedRoute(connection.route,{destination:to,transfer:connection.poi,connection,alternatives:choices});
   }
   if(to.x===null){
-    if(officialEntry(to)?.detail?.position){$('#routeDialog').close();openOfficialMap(to);return;}
     return fail('이 장소의 지도 위치가 아직 등록되지 않았습니다.');
   }
   if(to.note?.includes('두 곳'))return fail('지도 위치가 확정되지 않은 장소입니다. 공식 안내를 확인해 주세요.');
@@ -727,8 +738,8 @@ function bindEvents(){
 
 async function init(){
   try{
-    const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json'),fetch('data/georeference.json'),fetch('data/official-links.json')]);
-    if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways,georeference,officialLinks]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
+    const responses=await Promise.all([fetch('data/park.json'),fetch('data/walkways.json'),fetch('data/georeference.json'),fetch('data/official-links.json'),fetch('data/transfers.json')]);
+    if(responses.some(r=>!r.ok))throw new Error('Data unavailable');[park,walkways,georeference,officialLinks,transfers]=await Promise.all(responses.map(r=>r.json()));guidePois=park.pois;
     try{localAssets=await fetch('data/local-assets.json').then(r=>r.ok?r.json():{});}catch{}
     bindEvents();setFloor('1F');updateLocationUI();await refreshOfficial();readHash();refreshClosures();
     setInterval(()=>{if(!document.hidden)refreshClosures();},5*60000);

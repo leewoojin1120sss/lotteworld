@@ -85,6 +85,51 @@ export function transferRecommendations(from,pois,floors) {
   return nearbyFacilities(from,pois,floors,{kinds:['stairs','escalator','elevator'],limit:3,perKind:true});
 }
 
+export function transferLinks(id,pois,doc){
+ const byId=new Map(pois.map(p=>[p.id,p])),origin=byId.get(id);
+ if(!origin)return [];
+ return (doc?.connections??[]).flatMap(edge=>{
+  const target=byId.get(edge.from===id?edge.to:edge.to===id?edge.from:null);
+  if(!target||!isMapPoint(target)||target.floor===origin.floor||target.kind!==origin.kind||edge.basis!=='guide-correspondence')return [];
+  return [{edge,from:origin,to:target}];
+ });
+}
+
+// A schematic route, not metre/minute travel time. Only explicit, audited
+// endpoint pairs are edges; co-located glyphs never create connections.
+export function connectedTransferRoutes(from,to,pois,walkways,doc,floorMetadata){
+ if(!from?.pdf||!to?.pdf||from.floor===to.floor)return [];
+ const byId=new Map(pois.map(p=>[p.id,p])),widths=new Map(floorMetadata.map(f=>[f.id,f.width]));
+ const results=[];
+ for(const kind of ['stairs','escalator','elevator']){
+  const links=(doc?.connections??[]).filter(e=>e.basis==='guide-correspondence'&&byId.get(e.from)?.kind===kind&&byId.get(e.to)?.kind===kind&&byId.get(e.from)?.floor!==byId.get(e.to)?.floor);
+  const ids=new Set(links.flatMap(e=>[e.from,e.to]));
+  const nodes=new Map([['@start',from],['@end',to],...[...ids].map(id=>[id,byId.get(id)])].filter(([,p])=>p?.pdf));
+  const adj=new Map([...nodes.keys()].map(k=>[k,[]]));
+  const entries=[...nodes];
+  for(let i=0;i<entries.length;i++)for(let j=i+1;j<entries.length;j++){
+   const [a,p]=entries[i],[b,q]=entries[j];if(p.floor!==q.floor)continue;
+   try{const r=corridorRoute(p.floor,p,q,walkways[p.floor]);const cost=(r.illustrationLength+r.connectors[0]+r.connectors[1])/(widths.get(p.floor)||1000);
+    adj.get(a).push({to:b,cost,step:{type:'walk',route:r}});
+    adj.get(b).push({to:a,cost,step:{type:'walk',route:{...r,from:r.to,to:r.from,points:[...r.points].reverse(),connectors:[...r.connectors].reverse()}}});
+   }catch{}
+  }
+  for(const edge of links){
+   if(!adj.has(edge.from)||!adj.has(edge.to))continue;
+   for(const [a,b] of [[edge.from,edge.to],[edge.to,edge.from]])adj.get(a).push({to:b,cost:.12,step:{type:'transfer',edge,from:nodes.get(a),to:nodes.get(b)}});
+  }
+  const costs=new Map([['@start',0]]),previous=new Map(),unseen=new Set(nodes.keys());
+  while(unseen.size){let k=null,best=Infinity;for(const id of unseen)if((costs.get(id)??Infinity)<best){k=id;best=costs.get(id);}if(k===null)break;unseen.delete(k);if(k==='@end')break;
+   for(const e of adj.get(k))if(unseen.has(e.to)&&best+e.cost<(costs.get(e.to)??Infinity)){costs.set(e.to,best+e.cost);previous.set(e.to,{from:k,step:e.step});}
+  }
+  if(!costs.has('@end'))continue;
+  const steps=[];for(let k='@end';k!=='@start';){const prev=previous.get(k);if(!prev)break;steps.unshift(prev.step);k=prev.from;}
+  const first=steps.find(s=>s.type==='transfer');if(!first||steps[0]?.type!=='walk')continue;
+  results.push({poi:first.from,arrival:first.to,edge:first.edge,route:steps[0].route,steps,cost:costs.get('@end'),kind,transfers:steps.filter(s=>s.type==='transfer').length});
+ }
+ return results.sort((a,b)=>a.cost-b.cost||a.transfers-b.transfers||a.poi.id.localeCompare(b.poi.id));
+}
+
 
 // Tags are editorial keyword matches to the guide/catalogue, not ratings.
 export const recommendationPreferences={

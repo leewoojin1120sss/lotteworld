@@ -362,3 +362,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[t
 
 .show-on-map{margin:12px 0 8px;min-height:46px}.detail-extra .namu-link{color:#276952;font-weight:700}.pin.selected{z-index:6!important}.pin.selected::after{content:'';position:absolute;inset:-7px;border:3px solid #7b45dc88;border-radius:14px;pointer-events:none}
 .detail-extra{flex-wrap:wrap;row-gap:12px}
+
+.transfer-detail{margin:16px 0;padding:14px;background:#f7f3fd;border:1px solid #e9dff7;border-radius:14px}
+.transfer-detail h3{font-size:16px;margin:0 0 10px}.transfer-detail h3 span{display:block;margin-top:5px;font-size:12px;font-weight:500;color:#75617f}
+.transfer-detail>button{display:flex;flex-direction:column;align-items:flex-start;gap:5px;width:100%;min-height:62px;padding:11px 12px;margin:8px 0;background:white;border:1px solid #ded1ef;border-radius:10px;text-align:left;color:#463153}
+.transfer-detail>button strong{font-size:15px}.transfer-detail>button span{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;font-size:13px;line-height:1.5}.transfer-detail svg{width:17px;height:17px;flex-shrink:0}
+.transfer-detail p,.transfer-detail details{font-size:13px;line-height:1.6;color:#75617f}.transfer-detail details p{margin-bottom:0}.transfer-detail summary{cursor:pointer;min-height:30px;padding:5px 0}.transfer-direction-note{font-size:12px!important;color:#75617f;margin:8px 0!important}
+.route-transfer-preview{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.route-transfer-preview button{flex:1;min-height:42px;padding:8px;border:1px solid #d9caee;border-radius:9px;font-size:13px;color:var(--purple);background:#faf7ff}
+.route-floor-chain{overflow-wrap:anywhere}.route-card{max-height:calc(100% - 28px);overflow:auto}.route-card .btn{white-space:normal}
+@media(max-width:800px){.route-card{max-width:calc(100% - 30px);width:330px}.route-card h3{font-size:16px}.route-card p{font-size:14px;line-height:1.5}.route-card .route-card-badge{font-size:12px}.transfer-detail>button{min-height:66px}}
