@@ -1,10 +1,11 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "auditedAt": "2026-11-05",
   "source": {
     "file": "assets/guide-2026.pdf",
     "sha256": "d90f85d30cd0e88abc7fdb0ddd42a76cfe48b285b387d4c18d9fcf3e36a4ec03",
-    "method": "층별 그림과 이동 지시선의 수작업 대조. 현장 실측·운행방향·정차층 확인 아님."
+    "method": "층별 그림과 이동 지시선의 수작업 대조. 현장 실측·운행방향·정차층 확인 아님.",
+    "fileRole": "사이트에서 제공하는 가이드 PDF 사본의 해시. 원본 추출 메타데이터는 coordinate-audit.json 참조."
   },
   "connections": [
     {
@@ -16,7 +17,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-2",
@@ -27,7 +30,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-3",
@@ -38,7 +43,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-4",
@@ -49,7 +56,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-5",
@@ -60,7 +69,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-6",
@@ -71,7 +82,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-7",
@@ -82,7 +95,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-8",
@@ -93,7 +108,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-9",
@@ -104,7 +121,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-10",
@@ -115,7 +134,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-11",
@@ -126,7 +147,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-12",
@@ -137,7 +160,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-13",
@@ -148,7 +173,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-14",
@@ -159,7 +186,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-15",
@@ -170,7 +199,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-16",
@@ -181,7 +212,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "unknown",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-17",
@@ -192,18 +225,9 @@
       "pages": [
         3,
         3
-      ]
-    },
-    {
-      "id": "connection-18",
-      "from": "facility-3F-stairs-2",
-      "to": "facility-4F-stairs-2",
-      "basis": "guide-correspondence",
-      "evidence": "3F·4F의 서측 끝/후면 벽/중앙 승강기/동측 승강기/동측 전면 등 해당 위치와 주변 구조를 대조. 실제 계단실 내부는 미검증.",
-      "pages": [
-        3,
-        3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-19",
@@ -214,7 +238,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-20",
@@ -225,7 +251,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-21",
@@ -236,18 +264,9 @@
       "pages": [
         3,
         3
-      ]
-    },
-    {
-      "id": "connection-22",
-      "from": "facility-3F-stairs-6",
-      "to": "facility-4F-stairs-6",
-      "basis": "guide-correspondence",
-      "evidence": "3F·4F의 서측 끝/후면 벽/중앙 승강기/동측 승강기/동측 전면 등 해당 위치와 주변 구조를 대조. 실제 계단실 내부는 미검증.",
-      "pages": [
-        3,
-        3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-23",
@@ -258,7 +277,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-24",
@@ -269,18 +290,9 @@
       "pages": [
         3,
         3
-      ]
-    },
-    {
-      "id": "connection-25",
-      "from": "facility-2F-stairs-4",
-      "to": "facility-3F-stairs-2",
-      "basis": "guide-correspondence",
-      "evidence": "2F·3F의 동일 후면 벽 또는 에스컬레이터 뱅크 옆 계단 위치와 주변 구조를 대조. 실제 계단실 내부는 미검증.",
-      "pages": [
-        3,
-        3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-26",
@@ -291,7 +303,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-27",
@@ -302,7 +316,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-28",
@@ -313,7 +329,9 @@
       "pages": [
         3,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-29",
@@ -324,7 +342,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-30",
@@ -335,7 +355,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-31",
@@ -346,7 +368,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-32",
@@ -357,7 +381,9 @@
       "pages": [
         2,
         3
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     },
     {
       "id": "connection-33",
@@ -368,7 +394,9 @@
       "pages": [
         1,
         2
-      ]
+      ],
+      "direction": "both",
+      "pointRole": "guide-symbol-center"
     }
   ],
   "unresolved": [
@@ -455,7 +483,69 @@
     {
       "id": "facility-MAGIC-elevator-1",
       "reason": "매직아일랜드 외측 진입부 시설. 실내 2층 연결통로와 동일 시설이라는 근거가 없음."
+    },
+    {
+      "id": "facility-3F-stairs-2",
+      "reason": "후면 벽의 단독 계단 기호만으로 동일 계단실과 양쪽 출입구를 식별할 수 없음."
+    },
+    {
+      "id": "facility-4F-stairs-2",
+      "reason": "후면 벽의 단독 계단 기호만으로 동일 계단실과 양쪽 출입구를 식별할 수 없음."
+    },
+    {
+      "id": "facility-3F-stairs-6",
+      "reason": "민속박물관 안내 부근의 외곽 계단과 4F 끝 계단을 같은 계단실로 볼 개별 식별 근거가 부족함."
+    },
+    {
+      "id": "facility-4F-stairs-6",
+      "reason": "민속박물관 안내 부근의 외곽 계단과 4F 끝 계단을 같은 계단실로 볼 개별 식별 근거가 부족함."
+    },
+    {
+      "id": "facility-2F-stairs-4",
+      "reason": "후면 벽의 단독 계단 기호만으로 동일 계단실과 양쪽 출입구를 식별할 수 없음."
     }
   ],
-  "note": "연결은 도면 대응에 따른 추정이다. 현장 검증된 연결은 0개이며, 미확인 시설은 자동으로 이어 붙이지 않는다."
+  "note": "연결은 도면 대응에 따른 추정이다. 현장 검증된 연결은 0개. 재검토에서 식별 근거가 부족한 연결 3개를 철회했다. 방향 미확인 에스컬레이터는 기본 길찾기에서 제외한다.",
+  "rejectedConnections": [
+    {
+      "id": "connection-18",
+      "from": "facility-3F-stairs-2",
+      "to": "facility-4F-stairs-2",
+      "basis": "guide-correspondence",
+      "evidence": "3F·4F의 서측 끝/후면 벽/중앙 승강기/동측 승강기/동측 전면 등 해당 위치와 주변 구조를 대조. 실제 계단실 내부는 미검증.",
+      "pages": [
+        3,
+        3
+      ],
+      "reviewDecision": "withdrawn",
+      "reviewReason": "후면 벽의 단독 계단 기호만으로 동일 계단실과 양쪽 출입구를 식별할 수 없음."
+    },
+    {
+      "id": "connection-22",
+      "from": "facility-3F-stairs-6",
+      "to": "facility-4F-stairs-6",
+      "basis": "guide-correspondence",
+      "evidence": "3F·4F의 서측 끝/후면 벽/중앙 승강기/동측 승강기/동측 전면 등 해당 위치와 주변 구조를 대조. 실제 계단실 내부는 미검증.",
+      "pages": [
+        3,
+        3
+      ],
+      "reviewDecision": "withdrawn",
+      "reviewReason": "민속박물관 안내 부근의 외곽 계단과 4F 끝 계단을 같은 계단실로 볼 개별 식별 근거가 부족함."
+    },
+    {
+      "id": "connection-25",
+      "from": "facility-2F-stairs-4",
+      "to": "facility-3F-stairs-2",
+      "basis": "guide-correspondence",
+      "evidence": "2F·3F의 동일 후면 벽 또는 에스컬레이터 뱅크 옆 계단 위치와 주변 구조를 대조. 실제 계단실 내부는 미검증.",
+      "pages": [
+        3,
+        3
+      ],
+      "reviewDecision": "withdrawn",
+      "reviewReason": "후면 벽의 단독 계단 기호만으로 동일 계단실과 양쪽 출입구를 식별할 수 없음."
+    }
+  ],
+  "reviewedAt": "2026-11-05"
 }

@@ -322,12 +322,12 @@ function renderDetail(p){
   detail.hidden=false;$('#mapTip').hidden=true;
 }
 
-function transferDirection(a,b){const levels={B1:0,'1F':1,'2F':2,'3F':3,'4F':4};return levels[b.floor]>levels[a.floor]?'↑ 올라가는 층':'↓ 내려가는 층';}
+function transferDirection(a,b){const levels={B1:0,'1F':1,'2F':2,'3F':3,'4F':4};return levels[b.floor]>levels[a.floor]?'↑ 위층 추정 지점':'↓ 아래층 추정 지점';}
 function renderTransferDetail(p){
  if(!['stairs','escalator','elevator'].includes(p.kind))return '';
  const links=transferLinks(p.id,park.pois,transfers);
  const unknown=transfers.unresolved.find(x=>x.id===p.id);
- return `<section class="transfer-detail"><h3>이어지는 위치 <span>도면 대조 · 현장 미확인</span></h3>${links.length?links.map(({from,to})=>`<button type="button" data-show-on-map="${esc(to.id)}"><strong>${transferDirection(from,to)} · ${esc(to.floor)}</strong><span>${esc(routePlaceLabel(to))} ${icon('map')}</span></button>`).join(''):'<p>연결 지점 미확인</p>'}${p.kind==='escalator'&&links.length?'<p class="transfer-direction-note">개별 에스컬레이터의 운행방향은 현장에서 확인하세요.</p>':''}<details><summary>연결 근거</summary><p>${esc(links.length?links.map(x=>x.edge.evidence).join(' / '):unknown?.reason??'반대편 도착 지점을 식별하지 못했습니다.')}</p></details></section>`;
+ return `<section class="transfer-detail"><h3>추정 연결 위치 <span>도면 대조 · 현장 미확인</span></h3>${links.length?links.map(({from,to})=>`<button type="button" data-show-on-map="${esc(to.id)}"><strong>${transferDirection(from,to)} · ${esc(to.floor)}</strong><span>${esc(routePlaceLabel(to))} ${icon('map')}</span></button>`).join(''):'<p>연결 지점 미확인</p>'}${p.kind==='escalator'&&links.length?'<p class="transfer-direction-note">개별 에스컬레이터의 운행방향은 현장에서 확인하세요.</p>':''}<details><summary>연결 근거</summary><p>${esc(links.length?links.map(x=>x.edge.evidence).join(' / '):unknown?.reason??'반대편 도착 지점을 식별하지 못했습니다.')}</p></details></section>`;
 }
 
 function closeDetail(){state.selected=null;$('#detail').hidden=true;renderList();renderPins();}
@@ -496,6 +496,7 @@ function routePlaceButton(p){
 }
 function renderRouteDestinations(){
   const draft=state.routeDraft,from=currentRouteOrigin();
+  $('#includeUnknownEscalators').checked=draft.allowUnknownDirections===true;
   $('#routeTo').value=draft.toId??'';
   $('#routeOriginText').textContent=from?`${floorLabel(from.floor)} · ${positionName(from)}`:'지도에서 현재 위치를 지정하세요';
   $('#pickRouteStart').textContent=from?'변경':'위치 지정';
@@ -524,11 +525,13 @@ function renderRouteDestinations(){
   list.innerHTML=html||'<p class="route-empty">검색 결과가 없습니다.</p>';
 }
 function openRoute(toId=null,{nearestKind=null,preserve=false}={}){
+  const allowUnknownDirections=preserve&&state.routeDraft.allowUnknownDirections===true;
   if(!preserve)state.routeDraft={toId:null,nearestKind:null,query:'',category:'all'};
   const p=toId?poiById(toId):null;
   if(p?.category==='facility')nearestKind=p.kind;
   if(nearestKind){state.routeDraft={toId:null,nearestKind,query:`가까운 ${kindNames[nearestKind]}`,category:'all'};}
   else if(p){state.routeDraft={toId:p.id,nearestKind:null,query:p.name,category:p.category};}
+  state.routeDraft.allowUnknownDirections=allowUnknownDirections;
   renderRouteDestinations();$('#routeError').hidden=true;
   if(!$('#routeDialog').open)$('#routeDialog').showModal();
 }
@@ -538,7 +541,7 @@ function selectRouteDestination(id){
   $('#routeError').hidden=true;renderRouteDestinations();
 }
 function selectRouteFacility(kind){
-  state.routeDraft={toId:null,nearestKind:kind,query:`가까운 ${kindNames[kind]}`,category:'all'};
+  state.routeDraft={toId:null,nearestKind:kind,query:`가까운 ${kindNames[kind]}`,category:'all',allowUnknownDirections:state.routeDraft.allowUnknownDirections===true};
   $('#routeError').hidden=true;renderRouteDestinations();
 }
 function showPlannedRoute(route,{destination,transfer=null,connection=null,alternatives=[],nearestKind=null}){
@@ -552,7 +555,7 @@ function renderRouteCard(){
   if(r.transfer){
     const c=r.connection,arrival=c?.arrival;
     const chain=c?[r.floor,...c.steps.filter(s=>s.type==='transfer').map(s=>s.to.floor)].join(' → '):'';
-    card.innerHTML=`${close}<span class="route-card-badge">도면 대조 경로 · 현장 미확인</span><h3>${esc(routePlaceLabel(r.transfer))} 경유</h3><p class="route-floor-chain">${esc(chain)} → ${esc(r.toName)}</p><div class="transfer-choices">${r.alternatives.map(a=>`<button type="button" data-transfer-choice="${esc(a.poi.id)}" class="${r.transfer.id===a.poi.id?'active':''}" aria-pressed="${r.transfer.id===a.poi.id}">${icon(a.poi.kind)}${a.poi.kind==='elevator'?'승강기':esc(kindNames[a.poi.kind])}</button>`).join('')}</div>${arrival?`<p><strong>다음 도착: ${esc(arrival.floor)}</strong><br>${esc(routePlaceLabel(arrival))}</p><div class="route-transfer-preview"><button type="button" data-show-on-map="${esc(r.transfer.id)}">출발 지점 보기</button><button type="button" data-show-on-map="${esc(arrival.id)}">${esc(arrival.floor)} 연결 위치 보기 ↗</button></div>${r.transfer.kind==='escalator'?'<p class="transfer-direction-note">운행방향 현장 확인</p>':''}<button class="btn btn-primary btn-full" type="button" data-route-continue>${esc(arrival.floor)} 도착했어요 · 계속 ${icon('route')}</button>`:''}`;
+    card.innerHTML=`${close}<span class="route-card-badge">도면 대조 경로 · 현장 미확인</span><h3>${esc(routePlaceLabel(r.transfer))} 경유</h3><p class="route-floor-chain">${esc(chain)} → ${esc(r.toName)}</p><div class="transfer-choices">${r.alternatives.map(a=>`<button type="button" data-transfer-choice="${esc(a.id)}" class="${c?.id===a.id?'active':''}" aria-pressed="${c?.id===a.id}">${icon(a.kind==='mixed'?'route':a.kind)}${a.kind==='mixed'?'혼합':a.kind==='elevator'?'승강기':esc(kindNames[a.kind])}</button>`).join('')}</div>${arrival?`<p><strong>다음 추정 도착: ${esc(arrival.floor)}</strong><br>${esc(routePlaceLabel(arrival))}</p><div class="route-transfer-preview"><button type="button" data-show-on-map="${esc(r.transfer.id)}">출발 지점 보기</button><button type="button" data-show-on-map="${esc(arrival.id)}">${esc(arrival.floor)} 연결 위치 보기 ↗</button></div>${c?.requiresDirectionCheck?'<p class="transfer-direction-note">운행방향 미확인 에스컬레이터 포함</p>':''}<button class="btn btn-primary btn-full" type="button" data-route-continue>${esc(arrival.floor)} 도착했어요 · 계속 ${icon('route')}</button>`:''}`;
 
   }else{
     card.innerHTML=`${close}${r.nearestKind?`<span class="route-card-badge">가까운 ${esc(kindNames[r.nearestKind])} 추천</span>`:''}<h3>${esc(destination?routePlaceLabel(destination):r.toName)}</h3><p>${esc(floorLabel(r.floor))} · 현위치에서 출발</p>`;
@@ -562,17 +565,31 @@ function renderRouteCard(){
 function continueRouteAfterTransfer(){
  const r=state.route,arrival=r?.connection?.arrival;if(!arrival)return;
  const {destinationId,nearestKind}=r,kind=r.connection.kind;
- clearRoute();setFloor(arrival.floor);setManualPosition(arrival);
+ clearRoute();setFloor(arrival.floor);if(!setTransferArrival(arrival))return;
  openRoute(destinationId,{nearestKind,preserve:true});state.routeDraft.transferKind=kind;runRoute();
 }
 
+function setTransferArrival(p){
+ if(!isFloorPoint(p,floorData(p.floor)))return false;
+ const at=Date.now();
+ state.locationFloor=p.floor;state.position={floor:p.floor,x:p.x,y:p.y,at,source:'manual',origin:'route-arrival'};
+ // Arrival confirms a schematic endpoint, not an independently measured fix.
+ // Never train the GPS calibration model from a suggested transfer link.
+ state.manualHoldUntil=at+15000;state.manualBaseGPS=state.gps;state.motionBase=null;
+ endPick();closeDetail();updateLocationUI();renderLocationPins();return true;
+}
+function transferRouteOptions(from,to){
+ return connectedTransferRoutes(from,to,park.pois,walkways.floors,transfers,park.floors,{allowUnknownDirections:state.routeDraft.allowUnknownDirections===true});
+}
+
 function changeTransfer(id){
-  const r=state.route,choice=r?.alternatives.find(a=>a.poi.id===id);if(!choice)return;
+  const r=state.route,choice=r?.alternatives.find(a=>a.id===id);if(!choice)return;
   const destination=poiById(r.destinationId);
   showPlannedRoute(choice.route,{destination,transfer:choice.poi,connection:choice,alternatives:r.alternatives,nearestKind:r.nearestKind});
 }
 function runRoute(event){
   event?.preventDefault();const draft=state.routeDraft,error=$('#routeError');
+  draft.allowUnknownDirections=$('#includeUnknownEscalators').checked;
   const fail=msg=>{error.textContent=msg;error.hidden=false;};
   if(!draft.toId&&!draft.nearestKind){
     const q=normalizeName(draft.query),kinds=facilityQueryKinds(draft.query);
@@ -591,16 +608,16 @@ function runRoute(event){
       if(sameFloor)return fail('이 시설까지 연결된 통로가 아직 등록되지 않았습니다.');
       const levels={B1:0,'1F':1,'2F':2,'3F':3,'4F':4,MAGIC:2};
       const other=park.pois.filter(p=>p.kind===draft.nearestKind&&p.x!==null&&p.floor!==from.floor).sort((a,b)=>Math.abs(levels[a.floor]-levels[from.floor])-Math.abs(levels[b.floor]-levels[from.floor]));
-      const options=other.flatMap(destination=>connectedTransferRoutes(from,destination,park.pois,walkways.floors,transfers,park.floors).map(connection=>({destination,connection}))).sort((a,b)=>a.connection.cost-b.connection.cost);
-      if(options.length){const {destination,connection}=options[0];const choices=connectedTransferRoutes(from,destination,park.pois,walkways.floors,transfers,park.floors);return showPlannedRoute(connection.route,{destination,transfer:connection.poi,connection,alternatives:choices,nearestKind:draft.nearestKind});}
+      const options=other.flatMap(destination=>transferRouteOptions(from,destination).map(connection=>({destination,connection}))).sort((a,b)=>a.connection.cost-b.connection.cost);
+      if(options.length){const {destination,connection}=options[0];const choices=transferRouteOptions(from,destination);return showPlannedRoute(connection.route,{destination,transfer:connection.poi,connection,alternatives:choices,nearestKind:draft.nearestKind});}
       return fail(`가까운 ${kindNames[draft.nearestKind]}을 찾지 못했습니다.`);
     }
     return showPlannedRoute(match.route,{destination:match.poi,nearestKind:draft.nearestKind});
   }
   if(!to)return fail('목적지를 다시 선택해 주세요.');
   if(from.floor!==to.floor){
-    const choices=connectedTransferRoutes(from,to,park.pois,walkways.floors,transfers,park.floors);
-    if(!choices.length)return fail('이 목적지까지 도면에서 대조된 층간 연결이 없습니다. 연결 지점 미확인 시설을 임의로 안내하지 않습니다.');
+    const choices=transferRouteOptions(from,to);
+    if(!choices.length)return fail('현재 설정으로 이어지는 층간 경로가 없습니다. 도면상 연결이나 운행방향이 미확인인 시설은 안내에서 제외될 수 있습니다.');
     const connection=choices.find(c=>c.kind===draft.transferKind)??choices[0];
     return showPlannedRoute(connection.route,{destination:to,transfer:connection.poi,connection,alternatives:choices});
   }
@@ -725,6 +742,7 @@ function bindEvents(){
   $('#copyShare').onclick=()=>copy($('#shareUrl').value);
   $('#nativeShare').onclick=async()=>{try{await navigator.share({title:'롯데월드야호 · 여기서 만나!',text:'내가 공유한 순간의 위치야. 선택한 층도 확인해 줘!',url:$('#shareUrl').value});}catch(err){if(err.name!=='AbortError')copy($('#shareUrl').value);}};
   $('#openRoute').onclick=()=>openRoute();$('#mobileRoute').onclick=()=>openRoute();$('#routeForm').onsubmit=runRoute;
+  $('#includeUnknownEscalators').onchange=e=>{state.routeDraft.allowUnknownDirections=e.target.checked;};
   $('#pickRouteStart').onclick=()=>{state.routeAfterPick={toId:state.routeDraft.toId,nearestKind:state.routeDraft.nearestKind,autoRoute:false};if(state.position)setFloor(state.position.floor);beginPick();};
   $('#routeSearch').addEventListener('input',e=>{state.routeDraft.query=e.target.value;state.routeDraft.toId=null;state.routeDraft.nearestKind=null;state.routeDraft.category='all';$('#routeError').hidden=true;renderRouteDestinations();});
   $('#locationDialog').addEventListener('cancel',()=>{state.routeAfterPick=null;state.shareAfterPick=false;});

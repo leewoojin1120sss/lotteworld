@@ -371,3 +371,5 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,[t
 .route-transfer-preview{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.route-transfer-preview button{flex:1;min-height:42px;padding:8px;border:1px solid #d9caee;border-radius:9px;font-size:13px;color:var(--purple);background:#faf7ff}
 .route-floor-chain{overflow-wrap:anywhere}.route-card{max-height:calc(100% - 28px);overflow:auto}.route-card .btn{white-space:normal}
 @media(max-width:800px){.route-card{max-width:calc(100% - 30px);width:330px}.route-card h3{font-size:16px}.route-card p{font-size:14px;line-height:1.5}.route-card .route-card-badge{font-size:12px}.transfer-detail>button{min-height:66px}}
+
+.route-direction-option{display:flex;align-items:center;gap:9px;padding:12px 0;font-size:14px;line-height:1.5;color:#675274;cursor:pointer}.route-direction-option input{width:19px;height:19px;accent-color:var(--purple);flex-shrink:0}.transfer-choices{flex-wrap:wrap}

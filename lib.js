@@ -85,10 +85,18 @@ export function transferRecommendations(from,pois,floors) {
   return nearbyFacilities(from,pois,floors,{kinds:['stairs','escalator','elevator'],limit:3,perKind:true});
 }
 
+const transferKinds=new Set(['stairs','escalator','elevator']);
+const finitePDF=p=>p&&FLOOR_IDS.includes(p.floor)&&Array.isArray(p.pdf)&&p.pdf.length===2&&p.pdf.every(Number.isFinite);
+function validTransferEdge(edge,byId){
+ if(!edge||typeof edge!=='object')return false;
+ const a=byId.get(edge.from),b=byId.get(edge.to);
+ return edge.basis==='guide-correspondence'&&a?.category==='facility'&&b?.category==='facility'&&transferKinds.has(a.kind)&&a.kind===b.kind&&a.floor!==b.floor&&isMapPoint(a)&&isMapPoint(b)&&finitePDF(a)&&finitePDF(b)&&['both','unknown','from-to','to-from'].includes(edge.direction??(a.kind==='escalator'?'unknown':'both'));
+}
 export function transferLinks(id,pois,doc){
  const byId=new Map(pois.map(p=>[p.id,p])),origin=byId.get(id);
  if(!origin)return [];
  return (doc?.connections??[]).flatMap(edge=>{
+  if(!validTransferEdge(edge,byId))return [];
   const target=byId.get(edge.from===id?edge.to:edge.to===id?edge.from:null);
   if(!target||!isMapPoint(target)||target.floor===origin.floor||target.kind!==origin.kind||edge.basis!=='guide-correspondence')return [];
   return [{edge,from:origin,to:target}];
@@ -97,12 +105,12 @@ export function transferLinks(id,pois,doc){
 
 // A schematic route, not metre/minute travel time. Only explicit, audited
 // endpoint pairs are edges; co-located glyphs never create connections.
-export function connectedTransferRoutes(from,to,pois,walkways,doc,floorMetadata){
- if(!from?.pdf||!to?.pdf||from.floor===to.floor)return [];
+export function connectedTransferRoutes(from,to,pois,walkways,doc,floorMetadata,{allowUnknownDirections=false}={}){
+ if(!finitePDF(from)||!finitePDF(to)||from.floor===to.floor)return [];
  const byId=new Map(pois.map(p=>[p.id,p])),widths=new Map(floorMetadata.map(f=>[f.id,f.width]));
  const results=[];
- for(const kind of ['stairs','escalator','elevator']){
-  const links=(doc?.connections??[]).filter(e=>e.basis==='guide-correspondence'&&byId.get(e.from)?.kind===kind&&byId.get(e.to)?.kind===kind&&byId.get(e.from)?.floor!==byId.get(e.to)?.floor);
+ for(const kind of ['stairs','escalator','elevator','mixed']){
+  const links=(doc?.connections??[]).filter(e=>validTransferEdge(e,byId)&&(kind==='mixed'||byId.get(e.from).kind===kind)&&(allowUnknownDirections||(e.direction??(byId.get(e.from).kind==='escalator'?'unknown':'both'))!=='unknown'));
   const ids=new Set(links.flatMap(e=>[e.from,e.to]));
   const nodes=new Map([['@start',from],['@end',to],...[...ids].map(id=>[id,byId.get(id)])].filter(([,p])=>p?.pdf));
   const adj=new Map([...nodes.keys()].map(k=>[k,[]]));
@@ -116,7 +124,9 @@ export function connectedTransferRoutes(from,to,pois,walkways,doc,floorMetadata)
   }
   for(const edge of links){
    if(!adj.has(edge.from)||!adj.has(edge.to))continue;
-   for(const [a,b] of [[edge.from,edge.to],[edge.to,edge.from]])adj.get(a).push({to:b,cost:.12,step:{type:'transfer',edge,from:nodes.get(a),to:nodes.get(b)}});
+   const direction=edge.direction??(byId.get(edge.from).kind==='escalator'?'unknown':'both');
+   const directions=direction==='from-to'?[[edge.from,edge.to]]:direction==='to-from'?[[edge.to,edge.from]]:[[edge.from,edge.to],[edge.to,edge.from]];
+   for(const [a,b] of directions)adj.get(a).push({to:b,cost:.12,step:{type:'transfer',edge,from:nodes.get(a),to:nodes.get(b)}});
   }
   const costs=new Map([['@start',0]]),previous=new Map(),unseen=new Set(nodes.keys());
   while(unseen.size){let k=null,best=Infinity;for(const id of unseen)if((costs.get(id)??Infinity)<best){k=id;best=costs.get(id);}if(k===null)break;unseen.delete(k);if(k==='@end')break;
@@ -125,7 +135,9 @@ export function connectedTransferRoutes(from,to,pois,walkways,doc,floorMetadata)
   if(!costs.has('@end'))continue;
   const steps=[];for(let k='@end';k!=='@start';){const prev=previous.get(k);if(!prev)break;steps.unshift(prev.step);k=prev.from;}
   const first=steps.find(s=>s.type==='transfer');if(!first||steps[0]?.type!=='walk')continue;
-  results.push({poi:first.from,arrival:first.to,edge:first.edge,route:steps[0].route,steps,cost:costs.get('@end'),kind,transfers:steps.filter(s=>s.type==='transfer').length});
+  const changes=steps.filter(s=>s.type==='transfer');
+  if(kind==='mixed'&&new Set(changes.map(s=>s.from.kind)).size<2)continue;
+  results.push({id:kind+':'+first.from.id,poi:first.from,arrival:first.to,edge:first.edge,route:steps[0].route,steps,cost:costs.get('@end'),kind,transfers:changes.length,requiresDirectionCheck:changes.some(s=>(s.edge.direction??(s.from.kind==='escalator'?'unknown':'both'))==='unknown')});
  }
  return results.sort((a,b)=>a.cost-b.cost||a.transfers-b.transfers||a.poi.id.localeCompare(b.poi.id));
 }
