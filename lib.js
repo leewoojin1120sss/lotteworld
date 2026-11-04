@@ -263,4 +263,52 @@ export function officialPinBox(location,map){
 export function mapPinVisible(p,{browseAll=false,category='all',kind=null,favoritesOnly=false,isFavorite=false,matchesSearch=true}={}){
  return browseAll||((category==='all'||category===p.category)&&(!kind||kind===p.kind)&&(!favoritesOnly||isFavorite)&&matchesSearch);
 }
-export function namuSearchURL(p){return p?.category==='attraction'?'https://namu.wiki/Search?q='+encodeURIComponent(p.name+' 롯데월드'):null;}
+// Explicit document titles: guide labels often differ or have namesakes.
+const NAMU_ATTRACTION_DOCUMENTS=Object.freeze({
+ "ride-1": "드림보트",
+ "ride-2": "4D슈팅시어터",
+ "ride-3": "와일드 밸리",
+ "ride-4": "와일드 정글",
+ "ride-5": "와일드 윙",
+ "ride-6": "신밧드의 모험(롯데월드 어드벤처)",
+ "ride-7": "스페인 해적선",
+ "ride-8": "후룸라이드(롯데월드 어드벤처)",
+ "ride-9": "회전바구니",
+ "ride-10": "로티트레인",
+ "ride-11": "배틀그라운드 월드 에이전트",
+ "ride-12": "플라이 벤처",
+ "ride-13": "회전목마(롯데월드 어드벤처)",
+ "ride-14": "3D 황야의 무법자 2",
+ "ride-15": "키즈토리아",
+ "ride-16": "드래곤 와일드 슈팅",
+ "ride-17": "어린이 범퍼카",
+ "ride-18": "햇님달님(롯데월드 어드벤처)",
+ "ride-19": "점핑피쉬",
+ "ride-20": "언더씨킹덤(롯데월드 어드벤처)",
+ "ride-21": "유레카(롯데월드 어드벤처)",
+ "ride-22": "스윙팡팡",
+ "ride-23": "매직붕붕카",
+ "ride-24": "어린이 동화극장",
+ "ride-25": "카트라이더 레이싱 월드",
+ "ride-26": "후렌치 레볼루션",
+ "ride-27": "범퍼카(롯데월드 어드벤처)",
+ "ride-28": "콩 X 고질라: 더 라이드",
+ "ride-29": "월드모노레일",
+ "ride-30": "풍선비행",
+ "ride-31": "파라오의 분노",
+ "ride-32": "어크로스다크",
+ "ride-33": "아트란티스",
+ "ride-34": "자이로스윙",
+ "ride-35": "쁘띠빵빵",
+ "ride-36": "자이로드롭",
+ "ride-37": "환타지 드림",
+ "ride-38": "혜성특급",
+ "ride-39": "자이로스핀",
+ "ride-40": "스톤 익스프레스",
+ "ride-41": "아르카나 라이드",
+ "ride-42": "에오스 타워"
+});
+export function namuDocumentURL(p){
+ const title=p?.category==='attraction'?NAMU_ATTRACTION_DOCUMENTS[p.id]:null;
+ return title?'https://namu.wiki/w/'+encodeURIComponent(title):null;
+}

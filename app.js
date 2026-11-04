@@ -1,4 +1,4 @@
-import {escapeHTML as esc,mapPinVisible,namuSearchURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
+import {escapeHTML as esc,mapPinVisible,namuDocumentURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
 
@@ -317,7 +317,7 @@ function renderDetail(p){
   ${note}${p.kind==='unknown'?'<p class="detail-note">종류 미확인 시설</p>':''}
   <button type="button" class="btn btn-subtle btn-full show-on-map" data-show-on-map="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('map')}지도에서 보기</button>
   <div class="detail-actions"><button class="btn btn-primary" type="button" data-route-to="${esc(p.id)}">${icon('route')}${p.category==='facility'?'가까운 시설':'여기로 가기'}</button><button class="btn btn-subtle" type="button" data-set-position="${esc(p.id)}" ${p.x===null?'disabled':''}>${icon('pin')}나 여기 있어요</button></div>
-  <div class="detail-extra">${p.category==='attraction'?`<a class="namu-link" href="${esc(namuSearchURL(p))}" target="_blank" rel="noopener noreferrer" title="나무위키에서 ${esc(p.name)} 검색">나무위키 검색 ↗</a>`:''}<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
+  <div class="detail-extra">${namuDocumentURL(p)?`<a class="namu-link" href="${esc(namuDocumentURL(p))}" target="_blank" rel="noopener noreferrer" title="${esc(p.name)} 나무위키 문서 열기">나무위키 문서 ↗</a>`:''}<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a><button type="button" data-share-place="${esc(p.id)}">${icon('share')}장소 공유</button><a href="assets/guide-2026.pdf#page=${floorData(p.floor).page+1}" target="_blank" rel="noopener">가이드맵 ↗</a></div></div>`;
   const img=detail.querySelector('img');if(img)img.addEventListener('error',()=>img.replaceWith(document.createRange().createContextualFragment(icon(poiIcon(p)))),{once:true});
   detail.hidden=false;$('#mapTip').hidden=true;
 }
