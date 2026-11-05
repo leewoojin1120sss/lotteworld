@@ -355,7 +355,7 @@ function estimationMessage(){
   if(!state.gps)return state.gpsPending?'GPS·네트워크 위치를 수신하고 있어요.':'자동 추정을 시작하거나 현재 위치를 지도에서 지정하세요.';
   if(Date.now()-state.gps.at>60000)return '새 위치 신호를 찾고 있습니다. 지도에는 마지막 위치가 표시됩니다.';
   const reason=state.estimate?.reason;
-  return reason==='outside'?'현재 신호는 이 층의 지도 범위 밖입니다. 층 또는 위치를 보정해 주세요.':reason==='accuracy'?'실내 신호의 오차가 큽니다. 가까운 장소를 선택해 위치를 보정하세요.':reason==='calibration'?state.position?.source==='manual'&&state.position.floor===state.locationFloor?'지정한 위치를 사용 중입니다. 이동 후 보정하면 이 층의 자동 추정을 학습합니다.':'이 층은 자동 변환 기준점이 부족합니다. 지도에서 위치를 보정해 주세요.':reason==='stale'?'새 위치 신호를 기다리고 있어요.':state.estimate?.x!==undefined?'실제 장소 기준점과 선택한 층으로 위치를 추정했습니다.':'위치 신호를 분석하고 있어요.';
+  return reason==='outside'?'현재 신호는 이 층의 지도 범위 밖입니다. 층 또는 위치를 보정해 주세요.':reason==='accuracy'?'실내 신호의 오차가 큽니다. 가까운 장소를 선택해 위치를 보정하세요.':reason==='calibration'?state.position?.source==='manual'&&state.position.floor===state.locationFloor?'지정한 위치를 사용 중입니다. 이동 후 보정하면 이 층의 자동 추정을 학습합니다.':'이 층은 자동 위치 기준점이 부족하거나 한쪽에 몰려 있어요. 지도에서 현재 위치를 지정해 주세요.':reason==='stale'?'새 위치 신호를 기다리고 있어요.':state.estimate?.x!==undefined?'선택한 층의 공개 좌표를 바탕으로 추정했어요.':'위치 신호를 분석하고 있어요.';
 }
 function locationContent(){
   const g=state.gps,e=state.estimate,hasEstimate=e?.x!==undefined&&Date.now()-e.at<60000,candidates=g&&Date.now()-g.at<60000?nearbyAnchors(g,state.locationFloor,georeference):[];

@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {toLocal,fromLocal,geoDistance,fitAffine,distanceFromSupport,FixFilter,projectFix,modelForFloor,addCalibration,StepBridge} from '../geo.js';
+import {toLocal,fromLocal,geoDistance,fitAffine,fitSpatial,wellSpread,distanceFromSupport,FixFilter,projectFix,modelForFloor,addCalibration,StepBridge} from '../geo.js';
 const data=JSON.parse(fs.readFileSync(new URL('../data/georeference.json',import.meta.url)));
 const park=JSON.parse(fs.readFileSync(new URL('../data/park.json',import.meta.url)));
 const floor=id=>park.floors.find(f=>f.id===id);
@@ -25,7 +25,7 @@ test('outside, stale and excessively coarse GPS do not become map pins',()=>{
  assert.equal(distanceFromSupport(fix(50,50),anchors),0);
 });
 test('a missing floor calibration is explicit instead of copying another floor',()=>{
- for(const id of ['B1','2F','3F'])assert.equal(projectFix({...data.anchors[0],accuracy:10,at},id,data,floor(id)).reason,'calibration');
+ for(const id of ['B1','2F','3F','4F'])assert.equal(projectFix({...data.anchors[0],accuracy:10,at},id,data,floor(id)).reason,'calibration');
  const collinear=[0,1,2].map(e=>({...fix(e,0),pdf:[e,0]}));assert.equal(fitAffine(collinear),null);
 });
 test('three noncollinear manual references can calibrate an unsupported floor',()=>{
@@ -57,7 +57,7 @@ test('OSM anchors belong to real guide POIs; conflicting duplicates are excluded
  assert.equal(data.anchors.length,28);
  for(const a of data.anchors){const p=park.pois.find(p=>p.id===a.id);assert.equal(a.floor,p.floor);assert.deepEqual(a.pdf,p.pdf);assert.ok(a.sourceUrl.startsWith('https://www.openstreetmap.org/node/'));}
  for(const id of ['ride-37','ride-39'])assert.ok(!data.anchors.some(a=>a.id===id));
- for(const id of ['1F','MAGIC','4F']){const a=data.anchors.find(a=>a.floor===id);assert.ok(fitAffine(data.anchors.filter(a=>a.floor===id)));const p=projectFix({...a,accuracy:15,at},id,data,floor(id));assert.ok(p.x!==undefined,`${id}: ${p.reason}`);}
+ for(const id of ['1F','MAGIC']){const a=data.anchors.find(a=>a.floor===id);assert.ok(fitAffine(data.anchors.filter(a=>a.floor===id)));const p=projectFix({...a,accuracy:15,at},id,data,floor(id));assert.ok(p.x!==undefined,`${id}: ${p.reason}`);}
 });
 test('step bridge ignores stillness and is limited by time and step count',()=>{
  const b=new StepBridge();b.seed(1000);for(let t=1100;t<3000;t+=100)assert.equal(b.feed({x:0,y:0,z:9.81},90,t),null);
@@ -82,4 +82,80 @@ test('three safe points retain a conservative allowance and future references ar
  const info=modelForFloor('B1',{anchors:[],floors:{}},fix(20,20),samples);assert.ok(info.error>=45);assert.equal(info.validationErrorM,null);
  assert.ok(projectFix(fix(20,20),'B1',{anchors:[],floors:{}},schematic,samples).accuracyM>=45);
  assert.equal(modelForFloor('B1',{anchors:[],floors:{}},fix(20,20),samples.map(a=>({...a,at:at+10000}))),null);
+});
+
+test('public 4F anchors are too thin for an automatic transform despite a zero fitted residual',()=>{
+ const a=data.anchors.filter(a=>a.floor==='4F');
+ assert.ok(fitAffine(a).residual<1e-6);
+ assert.equal(wellSpread(a),false);
+ assert.equal(projectFix({...a[0],accuracy:5,at},'4F',data,floor('4F')).reason,'calibration');
+});
+test('spatial Jacobian agrees with actual re-projection during movement',()=>{
+ for(const id of ['1F','MAGIC']){
+  const a=data.anchors.filter(a=>a.floor===id),g={...a[0],accuracy:10,at},local=toLocal(g),m=fitSpatial(a,g);
+  assert.ok(m);
+  for(const axis of [0,1]){
+   const moved=[...local];moved[axis]+=.02;
+   const q=fromLocal(moved),p=fitSpatial(a,q).project(q),base=m.project(g);
+   for(let k=0;k<2;k++)assert.ok(Math.abs((p[k]-base[k])/.02-m.jacobian[k][axis])<.01,id);
+  }
+ }
+});
+test('manual bias stays anchored to one spatial mapping as GPS moves',()=>{
+ const a=data.anchors.find(a=>a.id==='ride-13'),g={...a,accuracy:10,at};
+ const corrected=[a.pdf[0]+10,a.pdf[1]+10],samples=addCalibration([],{floor:'1F',pdf:corrected,at},g);
+ const model=modelForFloor('1F',data,g).model,offset=corrected.map((v,i)=>v-model.project(g)[i]);
+ for(const delta of [[0,0],[10,0],[0,10],[-10,5]]){
+  const moved=fromLocal(toLocal(g).map((v,i)=>v+delta[i])),input={...moved,accuracy:10,at:at+1000};
+  const p=projectFix(input,'1F',data,floor('1F'),samples);
+  const expected=model.project(input).map((v,i)=>v+offset[i]);
+  assert.ok(p.pdf);assert.ok(Math.hypot(...p.pdf.map((v,i)=>v-expected[i]))<1e-6);
+  assert.ok(p.accuracyM>=50);
+ }
+});
+test('a duplicate rejected jump does not count as independent confirmation',()=>{
+ const f=new FixFilter();f.push(fix(0,0,5),at);
+ const jump=fix(200,0,5,at+1000);
+ assert.equal(f.push(jump,at+1000),null);assert.equal(f.push(jump,at+1500),null);
+ assert.ok(f.push(fix(201,0,5,at+2000),at+2000));
+});
+test('projection and calibration reject malformed coordinates and timestamps',()=>{
+ for(const input of [{lat:NaN},{accuracy:-1},{accuracy:NaN},{at:NaN},{lng:181}]){
+  assert.equal(projectFix({...fix(20,20),...input},'1F',mockData,schematic).reason,'invalid');
+ }
+ assert.equal(projectFix(fix(20,20,5,at+20000),'1F',mockData,schematic).reason,'stale');
+ assert.equal(addCalibration([],{floor:'1F',pdf:[NaN,1],at},fix(20,20)).length,0);
+ assert.equal(addCalibration([],{floor:'1F',pdf:[500,500],at:NaN},fix(20,20)).length,0);
+});
+test('extrapolation grows uncertainty instead of retaining central confidence',()=>{
+ const inside=projectFix(fix(50,50,5),'1F',mockData,schematic),edge=projectFix(fix(120,50,5),'1F',mockData,schematic);
+ assert.ok(edge.accuracyM>inside.accuracyM);assert.equal(projectFix(fix(151,50),'1F',mockData,schematic).reason,'outside');
+});
+test('smoothed mapping improves held-out RMS and worst-case discrepancy on both supported floors',()=>{
+ for(const id of ['1F','MAGIC']){
+  const a=data.anchors.filter(a=>a.floor===id),errors={legacy:[],smooth:[]};
+  for(const held of a){
+   const training=a.filter(p=>p!==held),reference=fitAffine(training);
+   for(const kernel of Object.keys(errors)){
+    const m=fitAffine(training,held,{kernel}),d=m.project(held).map((v,i)=>v-held.pdf[i]);
+    errors[kernel].push(Math.hypot(...reference.inverse.map(r=>r[0]*d[0]+r[1]*d[1])));
+   }
+  }
+  const rms=values=>Math.sqrt(values.reduce((s,x)=>s+x*x,0)/values.length);
+  assert.ok(rms(errors.smooth)<rms(errors.legacy),id);
+  assert.ok(Math.max(...errors.smooth)<Math.max(...errors.legacy),id);
+ }
+});
+test('mapping remains continuous and unmirrored over a 5m grid around supported controls',()=>{
+ for(const id of ['1F','MAGIC']){
+  const a=data.anchors.filter(a=>a.floor===id),local=a.map(toLocal);
+  const lo=[0,1].map(k=>Math.min(...local.map(p=>p[k]))-50),hi=[0,1].map(k=>Math.max(...local.map(p=>p[k]))+50);
+  let count=0;
+  for(let e=lo[0];e<=hi[0];e+=5)for(let n=lo[1];n<=hi[1];n+=5){
+   const g=fromLocal([e,n]);if(distanceFromSupport(g,a)>50)continue;
+   const m=fitSpatial(a,g);assert.ok(m,id);assert.ok(m.determinant<0,id);
+   assert.ok(m.project(g).every(Number.isFinite));count++;
+  }
+  assert.ok(count>500,id);
+ }
 });

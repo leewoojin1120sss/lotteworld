@@ -17,12 +17,15 @@ function solve(matrix,values){
   }
   return a.map(r=>r[3]);
 }
-export function fitAffine(anchors,near=null){
-  if(anchors.length<3)return null;
+const finitePair=p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite);
+const validGeo=g=>!!g&&Number.isFinite(g.lat)&&Math.abs(g.lat)<=90&&Number.isFinite(g.lng)&&Math.abs(g.lng)<=180;
+const validAnchor=a=>validGeo(a)&&finitePair(a.pdf);
+export function fitAffine(anchors,near=null,{kernel='smooth',bandwidthM=40}={}){
+  if(anchors.length<3||!anchors.every(validAnchor)||near&&!validGeo(near)||!Number.isFinite(bandwidthM)||bandwidthM<=0)return null;
   const rows=anchors.map(a=>({g:toLocal(a),p:a.pdf}));
   const center=near?toLocal(near):rows.reduce((v,r)=>v.map((x,i)=>x+r.g[i]/rows.length),[0,0]);
   const matrix=Array.from({length:3},()=>[0,0,0]),values=[[0,0,0],[0,0,0]];
-  for(const row of rows){const dx=row.g[0]-center[0],dy=row.g[1]-center[1],v=[1,dx,dy],w=near?1/(40+Math.hypot(dx,dy))**2:1;
+  for(const row of rows){const dx=row.g[0]-center[0],dy=row.g[1]-center[1],v=[1,dx,dy],w=!near?1:kernel==='legacy'?1/(40+Math.hypot(dx,dy))**2:1/(1+(dx*dx+dy*dy)/(bandwidthM*bandwidthM))**2;
     for(let i=0;i<3;i++){for(let j=0;j<3;j++)matrix[i][j]+=w*v[i]*v[j];for(let k=0;k<2;k++)values[k][i]+=w*v[i]*row.p[k];}
   }
   const x=solve(matrix,values[0]),y=solve(matrix,values[1]);if(!x||!y)return null;
@@ -32,6 +35,34 @@ export function fitAffine(anchors,near=null){
   const residual=Math.sqrt(rows.reduce((n,r)=>{const p=projectLocal(r.g),d=p.map((v,i)=>v-r.p[i]);return n+(inverse[0][0]*d[0]+inverse[0][1]*d[1])**2+(inverse[1][0]*d[0]+inverse[1][1]*d[1])**2;},0)/rows.length);
   return {jacobian,inverse,residual,determinant:det,project:g=>projectLocal(toLocal(g)),projectLocal};
 }
+
+function matrixInfo(j){
+  if(!j.flat().every(Number.isFinite))return null;
+  const [[a,b],[c,d]]=j,det=a*d-b*c;
+  if(Math.abs(det)<.01)return null;
+  const trace=a*a+b*b+c*c+d*d;
+  const condition=(trace+Math.sqrt(Math.max(0,trace*trace-4*det*det)))/(2*Math.abs(det));
+  return {jacobian:j,inverse:[[d/det,-b/det],[-c/det,a/det]],determinant:det,condition};
+}
+// A moving least-squares fit changes its weights as the visitor moves. Its
+// fitted affine slopes alone are NOT the derivative of that changing map.
+export function fitSpatial(anchors,g,options={}){
+  const fit=fitAffine(anchors,g,options);if(!fit)return null;
+  const projectLocal=local=>{
+    const at=fromLocal(local),m=fitAffine(anchors,at,options);
+    return m?m.projectLocal(local):[NaN,NaN];
+  };
+  const center=toLocal(g),h=.25;
+  const columns=[0,1].map(axis=>{
+    const a=[...center],b=[...center];a[axis]+=h;b[axis]-=h;
+    const p=projectLocal(a),q=projectLocal(b);
+    return p.map((v,i)=>(v-q[i])/(2*h));
+  });
+  const info=matrixInfo([[columns[0][0],columns[1][0]],[columns[0][1],columns[1][1]]]);
+  if(!info||Math.sign(info.determinant)!==Math.sign(fit.determinant)||info.condition>12)return null;
+  return {...fit,...info,projectLocal,project:point=>projectLocal(toLocal(point))};
+}
+
 function hull(points){
   const p=[...points].sort((a,b)=>a[0]-b[0]||a[1]-b[1]);if(p.length<3)return p;
   const half=arr=>{const h=[];for(const a of arr){while(h.length>1&&cross(h.at(-2),h.at(-1),a)<=0)h.pop();h.push(a);}return h;};
@@ -48,7 +79,7 @@ export class FixFilter{
   reset(){this.samples=[];this.pendingJump=null;}
   push(fix,now=Date.now()){
     if(!fix||![fix.lat,fix.lng,fix.accuracy,fix.at].every(Number.isFinite)||Math.abs(fix.lat)>90||Math.abs(fix.lng)>180||fix.accuracy<0||fix.accuracy>2500||fix.at>now+5000||now-fix.at>30000)return null;
-    const last=this.samples.at(-1);if(last&&fix.at<=last.at)return null;
+    const last=this.samples.at(-1);if(fix.at<=Math.max(last?.at??-Infinity,this.pendingJump?.at??-Infinity))return null;
     if(last&&now-last.at<30000){
       const dt=(fix.at-last.at)/1000,d=geoDistance(last,fix),budget=4*Math.max(dt,1)+Math.max(15,last.accuracy)+Math.max(15,fix.accuracy);
       if(d>budget){
@@ -66,53 +97,63 @@ export class FixFilter{
     return {...location,accuracy:Math.max(fix.accuracy,spread),at:fix.at,samples:this.samples.length,raw:{...fix}};
   }
 }
-function wellSpread(samples){
-  if(samples.length<3)return false;
+export function wellSpread(samples){
+  if(samples.length<3||!samples.every(validGeo))return false;
   const points=samples.map(toLocal),center=points.reduce((v,p)=>v.map((x,i)=>x+p[i]/points.length),[0,0]);
   let xx=0,xy=0,yy=0;
   for(const p of points){const x=p[0]-center[0],y=p[1]-center[1];xx+=x*x/points.length;xy+=x*y/points.length;yy+=y*y/points.length;}
   const gap=Math.hypot(xx-yy,2*xy),small=(xx+yy-gap)/2,large=(xx+yy+gap)/2;
   // An area threshold alone accepts long, almost collinear triangles.
-  const accuracy=[...samples].map(a=>a.accuracy).sort((a,b)=>a-b)[Math.floor(samples.length/2)];
+  const accuracy=[...samples].map(a=>Number.isFinite(a.accuracy)?a.accuracy:10).sort((a,b)=>a-b)[Math.floor(samples.length/2)];
   return small>=Math.max(8,accuracy*.7)**2&&large/small<=100;
 }
 function holdoutError(samples,sign){
   if(samples.length===3)return null; // Three fitted points have no independent residual.
   const errors=samples.map((a,i)=>{
     const other=samples.filter((_,j)=>i!==j);if(!wellSpread(other))return Infinity;
-    const m=fitAffine(other,a);if(!m||Math.sign(m.determinant)!==sign)return Infinity;
+    const m=fitSpatial(other,a);if(!m||Math.sign(m.determinant)!==sign)return Infinity;
     const d=m.project(a).map((v,k)=>v-a.pdf[k]);return Math.hypot(...m.inverse.map(row=>row[0]*d[0]+row[1]*d[1]));
   });
   return Math.sqrt(errors.reduce((n,e)=>n+e*e,0)/errors.length);
 }
 export function modelForFloor(floor,data,g,calibrations=[]){
-  const landmarks=data.anchors.filter(a=>a.floor===floor),reference=fitAffine(landmarks);
+  const landmarks=data.anchors.filter(a=>a.floor===floor&&validAnchor(a)),reference=fitAffine(landmarks);
   const sign=reference?Math.sign(reference.determinant):-1;
-  const samples=calibrations.filter(a=>a.floor===floor&&g.at>=a.at&&g.at-a.at<30*60000&&a.accuracy>=0&&a.accuracy<=40&&Array.isArray(a.pdf)&&a.pdf.every(Number.isFinite));
-  const learned=wellSpread(samples)?fitAffine(samples,g):null;
+  const samples=calibrations.filter(a=>a.floor===floor&&g.at>=a.at&&g.at-a.at<30*60000&&a.accuracy>=0&&a.accuracy<=40&&validAnchor(a));
+  const learned=wellSpread(samples)?fitSpatial(samples,g):null;
   const validation=learned?holdoutError(samples,sign):Infinity;
   if(learned&&Math.sign(learned.determinant)===sign&&learned.residual<25&&(validation===null||validation<=35)&&distanceFromSupport(g,samples)<=35){
     return {model:learned,anchors:samples,error:Math.max(45,validation??45,...samples.map(a=>a.accuracy)),method:'calibrated',validationErrorM:validation};
   }
-  if(!reference)return null;
-  const model=fitAffine(landmarks,g);if(!model||Math.sign(model.determinant)!==sign)return null;
+  if(!reference||!wellSpread(landmarks))return null;
+  const model=fitSpatial(landmarks,g);if(!model||Math.sign(model.determinant)!==sign)return null;
   const error=Math.max(data.floors[floor]?.modelAllowanceM??60,model.residual);
   return {model,anchors:landmarks,error,method:'landmarks'};
 }
 export function projectFix(g,floor,data,floorData,calibrations=[]){
-  if(!g||Date.now()-g.at>60000)return {reason:'stale'};
+  if(!validGeo(g)||!Number.isFinite(g.at)||!Number.isFinite(g.accuracy)||g.accuracy<0)return {reason:'invalid'};
+  if(Date.now()-g.at>60000||g.at>Date.now()+5000)return {reason:'stale'};
   if(g.accuracy>150)return {reason:'accuracy'};
   const info=modelForFloor(floor,data,g,calibrations);if(!info)return {reason:'calibration'};
   const {model}=info;
-  const calibration=[...calibrations].reverse().find(a=>a.floor===floor&&g.at>=a.at&&g.at-a.at<10*60000&&a.accuracy<=60&&geoDistance(a,g)<100);
-  if(!calibration&&distanceFromSupport(g,info.anchors)>50)return {reason:'outside'};
-  let pdf=model.project(g),allowance=info.error,method=info.method;
-  // A recent manual landmark can cancel a roughly constant indoor bias.
-  if(calibration){const original=model.project(calibration);pdf=pdf.map((v,i)=>v+calibration.pdf[i]-original[i]);allowance=Math.max(info.method==='calibrated'?info.error:20,Math.hypot(20,calibration.accuracy,geoDistance(calibration,g)*.5));method='calibrated';}
-  const f={...floorData,id:floor},{x,y}=pdfToMap(pdf,f);
+  const calibration=[...calibrations].reverse().find(a=>a.floor===floor&&validAnchor(a)&&g.at>=a.at&&g.at-a.at<10*60000&&a.accuracy>=0&&a.accuracy<=60&&geoDistance(a,g)<100);
+  const outside=distanceFromSupport(g,info.anchors);
+  if(!calibration&&outside>50)return {reason:'outside'};
+  let allowance=Math.hypot(info.error,outside),method=info.method,offset=[0,0];
+  // Evaluate the SAME spatial mapping at each end. A correction at a known
+  // location stays fixed instead of changing when the visitor's weights change.
+  if(calibration){
+    const original=model.project(calibration);
+    offset=calibration.pdf.map((v,i)=>v-original[i]);
+    allowance=Math.max(info.error,Math.hypot(20,calibration.accuracy,geoDistance(calibration,g)*.5));
+    method='calibrated';
+  }
+  const project=point=>model.project(point).map((v,i)=>v+offset[i]);
+  const pdf=project(g),f={...floorData,id:floor},{x,y}=pdfToMap(pdf,f);
   if(!isFloorPoint({floor,x,y},f))return {reason:'outside'};
   const accuracyM=Math.hypot(g.accuracy,allowance),j=model.jacobian;
-  return {floor,x,y,pdf,at:g.at,source:'estimated',accuracyM,method,jacobian:j,samples:g.samples??1,ellipse:{east:[j[0][0]/floorData.width*1000,j[1][0]/floorData.height*1000],north:[j[0][1]/floorData.width*1000,j[1][1]/floorData.height*1000]}};
+  return {floor,x,y,pdf,at:g.at,source:'estimated',accuracyM,method,jacobian:j,samples:g.samples??1,
+    ellipse:{east:[j[0][0]/floorData.width*1000,j[1][0]/floorData.height*1000],north:[j[0][1]/floorData.width*1000,j[1][1]/floorData.height*1000]}};
 }
 export function uncertaintyPolygon(p){
   if(!p?.ellipse||!Number.isFinite(p.accuracyM))return '';
@@ -120,7 +161,7 @@ export function uncertaintyPolygon(p){
 }
 export function nearbyAnchors(g,floor,data,limit=3){return data.anchors.filter(a=>a.floor===floor&&geoDistance(a,g)<=Math.max(120,g.accuracy)).sort((a,b)=>geoDistance(a,g)-geoDistance(b,g)).slice(0,limit);}
 export function addCalibration(list,p,g){
-  if(!g||g.accuracy>60||Math.abs(p.at-g.at)>20000)return list;
+  if(!validGeo(g)||!Number.isFinite(g.accuracy)||g.accuracy<0||g.accuracy>60||!finitePair(p?.pdf)||!Number.isFinite(p.at)||!Number.isFinite(g.at)||Math.abs(p.at-g.at)>20000)return list;
   const sample={floor:p.floor,pdf:p.pdf,lat:g.lat,lng:g.lng,accuracy:g.accuracy,at:p.at};
   return [...list.filter(a=>a.floor!==p.floor||length(a.pdf,p.pdf)>25),sample].slice(-18);
 }

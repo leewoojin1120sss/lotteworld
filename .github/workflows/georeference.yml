@@ -1,0 +1,32 @@
+name: GPS 좌표 검산
+on:
+  push:
+    paths:
+      - 'geo.js'
+      - 'data/georeference.json'
+      - 'scripts/*georeference.mjs'
+      - 'tests/geolocation.test.mjs'
+      - '.github/workflows/georeference.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 전체 회귀 테스트
+        run: npm test
+      - name: 구문과 데이터 확인
+        run: npm run check
+      - name: GPS 모델·보정·이동 검산
+        run: node scripts/audit_georeference.mjs
+      - name: 공개 OSM 좌표 재대조
+        continue-on-error: true
+        run: node scripts/verify_georeference.mjs
+      - name: 정적 빌드
+        run: npm run build

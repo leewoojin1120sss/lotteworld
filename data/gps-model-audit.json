@@ -1,0 +1,454 @@
+{
+  "schemaVersion": 2,
+  "sourceVerifiedAt": "2026-11-02",
+  "method": "Compare old inverse-distance weights and smooth 40m inverse-quartic weights using the same training-only global affine inverse for both residuals. Leave one control out; additionally hold out contiguous east/north groups.",
+  "limitation": "Model/source disagreement, not measured GPS accuracy. Kernel selection uses these controls, so this is internal validation rather than a new independent field test. A three-control exact fit has no independent validation. Coordinates are not relocated to fit the model.",
+  "floors": {
+    "B1": {
+      "anchors": 0,
+      "automaticProjection": false,
+      "reason": "insufficient-controls",
+      "leaveOneOut": {
+        "legacy": null,
+        "smooth": null
+      },
+      "spatialBlockHoldout": {
+        "legacy": null,
+        "smooth": null
+      },
+      "grid": null,
+      "heldOut": []
+    },
+    "1F": {
+      "anchors": 19,
+      "automaticProjection": true,
+      "reason": "supported",
+      "leaveOneOut": {
+        "legacy": {
+          "count": 19,
+          "rmsEquivalentM": 22.334038,
+          "medianEquivalentM": 18.571431,
+          "maxEquivalentM": 44.338936,
+          "rmsPDFPoints": 79.028735
+        },
+        "smooth": {
+          "count": 19,
+          "rmsEquivalentM": 20.677543,
+          "medianEquivalentM": 19.271052,
+          "maxEquivalentM": 41.667731,
+          "rmsPDFPoints": 72.807599
+        }
+      },
+      "spatialBlockHoldout": {
+        "legacy": {
+          "count": 38,
+          "rmsEquivalentM": 37.518645,
+          "medianEquivalentM": 23.30027,
+          "maxEquivalentM": 111.070261,
+          "rmsPDFPoints": 147.771202
+        },
+        "smooth": {
+          "count": 38,
+          "rmsEquivalentM": 36.054371,
+          "medianEquivalentM": 23.196156,
+          "maxEquivalentM": 104.754999,
+          "rmsPDFPoints": 140.538007
+        }
+      },
+      "grid": {
+        "spacingM": 5,
+        "supportMarginM": 50,
+        "samples": 2216,
+        "rejected": 0,
+        "reversed": 0,
+        "maxCondition": 6.283194,
+        "maxDerivativeDifference": 0.000117
+      },
+      "heldOut": [
+        {
+          "id": "ride-13",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 20.51004266528647,
+            "pdfPoints": 82.71822087740087
+          },
+          "smooth": {
+            "equivalentM": 19.271052024914606,
+            "pdfPoints": 76.88604538474453
+          }
+        },
+        {
+          "id": "ride-6",
+          "outsideRemainingSupportM": 12.80353,
+          "legacy": {
+            "equivalentM": 18.571430662538745,
+            "pdfPoints": 64.78274212605977
+          },
+          "smooth": {
+            "equivalentM": 8.718798498540494,
+            "pdfPoints": 28.338067378431372
+          }
+        },
+        {
+          "id": "ride-15",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 12.64186850715194,
+            "pdfPoints": 43.000493612312944
+          },
+          "smooth": {
+            "equivalentM": 13.621948817024212,
+            "pdfPoints": 44.54236768226516
+          }
+        },
+        {
+          "id": "ride-9",
+          "outsideRemainingSupportM": 54.132064,
+          "legacy": {
+            "equivalentM": 32.07180519268669,
+            "pdfPoints": 117.14800705157548
+          },
+          "smooth": {
+            "equivalentM": 36.42945276154864,
+            "pdfPoints": 127.29342546556643
+          }
+        },
+        {
+          "id": "ride-7",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 18.60539217972441,
+            "pdfPoints": 67.09568075076567
+          },
+          "smooth": {
+            "equivalentM": 20.738536020248088,
+            "pdfPoints": 73.38489600889869
+          }
+        },
+        {
+          "id": "ride-8",
+          "outsideRemainingSupportM": 15.676036,
+          "legacy": {
+            "equivalentM": 44.338935909223025,
+            "pdfPoints": 166.40384214983976
+          },
+          "smooth": {
+            "equivalentM": 41.66773120415474,
+            "pdfPoints": 157.38860193217027
+          }
+        },
+        {
+          "id": "ride-25",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 33.801217989045696,
+            "pdfPoints": 108.58991042120667
+          },
+          "smooth": {
+            "equivalentM": 26.9420298680748,
+            "pdfPoints": 86.23453752884653
+          }
+        },
+        {
+          "id": "ride-14",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 5.974541844462441,
+            "pdfPoints": 22.56202065356526
+          },
+          "smooth": {
+            "equivalentM": 6.956735253190608,
+            "pdfPoints": 22.662867467000456
+          }
+        },
+        {
+          "id": "ride-23",
+          "outsideRemainingSupportM": 1.653319,
+          "legacy": {
+            "equivalentM": 24.18799707494617,
+            "pdfPoints": 87.85831430871497
+          },
+          "smooth": {
+            "equivalentM": 20.328913932237914,
+            "pdfPoints": 79.91048800948833
+          }
+        },
+        {
+          "id": "ride-22",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 13.338450345418662,
+            "pdfPoints": 40.97664402838926
+          },
+          "smooth": {
+            "equivalentM": 7.072574068121169,
+            "pdfPoints": 21.92660795164136
+          }
+        },
+        {
+          "id": "ride-21",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 24.357330722214844,
+            "pdfPoints": 75.42514552623487
+          },
+          "smooth": {
+            "equivalentM": 22.79177000538222,
+            "pdfPoints": 70.67367161768995
+          }
+        },
+        {
+          "id": "ride-20",
+          "outsideRemainingSupportM": 0.480949,
+          "legacy": {
+            "equivalentM": 13.616296888332592,
+            "pdfPoints": 52.423019678061635
+          },
+          "smooth": {
+            "equivalentM": 11.960832929639773,
+            "pdfPoints": 47.51869565476162
+          }
+        },
+        {
+          "id": "ride-19",
+          "outsideRemainingSupportM": 12.632362,
+          "legacy": {
+            "equivalentM": 25.723816893445182,
+            "pdfPoints": 92.78134554588031
+          },
+          "smooth": {
+            "equivalentM": 21.676523165350464,
+            "pdfPoints": 74.10292783269144
+          }
+        },
+        {
+          "id": "ride-17",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 13.170373970689282,
+            "pdfPoints": 43.48777915242585
+          },
+          "smooth": {
+            "equivalentM": 7.602612891160097,
+            "pdfPoints": 24.655628291802888
+          }
+        },
+        {
+          "id": "ride-18",
+          "outsideRemainingSupportM": 11.200256,
+          "legacy": {
+            "equivalentM": 12.053469950697515,
+            "pdfPoints": 45.76839818204764
+          },
+          "smooth": {
+            "equivalentM": 19.401429955440772,
+            "pdfPoints": 62.91374613155949
+          }
+        },
+        {
+          "id": "ride-16",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 30.86707776919388,
+            "pdfPoints": 100.35234488857961
+          },
+          "smooth": {
+            "equivalentM": 28.504097485365715,
+            "pdfPoints": 93.95169839012436
+          }
+        },
+        {
+          "id": "ride-12",
+          "outsideRemainingSupportM": 13.420682,
+          "legacy": {
+            "equivalentM": 16.106308029100184,
+            "pdfPoints": 58.21152324226146
+          },
+          "smooth": {
+            "equivalentM": 4.088980806468506,
+            "pdfPoints": 16.58787808696112
+          }
+        },
+        {
+          "id": "ride-10",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 3.261242464531046,
+            "pdfPoints": 10.978926452090906
+          },
+          "smooth": {
+            "equivalentM": 6.164336731174716,
+            "pdfPoints": 21.49441789285191
+          }
+        },
+        {
+          "id": "ride-11",
+          "outsideRemainingSupportM": 7.244427,
+          "legacy": {
+            "equivalentM": 16.974615403446602,
+            "pdfPoints": 59.59255308344782
+          },
+          "smooth": {
+            "equivalentM": 18.05392617127758,
+            "pdfPoints": 62.997539752925114
+          }
+        }
+      ]
+    },
+    "2F": {
+      "anchors": 1,
+      "automaticProjection": false,
+      "reason": "insufficient-controls",
+      "leaveOneOut": {
+        "legacy": null,
+        "smooth": null
+      },
+      "spatialBlockHoldout": {
+        "legacy": null,
+        "smooth": null
+      },
+      "grid": null,
+      "heldOut": []
+    },
+    "3F": {
+      "anchors": 0,
+      "automaticProjection": false,
+      "reason": "insufficient-controls",
+      "leaveOneOut": {
+        "legacy": null,
+        "smooth": null
+      },
+      "spatialBlockHoldout": {
+        "legacy": null,
+        "smooth": null
+      },
+      "grid": null,
+      "heldOut": []
+    },
+    "4F": {
+      "anchors": 3,
+      "automaticProjection": false,
+      "reason": "nearly-collinear-controls",
+      "leaveOneOut": {
+        "legacy": null,
+        "smooth": null
+      },
+      "spatialBlockHoldout": {
+        "legacy": null,
+        "smooth": null
+      },
+      "grid": null,
+      "heldOut": []
+    },
+    "MAGIC": {
+      "anchors": 5,
+      "automaticProjection": true,
+      "reason": "supported",
+      "leaveOneOut": {
+        "legacy": {
+          "count": 5,
+          "rmsEquivalentM": 31.29742,
+          "medianEquivalentM": 31.130737,
+          "maxEquivalentM": 44.159466,
+          "rmsPDFPoints": 84.77603
+        },
+        "smooth": {
+          "count": 5,
+          "rmsEquivalentM": 29.482805,
+          "medianEquivalentM": 29.035029,
+          "maxEquivalentM": 43.264861,
+          "rmsPDFPoints": 81.453903
+        }
+      },
+      "spatialBlockHoldout": {
+        "legacy": {
+          "count": 4,
+          "rmsEquivalentM": 29.288716,
+          "medianEquivalentM": 24.856063,
+          "maxEquivalentM": 42.031773,
+          "rmsPDFPoints": 90.383553
+        },
+        "smooth": {
+          "count": 4,
+          "rmsEquivalentM": 29.288716,
+          "medianEquivalentM": 24.856063,
+          "maxEquivalentM": 42.031773,
+          "rmsPDFPoints": 90.383553
+        }
+      },
+      "grid": {
+        "spacingM": 5,
+        "supportMarginM": 50,
+        "samples": 1205,
+        "rejected": 0,
+        "reversed": 0,
+        "maxCondition": 2.544349,
+        "maxDerivativeDifference": 0.000027
+      },
+      "heldOut": [
+        {
+          "id": "ride-36",
+          "outsideRemainingSupportM": 19.148683,
+          "legacy": {
+            "equivalentM": 31.130737469773603,
+            "pdfPoints": 42.75182016526724
+          },
+          "smooth": {
+            "equivalentM": 29.035029456994152,
+            "pdfPoints": 40.07020866232769
+          }
+        },
+        {
+          "id": "ride-33",
+          "outsideRemainingSupportM": 70.129556,
+          "legacy": {
+            "equivalentM": 44.15946569350675,
+            "pdfPoints": 164.7717547423167
+          },
+          "smooth": {
+            "equivalentM": 43.26486145351109,
+            "pdfPoints": 160.25723457735143
+          }
+        },
+        {
+          "id": "ride-34",
+          "outsideRemainingSupportM": 52.204705,
+          "legacy": {
+            "equivalentM": 26.270419116269352,
+            "pdfPoints": 58.44378083481059
+          },
+          "smooth": {
+            "equivalentM": 22.42096351057627,
+            "pdfPoints": 51.38199050821591
+          }
+        },
+        {
+          "id": "ride-35",
+          "outsideRemainingSupportM": 0,
+          "legacy": {
+            "equivalentM": 9.647552991901215,
+            "pdfPoints": 18.30838789900587
+          },
+          "smooth": {
+            "equivalentM": 11.028316321866388,
+            "pdfPoints": 20.051453604143017
+          }
+        },
+        {
+          "id": "ride-38",
+          "outsideRemainingSupportM": 44.613185,
+          "legacy": {
+            "equivalentM": 34.572404013677186,
+            "pdfPoints": 56.626443497388124
+          },
+          "smooth": {
+            "equivalentM": 31.732859466172275,
+            "pdfPoints": 53.324654146634394
+          }
+        }
+      ]
+    }
+  },
+  "evaluatedAt": "2026-11-05",
+  "baselineCommit": "96197c759dda86fec0753b5a043a407eb42d4b11"
+}
