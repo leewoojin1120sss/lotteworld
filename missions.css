@@ -72,3 +72,7 @@
  .mobile-bottom-nav button{min-width:0;width:100%;font-size:11px;padding:4px 0;letter-spacing:-.3px;gap:4px}
 }
 @media(max-width:599px){.mission-grid{grid-template-columns:minmax(0,1fr)}}
+
+.mission-group-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.mission-group-heading h2{margin:0}
+.mission-group-heading .btn{font-size:14px;min-height:44px;padding:10px 14px}

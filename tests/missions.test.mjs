@@ -5,7 +5,7 @@ import {COMMON_MISSIONS,OPTIONAL_MISSIONS,drawOptionalMissions,boardMissions,exp
 const seeded=seed=>()=>{seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;};
 test('mission board always has four fixed and four distinct optional missions',()=>{
  assert.deepEqual(COMMON_MISSIONS.map(m=>m.title),['민경서 선생님 만나 사진 찍기','어트랙션 탑승하기','점심 식사하기','간식 또는 기념품 구매하기']);
- assert.equal(OPTIONAL_MISSIONS.length,17);
+ assert.equal(OPTIONAL_MISSIONS.length,25);
  for(let seed=0;seed<200;seed++){
   const ids=drawOptionalMissions(seeded(seed));assert.equal(new Set(ids).size,4);
   const board=boardMissions({optionalIds:ids});assert.equal(board.length,8);assert.deepEqual(board.slice(0,4),COMMON_MISSIONS);
@@ -15,10 +15,21 @@ test('mission board always has four fixed and four distinct optional missions',(
 test('teacher mission has four times the final inclusion probability of each other mission',()=>{
  const rng=seeded(32847),counts=Object.fromEntries(OPTIONAL_MISSIONS.map(m=>[m.id,0])),trials=100000;
  for(let i=0;i<trials;i++)for(const id of drawOptionalMissions(rng))counts[id]++;
- assert.ok(Math.abs(counts['optional-1']/trials-.8)<.006);
- for(const m of OPTIONAL_MISSIONS.slice(1))assert.ok(Math.abs(counts[m.id]/trials-.2)<.006,`${m.id}: ${counts[m.id]/trials}`);
- assert.ok(drawOptionalMissions(()=>.79).includes('optional-1'));
- assert.ok(!drawOptionalMissions(()=>.8).includes('optional-1'));
+ assert.ok(Math.abs(counts['optional-1']/trials-4/7)<.006);
+ for(const m of OPTIONAL_MISSIONS.slice(1))assert.ok(Math.abs(counts[m.id]/trials-1/7)<.006,`${m.id}: ${counts[m.id]/trials}`);
+ assert.ok(drawOptionalMissions(()=>.57).includes('optional-1'));
+ assert.ok(!drawOptionalMissions(()=>4/7).includes('optional-1'));
+});
+test('rerolls replace all four old options, include new missions and terminate even with a constant RNG',()=>{
+ const previous=['optional-1','optional-2','optional-3','optional-4'];
+ const seen=new Set();
+ for(let seed=1;seed<1000;seed++){
+  const next=drawOptionalMissions(seeded(seed),previous);
+  assert.equal(new Set(next).size,4);assert.ok(next.every(id=>!previous.includes(id)));
+  next.forEach(id=>seen.add(id));
+ }
+ for(let n=18;n<=25;n++)assert.ok(seen.has(`optional-${n}`));
+ assert.equal(drawOptionalMissions(()=>0,previous).length,4);
 });
 test('saved selections preserve ordering and reject damaged data instead of rerolling',()=>{
  const optionalIds=['optional-17','optional-2','optional-9','optional-6'];

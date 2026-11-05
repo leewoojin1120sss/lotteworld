@@ -1,0 +1,38 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Mission storage browser checks</title>
+<style>body{font:16px system-ui;padding:24px;line-height:1.7}button{font:inherit;padding:12px}pre{white-space:pre-wrap}</style>
+<h1>미션 저장 검증</h1>
+<button id="run">브라우저 저장 검증 실행</button>
+<pre id="result" role="status">별도 테스트 데이터베이스에서 실행합니다.</pre>
+<script type="module">
+import {MISSION_VERSION,loadMissionBoard,readMissionSnapshot,writeMissionPhoto,rerollMissionBoard} from '../missions.js';
+const out=document.querySelector('#result'),button=document.querySelector('#run');
+const assert=(value,message)=>{if(!value)throw Error(message);out.textContent+='PASS · '+message+'\n';};
+button.onclick=async()=>{
+ button.disabled=true;out.textContent='';let db;
+ const name='yaho-missions-qa-'+Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(16)).join('-');
+ try{
+  db=await new Promise((resolve,reject)=>{const q=indexedDB.open(name,1);q.onupgradeneeded=()=>{q.result.createObjectStore('state',{keyPath:'id'});q.result.createObjectStore('photos',{keyPath:'id'});};q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error);});
+  await new Promise((resolve,reject)=>{const tx=db.transaction(['state','photos'],'readwrite');tx.objectStore('state').put({id:'board',version:1,optionalIds:['optional-1','optional-2','optional-3','optional-4']});for(const id of ['common-1','optional-1'])tx.objectStore('photos').put({id,original:new Blob(['old photo'])});tx.oncomplete=resolve;tx.onabort=()=>reject(tx.error);});
+  const [a,b]=await Promise.all([loadMissionBoard(db),loadMissionBoard(db)]);
+  assert(a.version===MISSION_VERSION&&a.revision===b.revision,'기존 기록 초기화는 동시에 열어도 한 번만 실행');
+  assert((await readMissionSnapshot(db)).photos.length===0,'이전 공통·선택 사진 초기화');
+  const stable=await loadMissionBoard(db);
+  assert(stable.revision===a.revision&&JSON.stringify(stable.optionalIds)===JSON.stringify(a.optionalIds),'새 기록은 다시 열어도 유지');
+  await writeMissionPhoto(db,{id:'common-1',original:new Blob(['common photo'])},a.revision);
+  await writeMissionPhoto(db,{id:a.optionalIds[0],original:new Blob(['optional photo'])},a.revision);
+  const next=await rerollMissionBoard(db,a.revision),snapshot=await readMissionSnapshot(db);
+  assert(next.optionalIds.length===4&&next.optionalIds.every(id=>!a.optionalIds.includes(id)),'리롤은 직전 네 미션과 겹치지 않음');
+  assert(snapshot.photos.length===1&&snapshot.photos[0].id==='common-1'&&await snapshot.photos[0].original.text()==='common photo','리롤 시 공통 사진만 원본 그대로 보존');
+  let rejected=false;try{await writeMissionPhoto(db,{id:a.optionalIds[0],original:new Blob(['stale photo'])},a.revision);}catch{rejected=true;}
+  assert(rejected&&(await readMissionSnapshot(db)).photos.length===1,'다른 탭의 오래된 사진 저장은 거부');
+  const results=await Promise.allSettled([rerollMissionBoard(db,next.revision),rerollMissionBoard(db,next.revision)]);
+  assert(results.filter(r=>r.status==='fulfilled').length===1&&results.filter(r=>r.status==='rejected').length===1,'동시 리롤은 한 번만 적용');
+  const final=await readMissionSnapshot(db);
+  assert(final.photos.length===1&&final.photos[0].id==='common-1','거부된 작업은 공통 기록을 훼손하지 않음');
+  out.textContent+='완료 · 모든 브라우저 저장 검증 통과';
+ }catch(e){out.textContent+='FAIL · '+e.message;}
+ finally{db?.close();indexedDB.deleteDatabase(name);button.disabled=false;}
+};
+</script>
