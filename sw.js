@@ -13,7 +13,11 @@ self.addEventListener('activate',event=>event.waitUntil((async()=>{
  // Later releases preserve the marker and never repeat this forced refresh.
  if(!seen){
   await markers.put(marker,new Response('done'));
-  if(previous){const windows=await self.clients.matchAll({type:'window'});await Promise.all(windows.filter(c=>c.url.startsWith(self.registration.scope)).map(c=>c.navigate(c.url).catch(()=>{})));}
+  if(previous){
+   const windows=await self.clients.matchAll({type:'window'});
+   // Navigation fetches wait for activation; awaiting them here would deadlock.
+   for(const client of windows.filter(c=>c.url.startsWith(self.registration.scope)))client.navigate(client.url).catch(()=>{});
+  }
  }
 })()));
 self.addEventListener('fetch',event=>{

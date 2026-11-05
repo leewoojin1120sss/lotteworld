@@ -15,7 +15,7 @@ test('new offline versions revalidate core requests rather than copying stale HT
 test('mission reset release refreshes existing in-scope pages once and preserves the release marker',async()=>{
  const handlers={},scope='https://example.test/lotteworld/',stores=new Map([['yaho-old',new Map()],['yaho-v1.0.0',new Map()]]),navigated=[];
  const caches={keys:async()=>[...stores.keys()],delete:async key=>stores.delete(key),open:async key=>{if(!stores.has(key))stores.set(key,new Map());const s=stores.get(key);return {match:async url=>s.get(url),put:async(url,r)=>s.set(url,r)};}};
- const self={registration:{scope},addEventListener:(name,fn)=>handlers[name]=fn,clients:{claim:async()=>{},matchAll:async()=>[scope,scope+'?mission=1','https://example.test/other/'].map(url=>({url,navigate:async u=>navigated.push(u)}))}};
+ const self={registration:{scope},addEventListener:(name,fn)=>handlers[name]=fn,clients:{claim:async()=>{},matchAll:async()=>[scope,scope+'?mission=1','https://example.test/other/'].map(url=>({url,navigate:u=>{navigated.push(u);return new Promise(()=>{});}}))}};
  vm.runInNewContext(fs.readFileSync(new URL('../sw.js',import.meta.url),'utf8'),{self,caches,Request,Response,URL});
  async function activate(){let done;handlers.activate({waitUntil:p=>done=p});await done;}
  await activate();assert.deepEqual(navigated,[scope,scope+'?mission=1']);
