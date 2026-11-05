@@ -81,22 +81,6 @@ export async function createMissionCollage(missions,photos){const completed=miss
  for(let i=0;i<completed.length;i++){const m=completed[i],p=photos.get(m.id),x=l.margin+(i%l.columns)*(l.cardWidth+l.gap),y=300+Math.floor(i/l.columns)*(l.cardHeight+l.gap);ctx.fillStyle='white';ctx.fillRect(x,y,l.cardWidth,l.cardHeight);ctx.fillStyle='#7250a5';ctx.font='bold 30px sans-serif';ctx.fillText(`${m.id.startsWith('common')?'공통':'추가'} 미션 · 완료`,x+32,y+55);ctx.fillStyle='#2c203a';ctx.font='bold 43px sans-serif';wrap(ctx,m.title,x+32,y+120,l.cardWidth-64,55);const d=await decode(p.original);try{const box={x:x+24,y:y+230,w:l.cardWidth-48,h:l.photoHeight},s=Math.min(box.w/d.width,box.h/d.height);ctx.drawImage(d.image,box.x+(box.w-d.width*s)/2,box.y+(box.h-d.height*s)/2,d.width*s,d.height*s);}finally{d.close();}}
  ctx.fillStyle='#7e6b92';ctx.font='28px sans-serif';ctx.fillText('함께 남긴 오늘의 모험',80,c.height-45);const blob=await canvasBlob(c);c.width=c.height=1;return blob;}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
-// Apps Script returns a cross-origin response. A random receipt ID lets us
-// check the result without reading an opaque POST response or exposing photos.
-export function getSubmissionReceipt(id,{timeoutMs=30000,intervalMs=2000}={}){
- return new Promise(resolve=>{
-  const callback='__missionReceipt_'+id,started=Date.now();let script,retryTimer,deadlineTimer,done=false;
-  function finish(value){if(done)return;done=true;clearTimeout(retryTimer);clearTimeout(deadlineTimer);script?.remove();delete window[callback];resolve(value);}
-  window[callback]=value=>{script?.remove();if(value?.ok===true||value?.ok===false)finish(value);else retry();};
-  function retry(){if(done)return;if(Date.now()-started>=timeoutMs){finish({pending:true});return;}retryTimer=setTimeout(poll,intervalMs);}
-  function poll(){
-   if(done)return;script?.remove();script=document.createElement('script');
-   const url=new URL(SUBMISSION_URL);url.searchParams.set('id',id);url.searchParams.set('callback',callback);url.searchParams.set('_',String(Date.now()));
-   script.src=url.href;script.onerror=retry;document.head.append(script);
-  }
-  deadlineTimer=setTimeout(()=>finish({pending:true}),timeoutMs);poll();
- });
-}
 export function mountMissions({onOpen=()=>{},onClose=()=>{}}={}){
  const host=document.querySelector('#missionsView');let db,board,missions=[],photos=new Map(),busy=false,ready=false,initializing=false,pendingSync=false,exportFile=null;const urls=[];
  const say=text=>{host.querySelector('[data-mission-status]').textContent=text;};
@@ -132,11 +116,7 @@ export function mountMissions({onOpen=()=>{},onClose=()=>{}}={}){
    const image=String(dataUrl).split(',')[1];if(!image||image.length>16000000)throw Error('이미지가 너무 커요. 다운로드한 뒤 관리자에게 전달해 주세요.');
    const requestId=Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join('');
    await fetch(SUBMISSION_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify({requestId,name,final:finalValue==='true',image})});
-   status.textContent='저장 결과를 확인하고 있어요…';
-   const result=await getSubmissionReceipt(requestId);
-   if(result.ok===true)status.textContent='드라이브에 저장했어요: '+result.filename;
-   else if(result.ok===false)status.textContent='저장 실패: '+(result.error||'서버 설정을 확인해 주세요.');
-   else status.textContent='저장 결과를 확인하지 못했어요. 다시 제출하기 전에 관리자 폴더와 Apps Script 배포 설정을 확인해 주세요.';
+   status.textContent='전송 요청을 보냈어요.';
   }catch(err){status.textContent=err.message||'전송하지 못했어요. 연결을 확인하고 다시 시도해 주세요.';}
   finally{button.disabled=false;finish();}
  });

@@ -21,13 +21,10 @@ function doPost(e) {
   } catch(err) {
     result = {ok:false,error:String(err.message||err)};
   }
-  if (/^[a-f0-9]{32}$/.test(requestId)) {
-    try { CacheService.getScriptCache().put('receipt:'+requestId,JSON.stringify(result),600); } catch (_) {}
-  }
   return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
 }
 
-// A random submission ID lets the site retrieve only the outcome, not photos.
+// Optional check for the configured folder.
 function doGet(e) {
   const p = e.parameter || {};
   if (p.check === '1') {
@@ -40,14 +37,5 @@ function doGet(e) {
       return ContentService.createTextOutput('저장 폴더 설정 확인 필요: '+String(err.message || err));
     }
   }
-  const callback = String(p.callback || ''), id = String(p.id || '');
-  if (!/^__missionReceipt_[a-f0-9]{32}$/.test(callback) || !/^[a-f0-9]{32}$/.test(id)) {
-    return ContentService.createTextOutput('Invalid request');
-  }
-  let result;
-  try {
-    const saved = CacheService.getScriptCache().get('receipt:'+id);
-    result = saved ? JSON.parse(saved) : {pending:true};
-  } catch (_) { result = {pending:true}; }
-  return ContentService.createTextOutput(callback+'('+JSON.stringify(result)+');').setMimeType(ContentService.MimeType.JAVASCRIPT);
+  return ContentService.createTextOutput('Invalid request');
 }
