@@ -1,0 +1,549 @@
+{
+  "checkedAt": "2026-11-05T15:52:39.903Z",
+  "endpoint": "https://api.openstreetmap.org/api/0.6/nodes.json?nodes=2676374361,4681289893,6002107497,11266774139,11266774140,11266774141,11266774142,11266774143,13686755224,13686755226,13686823113,13686823116,13686823117,13686823130,13686823133,13686823135,13686823136,13686823137,13686823138,13686823139,13686823141,13686823142,13686823144,13686823146,13686823148,13686823149,13686830798,13686835406,11266772151,13686835402,4681328890,13686835405",
+  "checked": 28,
+  "matched": 28,
+  "rows": [
+    {
+      "id": "ride-36",
+      "osmId": 2676374361,
+      "sourceUrl": "https://www.openstreetmap.org/node/2676374361",
+      "match": true,
+      "expected": {
+        "lat": 37.5087165,
+        "lng": 127.1005386,
+        "version": 8
+      },
+      "current": {
+        "lat": 37.5087165,
+        "lng": 127.1005386,
+        "version": 8,
+        "updatedAt": "2026-08-29T04:59:50Z",
+        "name": "자이로드롭"
+      }
+    },
+    {
+      "id": "ride-33",
+      "osmId": 4681289893,
+      "sourceUrl": "https://www.openstreetmap.org/node/4681289893",
+      "match": true,
+      "expected": {
+        "lat": 37.5087777,
+        "lng": 127.0992308,
+        "version": 5
+      },
+      "current": {
+        "lat": 37.5087777,
+        "lng": 127.0992308,
+        "version": 5,
+        "updatedAt": "2026-03-28T17:22:15Z",
+        "name": "아트란티스"
+      }
+    },
+    {
+      "id": "ride-34",
+      "osmId": 6002107497,
+      "sourceUrl": "https://www.openstreetmap.org/node/6002107497",
+      "match": true,
+      "expected": {
+        "lat": 37.5082757,
+        "lng": 127.0997312,
+        "version": 2
+      },
+      "current": {
+        "lat": 37.5082757,
+        "lng": 127.0997312,
+        "version": 2,
+        "updatedAt": "2023-10-16T12:41:38Z",
+        "name": "자이로스윙"
+      }
+    },
+    {
+      "id": "ride-13",
+      "osmId": 11266774139,
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774139",
+      "match": true,
+      "expected": {
+        "lat": 37.5107888,
+        "lng": 127.0970498,
+        "version": 2
+      },
+      "current": {
+        "lat": 37.5107888,
+        "lng": 127.0970498,
+        "version": 2,
+        "updatedAt": "2026-03-28T17:03:37Z",
+        "name": "회전목마",
+        "level": "1"
+      }
+    },
+    {
+      "id": "ride-31",
+      "osmId": 11266774140,
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774140",
+      "match": true,
+      "expected": {
+        "lat": 37.5104969,
+        "lng": 127.0978101,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5104969,
+        "lng": 127.0978101,
+        "version": 1,
+        "updatedAt": "2023-10-16T12:41:38Z",
+        "name": "파라오의 분노",
+        "layer": "4"
+      }
+    },
+    {
+      "id": "ride-32",
+      "osmId": 11266774141,
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774141",
+      "match": true,
+      "expected": {
+        "lat": 37.5105439,
+        "lng": 127.0984757,
+        "version": 2
+      },
+      "current": {
+        "lat": 37.5105439,
+        "lng": 127.0984757,
+        "version": 2,
+        "updatedAt": "2026-09-12T04:22:48Z",
+        "name": "어크로스다크",
+        "layer": "4"
+      }
+    },
+    {
+      "id": "ride-30",
+      "osmId": 11266774142,
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774142",
+      "match": true,
+      "expected": {
+        "lat": 37.5106625,
+        "lng": 127.0968935,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5106625,
+        "lng": 127.0968935,
+        "version": 1,
+        "updatedAt": "2023-10-16T12:41:38Z",
+        "name": "풍선기구",
+        "layer": "4"
+      }
+    },
+    {
+      "id": "ride-6",
+      "osmId": 11266774143,
+      "sourceUrl": "https://www.openstreetmap.org/node/11266774143",
+      "match": true,
+      "expected": {
+        "lat": 37.5107525,
+        "lng": 127.099186,
+        "version": 2
+      },
+      "current": {
+        "lat": 37.5107525,
+        "lng": 127.099186,
+        "version": 2,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "신밧드의 모험",
+        "level": "1"
+      }
+    },
+    {
+      "id": "ride-26",
+      "osmId": 13686755224,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686755224",
+      "match": true,
+      "expected": {
+        "lat": 37.5110227,
+        "lng": 127.0970227,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5110227,
+        "lng": 127.0970227,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:03:37Z",
+        "name": "후렌치레볼루션"
+      }
+    },
+    {
+      "id": "ride-15",
+      "osmId": 13686755226,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686755226",
+      "match": true,
+      "expected": {
+        "lat": 37.51063,
+        "lng": 127.0973637,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.51063,
+        "lng": 127.0973637,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:03:37Z",
+        "name": "키즈토리아"
+      }
+    },
+    {
+      "id": "ride-9",
+      "osmId": 13686823113,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823113",
+      "match": true,
+      "expected": {
+        "lat": 37.5116254,
+        "lng": 127.0989503,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5116254,
+        "lng": 127.0989503,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "회전바구니"
+      }
+    },
+    {
+      "id": "ride-7",
+      "osmId": 13686823116,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823116",
+      "match": true,
+      "expected": {
+        "lat": 37.5109077,
+        "lng": 127.0992936,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5109077,
+        "lng": 127.0992936,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "스페인해적선"
+      }
+    },
+    {
+      "id": "ride-8",
+      "osmId": 13686823117,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823117",
+      "match": true,
+      "expected": {
+        "lat": 37.5110283,
+        "lng": 127.099426,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5110283,
+        "lng": 127.099426,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "후룸라이드"
+      }
+    },
+    {
+      "id": "ride-25",
+      "osmId": 13686823130,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823130",
+      "match": true,
+      "expected": {
+        "lat": 37.5108382,
+        "lng": 127.0979651,
+        "version": 3
+      },
+      "current": {
+        "lat": 37.5108382,
+        "lng": 127.0979651,
+        "version": 3,
+        "updatedAt": "2026-08-29T05:00:02Z",
+        "name": "카트라이더레이싱월드"
+      }
+    },
+    {
+      "id": "ride-14",
+      "osmId": 13686823133,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823133",
+      "match": true,
+      "expected": {
+        "lat": 37.5107191,
+        "lng": 127.0976271,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5107191,
+        "lng": 127.0976271,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "3D황야의무법자"
+      }
+    },
+    {
+      "id": "ride-23",
+      "osmId": 13686823135,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823135",
+      "match": true,
+      "expected": {
+        "lat": 37.5103616,
+        "lng": 127.0974662,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5103616,
+        "lng": 127.0974662,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "매직붕붕카"
+      }
+    },
+    {
+      "id": "ride-22",
+      "osmId": 13686823136,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823136",
+      "match": true,
+      "expected": {
+        "lat": 37.5104694,
+        "lng": 127.097434,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5104694,
+        "lng": 127.097434,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "스윙팡팡"
+      }
+    },
+    {
+      "id": "ride-21",
+      "osmId": 13686823137,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823137",
+      "match": true,
+      "expected": {
+        "lat": 37.5104723,
+        "lng": 127.097307,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5104723,
+        "lng": 127.097307,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "유레카"
+      }
+    },
+    {
+      "id": "ride-20",
+      "osmId": 13686823138,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823138",
+      "match": true,
+      "expected": {
+        "lat": 37.5103446,
+        "lng": 127.0973177,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5103446,
+        "lng": 127.0973177,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "언더씨킹덤"
+      }
+    },
+    {
+      "id": "ride-19",
+      "osmId": 13686823139,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823139",
+      "match": true,
+      "expected": {
+        "lat": 37.510329,
+        "lng": 127.0970835,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.510329,
+        "lng": 127.0970835,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "점핑피쉬"
+      }
+    },
+    {
+      "id": "ride-17",
+      "osmId": 13686823141,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823141",
+      "match": true,
+      "expected": {
+        "lat": 37.5105517,
+        "lng": 127.0970442,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5105517,
+        "lng": 127.0970442,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "어린이범퍼카"
+      }
+    },
+    {
+      "id": "ride-18",
+      "osmId": 13686823142,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823142",
+      "match": true,
+      "expected": {
+        "lat": 37.5105489,
+        "lng": 127.0969172,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5105489,
+        "lng": 127.0969172,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "햇님달님"
+      }
+    },
+    {
+      "id": "ride-16",
+      "osmId": 13686823144,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823144",
+      "match": true,
+      "expected": {
+        "lat": 37.5106496,
+        "lng": 127.0971354,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5106496,
+        "lng": 127.0971354,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "드래곤와일드슈팅"
+      }
+    },
+    {
+      "id": "ride-12",
+      "osmId": 13686823146,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823146",
+      "match": true,
+      "expected": {
+        "lat": 37.5109488,
+        "lng": 127.0970138,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5109488,
+        "lng": 127.0970138,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "플라이벤처"
+      }
+    },
+    {
+      "id": "ride-10",
+      "osmId": 13686823148,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823148",
+      "match": true,
+      "expected": {
+        "lat": 37.5113417,
+        "lng": 127.0978578,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5113417,
+        "lng": 127.0978578,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "로티트레인"
+      }
+    },
+    {
+      "id": "ride-11",
+      "osmId": 13686823149,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686823149",
+      "match": true,
+      "expected": {
+        "lat": 37.5112524,
+        "lng": 127.0975037,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5112524,
+        "lng": 127.0975037,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:19:31Z",
+        "name": "배틀그라운드 월드 에이전트"
+      }
+    },
+    {
+      "id": "ride-35",
+      "osmId": 13686830798,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686830798",
+      "match": true,
+      "expected": {
+        "lat": 37.5087143,
+        "lng": 127.1002517,
+        "version": 3
+      },
+      "current": {
+        "lat": 37.5087143,
+        "lng": 127.1002517,
+        "version": 3,
+        "updatedAt": "2026-08-29T05:00:02Z",
+        "name": "쁘띠빵빵"
+      }
+    },
+    {
+      "id": "ride-38",
+      "osmId": 13686835406,
+      "sourceUrl": "https://www.openstreetmap.org/node/13686835406",
+      "match": true,
+      "expected": {
+        "lat": 37.5091043,
+        "lng": 127.1006683,
+        "version": 1
+      },
+      "current": {
+        "lat": 37.5091043,
+        "lng": 127.1006683,
+        "version": 1,
+        "updatedAt": "2026-03-28T17:26:56Z",
+        "name": "혜성특급"
+      }
+    }
+  ],
+  "excludedCandidates": [
+    {
+      "id": 4681328890,
+      "lat": 37.5085038,
+      "lng": 127.0998894,
+      "version": 5,
+      "name": "자이로스핀"
+    },
+    {
+      "id": 11266772151,
+      "lat": 37.5089055,
+      "lng": 127.100749,
+      "version": 3,
+      "name": "환타지 드림"
+    },
+    {
+      "id": 13686835402,
+      "lat": 37.5087795,
+      "lng": 127.1005986,
+      "version": 3,
+      "name": "환타지드림"
+    },
+    {
+      "id": 13686835405,
+      "lat": 37.5092632,
+      "lng": 127.1006665,
+      "version": 5,
+      "name": "자이로스핀"
+    }
+  ],
+  "workflowRun": "https://github.com/leewoojin1120sss/lotteworld/actions/runs/42059387807",
+  "notice": "Read-only OSM source comparison. Matching a community POI does not establish a surveyed entrance or real-world GPS accuracy."
+}

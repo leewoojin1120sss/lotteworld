@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "sourceVerifiedAt": "2026-11-02",
+  "sourceVerifiedAt": "2026-11-05",
   "method": "Compare old inverse-distance weights and smooth 40m inverse-quartic weights using the same training-only global affine inverse for both residuals. Leave one control out; additionally hold out contiguous east/north groups.",
   "limitation": "Model/source disagreement, not measured GPS accuracy. Kernel selection uses these controls, so this is internal validation rather than a new independent field test. A three-control exact fit has no independent validation. Coordinates are not relocated to fit the model.",
   "floors": {

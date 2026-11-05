@@ -6,7 +6,7 @@
     "license": "ODbL-1.0",
     "observedAt": "2026-10-27T02:37:05Z",
     "notice": "Community facility POIs verified against current OSM nodes; not surveyed entrances. PDF symbol centers audited separately.",
-    "verifiedAt": "2026-11-02"
+    "verifiedAt": "2026-11-05"
   },
   "anchors": [
     {
@@ -22,7 +22,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/2676374361",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 8,
       "identityStatus": "name-or-documented-alias"
     },
@@ -39,7 +39,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/4681289893",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 5,
       "identityStatus": "name-or-documented-alias"
     },
@@ -56,7 +56,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/6002107497",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 2,
       "identityStatus": "name-or-documented-alias"
     },
@@ -73,7 +73,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/11266774139",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 2,
       "identityStatus": "name-or-documented-alias"
     },
@@ -90,7 +90,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/11266774140",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -107,7 +107,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/11266774141",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 2,
       "identityStatus": "name-or-documented-alias"
     },
@@ -124,7 +124,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/11266774142",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "contextual"
     },
@@ -141,7 +141,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/11266774143",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 2,
       "identityStatus": "name-or-documented-alias"
     },
@@ -158,7 +158,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686755224",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -175,7 +175,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686755226",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -192,7 +192,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823113",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -209,7 +209,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823116",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -226,7 +226,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823117",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -243,7 +243,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823130",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 3,
       "identityStatus": "name-or-documented-alias"
     },
@@ -260,7 +260,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823133",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -277,7 +277,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823135",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -294,7 +294,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823136",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -311,7 +311,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823137",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -328,7 +328,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823138",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -345,7 +345,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823139",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -362,7 +362,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823141",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -379,7 +379,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823142",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -396,7 +396,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823144",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -413,7 +413,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823146",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -430,7 +430,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823148",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -447,7 +447,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686823149",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     },
@@ -464,7 +464,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686830798",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 3,
       "identityStatus": "name-or-documented-alias"
     },
@@ -481,7 +481,7 @@
       "sourceUrl": "https://www.openstreetmap.org/node/13686835406",
       "referenceRole": "community-facility-point-to-guide-symbol",
       "geographicSurveyed": false,
-      "verifiedAt": "2026-11-02",
+      "verifiedAt": "2026-11-05",
       "osmVersion": 1,
       "identityStatus": "name-or-documented-alias"
     }
