@@ -7,7 +7,7 @@ await mkdir(path.join(root,'dist'),{recursive:true});
 for(const name of await readdir(path.join(root,'dist')))await rm(path.join(root,'dist',name),{recursive:true,force:true});
 for (const name of ['index.html','app.js','lib.js','geo.js','styles.css','readability.css','sw.js','manifest.webmanifest','assets','data']) await cp(path.join(root,name),path.join(root,'dist',name),{recursive:true});
 const hash=createHash('sha256');
-for(const name of ['index.html','app.js','lib.js','geo.js','styles.css','readability.css','sw.js','data/park.json','data/official-links.json','data/georeference.json','data/walkways.json','data/transfers.json'])hash.update(await readFile(path.join(root,name)));
+for(const name of ['index.html','app.js','lib.js','geo.js','styles.css','readability.css','sw.js','data/park.json','data/official-links.json','data/georeference.json','data/walkways.json'])hash.update(await readFile(path.join(root,name)));
 const sw=await readFile(path.join(root,'sw.js'),'utf8');
 await writeFile(path.join(root,'dist/sw.js'),sw.replace('yaho-v1.0.0',`yaho-${hash.digest('hex').slice(0,12)}`));
 console.log('Built dist/ — no external runtime dependencies.');
