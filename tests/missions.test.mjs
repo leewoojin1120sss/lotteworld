@@ -20,16 +20,14 @@ test('teacher mission has four times the final inclusion probability of each oth
  assert.ok(drawOptionalMissions(()=>.57).includes('optional-1'));
  assert.ok(!drawOptionalMissions(()=>4/7).includes('optional-1'));
 });
-test('rerolls replace all four old options, include new missions and terminate even with a constant RNG',()=>{
- const previous=['optional-1','optional-2','optional-3','optional-4'];
- const seen=new Set();
- for(let seed=1;seed<1000;seed++){
-  const next=drawOptionalMissions(seeded(seed),previous);
-  assert.equal(new Set(next).size,4);assert.ok(next.every(id=>!previous.includes(id)));
-  next.forEach(id=>seen.add(id));
- }
- for(let n=18;n<=25;n++)assert.ok(seen.has(`optional-${n}`));
- assert.equal(drawOptionalMissions(()=>0,previous).length,4);
+test('independent rerolls may repeat any previous mission, including the entire same set',()=>{
+ const first=drawOptionalMissions(seeded(5678));
+ const repeat=drawOptionalMissions(seeded(5678));
+ assert.deepEqual(repeat,first);assert.equal(new Set(repeat).size,4);
+ assert.deepEqual(drawOptionalMissions(()=>0),drawOptionalMissions(()=>0));
+ const seen=new Set();const rng=seeded(9876);
+ for(let n=0;n<1000;n++)drawOptionalMissions(rng).forEach(id=>seen.add(id));
+ for(const mission of OPTIONAL_MISSIONS)assert.ok(seen.has(mission.id));
 });
 test('saved selections preserve ordering and reject damaged data instead of rerolling',()=>{
  const optionalIds=['optional-17','optional-2','optional-9','optional-6'];

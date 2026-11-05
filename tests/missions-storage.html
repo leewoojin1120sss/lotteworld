@@ -22,12 +22,14 @@ button.onclick=async()=>{
   assert(stable.revision===a.revision&&JSON.stringify(stable.optionalIds)===JSON.stringify(a.optionalIds),'새 기록은 다시 열어도 유지');
   await writeMissionPhoto(db,{id:'common-1',original:new Blob(['common photo'])},a.revision);
   await writeMissionPhoto(db,{id:a.optionalIds[0],original:new Blob(['optional photo'])},a.revision);
-  const next=await rerollMissionBoard(db,a.revision),snapshot=await readMissionSnapshot(db);
-  assert(next.optionalIds.length===4&&next.optionalIds.every(id=>!a.optionalIds.includes(id)),'리롤은 직전 네 미션과 겹치지 않음');
+  const next=await rerollMissionBoard(db,a.revision,()=>0),snapshot=await readMissionSnapshot(db);
+  assert(next.optionalIds.length===4&&new Set(next.optionalIds).size===4,'리롤 한 번의 배정에는 중복 없음');
+  const repeat=await rerollMissionBoard(db,next.revision,()=>0);
+  assert(JSON.stringify(repeat.optionalIds)===JSON.stringify(next.optionalIds)&&repeat.revision!==next.revision,'리롤은 직전 네 미션 전체가 다시 나와도 새 배정으로 저장');
   assert(snapshot.photos.length===1&&snapshot.photos[0].id==='common-1'&&await snapshot.photos[0].original.text()==='common photo','리롤 시 공통 사진만 원본 그대로 보존');
   let rejected=false;try{await writeMissionPhoto(db,{id:a.optionalIds[0],original:new Blob(['stale photo'])},a.revision);}catch{rejected=true;}
   assert(rejected&&(await readMissionSnapshot(db)).photos.length===1,'다른 탭의 오래된 사진 저장은 거부');
-  const results=await Promise.allSettled([rerollMissionBoard(db,next.revision),rerollMissionBoard(db,next.revision)]);
+  const results=await Promise.allSettled([rerollMissionBoard(db,repeat.revision),rerollMissionBoard(db,repeat.revision)]);
   assert(results.filter(r=>r.status==='fulfilled').length===1&&results.filter(r=>r.status==='rejected').length===1,'동시 리롤은 한 번만 적용');
   const final=await readMissionSnapshot(db);
   assert(final.photos.length===1&&final.photos[0].id==='common-1','거부된 작업은 공통 기록을 훼손하지 않음');

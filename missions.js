@@ -7,17 +7,16 @@ export const COMMON_MISSIONS=[
  {id:'common-4',title:'간식 또는 기념품 구매하기'}
 ];
 export const OPTIONAL_MISSIONS=[
- ['윤현진 선생님 만나 사진 찍기',''],['회전목마 앞에서 사진 찍기',''],['메이플 아일랜드 방문하기',''],['화장실 방문하기',''],['에비앙 사 마시기',''],['4층에서 아이스링크장 바라보기',''],['오락실에서 게임 한 판 하기',''],['모노레일 또는 풍선비행 타기',''],['다크라이드 1개 타기','신밧드의 모험 · 환타지 드림 · 혜성특급 · 파라오의 분노 · 드래곤 와일드 슈팅 · 콩X고질라:더라이드'],['물 맞기','후룸라이드 탑승 또는 그냥 물 맞기'],['와일드투어 1개 타기','와일드윙 · 와일드밸리 · 와일드정글'],['친구한테 선물 주기',''],['친구와 사진 찍기',''],['자이로 어트랙션 1개 타기','자이로드롭 · 자이로스윙 · 자이로스핀 / 대체: 회전목마 · 회전바구니 · 범퍼카'],['롯데월드타워 사진 찍기',''],['동심으로 돌아가 어트랙션 타기','회전목마 · 범퍼카 · 회전바구니'],['롤러코스터류 1개 타기','후렌치레볼루션 · 아트란티스 · 혜성특급 · 스톤익스프레스 · 후룸라이드 · 신밧드의 모험 · 환타지 드림'],
+ ['윤현진 선생님 만나 사진 찍기',''],['회전목마 앞에서 사진 찍기',''],['메이플 아일랜드 방문하기',''],['화장실 방문하기',''],['에비앙 사 마시기',''],['4층에서 아이스링크장 바라보기',''],['오락실에서 게임 한 판 하기',''],['모노레일 또는 풍선비행 타기',''],['다크라이드 1개 타기','신밧드의 모험 · 환타지 드림 · 혜성특급 · 파라오의 분노 · 드래곤 와일드 슈팅 · 콩X고질라:더라이드'],['물 맞기','후룸라이드 탑승 또는 그냥 물 맞기'],['와일드투어 1개 타기','와일드윙 · 와일드밸리 · 와일드정글'],['친구한테 선물 주기',''],['친구와 사진 찍기',''],['자이로 어트랙션 1개 타기','자이로드롭 · 자이로스윙 · 자이로스핀'],['롯데월드타워 사진 찍기',''],['동심으로 돌아가 어트랙션 타기','회전목마 · 범퍼카 · 회전바구니'],['롤러코스터류 1개 타기','후렌치레볼루션 · 아트란티스 · 혜성특급 · 스톤익스프레스 · 후룸라이드 · 신밧드의 모험 · 환타지 드림'],
  ['롯데월드 캐릭터와 사진 찍기','그림 · 인형탈 모두 가능'],['매직캐슬을 배경으로 사진 찍기',''],['숫자 4가 쓰인 표지판 찾기',''],['음수대에서 물 마시기',''],['머리띠 쓰고 돌아다니기',''],['친구의 어트랙션 탑승 장면 찍어주기',''],['사람이 없는 곳 가보기',''],['벤치에 앉아 잠시 쉬기','']
 ].map(([title,description],i)=>({id:`optional-${i+1}`,title,description}));
 function random(){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]/4294967296;}
 function shuffle(items,rng){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-// Four slots, with 4x final inclusion probability for the teacher when eligible.
-// Excluding the previous four gives a reroll four different missions.
-export function drawOptionalMissions(rng=random,excludedIds=[]){
- const available=OPTIONAL_MISSIONS.filter(m=>!excludedIds.includes(m.id)),teacher=available.find(m=>m.id==='optional-1'),others=available.filter(m=>m.id!=='optional-1');
- if(available.length<4)throw Error('다시 뽑을 미션이 부족해요.');
- const includeTeacher=Boolean(teacher)&&rng()<Math.min(1,16/(others.length+4));
+// Every draw uses the full pool, including missions from previous draws.
+// The teacher has 4x the final inclusion probability of each other mission.
+export function drawOptionalMissions(rng=random){
+ const teacher=OPTIONAL_MISSIONS[0],others=OPTIONAL_MISSIONS.slice(1);
+ const includeTeacher=rng()<16/(others.length+4);
  const chosen=shuffle(others,rng).slice(0,includeTeacher?3:4);
  return shuffle(includeTeacher?[teacher,...chosen]:chosen,rng).map(m=>m.id);
 }
@@ -65,7 +64,7 @@ export function rerollMissionBoard(db,expectedRevision,rng=random){return new Pr
  tx.objectStore('state').get('board').onsuccess=e=>{
   const old=e.target.result;
   if(old?.version!==MISSION_VERSION||old.revision!==expectedRevision){failure=staleBoard();tx.abort();return;}
-  board=newBoard(drawOptionalMissions(rng,old.optionalIds));
+  board=newBoard(drawOptionalMissions(rng));
   tx.objectStore('state').put(board);
   // Common photos stay; optional photos reset atomically with the new selection.
   for(const m of OPTIONAL_MISSIONS)tx.objectStore('photos').delete(m.id);
@@ -98,7 +97,7 @@ export function mountMissions({onOpen=()=>{},onClose=()=>{}}={}){
  host.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b)return;if('missionRetry'in b.dataset){db=null;init();return;}if(!ready||busy)return;const id=b.dataset.missionCamera||b.dataset.missionUpload||b.dataset.missionOriginal||b.dataset.missionRemove;
   if(id&&!missions.some(m=>m.id===id))return;
   if(b.dataset.missionCamera||b.dataset.missionUpload){const input=host.querySelector(b.dataset.missionCamera?'[data-mission-camera-input]':'[data-mission-upload-input]');input.dataset.missionId=id;input.value='';input.click();return;}
-  try{if('missionReroll'in b.dataset){if(missions.some(m=>m.id.startsWith('optional')&&photos.has(m.id))&&!window.confirm('선택 미션 4개를 다시 뽑을까요? 선택 미션의 사진과 완료 기록이 초기화됩니다. 공통 미션 기록은 유지됩니다.'))return;busy=true;say('선택 미션을 다시 뽑고 있어요…');await rerollMissionBoard(db,board.revision);await reload();channel?.postMessage('changed');say('새로운 선택 미션 4개를 뽑았어요.');return;}if(b.dataset.missionOriginal){const p=photos.get(id);if(p)download(p.original,p.name);return;}if(b.dataset.missionRemove){busy=true;await deletePhoto(db,id);await reload();channel?.postMessage('changed');return;}
+  try{if('missionReroll'in b.dataset){if(missions.some(m=>m.id.startsWith('optional')&&photos.has(m.id))&&!window.confirm('선택 미션 4개를 다시 뽑을까요? 선택 미션의 사진과 완료 기록이 초기화됩니다. 공통 미션 기록은 유지됩니다.'))return;busy=true;say('선택 미션을 다시 뽑고 있어요…');await rerollMissionBoard(db,board.revision);await reload();channel?.postMessage('changed');say('선택 미션 4개를 다시 뽑았어요.');return;}if(b.dataset.missionOriginal){const p=photos.get(id);if(p)download(p.original,p.name);return;}if(b.dataset.missionRemove){busy=true;await deletePhoto(db,id);await reload();channel?.postMessage('changed');return;}
    if('missionExport'in b.dataset){busy=true;say('고화질 이미지를 만드는 중이에요…');const blob=await createMissionCollage(missions,photos);exportFile=new File([blob],'롯데월드야호-미션기록.png',{type:'image/png'});render();say('준비 완료 · 다운로드하거나 공유해 주세요.');return;}
    if('missionDownload'in b.dataset&&exportFile){download(exportFile,exportFile.name);return;}
    if('missionShare'in b.dataset&&exportFile){if(navigator.canShare?.({files:[exportFile]})&&navigator.share){await navigator.share({files:[exportFile],title:'롯데월드야호 · 오늘의 미션 기록'});}else{download(exportFile,exportFile.name);say('이 브라우저는 파일 공유를 지원하지 않아 이미지로 다운로드했어요.');}}
