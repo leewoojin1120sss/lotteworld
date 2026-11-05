@@ -1,6 +1,6 @@
 // Read-only, reproducible comparison. Does not contact a GPS sensor or edit data.
 import fs from 'node:fs';
-import {fitAffine,fitSpatial,wellSpread,toLocal,fromLocal,distanceFromSupport} from '../geo.js';
+import {fitAffine,similarityValidation,modelForFloor,toLocal,fromLocal,distanceFromSupport} from '../geo.js';
 const data=JSON.parse(fs.readFileSync(new URL('../data/georeference.json',import.meta.url)));
 const round=n=>Number.isFinite(n)?+n.toFixed(6):null;
 const rms=a=>Math.sqrt(a.reduce((s,v)=>s+v*v,0)/a.length);
@@ -15,8 +15,9 @@ const discrepancy=(model,reference,point)=>{
 };
 const floors={};
 for(const id of ['B1','1F','2F','3F','4F','MAGIC']){
- const anchors=data.anchors.filter(a=>a.floor===id),reference=fitAffine(anchors);
- const automatic=!!reference&&wellSpread(anchors),heldOut=[],spatial=[];
+ const anchors=data.anchors.filter(a=>a.floor===id);
+ const info=anchors.length?modelForFloor(id,data,{...anchors[0],at:Date.now()}):null;
+ const automatic=!!info,heldOut=[],spatial=[];
  if(anchors.length>=4)for(const point of anchors){
   const others=anchors.filter(a=>a!==point),metric=fitAffine(others);
   const row={id:point.id,outsideRemainingSupportM:round(distanceFromSupport(point,others))};
@@ -38,11 +39,12 @@ for(const id of ['B1','1F','2F','3F','4F','MAGIC']){
  const local=anchors.map(toLocal);
  let grid=null;
  if(automatic){
-  const lo=[0,1].map(k=>Math.min(...local.map(p=>p[k]))-50),hi=[0,1].map(k=>Math.max(...local.map(p=>p[k]))+50);
-  grid={spacingM:5,supportMarginM:50,samples:0,rejected:0,reversed:0,maxCondition:0,maxDerivativeDifference:0};
+  const margin=info.supportMarginM??50;
+  const lo=[0,1].map(k=>Math.min(...local.map(p=>p[k]))-margin),hi=[0,1].map(k=>Math.max(...local.map(p=>p[k]))+margin);
+  grid={spacingM:5,supportMarginM:margin,samples:0,rejected:0,reversed:0,maxCondition:0,maxDerivativeDifference:0};
   for(let e=lo[0];e<=hi[0];e+=5)for(let n=lo[1];n<=hi[1];n+=5){
-   const g=fromLocal([e,n]);if(distanceFromSupport(g,anchors)>50)continue;
-   grid.samples++;const m=fitSpatial(anchors,g);
+   const g={...fromLocal([e,n]),at:Date.now()};if(distanceFromSupport(g,anchors)>margin)continue;
+   grid.samples++;const m=modelForFloor(id,data,g)?.model;
    if(!m){grid.rejected++;continue;}
    if(m.determinant>=0)grid.reversed++;
    grid.maxCondition=Math.max(grid.maxCondition,m.condition);
@@ -54,12 +56,12 @@ for(const id of ['B1','1F','2F','3F','4F','MAGIC']){
   }
   grid.maxCondition=round(grid.maxCondition);grid.maxDerivativeDifference=round(grid.maxDerivativeDifference);
  }
- floors[id]={anchors:anchors.length,automaticProjection:automatic,reason:automatic?'supported':anchors.length<3?'insufficient-controls':'nearly-collinear-controls',leaveOneOut:Object.fromEntries(['legacy','smooth'].map(k=>[k,summarize(heldOut.map(r=>r[k]))])),spatialBlockHoldout:Object.fromEntries(['legacy','smooth'].map(k=>[k,summarize(spatial.map(r=>r[k]))])),grid,heldOut};
+ floors[id]={anchors:anchors.length,automaticProjection:automatic,modelType:info?.modelType??(automatic?'spatial':null),reason:automatic?'supported':anchors.length<3?'insufficient-controls':'nearly-collinear-controls',leaveOneOut:Object.fromEntries(['legacy','smooth'].map(k=>[k,summarize(heldOut.map(r=>r[k]))])),spatialBlockHoldout:Object.fromEntries(['legacy','smooth'].map(k=>[k,summarize(spatial.map(r=>r[k]))])),similarityValidation:info?.modelType==='similarity'?similarityValidation(anchors):null,grid,heldOut};
 }
 console.log(JSON.stringify({
  schemaVersion:2,
  sourceVerifiedAt:data.source.verifiedAt,
  method:'Compare old inverse-distance weights and smooth 40m inverse-quartic weights using the same training-only global affine inverse for both residuals. Leave one control out; additionally hold out contiguous east/north groups.',
- limitation:'Model/source disagreement, not measured GPS accuracy. Kernel selection uses these controls, so this is internal validation rather than a new independent field test. A three-control exact fit has no independent validation. Coordinates are not relocated to fit the model.',
+ limitation:'Model/source disagreement, not measured GPS accuracy. Kernel selection uses these controls, so this is internal validation rather than a new independent field test. The 4F constrained similarity has three leave-one-out checks using two controls each; a two-control personal fit has no independent check. Coordinates are not relocated or invented to fit the model.',
  floors
 },null,2));

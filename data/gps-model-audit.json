@@ -2,11 +2,12 @@
   "schemaVersion": 2,
   "sourceVerifiedAt": "2026-11-05",
   "method": "Compare old inverse-distance weights and smooth 40m inverse-quartic weights using the same training-only global affine inverse for both residuals. Leave one control out; additionally hold out contiguous east/north groups.",
-  "limitation": "Model/source disagreement, not measured GPS accuracy. Kernel selection uses these controls, so this is internal validation rather than a new independent field test. A three-control exact fit has no independent validation. Coordinates are not relocated to fit the model.",
+  "limitation": "Model/source disagreement, not measured GPS accuracy. Kernel selection uses these controls, so this is internal validation rather than a new independent field test. The 4F constrained similarity has three leave-one-out checks using two controls each; a two-control personal fit has no independent check. Coordinates are not relocated or invented to fit the model.",
   "floors": {
     "B1": {
       "anchors": 0,
       "automaticProjection": false,
+      "modelType": null,
       "reason": "insufficient-controls",
       "leaveOneOut": {
         "legacy": null,
@@ -16,12 +17,14 @@
         "legacy": null,
         "smooth": null
       },
+      "similarityValidation": null,
       "grid": null,
       "heldOut": []
     },
     "1F": {
       "anchors": 19,
       "automaticProjection": true,
+      "modelType": "spatial",
       "reason": "supported",
       "leaveOneOut": {
         "legacy": {
@@ -55,6 +58,7 @@
           "rmsPDFPoints": 140.538007
         }
       },
+      "similarityValidation": null,
       "grid": {
         "spacingM": 5,
         "supportMarginM": 50,
@@ -298,6 +302,7 @@
     "2F": {
       "anchors": 1,
       "automaticProjection": false,
+      "modelType": null,
       "reason": "insufficient-controls",
       "leaveOneOut": {
         "legacy": null,
@@ -307,12 +312,14 @@
         "legacy": null,
         "smooth": null
       },
+      "similarityValidation": null,
       "grid": null,
       "heldOut": []
     },
     "3F": {
       "anchors": 0,
       "automaticProjection": false,
+      "modelType": null,
       "reason": "insufficient-controls",
       "leaveOneOut": {
         "legacy": null,
@@ -322,13 +329,15 @@
         "legacy": null,
         "smooth": null
       },
+      "similarityValidation": null,
       "grid": null,
       "heldOut": []
     },
     "4F": {
       "anchors": 3,
-      "automaticProjection": false,
-      "reason": "nearly-collinear-controls",
+      "automaticProjection": true,
+      "modelType": "similarity",
+      "reason": "supported",
       "leaveOneOut": {
         "legacy": null,
         "smooth": null
@@ -337,12 +346,42 @@
         "legacy": null,
         "smooth": null
       },
-      "grid": null,
+      "similarityValidation": {
+        "heldOut": [
+          {
+            "id": "ride-31",
+            "pdfPoints": 84.9212242391438,
+            "equivalentM": 26.446049820787305
+          },
+          {
+            "id": "ride-32",
+            "pdfPoints": 143.56426726045436,
+            "equivalentM": 44.70858490879758
+          },
+          {
+            "id": "ride-30",
+            "pdfPoints": 201.96718586749407,
+            "equivalentM": 62.89634078489834
+          }
+        ],
+        "rmsM": 47.096357961809865,
+        "maxM": 62.89634078489834
+      },
+      "grid": {
+        "spacingM": 5,
+        "supportMarginM": 80,
+        "samples": 1733,
+        "rejected": 0,
+        "reversed": 0,
+        "maxCondition": 1,
+        "maxDerivativeDifference": 0
+      },
       "heldOut": []
     },
     "MAGIC": {
       "anchors": 5,
       "automaticProjection": true,
+      "modelType": "spatial",
       "reason": "supported",
       "leaveOneOut": {
         "legacy": {
@@ -376,6 +415,7 @@
           "rmsPDFPoints": 90.383553
         }
       },
+      "similarityValidation": null,
       "grid": {
         "spacingM": 5,
         "supportMarginM": 50,
@@ -448,7 +488,5 @@
         }
       ]
     }
-  },
-  "evaluatedAt": "2026-11-05",
-  "baselineCommit": "96197c759dda86fec0753b5a043a407eb42d4b11"
+  }
 }

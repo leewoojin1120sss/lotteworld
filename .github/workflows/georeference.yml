@@ -6,6 +6,7 @@ on:
       - 'data/georeference.json'
       - 'scripts/*georeference.mjs'
       - 'tests/geolocation.test.mjs'
+      - 'tests/fourth-floor-gps.test.mjs'
       - '.github/workflows/georeference.yml'
   workflow_dispatch:
 permissions:

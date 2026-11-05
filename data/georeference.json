@@ -494,7 +494,20 @@
       "modelAllowanceM": 50
     },
     "4F": {
-      "modelAllowanceM": 80
+      "modelAllowanceM": 80,
+      "fallbackModel": "similarity",
+      "supportMarginM": 80,
+      "calibrationPoiIds": [
+        "ride-30",
+        "ride-31",
+        "ride-32",
+        "food-4F-40",
+        "food-4F-41",
+        "food-4F-42",
+        "shop-16",
+        "shop-17",
+        "shop-18"
+      ]
     }
   },
   "excluded": [

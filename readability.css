@@ -200,6 +200,11 @@ body{font-size:16px}
 .location-floor-select{display:flex;align-items:center;gap:15px;margin-bottom:18px}
 .location-floor-select label{white-space:nowrap;margin:0;flex-shrink:0}
 .location-floor-select select{flex:1;min-width:0;padding:11px 12px;border:1px solid #e4dcee;border-radius:10px;background:#fff;color:var(--ink)}
+.location-place-calibration{margin:20px 0}
+.location-place-controls{display:flex;flex-wrap:wrap;gap:10px}
+.location-place-controls select{flex:1 1 180px;min-width:0;min-height:48px;padding:11px 12px;font:inherit;font-size:16px;border:1px solid #d9ccec;border-radius:10px;background:#fff;color:var(--ink)}
+.location-place-controls .btn{flex:0 0 auto;min-height:48px}
+.location-place-controls .btn:disabled{opacity:.5;cursor:default}
 .gps-reading{padding:18px;border:1px solid #e6e0f1;border-radius:14px;background:#faf8fe;margin-bottom:16px}
 .gps-reading.has-estimate{background:#f2f8ff;border-color:#d7e7f9}
 .gps-heading{display:flex;align-items:center;gap:9px;color:var(--purple)}.gps-heading>svg{width:22px;height:22px;flex-shrink:0}

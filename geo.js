@@ -44,6 +44,38 @@ function matrixInfo(j){
   const condition=(trace+Math.sqrt(Math.max(0,trace*trace-4*det*det)))/(2*Math.abs(det));
   return {jacobian:j,inverse:[[d/det,-b/det],[-c/det,a/det]],determinant:det,condition};
 }
+// A similarity has only translation, rotation and a single scale. Unlike a
+// six-parameter affine, it does not invent shear from nearly collinear controls.
+// Geographic north is up; the guide's y axis is down (negative determinant).
+export function fitSimilarity(anchors,{minSpanM=20}={}){
+  if(anchors.length<2||!anchors.every(validAnchor)||!Number.isFinite(minSpanM)||minSpanM<=0)return null;
+  const rows=anchors.map(a=>({g:toLocal(a),p:a.pdf}));
+  const spanM=Math.max(...rows.flatMap((a,i)=>rows.slice(i+1).map(b=>length(a.g,b.g))));
+  if(spanM<minSpanM)return null;
+  const center=rows.reduce((v,r)=>v.map((n,i)=>n+r.g[i]/rows.length),[0,0]);
+  const target=rows.reduce((v,r)=>v.map((n,i)=>n+r.p[i]/rows.length),[0,0]);
+  let aa=0,bb=0,denominator=0;
+  for(const r of rows){
+    const e=r.g[0]-center[0],n=r.g[1]-center[1],x=r.p[0]-target[0],y=r.p[1]-target[1];
+    aa+=e*x-n*y;bb+=n*x+e*y;denominator+=e*e+n*n;
+  }
+  if(denominator<1e-8)return null;
+  const a=aa/denominator,b=bb/denominator,info=matrixInfo([[a,b],[b,-a]]);
+  if(!info)return null;
+  const projectLocal=g=>[target[0]+a*(g[0]-center[0])+b*(g[1]-center[1]),target[1]+b*(g[0]-center[0])-a*(g[1]-center[1])];
+  const scale=Math.hypot(a,b),residual=Math.sqrt(rows.reduce((sum,r)=>sum+length(projectLocal(r.g),r.p)**2,0)/rows.length)/scale;
+  return {...info,scale,spanM,residual,projectLocal,project:g=>projectLocal(toLocal(g))};
+}
+export function similarityValidation(anchors,reference=fitSimilarity(anchors)){
+  if(!reference||anchors.length<3)return null;
+  const heldOut=anchors.map((point,i)=>{
+    const model=fitSimilarity(anchors.filter((_,j)=>j!==i));
+    const pdfPoints=model?length(model.project(point),point.pdf):Infinity;
+    // Use one fixed conversion scale for every held-out residual.
+    return {id:point.id??String(i),pdfPoints,equivalentM:pdfPoints/reference.scale};
+  });
+  return {heldOut,rmsM:Math.sqrt(heldOut.reduce((sum,r)=>sum+r.equivalentM**2,0)/heldOut.length),maxM:Math.max(...heldOut.map(r=>r.equivalentM))};
+}
 // A moving least-squares fit changes its weights as the visitor moves. Its
 // fitted affine slopes alone are NOT the derivative of that changing map.
 export function fitSpatial(anchors,g,options={}){
@@ -70,7 +102,9 @@ function hull(points){
 }
 function segmentDistance(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy||1)));return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy);}
 export function distanceFromSupport(g,anchors){
-  const p=toLocal(g),polygon=hull(anchors.map(toLocal));if(polygon.length<3)return Infinity;
+  const p=toLocal(g),polygon=hull(anchors.map(toLocal));if(!polygon.length)return Infinity;
+  if(polygon.length===1)return length(p,polygon[0]);
+  if(polygon.length===2)return segmentDistance(p,polygon[0],polygon[1]);
   if(polygon.every((a,i)=>cross(a,polygon[(i+1)%polygon.length],p)>=-1e-5))return 0;
   return Math.min(...polygon.map((a,i)=>segmentDistance(p,a,polygon[(i+1)%polygon.length])));
 }
@@ -118,12 +152,30 @@ function holdoutError(samples,sign){
 }
 export function modelForFloor(floor,data,g,calibrations=[]){
   const landmarks=data.anchors.filter(a=>a.floor===floor&&validAnchor(a)),reference=fitAffine(landmarks);
-  const sign=reference?Math.sign(reference.determinant):-1;
+  const config=data.floors[floor]??{};
+  const constrained=config.fallbackModel==='similarity'&&landmarks.length>=3?fitSimilarity(landmarks,{minSpanM:60}):null;
+  const constrainedValidation=constrained?similarityValidation(landmarks,constrained):null;
+  const usableConstrained=constrained&&constrained.residual<=35&&constrainedValidation?.maxM<=config.modelAllowanceM;
+  const sign=usableConstrained?Math.sign(constrained.determinant):reference?Math.sign(reference.determinant):-1;
   const samples=calibrations.filter(a=>a.floor===floor&&g.at>=a.at&&g.at-a.at<30*60000&&a.accuracy>=0&&a.accuracy<=40&&validAnchor(a));
   const learned=wellSpread(samples)?fitSpatial(samples,g):null;
   const validation=learned?holdoutError(samples,sign):Infinity;
   if(learned&&Math.sign(learned.determinant)===sign&&learned.residual<25&&(validation===null||validation<=35)&&distanceFromSupport(g,samples)<=35){
     return {model:learned,anchors:samples,error:Math.max(45,validation??45,...samples.map(a=>a.accuracy)),method:'calibrated',validationErrorM:validation};
+  }
+  // Two well-separated visitor confirmations can refine 4F without requiring
+  // the visitor to leave its narrow corridor to manufacture a third direction.
+  if(usableConstrained&&samples.length>=2){
+    const two=fitSimilarity(samples,{minSpanM:Math.max(60,3*Math.max(...samples.map(a=>a.accuracy)))});
+    const check=two?similarityValidation(samples,two):null;
+    const ratio=two?.scale/constrained.scale;
+    const alignment=two?(two.jacobian[0][0]*constrained.jacobian[0][0]+two.jacobian[0][1]*constrained.jacobian[0][1])/(two.scale*constrained.scale):0;
+    if(two&&ratio>=.65&&ratio<=1.5&&alignment>=Math.cos(35*D)&&two.residual<=25&&(!check||check.maxM<=35)&&distanceFromSupport(g,samples)<=35){
+      return {model:two,anchors:samples,error:Math.max(45,check?.maxM??45,...samples.map(a=>a.accuracy)),method:'calibrated',modelType:'similarity',validationErrorM:check?.rmsM??null};
+    }
+  }
+  if(!wellSpread(landmarks)&&usableConstrained){
+    return {model:constrained,anchors:landmarks,error:Math.max(config.modelAllowanceM,constrainedValidation.maxM),method:'landmarks',modelType:'similarity',supportMarginM:Math.min(80,config.supportMarginM??50),validationErrorM:constrainedValidation.rmsM};
   }
   if(!reference||!wellSpread(landmarks))return null;
   const model=fitSpatial(landmarks,g);if(!model||Math.sign(model.determinant)!==sign)return null;
@@ -138,7 +190,7 @@ export function projectFix(g,floor,data,floorData,calibrations=[]){
   const {model}=info;
   const calibration=[...calibrations].reverse().find(a=>a.floor===floor&&validAnchor(a)&&g.at>=a.at&&g.at-a.at<10*60000&&a.accuracy>=0&&a.accuracy<=60&&geoDistance(a,g)<100);
   const outside=distanceFromSupport(g,info.anchors);
-  if(!calibration&&outside>50)return {reason:'outside'};
+  if(!calibration&&outside>(info.supportMarginM??50))return {reason:'outside'};
   let allowance=Math.hypot(info.error,outside),method=info.method,offset=[0,0];
   // Evaluate the SAME spatial mapping at each end. A correction at a known
   // location stays fixed instead of changing when the visitor's weights change.
@@ -152,7 +204,7 @@ export function projectFix(g,floor,data,floorData,calibrations=[]){
   const pdf=project(g),f={...floorData,id:floor},{x,y}=pdfToMap(pdf,f);
   if(!isFloorPoint({floor,x,y},f))return {reason:'outside'};
   const accuracyM=Math.hypot(g.accuracy,allowance),j=model.jacobian;
-  return {floor,x,y,pdf,at:g.at,source:'estimated',accuracyM,method,jacobian:j,samples:g.samples??1,
+  return {floor,x,y,pdf,at:g.at,source:'estimated',accuracyM,method,modelType:info.modelType??'spatial',jacobian:j,samples:g.samples??1,
     ellipse:{east:[j[0][0]/floorData.width*1000,j[1][0]/floorData.height*1000],north:[j[0][1]/floorData.width*1000,j[1][1]/floorData.height*1000]}};
 }
 export function uncertaintyPolygon(p){
@@ -160,6 +212,11 @@ export function uncertaintyPolygon(p){
   return Array.from({length:40},(_,i)=>{const a=i/40*Math.PI*2,e=Math.cos(a)*p.accuracyM,n=Math.sin(a)*p.accuracyM;return `${p.x+p.ellipse.east[0]*e+p.ellipse.north[0]*n},${p.y+p.ellipse.east[1]*e+p.ellipse.north[1]*n}`;}).join(' ');
 }
 export function nearbyAnchors(g,floor,data,limit=3){return data.anchors.filter(a=>a.floor===floor&&geoDistance(a,g)<=Math.max(120,g.accuracy)).sort((a,b)=>geoDistance(a,g)-geoDistance(b,g)).slice(0,limit);}
+// These are guide places to confirm physically, not extra geographic controls.
+export function calibrationPlaces(floor,data,pois){
+  const ids=new Set(data.floors[floor]?.calibrationPoiIds??[]);
+  return pois.filter(p=>ids.has(p.id)&&p.floor===floor&&finitePair(p.pdf)&&Number.isFinite(p.x)&&Number.isFinite(p.y));
+}
 export function addCalibration(list,p,g){
   if(!validGeo(g)||!Number.isFinite(g.accuracy)||g.accuracy<0||g.accuracy>60||!finitePair(p?.pdf)||!Number.isFinite(p.at)||!Number.isFinite(g.at)||Math.abs(p.at-g.at)>20000)return list;
   const sample={floor:p.floor,pdf:p.pdf,lat:g.lat,lng:g.lng,accuracy:g.accuracy,at:p.at};

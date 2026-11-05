@@ -1,0 +1,214 @@
+{
+  "checkedAt": "2026-11-05T23:18:38.176114+00:00",
+  "endpoint": "https://api.openstreetmap.org/api/0.6/map.json?bbox=127.0965,37.5101,127.0996,37.5119",
+  "boundingBox": [
+    127.0965,
+    37.5101,
+    127.0996,
+    37.5119
+  ],
+  "elementsExamined": 468,
+  "fourthFloorNodes": [
+    {
+      "type": "node",
+      "id": 11266774140,
+      "lat": 37.5104969,
+      "lon": 127.0978101,
+      "version": 1,
+      "timestamp": "2023-10-16T12:41:38Z",
+      "tags": {
+        "attraction": "amusement_ride",
+        "layer": "4",
+        "name": "파라오의 분노"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11266774141,
+      "lat": 37.5105439,
+      "lon": 127.0984757,
+      "version": 2,
+      "timestamp": "2026-09-12T04:22:48Z",
+      "tags": {
+        "attraction": "amusement_ride",
+        "layer": "4",
+        "name": "어크로스다크"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11266774142,
+      "lat": 37.5106625,
+      "lon": 127.0968935,
+      "version": 1,
+      "timestamp": "2023-10-16T12:41:38Z",
+      "tags": {
+        "attraction": "amusement_ride",
+        "layer": "4",
+        "name": "풍선기구"
+      }
+    }
+  ],
+  "newVerifiedGeographicControls": 0,
+  "geographicControlIds": [
+    "ride-31",
+    "ride-32",
+    "ride-30"
+  ],
+  "confirmationPlaces": [
+    {
+      "id": "ride-30",
+      "name": "풍선비행",
+      "pdf": [
+        1744.97266,
+        725.55261
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=1199",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층"
+        }
+      ]
+    },
+    {
+      "id": "ride-31",
+      "name": "파라오의 분노",
+      "pdf": [
+        1565.94409,
+        660.72998
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=2444",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층 파라오짱게임즈 좌측"
+        }
+      ]
+    },
+    {
+      "id": "ride-32",
+      "name": "어크로스다크",
+      "pdf": [
+        1288.91516,
+        678.68762
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/attrctn/detail?shopSysCd=5574",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층 동굴구역 내"
+        }
+      ]
+    },
+    {
+      "id": "food-4F-40",
+      "name": "오벨리스크",
+      "pdf": [
+        1615.24847,
+        717.92523
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=544",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층 슬릭스튜디오 앞(풍선비행 방면)"
+        }
+      ]
+    },
+    {
+      "id": "food-4F-41",
+      "name": "뉴욕핫도그",
+      "pdf": [
+        1536.41016,
+        687.26593
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=76",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층 파라오의 분노 입구앞"
+        }
+      ]
+    },
+    {
+      "id": "food-4F-42",
+      "name": "파라오스낵",
+      "pdf": [
+        1399.31927,
+        634.26901
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/restaurant/detail?srchRstntSeq=543",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층 동굴 계단 옆(파라오의분노 방면)"
+        }
+      ]
+    },
+    {
+      "id": "shop-16",
+      "name": "전망대게임장",
+      "pdf": [
+        1728.15161,
+        781.35867
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=20",
+          "floorName": "어드벤처 4층",
+          "location": "풍선비행 옆"
+        }
+      ]
+    },
+    {
+      "id": "shop-17",
+      "name": "헬로키티",
+      "pdf": [
+        1700.99634,
+        677.11697
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/giftshop/detail?srchGiftSeq=50",
+          "floorName": "어드벤처 4층",
+          "location": "어드벤처 4층 풍선비행 앞"
+        }
+      ]
+    },
+    {
+      "id": "shop-18",
+      "name": "파라오짱게임즈",
+      "pdf": [
+        1633.10767,
+        674.48904
+      ],
+      "geographicAnchor": false,
+      "role": "user-confirmed-guide-place",
+      "officialSources": [
+        {
+          "url": "https://adventure.lotteworld.com/enjoy/playshop/detail?srchPlaySeq=19",
+          "floorName": "어드벤처 4층",
+          "location": "파라오의 분노 입구 우측"
+        }
+      ]
+    }
+  ],
+  "notice": "The 9 confirmation places have guide positions only. They become personal GPS calibration samples only when a visitor confirms being there with a fresh device fix. No derived or invented geographic coordinates were added."
+}

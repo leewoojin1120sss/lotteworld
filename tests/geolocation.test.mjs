@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {toLocal,fromLocal,geoDistance,fitAffine,fitSpatial,wellSpread,distanceFromSupport,FixFilter,projectFix,modelForFloor,addCalibration,StepBridge} from '../geo.js';
+import {toLocal,fromLocal,geoDistance,fitAffine,fitSpatial,fitSimilarity,similarityValidation,calibrationPlaces,wellSpread,distanceFromSupport,FixFilter,projectFix,modelForFloor,addCalibration,StepBridge} from '../geo.js';
 const data=JSON.parse(fs.readFileSync(new URL('../data/georeference.json',import.meta.url)));
 const park=JSON.parse(fs.readFileSync(new URL('../data/park.json',import.meta.url)));
 const floor=id=>park.floors.find(f=>f.id===id);
@@ -25,7 +25,7 @@ test('outside, stale and excessively coarse GPS do not become map pins',()=>{
  assert.equal(distanceFromSupport(fix(50,50),anchors),0);
 });
 test('a missing floor calibration is explicit instead of copying another floor',()=>{
- for(const id of ['B1','2F','3F','4F'])assert.equal(projectFix({...data.anchors[0],accuracy:10,at},id,data,floor(id)).reason,'calibration');
+ for(const id of ['B1','2F','3F'])assert.equal(projectFix({...data.anchors[0],accuracy:10,at},id,data,floor(id)).reason,'calibration');
  const collinear=[0,1,2].map(e=>({...fix(e,0),pdf:[e,0]}));assert.equal(fitAffine(collinear),null);
 });
 test('three noncollinear manual references can calibrate an unsupported floor',()=>{
@@ -84,11 +84,14 @@ test('three safe points retain a conservative allowance and future references ar
  assert.equal(modelForFloor('B1',{anchors:[],floors:{}},fix(20,20),samples.map(a=>({...a,at:at+10000}))),null);
 });
 
-test('public 4F anchors are too thin for an automatic transform despite a zero fitted residual',()=>{
+test('thin 4F controls use an explicitly configured similarity, never the unstable affine',()=>{
  const a=data.anchors.filter(a=>a.floor==='4F');
  assert.ok(fitAffine(a).residual<1e-6);
  assert.equal(wellSpread(a),false);
- assert.equal(projectFix({...a[0],accuracy:5,at},'4F',data,floor('4F')).reason,'calibration');
+ const p=projectFix({...a[0],accuracy:5,at},'4F',data,floor('4F'));
+ assert.equal(p.modelType,'similarity');assert.equal(p.source,'estimated');assert.ok(p.accuracyM>=80);
+ const disabled={...data,floors:{...data.floors,'4F':{modelAllowanceM:80}}};
+ assert.equal(projectFix({...a[0],accuracy:5,at},'4F',disabled,floor('4F')).reason,'calibration');
 });
 test('spatial Jacobian agrees with actual re-projection during movement',()=>{
  for(const id of ['1F','MAGIC']){

@@ -1,6 +1,6 @@
 import {escapeHTML as esc,mapPinVisible,namuDocumentURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
 
-import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
+import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,calibrationPlaces,addCalibration,geoDistance,StepBridge} from './geo.js';
 import {mountMissions} from './missions.js';
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -53,7 +53,7 @@ const names={attraction:'어트랙션',food:'푸드·카페',facility:'편의시
 const kindNames={restroom:'화장실',elevator:'엘리베이터',stairs:'계단',escalator:'에스컬레이터',firstaid:'의무실',aed:'AED',water:'음수대',battery:'배터리 대여',locker:'물품보관함',wheelchair:'휠체어',baby:'베이비라운지',info:'안내·상담',photo:'포토스팟',atm:'ATM',lostchild:'미아보호',lostfound:'분실물',sanitary:'여성용품',stroller:'유모차',prayer:'기도실',smoking:'흡연실',picnic:'피크닉',unknown:'기타',meeting:'만남의 광장'};
 let floorNoticeTimer;
 let toastTimer,park,guidePois,walkways,official={},officialLinks={links:{}},localAssets={},georeference={anchors:[],floors:{}};
-let gpsWatch=null,calibrations=[];
+let gpsWatch=null,calibrations=[],locationCalibrationId='';
 let closures=null,closureBusy=false,closureError=false,closureAttempt=0,closureViewFresh=false;
 const fixFilter=new FixFilter(),stepBridge=new StepBridge();
 const safeStored=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}};
@@ -348,21 +348,23 @@ function updateLocationUI(){
   const current=state.position?.source==='estimated'&&!positionIsStale(state.position);
   button.classList.toggle('tracking',state.tracking);button.setAttribute('aria-label','내 위치');
   button.innerHTML=icon('locate')+`<span>${state.gpsPending?'위치 찾는 중':current?'추정 위치':'내 위치'}</span>`;
-  if($('#locationDialog').open&&document.activeElement?.id!=='locationFloor')renderLocationDialog();
+  if($('#locationDialog').open&&!['locationFloor','locationCalibrationPlace'].includes(document.activeElement?.id))renderLocationDialog();
 }
 function estimationMessage(){
   if(state.gpsError)return state.gpsError;
   if(!state.gps)return state.gpsPending?'GPS·네트워크 위치를 수신하고 있어요.':'자동 추정을 시작하거나 현재 위치를 지도에서 지정하세요.';
   if(Date.now()-state.gps.at>60000)return '새 위치 신호를 찾고 있습니다. 지도에는 마지막 위치가 표시됩니다.';
   const reason=state.estimate?.reason;
+  if(state.estimate?.modelType==='similarity'&&state.estimate.x!==undefined)return state.estimate.method==='calibrated'?`현재 장소 보정을 적용했어요.${state.tracking?' 이동하면 GPS를 따라 갱신됩니다.':''}`:'4층 기준점으로 넓게 추정했어요. 현재 있는 장소를 선택해 보정하세요.';
   return reason==='outside'?'현재 신호는 이 층의 지도 범위 밖입니다. 층 또는 위치를 보정해 주세요.':reason==='accuracy'?'실내 신호의 오차가 큽니다. 가까운 장소를 선택해 위치를 보정하세요.':reason==='calibration'?state.position?.source==='manual'&&state.position.floor===state.locationFloor?'지정한 위치를 사용 중입니다. 이동 후 보정하면 이 층의 자동 추정을 학습합니다.':'이 층은 자동 위치 기준점이 부족하거나 한쪽에 몰려 있어요. 지도에서 현재 위치를 지정해 주세요.':reason==='stale'?'새 위치 신호를 기다리고 있어요.':state.estimate?.x!==undefined?'선택한 층의 공개 좌표를 바탕으로 추정했어요.':'위치 신호를 분석하고 있어요.';
 }
 function locationContent(){
   const g=state.gps,e=state.estimate,hasEstimate=e?.x!==undefined&&Date.now()-e.at<60000,candidates=g&&Date.now()-g.at<60000?nearbyAnchors(g,state.locationFloor,georeference):[];
+  const places=calibrationPlaces(state.locationFloor,georeference,guidePois);
   return `<div class="location-floor-select"><label class="field-label" for="locationFloor">내가 있는 층</label><select id="locationFloor">${park.floors.map(f=>`<option value="${f.id}" ${f.id===state.locationFloor?'selected':''}>${esc(f.name)}</option>`).join('')}</select></div>
   <div class="gps-reading ${hasEstimate?'has-estimate':''}"><div class="gps-heading">${icon(state.gpsPending?'locate':'pin')}<h3>${hasEstimate?'내 위치 후보':state.gpsPending?'실내 위치 추정 중':'내 위치 찾기'}</h3></div><p>${esc(estimationMessage())}</p>${g?`<div class="gps-metrics"><span>기기 오차 <strong>±${Math.round(g.accuracy)}m</strong></span><span>${g.samples??1}회 수신 · ${esc(ageLabel(g.at))}</span></div>`:''}${hasEstimate?`<p class="estimate-radius">지도 추정 범위 약 <b>${Math.ceil(e.accuracyM/5)*5}m</b>${e.method==='calibrated'?' · 위치 보정 적용':''}</p>`:''}</div>
   ${hasEstimate?'<button class="btn btn-primary btn-full" type="button" id="useEstimated">이 추정 위치 사용</button>':''}
-  ${candidates.length?`<div class="location-landmarks"><h3>이 장소에 있다면 눌러 보정하세요</h3>${candidates.map(a=>`<button type="button" data-location-landmark="${esc(a.id)}">${icon('pin')}<span>${esc(a.name)}</span>${icon('check')}</button>`).join('')}</div>`:''}
+  ${places.length?`<div class="location-place-calibration"><label class="field-label" for="locationCalibrationPlace">현재 있는 장소로 보정</label><div class="location-place-controls"><select id="locationCalibrationPlace"><option value="">장소 선택 · ${places.length}곳</option>${places.map(p=>`<option value="${esc(p.id)}" ${locationCalibrationId===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}</select><button class="btn btn-primary" id="useLocationLandmark" type="button" ${places.some(p=>p.id===locationCalibrationId)?'':'disabled'}>여기에 있어요</button></div></div>`:candidates.length?`<div class="location-landmarks"><h3>이 장소에 있다면 눌러 보정하세요</h3>${candidates.map(a=>`<button type="button" data-location-landmark="${esc(a.id)}">${icon('pin')}<span>${esc(a.name)}</span>${icon('check')}</button>`).join('')}</div>`:''}
   <div class="location-options"><button class="btn ${hasEstimate?'btn-subtle':'btn-primary'}" type="button" id="locationRetry">${icon('locate')}${state.tracking?'위치 다시 수신':'자동 추정 시작'}</button><button class="btn btn-subtle" type="button" id="locationPick">${icon('pin')}지도에서 보정</button></div>
   <div class="location-tracking-actions">${state.position||state.tracking?'<button class="text-button" type="button" id="removeCurrentLocation">내 위치 지우기</button>':''}${state.tracking?'<button class="text-button" type="button" id="stopTracking">위치 추적 중지</button>':''}${'DeviceMotionEvent'in window?`<button class="text-button" type="button" id="motionAssist">${state.motionEnabled?'걸음 보조 끄기':'걸음 보조 켜기'}</button>`:''}</div>
   ${state.motionEnabled?`<p class="motion-note">${state.heading===null?'휴대전화를 수평으로 들고 윗부분을 진행 방향으로 향해 주세요.':'휴대전화 윗부분을 진행 방향으로 · 신호 단절 시 최대 30초 보완합니다.'}${state.motionSteps?` · ${state.motionSteps}걸음 보완`:''}</p>`:''}
@@ -373,6 +375,12 @@ function renderLocationDialog(){
   $('#locationBody').innerHTML=locationContent();
   $('#locationPick').onclick=()=>beginPick(state.shareAfterPick);
   $('#locationRetry').onclick=()=>requestGPS();
+  const place=$('#locationCalibrationPlace'),confirmPlace=$('#useLocationLandmark');
+  if(place)place.onchange=()=>{locationCalibrationId=place.value;confirmPlace.disabled=!place.value;};
+  if(confirmPlace)confirmPlace.onclick=()=>{
+    const p=calibrationPlaces(state.locationFloor,georeference,guidePois).find(p=>p.id===place.value);
+    if(p){$('#locationDialog').close();setFloor(p.floor);setManualPosition(p);}
+  };
   $('#locationFloor').onchange=e=>{const floor=e.target.value;state.locationFloor=floor;if(state.position?.floor!==floor){state.position=null;clearRoute();}setFloor(floor);updateEstimate();if(state.estimate?.x!==undefined)focusPoint(state.estimate);renderLocationDialog();};
   const use=$('#useEstimated');if(use)use.onclick=useEstimatedPosition;
   const remove=$('#removeCurrentLocation');if(remove)remove.onclick=clearCurrentLocation;
