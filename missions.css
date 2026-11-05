@@ -1,0 +1,58 @@
+/* Missions keep their own scrolling area, leaving the map state intact. */
+.missions-open .app-layout{display:none}
+#missionsView{position:fixed;inset:82px 0 0;overflow-y:auto;overscroll-behavior:contain;background:#faf8ff;z-index:20;scrollbar-width:thin}
+#missionsView[hidden]{display:none}
+.missions-shell{max-width:1080px;margin:auto;padding:40px 32px 64px;color:#30243e}
+.mission-eyebrow{font-size:12px;letter-spacing:2px;color:#734bb8;font-weight:750}
+.missions-heading h1{font-size:34px;letter-spacing:-1px;margin:12px 0 8px}
+.missions-heading p{font-size:17px;color:#746282;margin:0 0 24px}
+.mission-progress{display:flex;align-items:center;gap:24px;max-width:460px}
+.mission-progress strong{font-size:32px;color:#5c2de8;white-space:nowrap}
+.mission-progress small{font-size:16px;color:#746282;font-weight:500}
+.mission-progress progress{width:100%;height:12px;border:none;border-radius:12px;overflow:hidden;accent-color:#6a36df;background:#e9e0f8}
+.mission-progress progress::-webkit-progress-bar{background:#e9e0f8;border-radius:12px}
+.mission-progress progress::-webkit-progress-value{background:#6a36df;border-radius:12px}
+.mission-progress progress::-moz-progress-bar{background:#6a36df;border-radius:12px}
+.mission-export{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:24px}
+.mission-export span{font-size:14px;color:#746282}
+.mission-export button:disabled{opacity:.5;cursor:default}
+.mission-status{min-height:24px;line-height:1.6;font-size:15px;color:#5e3689;margin:14px 0;overflow-wrap:anywhere}
+.mission-export-ready{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:18px;border:1px solid #d8c5fa;border-radius:16px;background:#f0e7ff;margin-bottom:28px}
+.mission-export-ready strong{margin-right:auto;font-size:16px}
+.mission-group{margin:30px 0}
+.mission-group h2{font-size:23px;letter-spacing:-.5px;margin:0 0 16px}
+.mission-group h2 small{font-size:15px;font-weight:500;color:#826c98;margin-left:6px}
+.mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+.mission-card{border:1px solid #e7ddf1;border-radius:20px;background:#fff;overflow:hidden;box-shadow:0 4px 16px #44226405;min-width:0}
+.mission-card.completed{border-color:#bea3ee}
+.mission-card-title{padding:22px 22px 18px}
+.mission-card-title>span{display:inline-block;font-size:13px;line-height:1.3;font-weight:700;padding:6px 10px;border-radius:8px;background:#f0eafa;color:#806b99}
+.completed .mission-card-title>span{background:#eae0ff;color:#5c2de8}
+.mission-card-title h3{font-size:21px;line-height:1.5;letter-spacing:-.5px;margin:12px 0 0;overflow-wrap:anywhere}
+.mission-card-title p{font-size:15px;line-height:1.75;color:#746282;margin:10px 0 0;overflow-wrap:anywhere}
+.mission-photo{display:block;width:100%;height:250px;object-fit:contain;background:#f5f2fa}
+.mission-photo-empty{margin:0 20px;min-height:138px;border:1px dashed #e0d3f0;border-radius:12px;background:#fcfaff;color:#9a84b2;display:flex;align-items:center;justify-content:center;gap:12px;font-size:15px}
+.mission-photo-empty span{font-size:28px;font-weight:400}
+.mission-photo-meta{font-size:13px;color:#806b99;padding:12px 22px 0}
+.mission-photo-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:18px 20px 20px}
+.mission-photo-actions button{min-width:0;min-height:46px;padding:10px 8px;border-radius:10px;background:#f1eafa;color:#60388c;font-size:15px;font-weight:650;touch-action:manipulation}
+.mission-photo-actions button:hover{background:#e8ddf7}
+.mission-photo-actions [data-mission-remove]{color:#956778;background:#fbf4f7}
+.missions-storage-note{font-size:14px;line-height:1.9;color:#806b99;margin-top:32px}
+.missions-open #toggleMapHeader{display:none!important}
+@media(max-width:800px){
+ #missionsView{top:70px;bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+ .map-expanded #missionsView{top:50px}
+ .missions-shell{padding:26px 18px 32px}
+ .missions-heading h1{font-size:29px}
+ .missions-heading p{font-size:16px}
+ .mission-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+ .mission-group h2{font-size:21px}
+ .mission-card-title{padding:20px}
+ .mission-card-title h3{font-size:20px}
+ .mission-export>.btn{width:100%;justify-content:center}
+ .mission-export-ready strong{width:100%}
+ .mission-export-ready .btn{flex:1;justify-content:center}
+ .mobile-bottom-nav.mobile-only{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr));padding-left:4px;padding-right:4px;gap:0}
+ .mobile-bottom-nav button{min-width:0;width:100%;font-size:11px;padding:4px 0;letter-spacing:-.3px;gap:4px}
+}

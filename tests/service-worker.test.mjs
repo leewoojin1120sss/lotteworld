@@ -10,5 +10,5 @@ test('new offline versions revalidate core requests rather than copying stale HT
  handlers.install({waitUntil:p=>completion=p});await completion;
  assert.ok(skipped);assert.ok(requests.length>10);
  for(const request of requests){assert.equal(request.cache,'reload');assert.ok(request.url.startsWith(self.registration.scope));}
- for(const file of ['app.js','data/park.json','data/official-links.json','assets/maps/4F.webp'])assert.ok(requests.some(r=>r.url===self.registration.scope+file),file);
+ for(const file of ['app.js','missions.js','missions.css','data/park.json','data/official-links.json','assets/maps/4F.webp'])assert.ok(requests.some(r=>r.url===self.registration.scope+file),file);
 });

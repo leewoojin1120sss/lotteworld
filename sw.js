@@ -1,5 +1,5 @@
 const CACHE='yaho-v1.0.0';
-const CORE=['./','index.html','styles.css','readability.css','app.js','lib.js','geo.js','manifest.webmanifest','assets/icon.svg','data/official-links.json','assets/official-map-pin.png','data/park.json','data/georeference.json','data/walkways.json','assets/maps/B1.webp','assets/maps/1F.webp','assets/maps/2F.webp','assets/maps/3F.webp','assets/maps/4F.webp','assets/maps/MAGIC.webp'];
+const CORE=['./','index.html','styles.css','readability.css','missions.css','missions.js','app.js','lib.js','geo.js','manifest.webmanifest','assets/icon.svg','data/official-links.json','assets/official-map-pin.png','data/park.json','data/georeference.json','data/walkways.json','assets/maps/B1.webp','assets/maps/1F.webp','assets/maps/2F.webp','assets/maps/3F.webp','assets/maps/4F.webp','assets/maps/MAGIC.webp'];
 // A new version must revalidate every core file. Otherwise GitHub Pages' HTTP
 // cache can populate a new offline cache with an old map/app for ten minutes.
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE.map(path=>new Request(new URL(path,self.registration.scope),{cache:'reload'})))).then(()=>self.skipWaiting())));

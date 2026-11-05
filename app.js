@@ -1,6 +1,7 @@
 import {escapeHTML as esc,mapPinVisible,namuDocumentURL,normalizeName,isMapPoint,encodeShare,decodeShare,corridorRoute,nearbyFacilities,transferRecommendations,recommendPlaces,recommendationPreferences,recommendationPresets,parseClosureResponse,closuresAreFresh,attractionClosure,pdfToMap,mapToPDF,isFloorPoint,OFFICIAL_FLOORS,matchingOfficialRecords} from './lib.js';
 
 import {FixFilter,projectFix,uncertaintyPolygon,nearbyAnchors,addCalibration,geoDistance,StepBridge} from './geo.js';
+import {mountMissions} from './missions.js';
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const paths={
@@ -145,6 +146,7 @@ async function refreshClosures({manual=false}={}){
  finally{closureBusy=false;renderOperationalViews();}
 }
 function renderList(){
+  if(document.body.classList.contains('missions-open'))return;
   renderClosureStatus();
   $('#sidebar').classList.toggle('recommendation-mode',state.recommendations);
   $('#recommendationControls').hidden=!state.recommendations;
@@ -740,4 +742,5 @@ async function init(){
     if('serviceWorker'in navigator&&window.isSecureContext)navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{});
   }catch(e){console.error(e);$('#placeList').innerHTML='<div class="empty-state"><strong>지도를 펼치지 못했어요</strong>연결을 확인하고 새로고침해 주세요.<br><a href="assets/guide-2026.pdf">원본 가이드맵 보기 ↗</a></div>';$('#resultCount').textContent='연결 확인 필요';}
 }
+mountMissions({onOpen:()=>{if(park){mobileSheet(false);closeDetail();}},onClose:()=>{if(park){renderList();mobileSheet(false);}}});
 init();
