@@ -7,117 +7,125 @@
     "storeCd": "HC01801",
     "langCd": "HC01701"
   },
-  "attemptedAt": "2026-11-19T04:32:21Z",
+  "attemptedAt": "2026-11-20T04:20:37Z",
   "sources": {
     "attractions": {
       "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:22Z",
-      "attemptedAt": "2026-11-19T04:32:21Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:37Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701",
         "deviceType": "pc",
         "isApp": "N"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "restaurants": {
       "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:22Z",
-      "attemptedAt": "2026-11-19T04:32:21Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:37Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701",
         "deviceType": "pc",
         "isApp": "N"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "shops": {
       "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:23Z",
-      "attemptedAt": "2026-11-19T04:32:22Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:37Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701",
         "deviceType": "pc",
         "isApp": "N"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "facilities": {
       "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:24Z",
-      "attemptedAt": "2026-11-19T04:32:23Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:38Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701",
         "deviceType": "pc",
         "isApp": "N"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "mapDimensions": {
       "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/imageSize",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:24Z",
-      "attemptedAt": "2026-11-19T04:32:23Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:38Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "guideMaps": {
       "url": "https://adventure.lotteworld.com/api/usage-guide/service/guide-map/list",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:25Z",
-      "attemptedAt": "2026-11-19T04:32:24Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:38Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "news": {
       "url": "https://adventure.lotteworld.com/api/adventure/communication/notice/list?storeCd=HC01801&langCd=HC01701&notiTypeCd=HC01601&pageIndex=1&notiCd=&q=",
       "method": "GET",
       "fetchedAt": "2026-11-19T04:32:24Z",
-      "attemptedAt": "2026-11-19T04:32:24Z",
-      "stale": false,
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+      "attemptedAt": "2026-11-20T04:20:39Z",
+      "stale": true,
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+      "error": "HTTP Error 403: Bad Request"
     },
     "playshops": {
       "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
       "method": "POST",
       "fetchedAt": "2026-11-19T04:32:23Z",
-      "attemptedAt": "2026-11-19T04:32:22Z",
-      "stale": false,
+      "attemptedAt": "2026-11-20T04:20:37Z",
+      "stale": true,
       "requestBody": {
         "storeCd": "HC01801",
         "langCd": "HC01701",
         "deviceType": "pc",
         "isApp": "N"
       },
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+      "error": "HTTP Error 403: Bad Request"
     }
   },
   "mapDimensions": {
@@ -152,16 +160,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 195,
@@ -280,16 +289,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -407,16 +417,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -537,16 +548,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -665,16 +677,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -795,16 +808,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 120,
       "heightMaxCm": 0,
@@ -922,16 +936,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -1050,16 +1065,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 130,
       "heightMaxCm": 0,
@@ -1179,16 +1195,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 130,
       "heightMaxCm": 180,
@@ -1307,16 +1324,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -1435,16 +1453,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 130,
       "heightMaxCm": 190,
@@ -1563,16 +1582,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 130,
       "heightMaxCm": 190,
@@ -1691,16 +1711,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 125,
       "heightMaxCm": 0,
@@ -1819,16 +1840,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 135,
       "heightMaxCm": 190,
@@ -1946,16 +1968,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 120,
       "heightMaxCm": 0,
@@ -2073,16 +2096,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -2201,16 +2225,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -2328,16 +2353,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 100,
       "heightMaxCm": 0,
@@ -2455,16 +2481,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -2582,16 +2609,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -2709,16 +2737,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -2838,16 +2867,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 140,
       "heightMaxCm": 195,
@@ -2966,16 +2996,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 120,
       "heightMaxCm": 0,
@@ -3095,16 +3126,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 120,
       "heightMaxCm": 0,
@@ -3224,16 +3256,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 140,
       "heightMaxCm": 0,
@@ -3352,16 +3385,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -3481,16 +3515,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 195,
@@ -3609,16 +3644,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -3736,16 +3772,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -3864,16 +3901,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 125,
@@ -3994,16 +4032,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -4123,16 +4162,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -4251,16 +4291,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 125,
@@ -4382,16 +4423,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 125,
@@ -4511,16 +4553,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 125,
       "heightMaxCm": 140,
@@ -4640,16 +4683,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -4769,16 +4813,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 90,
       "heightMaxCm": 140,
@@ -4898,16 +4943,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -5027,16 +5073,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -5155,16 +5202,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -5282,16 +5330,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -5411,16 +5460,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -5540,16 +5590,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 110,
       "heightMaxCm": 0,
@@ -5669,16 +5720,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 120,
       "heightMaxCm": 0,
@@ -5796,16 +5848,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -5925,16 +5978,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "heightMinCm": 0,
       "heightMaxCm": 0,
@@ -6055,16 +6109,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "츄러스, 그릴소시지, 핫도그",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -6168,16 +6223,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "츄러스, 그릴소시지, 핫도그",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -6281,16 +6337,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "파스타, 함박스테이크, 로티로리피자",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -6392,16 +6449,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "오리지널 스팸마리, 장조림버터비빔밥, 김계떡",
       "weekdayHours": "평일(일~목) 10:30~21:00 / 주말(금, 토) 10:30~22:00",
@@ -6505,16 +6563,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "블랙오레츄러스와 딥소스",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -6617,16 +6676,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "슬러시, 핫도그, 츄러스, 소떡소떡, 회오리감자",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -6727,16 +6787,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타코, 퀘사디아, 하트츄러스, 쉐이크츄",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -6840,16 +6901,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "팝콘",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -6954,16 +7016,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "팝콘, 트로피칼아이스, 츄러스",
       "weekdayHours": "평일(일~목) 10:00 ~ 21:00 / 주말(금, 토) 10:00~22:00",
@@ -7064,16 +7127,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "솜사탕",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -7178,16 +7242,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "콜팝",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -7289,16 +7354,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "버터구이오징어, 옥수수, 스낵류",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -7400,16 +7466,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "인절미 빙수, 애플망고 치즈 빙수, 인절미 토스트, 커피 등",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -7515,16 +7582,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "소프트 아이스크림",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -7626,16 +7694,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "아이스크림, 그릭요거트, 밀크쉐이크",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -7739,16 +7808,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "아이스크림라떼, 소잘라떼, 룽고커피",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -7851,16 +7921,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "커피, 프라페, 주스, 마카롱",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -7963,16 +8034,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "한식, 중식, 분식",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금,토) 10:30~22:00",
@@ -8078,16 +8150,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "수제버거, 핫도그, 떡볶이, 순살치킨",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -8191,16 +8264,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "떠먹는 퐁듀 떡볶이, 바베큐 치킨 덮밥, 우삼겹생라면",
       "weekdayHours": "평일(일~목) 10:30~21:00 / 주말(금,토) 10:30~22:00",
@@ -8304,16 +8378,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "치킨케밥, 콤보케밥, 피타롤, 델키쿨",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -8416,16 +8491,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "더블치즈스테이크, 햄&치즈, 핫도그",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -8528,16 +8604,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "파스타, 피자, 커틀렛, 필라프",
       "weekdayHours": "평일(일~목) 10:30~21:00 / 주말(금,토) 10:30~22:00",
@@ -8643,16 +8720,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "자장면, 짬뽕, 탕수육",
       "weekdayHours": "평일(일~목) 10:30~21:00 / 주말(금,토) 10:30~22:00",
@@ -8756,16 +8834,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "등심돈까스, 김치볶음밥, 돈꼬츠라멘, 유부우동",
       "weekdayHours": "평일(일~목) 10:30~21:00 / 주말(금,토) 10:30~22:00",
@@ -8868,16 +8947,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "아몬드크림치즈, 레몬에이드",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -8980,16 +9060,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "감자튀김, 와플, 스무디",
       "weekdayHours": "평일(일~목) 10:00~20:45 / 주말(금, 토) 10:00~21:45",
@@ -9091,16 +9172,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "쇼콜라, 쿠키앤크림, 후르츠샤벳",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50",
@@ -9203,16 +9285,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타로밀크티, 블랙밀크티",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50 ※ 파크 입장 손님에 한하여 이용 가능합니다. ※ 공차 모바일 쿠폰 및 기타 기프티콘 사용 불가",
@@ -9314,16 +9397,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "소프트혼합, 젤라또컵, 크런치베리소프트, 크로또또 샌드",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -9425,16 +9509,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "츄러스, 젤라또 아이스크림",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -9536,16 +9621,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타이탄팡, 타이탄소프트콘, 타이탄에너지, 츄러스, 그릴소세지, 구슬아이스크림",
       "weekdayHours": "평일(일~목) 10:00~20:30 / 주말(금,토) 10:00~21:30",
@@ -9649,16 +9735,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "자장면, 돈카츠, 라면, 새우볶음밥",
       "weekdayHours": "평일(일~목) 10:30~21:00 / 주말(금,토) 10:30~22:00",
@@ -9760,16 +9847,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "칠리치즈, 바베큐치킨핫도그, 에이드",
       "weekdayHours": "평일(일~목) 10:30~20:30 / 주말(금,토) 10:30~21:30",
@@ -9873,16 +9961,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "스낵류 (떡볶이, 어묵꼬치, 소시지, 소떡소떡), 슬러시, 츄러스, 구슬아이스크림",
       "weekdayHours": "평일(일~목) 10:30~20:30 / 주말(금,토) 10:30~21:30",
@@ -9987,16 +10076,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타워아이스크림, 탕후루, 츄러스, 스낵류 (소떡소떡, 소시지), 구슬 아이스크림, 음료",
       "weekdayHours": "평일(일~목) 10:30~20:30 / 주말(금,토) 10:30~21:30",
@@ -10102,16 +10192,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "팝콜, 치즈포테이토, 소시지",
       "weekdayHours": "평일(일~목) 10:00~20:40 / 주말(금, 토) 10:00~21:40 ※공용 좌석에서 식사 가능합니다.",
@@ -10212,16 +10303,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "치킨, 통다리구이, 윙",
       "weekdayHours": "평일(일~목) 10:00~20:40 / 주말(금,토,공휴일) 10:00~21:40",
@@ -10322,16 +10414,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "김치볶음밥, 떡볶이, 돈까스, 라면, 추억의 도시락",
       "weekdayHours": "평일(일~목) 10:30~20:40 / 주말(금, 토) 10:30~21:40",
@@ -10434,16 +10527,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "옥수수버터구이, 치즈옥수수, 슬러시",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50",
@@ -10547,16 +10641,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "자이로츄러스, 떡볶이, 감자튀김, 맥주, 커피",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50",
@@ -10662,16 +10757,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "양념닭꼬치, 스노우아이스",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -10773,16 +10869,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "자이언트 통다리",
       "weekdayHours": "평일(일~목) 10:00~20:40 / 주말(금,토), 공휴일 10:00~21:40",
@@ -10885,16 +10982,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "콜팝, 치킨, 음료",
       "weekdayHours": "평일(일~목) 10:00~20:30 / 주말(금,토) 및 공휴일 10:00~21:30",
@@ -10996,16 +11094,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "스낵류(하트츄러스, 쉐이크츄, 소시지 등), 음료(에이드, 쉐이크 등)",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -11108,16 +11207,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "로티로리치즈빵, 츄러스",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -11219,16 +11319,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "크림와플, 애플시나몬와플, 딸기와플",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50",
@@ -11330,16 +11431,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "소금빵 젤라또",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -11443,16 +11545,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "아이스크림",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -11554,16 +11657,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "커피, 프라페, 주스",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -11670,16 +11774,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타로밀크티, 블랙밀크티",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50 ※ 파크 입장 손님에 한하여 이용 가능합니다. ※ 공차 모바일 쿠폰 및 기타 기프티콘 사용 불가",
@@ -11782,16 +11887,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "더블킹 치킨, 슬러시, 핫도그",
       "weekdayHours": "평일(일~목) 10:00 ~ 20:50 / 주말(금,토 및 공휴일) 10:00 ~ 21:50",
@@ -11889,16 +11995,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "피자, 치킨, 사이드디쉬",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금, 토) 11:00~22:00",
@@ -12001,16 +12108,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "돈까스",
       "weekdayHours": "평일(일~목) 11:00~21:00, 주말(금,토) 11:00~22:00",
@@ -12113,16 +12221,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "유부초밥, 우동, 라면, 떡볶이",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금, 토) 11:00~22:00",
@@ -12227,16 +12336,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "수제츄러스, 커피, 쉐이크",
       "weekdayHours": "평일(일~목) 10:30~20:30 / 주말(금,토) 10:30~21:00",
@@ -12340,16 +12450,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "햄버거, 감자튀김, 치킨",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -12452,16 +12563,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "로스카츠, 히레카츠, 규동, 냉메밀, 김치나베",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 21:00",
@@ -12566,16 +12678,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "소고기짬뽕, 해물쟁반짜장, 갈릭깐풍기, 산더미유린기",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 21:00",
@@ -12677,16 +12790,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "콜팝",
       "weekdayHours": "평일(일~목) 10:00 ~ 21:00 / 주말(금,토) 10:00 ~ 21:00",
@@ -12788,16 +12902,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "아이스크림 라떼, 소잘라떼, 룽고커피",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 9:00~21:00",
@@ -12902,16 +13017,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "왕갈비탕, 육회비빔밥, 제육 보쌈",
       "weekdayHours": "11:30 ~ 20:30 ※주말(토,일) 전통혼례 진행 시, 본 영업장은 운영하지 않습니다.",
@@ -13015,16 +13131,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "가자미 미역국, 활전복 가자미 미역국",
       "weekdayHours": "11:30~20:30 ※어드벤처 3층 민속관게이트로 이용 및 재입장 가능합니다 ※롯데마트 3층 연결통로로도 이동하실 수 있습니다",
@@ -13128,16 +13245,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "샤브샤브",
       "weekdayHours": "평일(일~목) 11:30~21:00 / 주말(금, 토) 10:00~21:00 ※어드벤처 3층 민속관게이트로 이용 및 재입장 가능합니다",
@@ -13242,16 +13360,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "뻥튀기 아이스크림, 아이스크림, 전통 음료 슬러시",
       "weekdayHours": null,
@@ -13357,16 +13476,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "소갈비찜, 전복한우불고기뚝배기, 전복바지락순두부찌개",
       "weekdayHours": "10:00~21:00",
@@ -13467,16 +13587,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "초계국수, 초계비빔국수, 닭반마리칼국수, 메밀전병",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금,토) 11:00~21:00",
@@ -13580,16 +13701,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "순두부찌개, 오삼불고기, 생선구이, 전복돌솥밥",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금,토) 11:00~21:00",
@@ -13693,16 +13815,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "순대국밥",
       "weekdayHours": "평일(일~목) 8:00 ~ 21:00 / 주말(금,토) 8:00 ~ 21:00",
@@ -13806,16 +13929,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "캐릭터 음료, 쿠로미 핫케이크 및 굿즈",
       "weekdayHours": "평일(일~목) 10:00 ~ 21:00 / 주말(금,토) 10:00 ~ 21:00",
@@ -13917,16 +14041,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "구복전통만두, 통새우만두, 샤오롱바오",
       "weekdayHours": "11:00~20:50",
@@ -14030,16 +14155,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "오니기리, 돈부리, 우동, 덮밥",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 22:00",
@@ -14141,16 +14267,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "직화쌀국수, 분짜, 새우볶음밥, 반쎄오",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금,토) 11:00~21:00",
@@ -14253,16 +14380,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "차돌떡볶이, 통큰오짱떡볶이, 옛날짜장떡볶이",
       "weekdayHours": "평일(일~목) 11:00~21:00 / 주말(금,토) 11:00~21:00",
@@ -14366,16 +14494,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "오니기리",
       "weekdayHours": "평일(일~목) 9:00 ~ 22:00 / 주말(금,토) 9:00 ~ 23:00",
@@ -14475,16 +14604,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "과일모찌, 초코후루",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금,토) 10:00~22:00",
@@ -14588,16 +14718,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타로밀크티, 블랙밀크티",
       "weekdayHours": "평일(일~목) 9:00~22:00 / 주말(금, 토) 9:00~23:00",
@@ -14700,16 +14831,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "메가리카노, 큐브라떼",
       "weekdayHours": "8:30~22:00",
@@ -14812,16 +14944,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "커피류, 케이크류, 파니니 및 샌드위치류",
       "weekdayHours": "8:00~22:00",
@@ -14926,16 +15059,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타워버거, 징거버거, 치킨",
       "weekdayHours": "10:30~22:30",
@@ -15039,16 +15173,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "1인 샤브, 스키야키, 편백찜",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 21:00",
@@ -15150,16 +15285,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "모찌, 모찌파르페, 모찌빙수, 아메리카노, 슬러시, 컵빙수, 아이스크림, 생과일디저트",
       "weekdayHours": "평일(일~목) 10:00 ~ 21:00 / 주말(금,토) 10:00 ~ 21:00",
@@ -15259,16 +15395,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "함박스테이크, 돈코츠 라멘, 젤라또 아이스크림",
       "weekdayHours": "평일 10:00 ~ 21:00 주말 10:00 ~ 22:00",
@@ -15371,16 +15508,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "솜사탕, 슬러쉬",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 및 공휴일 10:00 ~ 21:50",
@@ -15482,16 +15620,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "탕후루, 크레페",
       "weekdayHours": "평일(일~목) 10:00~20:40 / 주말(금,토) 및 공휴일 10:00 ~ 21:40",
@@ -15592,16 +15731,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "로티스 핫덕, 로티스 만쥬",
       "weekdayHours": "평일(일~목) 10:00~20:30 / 주말(금,토) 및 공휴일 10:00~21:30",
@@ -15705,16 +15845,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "스노우콘, 슬러시, 솜사탕, 팝콘",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -15819,16 +15960,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "핑크빈 와플, 한입 츄러스, 메이플 단풍잎 감자, 예티 슈크림 도넛, 정령 돌정 컵케이크, 슬라임 컵케이크, 메소 초콜릿, 노래 나오는 캔디",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금, 토) 10:00~21:50",
@@ -15932,16 +16074,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "호두과자, 커피,소프트크림,호두팝콜드브루",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -16044,16 +16187,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "햄버거, 감자튀김, 치킨, 불갈비버거세트",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -16156,16 +16300,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "환타지 드림월드 컵, 요거트 아이스크림, 셰이크, 커피, 에이드",
       "weekdayHours": "평일(일~목) 10:00~20:50 / 주말(금,토) 10:00~21:50",
@@ -16268,16 +16413,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "비스트젤라또, 비스트소금빵핫덕, 비스트레드펀치,마이어스퀴드구이",
       "weekdayHours": "평일(일~목) 10:00~20:30 / 주말(금,토) 10:00~21:30",
@@ -16380,16 +16526,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "글로벌 미식 뷔페",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 21:00",
@@ -16494,16 +16641,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "마라탕, 마라샹궈 등",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 22:00",
@@ -16607,16 +16755,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:22Z",
-        "attemptedAt": "2026-11-19T04:32:21Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:22 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "떡볶이, 순대, 튀김, 꼬치어묵",
       "weekdayHours": "평일(일~목) 11:00 ~ 21:00 / 주말(금,토) 11:00 ~ 22:00",
@@ -16721,16 +16870,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "음반, 굿즈(인형류, 키링),포토카드",
       "weekdayHours": "주중,일요일 10:00~20:00 / 금,토,성수기 10:00~21:00",
@@ -16824,16 +16974,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "원피스 IP 오리지널 상품, 이치방쿠지 키오스크",
       "weekdayHours": "10:00~21:00",
@@ -16927,16 +17078,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "콩X고질라 IP 헤어밴드, 가방 등 굿즈",
       "weekdayHours": "주중,일요일 10:00~21:00 금,토,성수기 10:00~22:00",
@@ -17030,16 +17182,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "문구, 잡화류, IP상품",
       "weekdayHours": "10:00~21:00",
@@ -17133,16 +17286,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "토이, 리빙, 패션잡화, 팬시 둥",
       "weekdayHours": "10:00~21:00",
@@ -17236,16 +17390,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "메이플스토리 IP 활용 굿즈",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -17339,16 +17494,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "산리오, 짱구, 먼작귀, 모프샌드, 건담, 생물도감 등",
       "weekdayHours": "10:00~21:00",
@@ -17449,16 +17605,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "교복,소품",
       "weekdayHours": "10:00~21:00",
@@ -17557,16 +17714,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "인형, 피규어, 파티용품, 리빙, 식품",
       "weekdayHours": "10:00~21:00",
@@ -17663,16 +17821,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "셀프스티커(스티커 출력)",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:0",
@@ -17766,16 +17925,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "K-POP 응원봉, 앨범, 아이돌 굿즈",
       "weekdayHours": "10:00 ~ 21:00",
@@ -17874,16 +18034,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "렌즈류",
       "weekdayHours": "10:00~21:00",
@@ -17982,16 +18143,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "피규어, 굿즈, 서적, 음반",
       "weekdayHours": "10:00~21:00",
@@ -18091,16 +18253,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "교복, 대여, 특수분장",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -18201,16 +18364,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "캐릭터 상품,헤어밴드,가방 등",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -18311,16 +18475,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "캐릭터상품, 드레스, 문구",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -18421,16 +18586,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "사진 촬영, 인화서비스 및 대여 등",
       "weekdayHours": "주중, 일요일 10:00~21:00 금,토,성수기 10:00~22:00",
@@ -18530,16 +18696,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "캔디와 젤리, 초콜릿 등",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -18639,16 +18806,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "완구 종합매장, 로티로리 최신 베스트 상품 및 다양한 캐릭터 완구와 풍선 등",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -18748,16 +18916,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "캔디와 젤리, 초콜릿 등",
       "weekdayHours": "주중,일요일 10:00~20:00 / 금,토,성수기 10:00~21:00",
@@ -18857,16 +19026,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "헬로키티와 산리오 캐릭터 상품",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -18965,16 +19135,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "인형, 가방, 헤어밴드, 모자, 피규어, 티셔츠, 퍼즐, 문구류, 주방용품류 등",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -19075,16 +19246,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "교복대여",
       "weekdayHours": "주중,일요일 10:00~21:00 금,토,성수기 10:00~22:00",
@@ -19178,16 +19350,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "캐릭터상품, 풍선, IP상품",
       "weekdayHours": "평일(일~목) 10:00~21:00 / 주말(금, 토) 10:00~22:00",
@@ -19283,16 +19456,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Temporary Guest Relations",
       "detail": {
@@ -19401,16 +19575,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Temporary Stroller Rentals",
       "detail": {
@@ -19519,16 +19694,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Temporary Wheelchair Rentals",
       "detail": {
@@ -19637,16 +19813,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "First Aid",
       "detail": {
@@ -19871,16 +20048,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Smoking Area",
       "detail": {
@@ -19989,16 +20167,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Baby Lounge",
       "detail": {
@@ -20195,16 +20374,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Temporary Lost Children Center",
       "detail": {
@@ -20313,16 +20493,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "ATM",
       "detail": {
@@ -20489,16 +20670,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Temporary Lost&Found Center",
       "detail": {
@@ -20607,16 +20789,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Locker Rentals",
       "detail": {
@@ -21199,16 +21382,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "CELL PHONE POWER BANK STATION",
       "detail": {
@@ -21641,16 +21825,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Picnic Area",
       "detail": {
@@ -21759,16 +21944,17 @@
         "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:24Z",
-        "attemptedAt": "2026-11-19T04:32:23Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:24 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "nameEn": "Muslim Prayer Room",
       "detail": {
@@ -22465,10 +22651,129 @@
     "offSet": 0
   },
   "sync": {
-    "completedAt": "2026-11-19T04:33:40Z",
-    "complete": true,
+    "completedAt": "2026-11-20T04:20:40Z",
+    "complete": false,
     "detailsRequested": true,
-    "errors": []
+    "errors": [
+      {
+        "section": "attractions",
+        "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/list",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701",
+          "deviceType": "pc",
+          "isApp": "N"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "restaurants",
+        "url": "https://adventure.lotteworld.com/api/enjoy/restaurant/list",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701",
+          "deviceType": "pc",
+          "isApp": "N"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "shops",
+        "url": "https://adventure.lotteworld.com/api/enjoy/giftshop/list",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701",
+          "deviceType": "pc",
+          "isApp": "N"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "playshops",
+        "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701",
+          "deviceType": "pc",
+          "isApp": "N"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "facilities",
+        "url": "https://adventure.lotteworld.com/api/usage-guide/service/convenient-facilities/information/list",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701",
+          "deviceType": "pc",
+          "isApp": "N"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "mapDimensions",
+        "url": "https://adventure.lotteworld.com/api/enjoy/attrctn/imageSize",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "guideMaps",
+        "url": "https://adventure.lotteworld.com/api/usage-guide/service/guide-map/list",
+        "method": "POST",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:38Z",
+        "stale": true,
+        "requestBody": {
+          "storeCd": "HC01801",
+          "langCd": "HC01701"
+        },
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "news",
+        "url": "https://adventure.lotteworld.com/api/adventure/communication/notice/list?storeCd=HC01801&langCd=HC01701&notiTypeCd=HC01601&pageIndex=1&notiCd=&q=",
+        "method": "GET",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:39Z",
+        "stale": true,
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      }
+    ]
   },
   "fetchedAt": "2026-11-19T04:32:22Z",
   "operatingHours": {
@@ -22479,10 +22784,11 @@
       "url": "https://adventure.lotteworld.com/api/today/operating-hours?storeCd=HC01801&langCd=HC01701",
       "method": "GET",
       "fetchedAt": "2026-11-19T04:33:41Z",
-      "attemptedAt": "2026-11-19T04:33:40Z",
-      "stale": false,
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:33:41 GMT"
+      "attemptedAt": "2026-11-20T04:20:40Z",
+      "stale": true,
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:33:41 GMT",
+      "error": "HTTP Error 403: Bad Request"
     }
   },
   "closures": {
@@ -22548,22 +22854,44 @@
       "url": "https://adventure.lotteworld.com/api/today/closed-list?storeCd=HC01801&langCd=HC01701",
       "method": "GET",
       "fetchedAt": "2026-11-19T04:33:42Z",
-      "attemptedAt": "2026-11-19T04:33:40Z",
-      "stale": false,
-      "httpStatus": 200,
-      "serverDate": "Thu, 19 Nov 2026 04:33:42 GMT"
+      "attemptedAt": "2026-11-20T04:20:40Z",
+      "stale": true,
+      "httpStatus": 403,
+      "serverDate": "Thu, 19 Nov 2026 04:33:42 GMT",
+      "error": "HTTP Error 403: Bad Request"
     }
   },
   "liveSync": {
-    "checkedAt": "2026-11-19T04:33:42Z",
-    "complete": true,
-    "errors": []
+    "checkedAt": "2026-11-20T04:20:41Z",
+    "complete": false,
+    "errors": [
+      {
+        "section": "operatingHours",
+        "url": "https://adventure.lotteworld.com/api/today/operating-hours?storeCd=HC01801&langCd=HC01701",
+        "method": "GET",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:40Z",
+        "stale": true,
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      },
+      {
+        "section": "closures",
+        "url": "https://adventure.lotteworld.com/api/today/closed-list?storeCd=HC01801&langCd=HC01701",
+        "method": "GET",
+        "fetchedAt": null,
+        "attemptedAt": "2026-11-20T04:20:40Z",
+        "stale": true,
+        "error": "HTTP Error 403: Bad Request",
+        "httpStatus": 403
+      }
+    ]
   },
   "source": {
     "name": "Lotte World Adventure official public visitor APIs",
     "url": "https://adventure.lotteworld.com",
     "fetchedAt": "2026-11-19T04:32:22Z",
-    "stale": false
+    "stale": true
   },
   "playshops": [
     {
@@ -22580,16 +22908,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "콘셉룸 포토부스",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -22683,16 +23012,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "체험플레이",
       "weekdayHours": "매일 : 12:00~21:00 / 마감 시간과 입장 가능 시간이 다를 수 있으니 양지해 주시기 바랍니다.",
@@ -22786,16 +23116,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "체험플레이",
       "weekdayHours": "평일, 일요일 10:00~21:00 / 금,토,공휴일 10:00~22:00",
@@ -22889,16 +23220,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "체험플레이",
       "weekdayHours": "평일, 일요일 10:00~20:00/ 금,토,공휴일 10:00~21:00",
@@ -22992,16 +23324,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "체험플레이",
       "weekdayHours": "주중,일요일 11:00~20:00 / 금,토 11:00~21:00",
@@ -23098,16 +23431,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "드레스 대여",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -23207,16 +23541,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "퍼레이드 연기자 체험, 공주왕자 변신체험 및 드레스 대여",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -23319,16 +23654,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "타로점",
       "weekdayHours": "주중,일요일 10:00~21:00 / 금,토,성수기 10:00~22:00",
@@ -23427,16 +23763,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "체험플레이",
       "weekdayHours": "평일, 일요일 10:00~20:00/ 금,토,공휴일 10:00~21:00",
@@ -23530,16 +23867,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "체험플레이",
       "weekdayHours": "평일, 일요일 10:00~21:00/ 금,토,공휴일 10:00~22:00",
@@ -23637,16 +23975,17 @@
         "url": "https://adventure.lotteworld.com/api/enjoy/playshop/list",
         "method": "POST",
         "fetchedAt": "2026-11-19T04:32:23Z",
-        "attemptedAt": "2026-11-19T04:32:22Z",
-        "stale": false,
+        "attemptedAt": "2026-11-20T04:20:37Z",
+        "stale": true,
         "requestBody": {
           "storeCd": "HC01801",
           "langCd": "HC01701",
           "deviceType": "pc",
           "isApp": "N"
         },
-        "httpStatus": 200,
-        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT"
+        "httpStatus": 403,
+        "serverDate": "Thu, 19 Nov 2026 04:32:23 GMT",
+        "error": "HTTP Error 403: Bad Request"
       },
       "menu": "헤어스파, 두피클리닉, 미용 서비스",
       "weekdayHours": "10:00~20:00",
